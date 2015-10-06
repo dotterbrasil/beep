@@ -50,6 +50,8 @@ function initMap() {
  
  function showPosition(position) {
     var latlon = position.coords.latitude + "," + position.coords.longitude;
+	
+	alert(latlon);
 
     var img_url = 'https://maps.google.com/maps/embeb/v1/search?key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc&q=record+stores+in+Seattle';
 
