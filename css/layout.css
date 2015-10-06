@@ -1,0 +1,44 @@
+a:link, a:visited, a:active {
+text-decoration:none;
+color:#f2f2f2;
+font-family: sans-serif;
+}
+
+a.blue:link, a.blue:visited {
+color:#1D3CED;
+font-family:sans-serif;
+text-decoration:none;
+}
+
+a.pink:link, a.pink:visited {
+color:#ED1DAF;
+font-family:sans-serif;
+}
+
+div.central {
+     background:url(../imagens/fundo.jpg);
+     background-size:20% 100%;
+     background-repeat:no-repeat;
+	 background-position:center top;
+	 height:100%;
+	 width:100%;
+	 margin-bottom:2%; 
+	 margin-top:2%;
+
+ } 
+ 
+ div.topo{
+	 
+	 height:100%;
+	 width:100%;
+	 
+ }
+ 
+ div.rodape {
+	 height:10%;
+	 width:100%;
+	 margin-bottom:2%; 
+	 margin-top:2%;
+
+ }
+ 
