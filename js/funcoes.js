@@ -47,18 +47,23 @@ function initMap() {
   });
 }
 
- 
  function showPosition(position) {
     var latlon = position.coords.latitude + "," + position.coords.longitude;
 	
 	alert(latlon);
 
-    var img_url = 'https://maps.google.com/maps/embeb/v1/search?key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc&q=record+stores+in+Seattle';
-
-	window.open('https://www.google.com/maps/embed/v1/search?key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc&q='+latlon, '_system');
+    	
+     document.getElementById("mapa").innerHTML = "<iframe width=80% height=80% frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen></iframe>";
+	 
+	  
+ }
+ 
+ function showPosition_NEW(position) {
+    var latlon = position.coords.latitude + "," + position.coords.longitude;
 	
 	alert(latlon);
-	
+
+    	
      document.getElementById("mapa").innerHTML = "<iframe width=80% height=80% frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/search?key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc&q="+latlon+"' allowfullscreen></iframe>";
 	 
 	  
