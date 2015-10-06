@@ -31,7 +31,7 @@ if (navigator.geolocation) {
 	
 }
 
-function showPosition(position) {
+function showPosition_old(position) {
     document.getElementById("mapa").innerHTML = "Latitude: " + position.coords.latitude + 
     "<br>Longitude: " + position.coords.longitude;	
 	
@@ -48,7 +48,7 @@ function initMap() {
 }
 
  
- function showPosition_new(position) {
+ function showPosition(position) {
     var latlon = position.coords.latitude + "," + position.coords.longitude;
 	
 	alert(latlon);
