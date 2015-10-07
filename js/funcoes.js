@@ -55,7 +55,7 @@ function initMap() {
 	alert(latlon);
 
     	
-     document.getElementById("mapa").innerHTML = "<iframe width=80% height=80% frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen></iframe>";
+     document.getElementById("mapa").innerHTML = "<iframe frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen></iframe>";
 	 
 	  
  }
