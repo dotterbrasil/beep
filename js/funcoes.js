@@ -50,7 +50,7 @@ function initMap() {
  function showPosition(position) {
     var latlon = position.coords.latitude + "," + position.coords.longitude;
 	
-	     document.getElementById("mapa").innerHTML = "<iframe width=80% height=80% frameborder='0' style='border:0' src='http://www.dotter.com.br' allowfullscreen></iframe>";
+	     document.getElementById("mapa").innerHTML = "<iframe frameborder='0' style='border:0' src='http://www.dotter.com.br' allowfullscreen></iframe>";
 	
 	alert(latlon);
 
