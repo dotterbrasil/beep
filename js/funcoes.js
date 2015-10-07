@@ -51,7 +51,8 @@ function initMap() {
     var latlon = position.coords.latitude + "," + position.coords.longitude;
 	
 	alert(latlon);
-
+var ref = window.open('https://www.google.com/maps/embed/v1/place?q='+latlon+'&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc', '_blank', 'location=yes');
+alert(latlon);
     	
      document.getElementById("mapa").innerHTML = "<iframe width=80% height=80% frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen></iframe>";
 	 
