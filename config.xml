@@ -15,7 +15,7 @@
 
     <gap:plugin name="com.phonegap.plugins.barcodescanner"/>
     <gap:plugin name="org.apache.cordova.device" />
-    <gap:plugin name="InAppBrowser" value="org.apache.cordova.InAppBrowser" />
+    <gap:plugin name="org.apache.cordova.InAppBrowser" />
 
     <preference name="phonegap-version" value="cli-5.2.0" />
     <preference name="orientation"      value="portrait" />
