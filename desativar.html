@@ -4,7 +4,7 @@
 
 <head>
 
-<title>Baby Beep</title>
+<title>Baby Beep - Config</title>
 <meta charset="utf-8" />
 <meta name="format-detection" content="telephone=no" />
 <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
@@ -16,27 +16,25 @@
 
 <link rel="stylesheet" href="css/layout.css" type="text/css">
 
-
 </head>
 
-<body>
+<body onload="setTimeout(localizacao,5000)">
+
 <div id="header" class="topo" align="center">
 <img src="imagens/logo.gif" align="center" onclick='home();'>
 </div>
 <div id="status" class="topo" align="center"></div>
 
-<div id="mapa" class="central" onclick="document.location.href='desativar.html';" align="center">
-<img src="imagens/fundo.gif">
+<div id="mapa" class="central"  align="center" onclick="lista();">
+<img src="imagens/fundo_alerta.gif">
 </div>
 
 <div id="links" align="center" class="rodape">
 <font size=10>
-<a href="config.html" class="pink"><b>CONFIG</a>
-<a href="help.html" class="blue">HELP</b></a>
+<a href="index.html" class="blue"><b>DESATIVAR</a>
 <br>
 <img src="imagens/virtualid.gif">
 </font>
-
 </div>
 <embed src="sons/alerta.wav" autostart="false" width="0" height="0" id="sound1" enablejavascript="true">
 </body>

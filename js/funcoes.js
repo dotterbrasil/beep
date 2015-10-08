@@ -51,10 +51,10 @@ function initMap() {
     var latlon = position.coords.latitude + "," + position.coords.longitude;
 	
 	 document.getElementById("status").innerHTML = "Buscando localizacao no mapa...";
-    	
-	document.getElementById("mapa").style.backgroundImage = "url('imagens/fundo_alerta.gif');";
+    	PlaySound("sound1");
+	document.getElementById("mapa").style.backgroundImage = "url('imagens/fundo_alerta.gif')";
 	
-     document.getElementById("mapa").innerHTML = "<iframe width=450px height=250px src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen></iframe><br><img src='imagens/alert.gif' class='alerta' onclick='home();'>";
+     document.getElementById("mapa").innerHTML = "<iframe width=450px height=250px src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe><br><img src='imagens/alert.gif' class='alerta' onclick='home();'>";
 	 
 	 document.getElementById("status").innerHTML = "Clique sobre o ALERT para desativar o alarme!";
 	  
@@ -74,3 +74,8 @@ function initMap() {
   function home(){
   document.location.href='index.html';
  }
+ 
+ function PlaySound(soundObj) {
+  var sound = document.getElementById(soundObj);
+  sound.Play();
+}
