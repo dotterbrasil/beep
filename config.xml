@@ -31,6 +31,6 @@
     <preference name="webviewbounce"    value="false" />
 
     <icon src="icon.gif" />
-    <gap:splash src="imagens/logo.gif" />
+    <gap:splash src="logo.gif" />
 
 </widget>
