@@ -50,12 +50,11 @@ function initMap() {
  function showPosition(position) {
     var latlon = position.coords.latitude + "," + position.coords.longitude;
 	
-	     document.getElementById("mapa").innerHTML = "<iframe width=50px height=50px frameborder='0' style='border:0' src='http://www.dotter.com.br' allowfullscreen></iframe>";
-	
+	 
 	alert(latlon);
 
     	
-     document.getElementById("mapa").innerHTML = "<iframe width=50px height=50px frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen></iframe>";
+     document.getElementById("mapa").innerHTML = "<iframe width=80% height=80% frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen></iframe><br>Coordenadas: "+latlon;
 	 
 	  
  }

@@ -15,11 +15,11 @@
 
     <gap:plugin name="com.phonegap.plugins.barcodescanner"/>
     <gap:plugin name="org.apache.cordova.device" />
+
     <gap:plugin name="cordova-plugin-whitelist" source="npm" />
-    
-<access origin="*"/>
-<allow-navigation href="*" />
-<allow-intent href="*" />
+	<access origin="*"/>
+	<allow-navigation href="*" />
+	<allow-intent href="*" />
 
 
 
@@ -30,6 +30,6 @@
     <preference name="webviewbounce"    value="false" />
 
     <icon src="icon.gif" />
-    <gap:splash src="icon.gif" />
+    <gap:splash src="imagens/logo.gif" />
 
 </widget>
