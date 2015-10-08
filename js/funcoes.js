@@ -51,7 +51,7 @@ function initMap() {
     var latlon = position.coords.latitude + "," + position.coords.longitude;
 	
 	 document.getElementById("status").innerHTML = "Buscando localizacao no mapa...";
-    	PlaySound("sound1");
+    	PlaySound("sound2");
 	document.getElementById("mapa").style.backgroundImage = "url('imagens/fundo_alerta.gif')";
 	
      document.getElementById("mapa").innerHTML = "<iframe width=450px height=250px src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe><br><img src='imagens/alert.gif' class='alerta' onclick='home();'>";
@@ -77,5 +77,12 @@ function initMap() {
  
  function PlaySound(soundObj) {
   var sound = document.getElementById(soundObj);
+  var url = sound.getAttribute('src');
+  
+  var my_media = new Media(url,null,mediaError);
   sound.play();
+}
+
+function mediaError(){
+alert("Erro de Som");
 }
