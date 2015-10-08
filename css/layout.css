@@ -16,31 +16,46 @@ font-family:sans-serif;
 }
 
 div.central {
-     background:url(../imagens/fundo.gif);
-     background-size:100% 100%;
-     background-repeat:no-repeat;
-	 background-position:center top;
-	 height:46%;
-	 width:46%;
-	 margin-bottom:2%; 
-	 margin-top:2%;
+     background-image: url("../imagens/fundo.gif");
+	 background-repeat: no-repeat;
+	 background-position: center;
+	 height:60%;
+	 width:60%;
+	 
 
  } 
  
  div.topo{
 	 
 	 height:20%;
-	 width:20%;
-	  margin-bottom:2%; 
-	 margin-top:2%;
+	 width:60%;
+	 
 	 
  }
  
  div.rodape {
-	 height:10%;
-	 width:46%;
-	 margin-bottom:2%; 
-	 margin-top:2%;
-
+	 height:20%;
+	 width:60%;
+	 
  }
+ 
+ iframe { 
+border: 4px red solid; 
+ } 
+ 
+ @keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+img.alerta {
+    animation: blink 1s;
+    animation-iteration-count: infinite;
+}
  
