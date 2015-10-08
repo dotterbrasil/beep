@@ -15,7 +15,10 @@
 
     <gap:plugin name="com.phonegap.plugins.barcodescanner"/>
     <gap:plugin name="org.apache.cordova.device" />
+    <gap:plugin name="cordova-plugin-whitelist" source="npm" />
     
+<access origin="*"/>
+
 
     <preference name="phonegap-version" value="cli-5.2.0" />
     <preference name="orientation"      value="portrait" />
