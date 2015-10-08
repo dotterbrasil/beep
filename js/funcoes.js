@@ -80,7 +80,9 @@ function initMap() {
   var url = getMediaURL("sons/alerta.wav");
   
   var my_media = new Media(url,null,mediaError);
-  var temporizador = setInterval(my_media.play(),2000);
+  while(1<3){
+  my_media.play();
+  }
 }
 
 function getMediaURL(s) {
