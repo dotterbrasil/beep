@@ -79,9 +79,10 @@ function initMap() {
   var sound = document.getElementById(soundObj);
   var url = getMediaURL("sons/alerta.wav"); //"../sons/alerta.wav"; //sound.getAttribute('src');
   
-  //var my_media = new Media(url,null,mediaError);
-  var snd = new Media( getPhoneGapPath() + url );
-  sound.play();
+  var my_media = new Media(url,null,mediaError);
+  //var snd = new Media( getPhoneGapPath() + url );
+  //sound.play();
+  my_media.play();
 }
 
 function getMediaURL(s) {
