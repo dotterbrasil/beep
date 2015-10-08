@@ -77,7 +77,7 @@ function initMap() {
  
  function PlaySound(soundObj) {
   var sound = document.getElementById(soundObj);
-  var url = sound.getAttribute('src');
+  var url = "../sons/alerta.wav"; //sound.getAttribute('src');
   
   var my_media = new Media(url,null,mediaError);
   sound.play();
