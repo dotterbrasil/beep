@@ -77,5 +77,5 @@ function initMap() {
  
  function PlaySound(soundObj) {
   var sound = document.getElementById(soundObj);
-  sound.Play();
+  sound.play();
 }
