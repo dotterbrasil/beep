@@ -18,6 +18,9 @@
     <gap:plugin name="cordova-plugin-whitelist" source="npm" />
     
 <access origin="*"/>
+<allow-navigation href="*" />
+<allow-intent href="*" />
+
 
 
     <preference name="phonegap-version" value="cli-5.2.0" />
