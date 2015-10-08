@@ -77,12 +77,10 @@ function initMap() {
  
  function PlaySound(soundObj) {
   var sound = document.getElementById(soundObj);
-  var url = getMediaURL("sons/alerta.wav"); //"../sons/alerta.wav"; //sound.getAttribute('src');
+  var url = getMediaURL("sons/alerta.wav");
   
   var my_media = new Media(url,null,mediaError);
-  //var snd = new Media( getPhoneGapPath() + url );
-  //sound.play();
-  my_media.play();
+  var temporizador = setInterval(my_media.play(),2000);
 }
 
 function getMediaURL(s) {
@@ -91,16 +89,6 @@ function getMediaURL(s) {
 	
     return 'file://'+ s;
 }
-
-function getPhoneGapPath() {
-
-    var path = window.location.pathname;
-    path = path.substr( path, path.length - 10 );
-	alert(path);
-    return 'file://' + path;
-
-};
-
 
 
 function mediaError(){
