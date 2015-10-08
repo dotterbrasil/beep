@@ -77,11 +77,17 @@ function initMap() {
  
  function PlaySound(soundObj) {
   var sound = document.getElementById(soundObj);
-  var url = "../sons/alerta.wav"; //sound.getAttribute('src');
+  var url = getMediaURL("sons/alerta.wav"); //"../sons/alerta.wav"; //sound.getAttribute('src');
   
   var my_media = new Media(url,null,mediaError);
   sound.play();
 }
+
+function getMediaURL(s) {
+    if(device.platform.toLowerCase() === "android") return "../android_asset/www/" + s;
+    return s;
+}
+
 
 function mediaError(){
 alert("Erro de Som");
