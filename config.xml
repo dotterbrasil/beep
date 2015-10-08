@@ -15,7 +15,11 @@
 
     <gap:plugin name="com.phonegap.plugins.barcodescanner"/>
     <gap:plugin name="org.apache.cordova.device" />
+
     <gap:plugin name="org.apache.cordova.media" />
+	<feature name="Media">
+	    <param name="android-package" value="org.apache.cordova.media.AudioHandler" />
+	</feature>
 
     <gap:plugin name="cordova-plugin-whitelist" source="npm" />
 	<access origin="*"/>
