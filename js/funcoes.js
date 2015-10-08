@@ -79,14 +79,27 @@ function initMap() {
   var sound = document.getElementById(soundObj);
   var url = getMediaURL("sons/alerta.wav"); //"../sons/alerta.wav"; //sound.getAttribute('src');
   
-  var my_media = new Media(url,null,mediaError);
+  //var my_media = new Media(url,null,mediaError);
+  var snd = new Media( getPhoneGapPath() + url );
   sound.play();
 }
 
 function getMediaURL(s) {
     if(device.platform.toLowerCase() === "android") return "/android_asset/www/" + s;
+	
+	
     return s;
 }
+
+function getPhoneGapPath() {
+
+    var path = window.location.pathname;
+    path = path.substr( path, path.length - 10 );
+	alert(path);
+    return 'file://' + path;
+
+};
+
 
 
 function mediaError(){
