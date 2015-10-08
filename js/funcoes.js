@@ -89,7 +89,7 @@ function getMediaURL(s) {
     if(device.platform.toLowerCase() === "android") return "/android_asset/www/" + s;
 	
 	
-    return s;
+    return 'file://'+ s;
 }
 
 function getPhoneGapPath() {
