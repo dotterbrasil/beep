@@ -49,9 +49,17 @@ if (navigator.geolocation) {
  }
  
  function contatos(){
- window.plugins.ContactPicker.chooseContact(function(contactInfo) {
-    alert(contactInfo.displayName + " " + contactInfo.email + " " + contactInfo.phoneNumber);
-});
+ // Show Contact Picker
+var successCallback = function(result){
+    setTimeout(function(){alert(result.name + " " + result.phoneNumber);},0);
+	localStorage.setItem("nome", result.name);
+	localStorage.setItem("telefone", result.phoneNumber);
+};
+var failedCallback = function(result){
+    setTimeout(function(){alert(result);},0);
+}
+window.plugins.contactNumberPicker.pick(successCallback,failedCallback);
+
  }
   
   function home(){
