@@ -24,6 +24,7 @@
 	<allow-navigation href="*" />
 	<allow-intent href="*" />
 
+    <gap:plugin name="com.badrit.contactpicker" version="0.1.0" />
 
 
     <preference name="phonegap-version" value="cli-5.2.0" />

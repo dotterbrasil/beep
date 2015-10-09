@@ -48,6 +48,11 @@ if (navigator.geolocation) {
 	  
  }
  
+ function contatos(){
+ window.plugins.ContactPicker.chooseContact(function(contactInfo) {
+    alert(contactInfo.displayName + " " + contactInfo.email);
+});
+ }
   
   function home(){
   document.location.href='index.html';
