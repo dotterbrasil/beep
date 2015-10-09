@@ -1,18 +1,25 @@
 function lista(){
 
+var itens = "";
+
 if (typeof(Storage) !== "undefined") {alert(typeof(Storage));
     // Store
 	if(localStorage.length)
 		{
 		alert("ha dados");
+		for ( var i = 0, len = localStorage.length; i < len; ++i )
+			{
+			itens = itens + localStorage.getItem( localStorage.key( i ) ) +"<br>";
+			}
+			document.getElementById("principal").innerHTML = itens;
 		}
 		else
 		{
-		alert("nadinha");
+		alert("Cadastre contatos para receberem os alertas.");
 		}
 	localStorage.setItem("lastname", "Smith");
     // Retrieve
-    document.getElementById("principal").innerHTML = localStorage.getItem("lastname")+localStorage.getItem("nome");
+    //document.getElementById("principal").innerHTML = localStorage.getItem("lastname")+localStorage.getItem("nome");
 } else {
     document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";
 }
