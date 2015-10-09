@@ -2,7 +2,7 @@ function lista(){
 
 var itens = "";
 
-if (typeof(Storage) !== "undefined") {alert(typeof(Storage));
+if (typeof(Storage) !== "undefined") {
     // Store
 	if(localStorage.length)
 		{
@@ -57,14 +57,19 @@ if (navigator.geolocation) {
  
  function contatos(){
  // Show Contact Picker
-var successCallback = function(result){
-    setTimeout(function(){alert(result.name + " " + result.phoneNumber);},0);
-	localStorage.setItem("nome"+localStorage.length, result.name);
-	localStorage.setItem("telefone"+localStorage.length-1, result.phoneNumber);
-};
-var failedCallback = function(result){
-    setTimeout(function(){alert(result);},0);
-}
+	var successCallback = function(result){
+		setTimeout(function(){alert(result.name + " " + result.phoneNumber);},0);
+		alert(localStorage.length);
+		localStorage.setItem("nome"+localStorage.length, result.name);
+		alert(localStorage.length);
+		localStorage.setItem("telefone"+localStorage.length-1, result.phoneNumber);
+		alert(localStorage.length);
+		lista();
+	};
+	
+	var failedCallback = function(result){
+		setTimeout(function(){alert(result);},0);
+	}
 window.plugins.contactNumberPicker.pick(successCallback,failedCallback);
 
  }
