@@ -6,11 +6,10 @@ if (typeof(Storage) !== "undefined") {alert(typeof(Storage));
     // Store
 	if(localStorage.length)
 		{
-		alert("ha dados");
 		for ( var i = 1, len = localStorage.length + 1; i < len; i = i + 2 )
 			{
 			//itens = itens + localStorage.getItem( localStorage.key( i ) ) +"<br>";
-			itens = itens + "Nome: " + localStorage.getItem("nome"+i) + "f: " + localStorage.getItem("telefone"+i) + " <img src='magens/menos.png' width=20px onclick='limpa_item(" + i + ");'> <br>";
+			itens = itens + "Nome: " + localStorage.getItem("nome"+i) + "f: " + localStorage.getItem("telefone"+i+1) + " <font size=10><img src='imagens/menos.png' width=40px onclick='limpa_item(" + i + ");'> <br></font>";
 			}
 			document.getElementById("principal").innerHTML = itens;
 		}
@@ -18,7 +17,7 @@ if (typeof(Storage) !== "undefined") {alert(typeof(Storage));
 		{
 		alert("Cadastre contatos para receberem os alertas.");
 		}
-	localStorage.setItem("lastname", "Smith");
+	//localStorage.setItem("lastname", "Smith");
     // Retrieve
     //document.getElementById("principal").innerHTML = localStorage.getItem("lastname")+localStorage.getItem("nome");
 } else {
@@ -73,10 +72,12 @@ window.plugins.contactNumberPicker.pick(successCallback,failedCallback);
   function limpa_item(i){
 	localStorage.removeItem("nome"+i);
 	localStorage.removeItem("telefone"+i);
+	lista();
   }
   
   function limpa_contatos(){
   localStorage.clear();
+  lista();
   }
   function home(){
   document.location.href='index.html';
