@@ -50,7 +50,7 @@ if (navigator.geolocation) {
  
  function contatos(){
  window.plugins.ContactPicker.chooseContact(function(contactInfo) {
-    alert(contactInfo.displayName + " " + contactInfo.email);
+    alert(contactInfo.displayName + " " + contactInfo.email + " " + contactInfo.phoneNumber);
 });
  }
   
