@@ -6,10 +6,10 @@ if (typeof(Storage) !== "undefined") {
     // Store
 	if(localStorage.length)
 		{
-		for ( var i = 0, len = localStorage.length; i < len; i = i + 2 )
+		for ( var i = 0, len = localStorage.length; i < len; ++i )
 			{
 			//itens = itens + localStorage.getItem( localStorage.key( i ) ) +"<br>";
-			itens = itens + "Nome: " + localStorage.getItem("nome"+i) + "f: " + localStorage.getItem("telefone"+i) + "<font size="+8+"><img src='imagens/menos.png' width=40px onclick='limpa_item(" + i + ");'> <br></font>";
+			itens = itens + "Nome: " + localStorage.getItem("nome"+i) + "f: " + localStorage.getItem("telefone"+i) + "<font size=12><img src='imagens/menos.png' width=40px onclick='limpa_item(" + i + ");'> <br></font>";
 			}
 			document.getElementById("principal").innerHTML = itens;
 		}
@@ -58,9 +58,8 @@ if (navigator.geolocation) {
  function contatos(){
  // Show Contact Picker
 	var successCallback = function(result){
-		setTimeout(function(){alert(result.name + " " + result.phoneNumber);},0);
-		
-		indice = localStorage.length;
+				
+		indice = localStorage.length / 2;
 		localStorage.setItem("nome"+indice, result.name);
 		localStorage.setItem("telefone"+indice, result.phoneNumber);
 		lista();
