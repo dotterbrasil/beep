@@ -12,9 +12,9 @@ if (typeof(Storage) !== "undefined") {alert(typeof(Storage));
 		}
 	localStorage.setItem("lastname", "Smith");
     // Retrieve
-    document.getElementById("result").innerHTML = localStorage.getItem("lastname");
+    document.getElementById("principal").innerHTML = localStorage.getItem("lastname");
 } else {
-    document.getElementById("result").innerHTML = "Sorry, your browser does not support Web Storage...";
+    document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";
 }
 
 
@@ -37,7 +37,9 @@ if (navigator.geolocation) {
     var latlon = position.coords.latitude + "," + position.coords.longitude;
 	
 	 document.getElementById("status").innerHTML = "Buscando localizacao no mapa...";
-    	var teste = setInterval(PlaySound,3000);
+    
+	var teste = setInterval(PlaySound,3000);
+	
 	document.getElementById("mapa").style.backgroundImage = "url('imagens/fundo_alerta.gif')";
 	
      document.getElementById("mapa").innerHTML = "<iframe width=450px height=250px src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe><br><img src='imagens/alert.gif' class='alerta' onclick='home();'>";
@@ -46,23 +48,13 @@ if (navigator.geolocation) {
 	  
  }
  
- function showPosition_NEW(position) {
-    var latlon = position.coords.latitude + "," + position.coords.longitude;
-	
-	alert(latlon);
-
-    	
-     document.getElementById("mapa").innerHTML = "<iframe width=80% height=80% frameborder='0' style='border:0' src='https://www.google.com/maps/embed/v1/search?key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc&q="+latlon+"' allowfullscreen></iframe>";
-	 
-	  
- }
- 
+  
   function home(){
   document.location.href='index.html';
  }
  
  function PlaySound() {
-  //var sound = document.getElementById(soundObj);
+  
   var url = getMediaURL("sons/alerta.wav");
   
   var my_media = new Media(url,null,mediaError);
