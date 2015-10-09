@@ -7,7 +7,7 @@ if (typeof(Storage) !== "undefined") {alert(typeof(Storage));
 	if(localStorage.length)
 		{
 		alert("ha dados");
-		for ( var i = 0, len = localStorage.length; i < len; ++i )
+		for ( var i = 0, len = localStorage.length; i < len; i = i + 2 )
 			{
 			//itens = itens + localStorage.getItem( localStorage.key( i ) ) +"<br>";
 			itens = itens + "Nome: " + localStorage.getItem("nome"+i) + "f: " + localStorage.getItem("telefone"+i) + "<br>";
