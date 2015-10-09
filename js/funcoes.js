@@ -7,10 +7,10 @@ if (typeof(Storage) !== "undefined") {alert(typeof(Storage));
 	if(localStorage.length)
 		{
 		alert("ha dados");
-		for ( var i = 0, len = localStorage.length; i < len; i = i + 2 )
+		for ( var i = 1, len = localStorage.length + 1; i < len; i = i + 2 )
 			{
 			//itens = itens + localStorage.getItem( localStorage.key( i ) ) +"<br>";
-			itens = itens + "Nome: " + localStorage.getItem("nome"+i) + "f: " + localStorage.getItem("telefone"+i) + "<br>";
+			itens = itens + "Nome: " + localStorage.getItem("nome"+i) + "f: " + localStorage.getItem("telefone"+i) + " <img src='magens/menos.png' width=20px onclick='limpa_item(" + i + ");'> <br>";
 			}
 			document.getElementById("principal").innerHTML = itens;
 		}
@@ -69,6 +69,11 @@ var failedCallback = function(result){
 window.plugins.contactNumberPicker.pick(successCallback,failedCallback);
 
  }
+  
+  function limpa_item(i){
+	localStorage.removeItem("nome"+i);
+	localStorage.removeItem("telefone"+i);
+  }
   
   function limpa_contatos(){
   localStorage.clear();
