@@ -12,7 +12,7 @@ if (typeof(Storage) !== "undefined") {alert(typeof(Storage));
 		}
 	localStorage.setItem("lastname", "Smith");
     // Retrieve
-    document.getElementById("principal").innerHTML = localStorage.getItem("lastname");
+    document.getElementById("principal").innerHTML = localStorage.getItem("lastname")+localStorage.getItem("nome");
 } else {
     document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";
 }
