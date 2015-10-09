@@ -6,10 +6,10 @@ if (typeof(Storage) !== "undefined") {alert(typeof(Storage));
     // Store
 	if(localStorage.length)
 		{
-		for ( var i = 1, len = localStorage.length + 1; i < len; i = i + 2 )
+		for ( var i = 0, len = localStorage.length + 1; i < len; i = i + 2 )
 			{
 			//itens = itens + localStorage.getItem( localStorage.key( i ) ) +"<br>";
-			itens = itens + "Nome: " + localStorage.getItem("nome"+i) + "f: " + localStorage.getItem("telefone"+i+1) + " <font size=10><img src='imagens/menos.png' width=40px onclick='limpa_item(" + i + ");'> <br></font>";
+			itens = itens + "Nome: " + localStorage.getItem("nome"+i) + "f: " + localStorage.getItem("telefone"+i) + " <font size=8><img src='imagens/menos.png' width=40px onclick='limpa_item(" + i + ");'> <br></font>";
 			}
 			document.getElementById("principal").innerHTML = itens;
 		}
@@ -60,7 +60,7 @@ if (navigator.geolocation) {
 var successCallback = function(result){
     setTimeout(function(){alert(result.name + " " + result.phoneNumber);},0);
 	localStorage.setItem("nome"+localStorage.length, result.name);
-	localStorage.setItem("telefone"+localStorage.length, result.phoneNumber);
+	localStorage.setItem("telefone"+localStorage.length-1, result.phoneNumber);
 };
 var failedCallback = function(result){
     setTimeout(function(){alert(result);},0);
