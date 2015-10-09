@@ -9,7 +9,8 @@ if (typeof(Storage) !== "undefined") {alert(typeof(Storage));
 		alert("ha dados");
 		for ( var i = 0, len = localStorage.length; i < len; ++i )
 			{
-			itens = itens + localStorage.getItem( localStorage.key( i ) ) +"<br>";
+			//itens = itens + localStorage.getItem( localStorage.key( i ) ) +"<br>";
+			itens = itens + "Nome: " + localStorage.getItem("nome"+i) + "f: " + localStorage.getItem("telefone"+i) + "<br>";
 			}
 			document.getElementById("principal").innerHTML = itens;
 		}
@@ -59,8 +60,8 @@ if (navigator.geolocation) {
  // Show Contact Picker
 var successCallback = function(result){
     setTimeout(function(){alert(result.name + " " + result.phoneNumber);},0);
-	localStorage.setItem("nome", result.name);
-	localStorage.setItem("telefone", result.phoneNumber);
+	localStorage.setItem("nome"+localStorage.length, result.name);
+	localStorage.setItem("telefone"+localStorage.length, result.phoneNumber);
 };
 var failedCallback = function(result){
     setTimeout(function(){alert(result);},0);
@@ -69,6 +70,9 @@ window.plugins.contactNumberPicker.pick(successCallback,failedCallback);
 
  }
   
+  function limpa_contatos(){
+  localStorage.clear();
+  }
   function home(){
   document.location.href='index.html';
  }
