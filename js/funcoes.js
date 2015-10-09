@@ -9,7 +9,7 @@ if (typeof(Storage) !== "undefined") {
 		for ( var i = 0, len = localStorage.length; i < len; ++i )
 			{
 			//itens = itens + localStorage.getItem( localStorage.key( i ) ) +"<br>";
-			itens = itens + "Nome: " + localStorage.getItem("nome"+i) + "f: " + localStorage.getItem("telefone"+i) + "<font size=12><img src='imagens/menos.png' width=40px onclick='limpa_item(" + i + ");'> <br></font>";
+			itens = itens + "Nome: " + localStorage.getItem("nome"+i) + " - f: " + localStorage.getItem("telefone"+i) + "<font size=12><img src='imagens/menos.png' width=40px onclick='limpa_item(" + i + ");'> " + i +" <br></font>";
 			}
 			document.getElementById("principal").innerHTML = itens;
 		}
