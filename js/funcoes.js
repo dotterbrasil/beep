@@ -27,15 +27,19 @@ if (typeof(Storage) !== "undefined") {
 
 function localizacao()
 {alert();
-        navigator.geolocation.getCurrentPosition(showPosition);
+        navigator.geolocation.getCurrentPosition(showA);
 alert();
 if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
     } else {
-       document.getElementById("status").innerHTML = "Geolocation is not supported by this browser.";alert();
+       document.getElementById("status").innerHTML = "Geolocation is not supported by this browser.";
     }
 	
 	
+}
+
+function showA(){
+alert(position.coords.latitude);
 }
 
 
@@ -45,7 +49,7 @@ if (navigator.geolocation) {
 	alert(latlon);
 	 document.getElementById("status").innerHTML = "Buscando localizacao no mapa...";
     
-	//var teste = setInterval(playsound,3000);
+	var teste = setInterval(playsound,3000);
 	
 	document.getElementById("mapa").style.backgroundImage = "url('imagens/fundo_alerta.gif')";
 	
