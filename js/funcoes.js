@@ -9,17 +9,15 @@ if (typeof(Storage) !== "undefined") {
 		for ( var i = 0, len = localStorage.length/2; i < len; ++i )
 			{
 			//itens = itens + localStorage.getItem( localStorage.key( i ) ) +"<br>";
-			itens = itens + "Nome: " + localStorage.getItem("nome"+i) + " - f: " + localStorage.getItem("telefone"+i) + "<font size=2><img src='imagens/menos.png' width=40px onclick='limpa_item(" + i + ");'> " + i +" <br></font>";
+			itens = itens + "Nome: " + localStorage.getItem("nome"+i) + " - f: " + localStorage.getItem("telefone"+i) + "<img src='imagens/menos.png' width=40px onclick='limpa_item(" + i + ");'> " + i +" <br>";
 			}
-			document.getElementById("principal").innerHTML = itens;
+			document.getElementById("principal").innerHTML = "<font size=8>"+itens+"</font>";
 		}
 		else
 		{
 		alert("Cadastre contatos para receberem os alertas.");
 		}
-	//localStorage.setItem("lastname", "Smith");
-    // Retrieve
-    //document.getElementById("principal").innerHTML = localStorage.getItem("lastname")+localStorage.getItem("nome");
+	
 } else {
     document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";
 }
@@ -32,10 +30,10 @@ function localizacao()
 if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
     } else {
-       document.getElementById("contatos").innerHTML = "Geolocation is not supported by this browser.";
+       document.getElementById("status").innerHTML = "Geolocation is not supported by this browser.";
     }
 	
-	
+	document.getElementById("status").innerHTML = "window.open('tel:981833342');";
 }
 
 
@@ -49,7 +47,7 @@ if (navigator.geolocation) {
 	
 	document.getElementById("mapa").style.backgroundImage = "url('imagens/fundo_alerta.gif')";
 	
-     document.getElementById("mapa").innerHTML = "<iframe width=450px height=250px src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe><br><img src='imagens/alert.gif' class='alerta' onclick='home();'>";
+     document.getElementById("mapa").innerHTML = "<br><br><iframe width=450px height=450px src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe><br><img src='imagens/alert.gif' class='alerta' onclick='home();'>";
 	 
 	 document.getElementById("status").innerHTML = "Clique sobre o ALERT para desativar o alarme!";
 	  
