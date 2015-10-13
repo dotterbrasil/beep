@@ -26,7 +26,9 @@ if (typeof(Storage) !== "undefined") {
 }
 
 function localizacao()
-{
+{alert();
+        navigator.geolocation.getCurrentPosition(showPosition);
+alert();
 if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
     } else {
