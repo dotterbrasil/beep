@@ -96,9 +96,9 @@ window.plugins.contactNumberPicker.pick(successCallback,failedCallback);
   
 }
 
-function getMediaURL(s) {alert(device.platform.toLowerCase());
+function getMediaURL(s) {
     if(device.platform.toLowerCase() === "android") return "/android_asset/www/" + s;
-	
+	if(device.platform.toLowerCase() === "ios") return "www/" + s;
 	
     return 'file://'+ s;
 }
