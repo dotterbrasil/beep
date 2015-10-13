@@ -28,13 +28,8 @@ if (typeof(Storage) !== "undefined") {
 function localizacao()
 {
 
-var mensagem = "ok";
-
-alert();
-        navigator.geolocation.getCurrentPosition(showPosition, showA);
-alert();
 if (navigator.geolocation) {
-alert(mensagem);
+
         navigator.geolocation.getCurrentPosition(showPosition);
     } else {
        document.getElementById("status").innerHTML = "Geolocation is not supported by this browser.";
@@ -43,16 +38,11 @@ alert(mensagem);
 	
 }
 
-function showA(){
-var mensagem = "teste";
-alert(teste);
-}
-
 
 
  function showPosition(position) {
     var latlon = position.coords.latitude + "," + position.coords.longitude;
-	alert(latlon);
+	
 	 document.getElementById("status").innerHTML = "Buscando localizacao no mapa...";
     
 	var teste = setInterval(playsound,3000);
