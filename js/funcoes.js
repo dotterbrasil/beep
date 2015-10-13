@@ -26,10 +26,15 @@ if (typeof(Storage) !== "undefined") {
 }
 
 function localizacao()
-{alert();
-        navigator.geolocation.getCurrentPosition(showA);
+{
+
+var mensagem = "ok";
+
+alert();
+        navigator.geolocation.getCurrentPosition(showPosition, showA);
 alert();
 if (navigator.geolocation) {
+alert(mensagem);
         navigator.geolocation.getCurrentPosition(showPosition);
     } else {
        document.getElementById("status").innerHTML = "Geolocation is not supported by this browser.";
@@ -39,7 +44,8 @@ if (navigator.geolocation) {
 }
 
 function showA(){
-alert(position.coords.latitude);
+var mensagem = "teste";
+alert(teste);
 }
 
 
