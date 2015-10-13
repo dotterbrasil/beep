@@ -11,7 +11,7 @@ if (typeof(Storage) !== "undefined") {
 			//itens = itens + localStorage.getItem( localStorage.key( i ) ) +"<br>";
 			itens = itens + "Nome: " + localStorage.getItem("nome"+i) + " - f: " + localStorage.getItem("telefone"+i) + "<img src='imagens/menos.png' width=40px onclick='limpa_item(" + i + ");'> " + i +" <br>";
 			}
-			document.getElementById("principal").innerHTML = "<font size=8>"+itens+"</font>";
+			document.getElementById("principal").innerHTML = "<font size=6 face='sans'>"+itens+"</font>";
 		}
 		else
 		{
@@ -33,7 +33,7 @@ if (navigator.geolocation) {
        document.getElementById("status").innerHTML = "Geolocation is not supported by this browser.";
     }
 	
-	document.getElementById("status").innerHTML = "window.open('tel:981833342');";
+	
 }
 
 
