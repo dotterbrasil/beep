@@ -32,7 +32,7 @@ alert();
 if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
     } else {
-       document.getElementById("status").innerHTML = "Geolocation is not supported by this browser.";
+       document.getElementById("status").innerHTML = "Geolocation is not supported by this browser.";alert();
     }
 	
 	
@@ -42,7 +42,7 @@ if (navigator.geolocation) {
 
  function showPosition(position) {
     var latlon = position.coords.latitude + "," + position.coords.longitude;
-	
+	alert(latlon);
 	 document.getElementById("status").innerHTML = "Buscando localizacao no mapa...";
     
 	//var teste = setInterval(playsound,3000);
