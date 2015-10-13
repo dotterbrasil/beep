@@ -8,10 +8,10 @@ if (typeof(Storage) !== "undefined") {
 		{
 		for ( var i = 0, len = localStorage.length/2; i < len; ++i )
 			{
-			//itens = itens + localStorage.getItem( localStorage.key( i ) ) +"<br>";
+			
 			itens = itens + "Nome: " + localStorage.getItem("nome"+i) + " - f: " + localStorage.getItem("telefone"+i) + "<img src='imagens/menos.png' width=40px onclick='limpa_item(" + i + ");'> " + i +" <br>";
 			}
-			document.getElementById("principal").innerHTML = "<font size=6 face='sans'>"+itens+"</font>";
+			document.getElementById("principal").innerHTML = "<font size=6 face='sans-serif'>"+itens+"</font>";
 		}
 		else
 		{
@@ -43,7 +43,7 @@ if (navigator.geolocation) {
 	
 	 document.getElementById("status").innerHTML = "Buscando localizacao no mapa...";
     
-	var teste = setInterval(PlaySound,3000);
+	//var teste = setInterval(playsound,3000);
 	
 	document.getElementById("mapa").style.backgroundImage = "url('imagens/fundo_alerta.gif')";
 	
@@ -84,7 +84,7 @@ window.plugins.contactNumberPicker.pick(successCallback,failedCallback);
   document.location.href='index.html';
  }
  
- function PlaySound() {
+ function playsound() {
   
   var url = getMediaURL("sons/alerta.wav");
   
