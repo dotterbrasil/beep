@@ -99,7 +99,7 @@ window.plugins.contactNumberPicker.pick(successCallback,failedCallback);
 function getMediaURL(s) {
     if(device.platform.toLowerCase() === "android") return "/android_asset/www/" + s;
 	if(device.platform.toLowerCase() === "ios") return "www/" + s;
-	
+	alert(window.location.pathname);
     return 'file://'+ s;
 }
 
