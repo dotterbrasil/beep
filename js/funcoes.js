@@ -100,7 +100,7 @@ function getMediaURL(s) {
 alert(window.location.pathname);
 
     if(device.platform.toLowerCase() === "android") return "/android_asset/www/" + s;
-	if(device.platform.toLowerCase() === "ios") return "www/" + s;
+	if(device.platform.toLowerCase() === "ios") return "/" + s;
 	
     return 'file://'+ s;
 }
