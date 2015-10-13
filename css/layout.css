@@ -74,4 +74,11 @@ img.alerta {
     animation: blink 1s;
     animation-iteration-count: infinite;
 }
+
+html, body {
+    height:100%;
+    width:100%;
+    margin:0;
+    padding:0;
+}
  
