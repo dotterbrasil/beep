@@ -9,9 +9,9 @@ if (typeof(Storage) !== "undefined") {
 		for ( var i = 0, len = localStorage.length/2; i < len; ++i )
 			{
 			
-			itens = itens + "Nome: " + localStorage.getItem("nome"+i) + " - f: " + localStorage.getItem("telefone"+i) + "<img src='imagens/menos.png' width=40px onclick='limpa_item(" + i + ");'> " + i +" <br>";
+			itens = itens + localStorage.getItem("nome"+i) + " - " + localStorage.getItem("telefone"+i) + "<img src='imagens/menos.png' width=40px onclick='limpa_item(" + i + ");'> <br>";
 			}
-			document.getElementById("principal").innerHTML = "<font size=6 face='sans-serif'>"+itens+"</font>";
+			document.getElementById("principal").innerHTML = "<br><br><font size=6 face='sans-serif'>"+itens+"</font>";
 		}
 		else
 		{
