@@ -109,3 +109,8 @@ function getMediaURL(s) {
 function mediaError(){
 alert("Erro de Som");
 }
+
+function ajuste_tela(){
+document.getElementById("container").style.width=screen.width;
+document.getElementById("container").style.height=screen.height;
+}
