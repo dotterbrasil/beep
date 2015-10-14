@@ -38,10 +38,29 @@ if (navigator.geolocation) {
 
  
  function contatos(){
+
+var indice = 0;
+
+if (typeof(Storage) !== "undefined")
+	{
+	if(localStorage.length)
+		{
+		for ( var i = 0, len = localStorage.length; i < len; ++i )
+			{
+			if(localStorage.getItem("nome"+i) !== null)
+				{
+				++indice;
+				}
+			}
+		}
+		else {	alert("Cadastre contatos.");	}
+	
+	} else {    document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";}
+
+
  // Show Contact Picker
 	var successCallback = function(result){
 				
-		indice = localStorage.length / 2;
 		localStorage.setItem("nome"+indice, result.name);
 		localStorage.setItem("telefone"+indice, result.phoneNumber);
 		lista();
@@ -118,8 +137,9 @@ if (typeof(Storage) !== "undefined")
 	
 	} else {    document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";}
 
-localStorage.setItem("kid"+indice,crianca);
+	localStorage.setItem("kid"+indice,crianca);
 }
+
 
 function lista_kids(){
 
@@ -133,7 +153,6 @@ if (typeof(Storage) !== "undefined")
 			{
 			if(localStorage.getItem("kid"+i) !== null)
 				{
-				//itens = itens + localStorage.getItem("kid"+i) + "<img src='imagens/menos.png' width=5% onclick='limpa_item(" + i + ");'> <br> <img src='http://chart.apis.google.com/chart?cht=qr&chl="+localStorage.getItem("kid"+i)+"&chs=200x200'>";
 				itens = itens + "<div onclick='qrcode("+i+");'>"+localStorage.getItem("kid"+i) + "</div><br>";
 				}
 			}
@@ -148,9 +167,14 @@ if (typeof(Storage) !== "undefined")
 
 function qrcode(i){
 
-document.getElementById("principal").innerHTML = localStorage.getItem("kid"+i)+"<br><img src='imagens/menos.png' width=5% onclick='limpa_item(" + i + ");'> <br> <img src='http://chart.apis.google.com/chart?cht=qr&chl="+localStorage.getItem("kid"+i)+"&chs=200x200'>";
+document.getElementById("principal").innerHTML = localStorage.getItem("kid"+i)+"<img src='imagens/menos.png' width=10% onclick='limpa_kid(" + i + ");'> <br> <img src='http://chart.apis.google.com/chart?cht=qr&chl="+localStorage.getItem("kid"+i)+"&chs=200x200'>";
 
 }
+
+function limpa_kid(i){
+	localStorage.removeItem("kid"+i);
+	lista_kids();
+  }
 
 //---------------------------------------------------------------------------- MEDIA  ----------------------------------------------------------------------------
 
