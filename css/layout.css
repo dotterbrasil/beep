@@ -22,6 +22,7 @@ div.central {
 
 	 position:relative;
 	 top: 20%;
+	 left:10%;
 
  } 
  
@@ -29,14 +30,15 @@ div.central {
 	 
 	 position:relative;
 	 top:0%;
-
+	 left:10%;
 	 
  }
  
  div.rodape {
 
 	 position:relative;	 
-	 top: 80%;
+	 top:80%;
+	 left:10%;
  }
  
 

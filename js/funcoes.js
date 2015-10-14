@@ -11,7 +11,7 @@ if (typeof(Storage) !== "undefined") {
 			
 			itens = itens + localStorage.getItem("nome"+i) + " - " + localStorage.getItem("telefone"+i) + "<img src='imagens/menos.png' width=40px onclick='limpa_item(" + i + ");'> <br>";
 			}
-			document.getElementById("principal").innerHTML = "<br><br><font size='4' face='sans-serif'>"+itens+"</font>";
+			document.getElementById("principal").innerHTML = "<br><br><font size=4 face='sans-serif'>"+itens+"</font>";
 		}
 		else
 		{
