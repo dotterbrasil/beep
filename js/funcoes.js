@@ -77,6 +77,54 @@ if (navigator.geolocation) {
 window.plugins.contactNumberPicker.pick(successCallback,failedCallback);
 
  }
+
+function kids(){
+
+var crianca = prompt("Nome: ","");
+var indice = 0;
+
+if (typeof(Storage) !== "undefined")
+	{
+	if(localStorage.length)
+		{
+		for ( var i = 0, len = localStorage.length; i < len; ++i )
+			{
+			if(localStorage.getItem("kid"+i) !== null)
+				{
+				++indice;
+				}
+			}
+		}
+		else {	alert("Cadastre as criancas.");	}
+	
+	} else {    document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";}
+
+localStorage.setItem("kid"+indice,crianca);
+}
+
+function lista_kids(){
+
+var itens = "";
+
+if (typeof(Storage) !== "undefined")
+	{
+	if(localStorage.length)
+		{
+		for ( var i = 0, len = localStorage.length; i < len; ++i )
+			{
+			if(localStorage.getItem("kid"+i) !== null)
+				{
+				itens = itens + localStorage.getItem("kid"+i) + "<img src='imagens/menos.png' width=5% onclick='limpa_item(" + i + ");'> <br>";
+				}
+			}
+		document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>"+itens+"</font>";
+		}
+		else {	alert("Cadastre as criancas.");	}
+	
+	} else {    document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";}
+
+}
+
   
 function limpa_item(i){
 	localStorage.removeItem("nome"+i);
