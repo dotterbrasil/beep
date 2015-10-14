@@ -119,21 +119,12 @@ function limpa_contatos(){
 function kids(){
 
 var crianca = prompt("Nome: ","").toUpperCase();
-var indice = 0;
+var indice = function conta_kids();
 
 if (typeof(Storage) !== "undefined")
 	{
-	if(localStorage.length)
-		{
-		for ( var i = 0, len = localStorage.length; i < len; ++i )
-			{
-			if(localStorage.getItem("kid"+i) !== null)
-				{
-				++indice;
-				}
-			}
-		}
-		else {	alert("Cadastre as criancas.");	}
+
+	localStorage.setItem("kid"+indice,crianca);
 	
 	} else {    document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";}
 
@@ -144,12 +135,13 @@ if (typeof(Storage) !== "undefined")
 function lista_kids(){
 
 var itens = "";
+var indice = function conta_kids();
 
 if (typeof(Storage) !== "undefined")
 	{
 	if(localStorage.length)
 		{
-		for ( var i = 0, len = localStorage.length; i < len; ++i )
+		for ( var i = 0; i < indice; ++i )
 			{
 			if(localStorage.getItem("kid"+i) !== null)
 				{
