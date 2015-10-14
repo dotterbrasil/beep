@@ -25,7 +25,7 @@ if (navigator.geolocation) {
 	
 	document.getElementById("mapa").style.backgroundImage = "url('imagens/fundo_alerta.gif')";
 	
-     document.getElementById("mapa").innerHTML = "<br><br><iframe width=80% height=80% src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe><br><img src='imagens/alert.gif' width=100% align='center' class='alerta' onclick='home();'>";
+     document.getElementById("mapa").innerHTML = "<br><br><iframe width=80% height=80% src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe><br><img src='imagens/alert.gif' width=100% align='center' class='alerta' onclick='startScan();'>";
 	 
 	 document.getElementById("status").innerHTML = "Clique sobre o ALERT para desativar o alarme!";
 
@@ -156,7 +156,7 @@ if (typeof(Storage) !== "undefined")
 				itens = itens + "<div onclick='qrcode("+i+");'>"+localStorage.getItem("kid"+i) + "</div><br>";
 				}
 			}
-		document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>"+itens+"</font>";
+		document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>" + itens + "</font>";
 		}
 		else {	alert("Cadastre as criancas.");	}
 	
@@ -167,7 +167,9 @@ if (typeof(Storage) !== "undefined")
 
 function qrcode(i){
 
-document.getElementById("principal").innerHTML = localStorage.getItem("kid"+i)+"<img src='imagens/menos.png' width=10% onclick='limpa_kid(" + i + ");'> <br> <img src='http://chart.apis.google.com/chart?cht=qr&chl="+localStorage.getItem("kid"+i)+"&chs=200x200'>";
+var qrcode = "<img src='http://chart.apis.google.com/chart?cht=qr&chl="+localStorage.getItem("kid"+i)+"&chs=200x200'>";
+
+document.getElementById("principal").innerHTML = "<font face='sans-serif'>" + localStorage.getItem("kid"+i)+"<img src='imagens/menos.png' width=10% onclick='limpa_kid(" + i + ");'> <br>" + qrcode + "<br> Este QRCODE deve ser impresso e colocado na cadeirinha ou bebe conforto. <div onclick='help_qrcode();'>SAIBA COMO</div>";
 
 }
 
@@ -262,3 +264,30 @@ var app = {
 
     }
 };
+
+//---------------------------------------------------------------------------- SCANNER  ----------------------------------------------------------------------------
+
+function startScan() {
+
+	var scanner = cordova.require("cordova/plugin/BarcodeScanner");
+	var aux = "";
+
+	scanner.scan(
+		function (result) {
+						
+			aux = result.text;
+			if(result.format == 'DATA_MATRIX')
+				{
+				separa(aux);
+				}
+				else
+					{
+					home();
+					}
+		}, 
+		function (error) {
+			alert("Scanning failed: " + error);
+		}
+	);
+
+}
