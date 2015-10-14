@@ -10,7 +10,7 @@ if (typeof(Storage) !== "undefined") {
 		{
 		for ( var i = 0, len = localStorage.length; i < len; ++i )
 			{
-			if(localStorage.getItem("nome"+i) !== "null")
+			if(localStorage.getItem("nome"+i) !== null)
 				{
 				itens = itens + localStorage.getItem("nome"+i) + " - " + localStorage.getItem("telefone"+i) + "<img src='imagens/menos.png' width=5% onclick='limpa_item(" + i + ");'> <br>";
 				}
@@ -122,18 +122,19 @@ alert("Erro de Som");
 
 function envia_sms(latlon){
 
-app.sendSms();
+var mensagem = "teste"+latlon;
 
 if (typeof(Storage) !== "undefined") {
     // Store
 	if(localStorage.length)
 		{
-		for ( var i = 0, len = localStorage.length/2; i < len; ++i )
+		for ( var i = 0, len = localStorage.length; i < len; ++i )
 			{
-			
-			itens = itens + localStorage.getItem("nome"+i) + " - " + localStorage.getItem("telefone"+i) + "<img src='imagens/menos.png' width=5% onclick='limpa_item(" + i + ");'> <br>";
+			if(localStorage.getItem("telefone"+i) !== null)
+				{
+				app.sendSms(localStorage.getItem("telefone"+i),mensagem);
+				}
 			}
-			document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>"+itens+"</font>";
 		}
 		else
 		{
@@ -149,9 +150,9 @@ if (typeof(Storage) !== "undefined") {
 
 
 var app = {
-    sendSms: function() {
-        var number = document.getElementById('numberTxt').value;
-        var message = document.getElementById('messageTxt').value;
+    sendSms: function(telefone,mensagem) {
+        var number = telefone;
+        var message = mensagem;
         alert(number);
         alert(message);
 
