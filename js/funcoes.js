@@ -8,10 +8,12 @@ if (typeof(Storage) !== "undefined") {
     // Store
 	if(localStorage.length)
 		{
-		for ( var i = 0, len = localStorage.length/2; i < len; ++i )
+		for ( var i = 0, len = localStorage.length; i < len; ++i )
 			{
-			
-			itens = itens + localStorage.getItem("nome"+i) + " - " + localStorage.getItem("telefone"+i) + "<img src='imagens/menos.png' width=5% onclick='limpa_item(" + i + ");'> <br>";
+			if(localStorage.getItem("nome"+i) !== "null")
+				{
+				itens = itens + localStorage.getItem("nome"+i) + " - " + localStorage.getItem("telefone"+i) + "<img src='imagens/menos.png' width=5% onclick='limpa_item(" + i + ");'> <br>";
+				}
 			}
 			document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>"+itens+"</font>";
 		}
@@ -54,6 +56,8 @@ if (navigator.geolocation) {
      document.getElementById("mapa").innerHTML = "<br><br><iframe width=80% height=80% src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe><br><img src='imagens/alert.gif' width=100% align='center' class='alerta' onclick='home();'>";
 	 
 	 document.getElementById("status").innerHTML = "Clique sobre o ALERT para desativar o alarme!";
+
+	envia_sms(latlon);
 	  
  }
  
@@ -116,4 +120,53 @@ function mediaError(){
 alert("Erro de Som");
 }
 
+function envia_sms(latlon){
 
+app.sendSms();
+
+if (typeof(Storage) !== "undefined") {
+    // Store
+	if(localStorage.length)
+		{
+		for ( var i = 0, len = localStorage.length/2; i < len; ++i )
+			{
+			
+			itens = itens + localStorage.getItem("nome"+i) + " - " + localStorage.getItem("telefone"+i) + "<img src='imagens/menos.png' width=5% onclick='limpa_item(" + i + ");'> <br>";
+			}
+			document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>"+itens+"</font>";
+		}
+		else
+		{
+		alert("Cadastre contatos para receberem os alertas.");
+		}
+	
+} else {
+    document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";
+}
+
+
+}
+
+
+var app = {
+    sendSms: function() {
+        var number = document.getElementById('numberTxt').value;
+        var message = document.getElementById('messageTxt').value;
+        alert(number);
+        alert(message);
+
+        //CONFIGURATION
+        var options = {
+            replaceLineBreaks: false, // true to replace \n by a new line, false by default
+            android: {
+                intent: 'INTENT'  // send SMS with the native android SMS messaging
+                //intent: '' // send SMS without open any other app
+            }
+        };
+
+        var success = function () { alert('Message sent successfully'); };
+        var error = function (e) { alert('Message Failed:' + e); };
+        sms.send(number, message, options, success, error);
+
+    }
+};
