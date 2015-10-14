@@ -1,33 +1,5 @@
-function lista(){
 
-var itens = "";
-
-document.getElementById("principal").innerHTML = itens+"<img src='imagens/fundo.gif' width=100% align='center' >";
-
-if (typeof(Storage) !== "undefined") {
-    // Store
-	if(localStorage.length)
-		{
-		for ( var i = 0, len = localStorage.length; i < len; ++i )
-			{
-			if(localStorage.getItem("nome"+i) !== null)
-				{
-				itens = itens + localStorage.getItem("nome"+i) + " - " + localStorage.getItem("telefone"+i) + "<img src='imagens/menos.png' width=5% onclick='limpa_item(" + i + ");'> <br>";
-				}
-			}
-			document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>"+itens+"</font>";
-		}
-		else
-		{
-		alert("Cadastre contatos para receberem os alertas.");
-		}
-	
-} else {
-    document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";
-}
-
-
-}
+//---------------------------------------------------------------------------- COORDENADAS  ----------------------------------------------------------------------------
 
 function localizacao()
 {
@@ -60,6 +32,10 @@ if (navigator.geolocation) {
 	envia_sms(latlon);
 	  
  }
+
+
+//---------------------------------------------------------------------------- ALERTS  ----------------------------------------------------------------------------
+
  
  function contatos(){
  // Show Contact Picker
@@ -77,6 +53,49 @@ if (navigator.geolocation) {
 window.plugins.contactNumberPicker.pick(successCallback,failedCallback);
 
  }
+
+
+
+function lista(){
+
+var itens = "";
+
+document.getElementById("principal").innerHTML = itens+"<img src='imagens/fundo.gif' width=100% align='center' >";
+
+if (typeof(Storage) !== "undefined")
+	{
+	if(localStorage.length)
+		{
+		for ( var i = 0, len = localStorage.length; i < len; ++i )
+			{
+			if(localStorage.getItem("nome"+i) !== null)
+				{
+				itens = itens + localStorage.getItem("nome"+i) + " - " + localStorage.getItem("telefone"+i) + "<img src='imagens/menos.png' width=5% onclick='limpa_item(" + i + ");'> <br>";
+				}
+			}
+			document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>"+itens+"</font>";
+		}
+		else {	alert("Cadastre contatos para receberem os alertas.");	}
+	
+	} else {  document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";}
+
+
+}
+
+
+function limpa_item(i){
+	localStorage.removeItem("nome"+i);
+	localStorage.removeItem("telefone"+i);
+	lista();
+  }
+  
+
+function limpa_contatos(){
+  localStorage.clear();
+  lista();
+}
+
+//---------------------------------------------------------------------------- KIDS  ----------------------------------------------------------------------------
 
 function kids(){
 
@@ -114,7 +133,8 @@ if (typeof(Storage) !== "undefined")
 			{
 			if(localStorage.getItem("kid"+i) !== null)
 				{
-				itens = itens + localStorage.getItem("kid"+i) + "<img src='imagens/menos.png' width=5% onclick='limpa_item(" + i + ");'> <br> <img src='http://chart.apis.google.com/chart?cht=qr&chl="+localStorage.getItem("kid"+i)+"&chs=200x200'>";
+				//itens = itens + localStorage.getItem("kid"+i) + "<img src='imagens/menos.png' width=5% onclick='limpa_item(" + i + ");'> <br> <img src='http://chart.apis.google.com/chart?cht=qr&chl="+localStorage.getItem("kid"+i)+"&chs=200x200'>";
+				itens = itens + "<div onclick='qrcode("+i+");'>"+localStorage.getItem("kid"+i) + "</div><br>";
 				}
 			}
 		document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>"+itens+"</font>";
@@ -125,18 +145,14 @@ if (typeof(Storage) !== "undefined")
 
 }
 
-  
-function limpa_item(i){
-	localStorage.removeItem("nome"+i);
-	localStorage.removeItem("telefone"+i);
-	lista();
-  }
-  
 
-function limpa_contatos(){
-  localStorage.clear();
-  lista();
+function qrcode(i){
+
+document.getElementById("principal").innerHTML = localStorage.getItem("kid"+i)+"<br><img src='imagens/menos.png' width=5% onclick='limpa_item(" + i + ");'> <br> <img src='http://chart.apis.google.com/chart?cht=qr&chl="+localStorage.getItem("kid"+i)+"&chs=200x200'>";
+
 }
+
+//---------------------------------------------------------------------------- MEDIA  ----------------------------------------------------------------------------
 
 
 function home(){
@@ -167,6 +183,9 @@ function getMediaURL(s) {
 function mediaError(){
 alert("Erro de Som");
 }
+
+
+//---------------------------------------------------------------------------- SMS  ----------------------------------------------------------------------------
 
 function envia_sms(latlon){
 
