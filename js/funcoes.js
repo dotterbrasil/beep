@@ -25,7 +25,7 @@ if (navigator.geolocation) {
 	
 	document.getElementById("mapa").style.backgroundImage = "url('imagens/fundo_alerta.gif')";
 	
-     document.getElementById("mapa").innerHTML = "<br><br><iframe width=80% height=80% src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe><br><img src='imagens/alert.gif' width=100% align='center' class='alerta' onclick='startScan();'>";
+     document.getElementById("mapa").innerHTML = "<br><br><iframe width=80% height=80% src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe><br><img src='imagens/alert.gif' width=100% align='center' class='alerta' onclick='desativa();'>";
 	 
 	 document.getElementById("status").innerHTML = "Clique sobre o ALERT para desativar o alarme!";
 
@@ -178,6 +178,31 @@ function limpa_kid(i){
 	lista_kids();
   }
 
+
+function conta_kids(){
+
+var indice = 0;
+
+if (typeof(Storage) !== "undefined")
+	{
+	if(localStorage.length)
+		{
+		for ( var i = 0, len = localStorage.length; i < len; ++i )
+			{
+			if(localStorage.getItem("kid"+i) !== null)
+				{
+				++indice;
+				}
+			}
+		}
+	
+	} else {    document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";}
+
+return indice;
+
+
+}
+
 //---------------------------------------------------------------------------- MEDIA  ----------------------------------------------------------------------------
 
 
@@ -282,12 +307,28 @@ function startScan() {
 				}
 				else
 					{
-					home();
+					return aux;
 					}
 		}, 
 		function (error) {
 			alert("Scanning failed: " + error);
 		}
 	);
+
+}
+
+function desativa(){
+
+var indice = conta_kids();
+var aux = "";
+
+alert(indice);
+
+while (indice>0)
+	{
+	aux = startScan();
+	alert("Crianca "+aux+" retirada");
+	--indice;
+	}
 
 }
