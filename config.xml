@@ -18,6 +18,8 @@
 
     <gap:plugin name="org.apache.cordova.media" />
 
+    <gap:plugin name="com.cordova.plugins.sms" version="0.1.2" />
+
 
     <gap:plugin name="cordova-plugin-whitelist" source="npm" />
 	<access origin="*"/>

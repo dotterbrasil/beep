@@ -110,3 +110,4 @@ function mediaError(){
 alert("Erro de Som");
 }
 
+
