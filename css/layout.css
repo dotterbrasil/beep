@@ -29,7 +29,7 @@ div.central {
  
  div.topo{
 	 
-	 height:20%;
+	 height:100%;
 	 width:100%;
 	 position:absolute;
 	 top:0px;
@@ -50,8 +50,8 @@ div.central {
  }
  
  div.parent{
-  width:auto;
-  height:auto;
+  width:80%;
+  height:80%;
   position:relative;
  }
  
