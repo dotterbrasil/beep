@@ -119,7 +119,7 @@ function limpa_contatos(){
 function kids(){
 
 var crianca = prompt("Nome: ","").toUpperCase();
-var indice = function conta_kids();
+var indice = conta_kids();
 
 if (typeof(Storage) !== "undefined")
 	{
@@ -135,7 +135,9 @@ if (typeof(Storage) !== "undefined")
 function lista_kids(){
 
 var itens = "";
-var indice = function conta_kids();
+var indice = conta_kids();
+
+
 
 if (typeof(Storage) !== "undefined")
 	{
