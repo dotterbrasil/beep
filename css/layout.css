@@ -66,5 +66,10 @@ img.alerta {
     animation-iteration-count: infinite;
 }
 
-
+html, body {
+    height:auto;
+    width:auto;
+    margin:0;
+    padding:0;
+}
  
