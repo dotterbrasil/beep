@@ -2,6 +2,8 @@ function lista(){
 
 var itens = "";
 
+document.getElementById("principal").innerHTML = itens;
+
 if (typeof(Storage) !== "undefined") {
     // Store
 	if(localStorage.length)
@@ -72,22 +74,25 @@ window.plugins.contactNumberPicker.pick(successCallback,failedCallback);
 
  }
   
-  function limpa_item(i){
+function limpa_item(i){
 	localStorage.removeItem("nome"+i);
 	localStorage.removeItem("telefone"+i);
 	lista();
   }
   
-  function limpa_contatos(){
+
+function limpa_contatos(){
   localStorage.clear();
   lista();
-  }
+}
+
 
 function home(){
   document.location.href='index.html';
- }
+}
  
- function playsound() {
+
+function playsound() {
   
   var url = getMediaURL("sons/alerta.wav");
   
