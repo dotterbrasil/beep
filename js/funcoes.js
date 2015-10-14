@@ -80,7 +80,7 @@ window.plugins.contactNumberPicker.pick(successCallback,failedCallback);
 
 function kids(){
 
-var crianca = prompt("Nome: ","");
+var crianca = prompt("Nome: ","").toUpperCase();
 var indice = 0;
 
 if (typeof(Storage) !== "undefined")
@@ -114,7 +114,7 @@ if (typeof(Storage) !== "undefined")
 			{
 			if(localStorage.getItem("kid"+i) !== null)
 				{
-				itens = itens + localStorage.getItem("kid"+i) + "<img src='imagens/menos.png' width=5% onclick='limpa_item(" + i + ");'> <br>";
+				itens = itens + localStorage.getItem("kid"+i) + "<img src='imagens/menos.png' width=5% onclick='limpa_item(" + i + ");'> <br> <img src='http://chart.apis.google.com/chart?cht=qr&chl="+localStorage.getItem("kid"+i)+"&chs=200x200'>";
 				}
 			}
 		document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>"+itens+"</font>";
