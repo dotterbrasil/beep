@@ -2,7 +2,7 @@ function lista(){
 
 var itens = "";
 
-document.getElementById("principal").innerHTML = itens;
+document.getElementById("principal").innerHTML = itens+"<img src='imagens/fundo.gif' width=100% align='center' >";
 
 if (typeof(Storage) !== "undefined") {
     // Store
