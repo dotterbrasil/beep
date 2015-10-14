@@ -16,7 +16,7 @@ font-family:sans-serif;
 }
 
 div.central {
-     background-image: url("../imagens/fundo.gif");
+	 background-image: url("../imagens/fundo.gif");
 	 background-repeat: no-repeat;
 	 background-position: center;
 
@@ -35,7 +35,7 @@ div.central {
  }
  
  div.rodape {
-	 font-size:medium;
+	 font-size:x-large;
 	 position:relative;	 
 	 top:80%;
 	 left:10%;
