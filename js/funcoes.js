@@ -203,6 +203,22 @@ return indice;
 
 }
 
+
+function check_in(){
+
+var indice = conta_kids();
+var itens = "";
+
+for (var i=o; i<indice; ++i)
+	{
+	localStorage.setItem("in"+i,localStorage.getItem("kid"+i));
+	itens = itens + "<div onclick='qrcode("+i+");'>"+localStorage.getItem("in"+i) + "</div><br>";
+	}
+
+document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>" + itens + "</font>";
+
+}
+
 //---------------------------------------------------------------------------- MEDIA  ----------------------------------------------------------------------------
 
 
@@ -324,11 +340,10 @@ var aux = "";
 
 alert(indice);
 
-while (indice>0)
-	{
 	aux = startScan();
 	alert("Crianca "+aux+" retirada");
-	--indice;
-	}
+
+
+home();
 
 }
