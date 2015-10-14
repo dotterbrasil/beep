@@ -112,7 +112,7 @@ alert("Erro de Som");
 
 function ajuste_tela(){
 alert(screen.height);
-document.getElementById("container").style.height=screen.height;
-document.getElementById("container").style.width=screen.width;
+//document.getElementById("container").style.height=screen.height;
+//document.getElementById("container").style.width=screen.width;
 
 }

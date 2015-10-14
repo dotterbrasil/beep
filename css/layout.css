@@ -19,7 +19,7 @@ div.central {
      background-image: url("../imagens/fundo.gif");
 	 background-repeat: no-repeat;
 	 background-position: center;
-	 height:100%;
+	 height:80%;
 	 width:100%;
 	 position:absolute;
 	 top:200px;
@@ -29,7 +29,7 @@ div.central {
  
  div.topo{
 	 
-	 height:100%;
+	 height:20%;
 	 width:100%;
 	 position:absolute;
 	 top:0px;
@@ -39,7 +39,7 @@ div.central {
  }
  
  div.rodape {
-	 height:100%;
+	 height:20%;
 	 width:100%;
 	 position:absolute;
 	 top: 900px;
@@ -76,8 +76,8 @@ img.alerta {
 }
 
 html, body {
-    height:100%;
-    width:100%;
+    height:auto;
+    width:auto;
     margin:0;
     padding:0;
 }
