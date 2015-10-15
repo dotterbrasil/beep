@@ -125,7 +125,8 @@ if (typeof(Storage) !== "undefined")
 	{
 
 	localStorage.setItem("kid"+indice,crianca);
-	
+	localStorage.setItem("kids",localStorage.getItem("kids")+1);
+	alert(localStorage.getItem("kids");
 	} else {    document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";}
 
 	localStorage.setItem("kid"+indice,crianca);
@@ -135,15 +136,12 @@ if (typeof(Storage) !== "undefined")
 function lista_kids(){
 
 var itens = "";
-var indice = conta_kids();
-
-
 
 if (typeof(Storage) !== "undefined")
 	{
-	if(localStorage.length)
+	if(localStorage.getItem("kids") !== null)
 		{
-		for ( var i = 0; i < indice; ++i )
+		for ( var i = 0; i < localStorage.getItem("kids"); ++i )
 			{
 			if(localStorage.getItem("kid"+i) !== null)
 				{
@@ -169,6 +167,7 @@ document.getElementById("principal").innerHTML = "<font face='sans-serif'>" + lo
 
 function limpa_kid(i){
 	localStorage.removeItem("kid"+i);
+	localStorage.setItem("kids",localStorage.getItem("kids")-1);
 	lista_kids();
   }
 
