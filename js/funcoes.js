@@ -126,7 +126,7 @@ if (typeof(Storage) !== "undefined")
 	localStorage.setItem("kid"+indice,crianca);
 	if(localStorage.getItem("kids") !== null)
 		{
-		localStorage.setItem("kids",localStorage.getItem("kids")+1);
+		localStorage.setItem("kids",Number(localStorage.getItem("kids"))+1);
 		} else {localStorage.setItem("kids",1);}
 		
 	alert(localStorage.getItem("kids");
@@ -139,6 +139,8 @@ if (typeof(Storage) !== "undefined")
 function lista_kids(){
 
 var itens = "";
+
+alert(localStorage.getItem("kids"));
 
 if (typeof(Storage) !== "undefined")
 	{
