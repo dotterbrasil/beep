@@ -329,7 +329,7 @@ function startScan() {
 				}
 				else
 					{
-					alert(aux);
+					alert("scaneo0u"+aux);
 					}
 		}, 
 		function (error) {
