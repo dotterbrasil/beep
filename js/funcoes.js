@@ -127,6 +127,9 @@ if (typeof(Storage) !== "undefined")
 	} else {    document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";} 
  
 localStorage.setItem("kid"+indice,crianca); 
+
+lista_kids();
+
 }
  
  
@@ -158,7 +161,7 @@ if (typeof(Storage) !== "undefined")
 
 function qrcode(i){
 
-var qrcode = "<img src='http://chart.apis.google.com/chart?cht=qr&chl="+localStorage.getItem("kid"+i)+"&chs=200x200'>";
+var qrcode = "<img src='http://chart.apis.google.com/chart?cht=qr&chl="+localStorage.getItem("kid"+i)+i+"&chs=200x200'>";
 
 document.getElementById("principal").innerHTML = "<font face='sans-serif'>" + localStorage.getItem("kid"+i)+"<img src='imagens/menos.png' width=10% onclick='limpa_kid(" + i + ");'> <br>" + qrcode + "<br> Este QRCODE deve ser impresso e colocado na cadeirinha ou bebe conforto. <div onclick='help_qrcode();'>SAIBA COMO</div>";
 
@@ -166,7 +169,6 @@ document.getElementById("principal").innerHTML = "<font face='sans-serif'>" + lo
 
 function limpa_kid(i){
 	localStorage.removeItem("kid"+i);
-	localStorage.setItem("kids",localStorage.getItem("kids")-1);
 	lista_kids();
   }
 
@@ -208,6 +210,18 @@ for (var i=o; i<indice; ++i)
 	}
 
 document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>" + itens + "</font>";
+
+}
+
+function check_out(i){
+
+if(localStorage.getItem("kid"+i) !== null)
+	{
+	alert("Crianca "+localStorage.getItem("kid"+i)+" retirada");
+	localStorage.removeItem("kid"+i);
+	return 1;
+	}
+	else{ return 0;}
 
 }
 
@@ -315,7 +329,7 @@ function startScan() {
 				}
 				else
 					{
-					return aux;
+					alert(aux);
 					}
 		}, 
 		function (error) {
@@ -323,6 +337,8 @@ function startScan() {
 		}
 	);
 
+	return aux;
+	
 }
 
 function desativa(){
@@ -332,8 +348,13 @@ var aux = "";
 
 alert(indice);
 
+while(indice>0)
+	{
 	aux = startScan();
-	alert("Crianca "+aux+" retirada");
+	identificador = aux.substring(aux.length-1,1);
+	indice = indice - check_out(identificador);
+	alert(indice);
+	}
 
 
 home();
