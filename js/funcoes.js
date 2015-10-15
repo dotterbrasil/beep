@@ -140,12 +140,12 @@ function lista_kids(){
 
 var itens = "";
 
-alert(localStorage.getItem("kids"));
+alert("entrou");
 
 if (typeof(Storage) !== "undefined")
 	{
 	if(localStorage.getItem("kids") !== null)
-		{
+		{alert("entrou kids");
 		for ( var i = 0; i < localStorage.getItem("kids"); ++i )
 			{
 			if(localStorage.getItem("kid"+i) !== null)
