@@ -116,25 +116,44 @@ function limpa_contatos(){
 
 //---------------------------------------------------------------------------- KIDS  ----------------------------------------------------------------------------
 
-function kids(){
-
-var crianca = prompt("Nome: ","").toUpperCase();
-var indice = conta_kids();
-
-alert(indice);
-
+function kids(){ 
+ 
+var crianca = prompt("Nome: ","").toUpperCase(); 
+var indice = conta_kids(); 
+ 
+if (typeof(Storage) !== "undefined") 
+	{ 
+	localStorage.setItem("kid"+indice,crianca); 
+	} else {    document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";} 
+ 
+localStorage.setItem("kid"+indice,crianca); 
 }
+ 
+ 
+function lista_kids(){ 
 
+var itens = ""; 
+var indice = conta_kids(); 
+ 
+if (typeof(Storage) !== "undefined") 
+	{ 
+ 	if(localStorage.length) 
+ 		{ 
+ 		for ( var i = 0; i < indice; ++i ) 
+ 			{ 
+ 			if(localStorage.getItem("kid"+i) !== null) 
+ 				{ 
+ 				itens = itens + "<div onclick='qrcode("+i+");'>"+localStorage.getItem("kid"+i) + "</div><br>"; 
+ 				} 
+ 			} 
+ 		document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>" + itens + "</font>"; 
+ 		} 
+ 		else {	alert("Cadastre as criancas.");	} 
+ 	 
+ 	} else {    document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";} 
+ 
+} 
 
-function lista_kids(){
-
-var itens = "";
-
-alert("entrou");
-
-
-
-}
 
 
 function qrcode(i){
