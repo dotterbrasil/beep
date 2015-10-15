@@ -123,9 +123,12 @@ var indice = conta_kids();
 
 if (typeof(Storage) !== "undefined")
 	{
-
 	localStorage.setItem("kid"+indice,crianca);
-	localStorage.setItem("kids",localStorage.getItem("kids")+1);
+	if(localStorage.getItem("kids") !== null)
+		{
+		localStorage.setItem("kids",localStorage.getItem("kids")+1);
+		} else {localStorage.setItem("kids",1);}
+		
 	alert(localStorage.getItem("kids");
 	} else {    document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";}
 
