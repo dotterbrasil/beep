@@ -314,10 +314,12 @@ var app = {
 
 //---------------------------------------------------------------------------- SCANNER  ----------------------------------------------------------------------------
 
+var aux = "";
+
 function startScan() {
 
 	var scanner = cordova.require("cordova/plugin/BarcodeScanner");
-	var aux = "";
+	
 
 	scanner.scan(
 		function (result) {
@@ -349,7 +351,6 @@ alert(indice);
 
 while(indice>0)
 	{
-	aux = "1";
 	startScan();
 	identificador = aux.substring(aux.length-1,1);
 	indice = indice - check_out(identificador);
