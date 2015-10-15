@@ -237,14 +237,12 @@ document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif
 
 function check_out(i){
 
-if(localStorage.getItem("kid"+i) !== null)
+if(localStorage.getItem("in"+i) !== null)
 	{
-	alert("Crianca "+localStorage.getItem("kid"+i)+" retirada");
-	localStorage.removeItem("kid"+i);
-	return 1;
+	alert("Crianca "+localStorage.getItem("in"+i)+" retirada");
+	localStorage.removeItem("in"+i);
 	}
-	else{ return 0;}
-
+	
 }
 
 //---------------------------------------------------------------------------- MEDIA  ----------------------------------------------------------------------------
