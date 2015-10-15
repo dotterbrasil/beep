@@ -243,6 +243,9 @@ if(localStorage.getItem("in"+i) !== null)
 	localStorage.removeItem("in"+i);
 	}
 	else {alert("Crianca ja saiu ou nao entrou no carro");}
+	
+var indice = conta_in();
+if (indice==0) { home(); }
 }
 
 //---------------------------------------------------------------------------- MEDIA  ----------------------------------------------------------------------------
@@ -351,7 +354,8 @@ function startScan() {
 				}
 				else
 					{
-					alert(aux);
+					identificador = aux.substring(aux.length-1);
+					check_out(identificador);
 					}
 		}, 
 		function (error) {
@@ -366,17 +370,7 @@ function desativa(){
 
 var indice = conta_in();
 
-if (indice==0)
-	{
-	home();
-	}
-	else
-		{
-		startScan();
-		identificador = aux.substring(aux.length-1);
-		check_out(identificador);
-		indice = conta_in();
-		if (indice==0) { home(); }
-		}
+if (indice==0)	{	home();	}
+	else{	startScan();	}
 
 }
