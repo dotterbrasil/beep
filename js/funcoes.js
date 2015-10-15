@@ -406,16 +406,7 @@ var app = {
 	};
 
 function lista_bluetooh(){alert("aaa");
-					document.getElementById("status").innerHTML = '';
-					var lista = "";
-					bluetoothSerial.list(function(devices) {alert("bbbb");
-					devices.forEach(function(device) {
-						var link = '';
-							link = '"'+device.id+'"';alert(link);
-							lista += "<a href='#' onclick='connect("+link+")'>"+device.name+"</a><br>";
-							document.getElementById("principal").innerHTML = lista;
-					})
-				});		
+					BC.Bluetooth.GetPairedDevices(alert("bbb"),alert("ccc"));
 	}
 	
 function connect(link){ 
