@@ -337,8 +337,7 @@ function startScan() {
 		}
 	);
 
-	return aux;
-	
+		
 }
 
 function desativa(){
@@ -350,7 +349,8 @@ alert(indice);
 
 while(indice>0)
 	{
-	aux = startScan();
+	aux = "1";
+	startScan();
 	identificador = aux.substring(aux.length-1,1);
 	indice = indice - check_out(identificador);
 	alert(indice);
