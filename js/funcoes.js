@@ -242,7 +242,7 @@ if(localStorage.getItem("in"+i) !== null)
 	alert("Crianca "+localStorage.getItem("in"+i)+" retirada");
 	localStorage.removeItem("in"+i);
 	}
-	
+	else {alert("Crianca ja saiu ou nao entrou no carro");}
 }
 
 //---------------------------------------------------------------------------- MEDIA  ----------------------------------------------------------------------------
@@ -365,7 +365,6 @@ function startScan() {
 function desativa(){
 
 var indice = conta_in();
-var aux = "";
 
 alert(indice);
 
