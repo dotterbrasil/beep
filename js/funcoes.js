@@ -142,22 +142,7 @@ var itens = "";
 
 alert("entrou");
 
-if (typeof(Storage) !== "undefined")
-	{
-	if(localStorage.getItem("kids") !== null)
-		{alert("entrou kids");
-		for ( var i = 0; i < localStorage.getItem("kids"); ++i )
-			{
-			if(localStorage.getItem("kid"+i) !== null)
-				{
-				itens = itens + "<div onclick='qrcode("+i+");'>"+localStorage.getItem("kid"+i) + "</div><br>";
-				}
-			}
-		document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>" + itens + "</font>";
-		}
-		else {	alert("Cadastre as criancas.");	}
-	
-	} else {    document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";}
+
 
 }
 
