@@ -376,6 +376,8 @@ if (indice==0)
 		{
 		startScan();
 		identificador = aux.substring(aux.length-1,1);
+		alert("identificador: "+identificador);
+		alert("crianca: "+localStorage.getItem("in"+identificador);
 		check_out(identificador);
 		alert(indice);
 		}
