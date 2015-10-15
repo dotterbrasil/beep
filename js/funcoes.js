@@ -378,7 +378,7 @@ if (indice==0)	{	home();	}
 
 //---------------------------------------------------------------------------- BLUETOOTH  ----------------------------------------------------------------------------
 
-lista_bluetooh(){
+function lista_bluetooh(){
 
 					document.getElementById("status").innerHTML = '';
 					var lista = "";
