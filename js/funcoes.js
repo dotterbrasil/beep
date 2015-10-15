@@ -375,3 +375,20 @@ if (indice==0)	{	home();	}
 	else{	startScan();	}
 
 }
+
+//---------------------------------------------------------------------------- BLUETOOTH  ----------------------------------------------------------------------------
+
+lista_bluetooh(){
+
+					document.getElementById("status").innerHTML = '';
+					var lista = "";
+					bluetoothSerial.list(function(devices) {
+					devices.forEach(function(device) {
+						var link = '';
+							link = '"'+device.id+'"';
+							lista += "<a href='#' onclick='connect("+link+")'>"+device.name+"</a><br>";
+							document.getElementById("principal").innerHTML = lista;
+					})
+				});		
+
+}
