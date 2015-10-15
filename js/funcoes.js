@@ -194,9 +194,31 @@ if (typeof(Storage) !== "undefined")
 
 return indice;
 
-
 }
 
+function conta_in(){
+
+var indice = conta_kids();
+var indice_in = 0;
+
+if (typeof(Storage) !== "undefined")
+	{
+	if(localStorage.length)
+		{
+		for ( var i = 0; i < indice; ++i )
+			{
+			if(localStorage.getItem("in"+i) !== null)
+				{
+				++indice_in;
+				}
+			}
+		}
+	
+	} else {    document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";}
+
+return indice_in;
+
+}
 
 function check_in(){
 
@@ -344,20 +366,21 @@ function startScan() {
 
 function desativa(){
 
-var indice = conta_kids();
+var indice = conta_in();
 var aux = "";
 
 alert(indice);
 
-while(indice>0)
+if (indice==0)
 	{
-	startScan();
-	identificador = aux.substring(aux.length-1,1);
-	indice = indice - check_out(identificador);
-	alert(indice);
+	home();
 	}
-
-
-home();
+	else
+		{
+		startScan();
+		identificador = aux.substring(aux.length-1,1);
+		check_out(identificador);
+		alert(indice);
+		}
 
 }
