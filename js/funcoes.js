@@ -228,7 +228,7 @@ var itens = "";
 for (var i=0; i<indice; ++i)
 	{
 	localStorage.setItem("in"+i,localStorage.getItem("kid"+i));
-	itens = itens + "<div>"+localStorage.getItem("in"+i) + " <div onclick='check_out("+i+");'>CHECK OUT</div></div><br>";
+	itens = itens + "<div>"+localStorage.getItem("in"+i) + " <div class='green' onclick='check_out("+i+");'>CHECK OUT</div></div><br>";
 	}
 
 document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>" + itens + "</font>";

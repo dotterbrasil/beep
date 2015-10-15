@@ -15,6 +15,13 @@ color:#ED1DAF;
 font-family:sans-serif;
 }
 
+a.green:link, a.green:visited {
+color:#007A00;
+font-family:sans-serif;
+font-size:70%;
+text-decoration:none;
+}
+
 div.central {
 	 background-image: url("../imagens/fundo.gif");
 	 background-repeat: no-repeat;
