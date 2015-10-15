@@ -228,7 +228,7 @@ var itens = "";
 for (var i=0; i<indice; ++i)
 	{
 	localStorage.setItem("in"+i,localStorage.getItem("kid"+i));
-	itens = itens + "<div onclick='qrcode("+i+");'>"+localStorage.getItem("in"+i) + "</div><br>";
+	itens = itens + "<div>"+localStorage.getItem("in"+i) + " <div onclick='check_out("+i+");'>CHECK OUT</div></div><br>";
 	}
 
 document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>" + itens + "</font>";
@@ -351,7 +351,7 @@ function startScan() {
 				}
 				else
 					{
-					alert("scaneo0u"+aux);
+					alert(aux);
 					}
 		}, 
 		function (error) {
@@ -366,8 +366,6 @@ function desativa(){
 
 var indice = conta_in();
 
-alert(indice);
-
 if (indice==0)
 	{
 	home();
@@ -376,10 +374,9 @@ if (indice==0)
 		{
 		startScan();
 		identificador = aux.substring(aux.length-1);
-		alert("identificador: "+identificador);
-		alert("crianca: "+localStorage.getItem("in"+identificador));
 		check_out(identificador);
-		alert(indice);
+		indice = conta_in();
+		if (indice==0) { home(); }
 		}
 
 }
