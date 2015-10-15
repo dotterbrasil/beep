@@ -225,7 +225,7 @@ function check_in(){
 var indice = conta_kids();
 var itens = "";
 
-for (var i=o; i<indice; ++i)
+for (var i=0; i<indice; ++i)
 	{
 	localStorage.setItem("in"+i,localStorage.getItem("kid"+i));
 	itens = itens + "<div onclick='qrcode("+i+");'>"+localStorage.getItem("in"+i) + "</div><br>";
