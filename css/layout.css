@@ -33,8 +33,7 @@ div.central {
 	 left:10%;
 
 	 font-size:medium;
-	 margin-top:20%;
-	 margin-bottom:20%;
+	 
 
  } 
  
@@ -58,6 +57,11 @@ div.central {
 	  width:80%;
 	  height:80%;
 
+ }
+ 
+ div.lista{
+	margin-top:20%;
+	margin-bottom:20%;
  }
  
  iframe { 

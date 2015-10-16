@@ -37,7 +37,7 @@
     <preference name="fullscreen"       value="false" />
     <preference name="webviewbounce"    value="false" />
 
-    <icon src="icon.gif" />
-    <gap:splash src="logo.gif" />
+    <icon src="icon.png" />
+    <gap:splash src="logo.png" />
 
 </widget>
