@@ -253,8 +253,6 @@ for (var i=0; i<indice; ++i)
 	localStorage.setItem("in"+i,localStorage.getItem("kid"+i));
 	itens = itens + "<div id='lista' class='lista'>"+localStorage.getItem("in"+i) + " <a href='javascript:check_out("+i+");' class='green'>CHECK OUT</a></div>";
 	
-	document.getElementById("lista").style.margin-top = 80/(2*indice)+"%";
-	document.getElementById("lista").style.margin-bottom = 80/(2*indice)+"%";
 	}
 
 if(indice>0)
@@ -262,6 +260,12 @@ if(indice>0)
 	document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>" + itens + "</font>";
 	document.getElementById("principal").style.backgroundImage = "url('imagens/fundo_verde.gif')";
 	}
+	else
+		{
+		proporcao = 80 / (2 * indice); alert(proporcao);
+		document.getElementById("lista").style.margin-top = proporcao+"%";
+		document.getElementById("lista").style.margin-bottom = proporcao+"%";
+		}
 }
 
 function check_out(i){
