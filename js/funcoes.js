@@ -78,6 +78,7 @@ window.plugins.contactNumberPicker.pick(successCallback,failedCallback);
 function lista(){
 
 var itens = "";
+var indice = conta_contatos();
 
 document.getElementById("principal").innerHTML = itens+"<img src='imagens/fundo.gif' width=100% align='center' >";
 
@@ -92,7 +93,7 @@ if (typeof(Storage) !== "undefined")
 				itens = itens + localStorage.getItem("nome"+i) + " - " + localStorage.getItem("telefone"+i) + "<img src='imagens/menos.png' width=5% onclick='limpa_item(" + i + ");'> <br>";
 				}
 			}
-			document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>"+itens+"</font>";
+			if (indice>0){ document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>"+itens+"</font>"; }
 		}
 		else {	alert("Cadastre contatos para receberem os alertas.");	}
 	
@@ -113,6 +114,27 @@ function limpa_contatos(){
   localStorage.clear();
   lista();
 }
+
+function conta_contatos(){
+
+var indice = 0;
+
+if (typeof(Storage) !== "undefined")
+	{
+	if(localStorage.length)
+		{
+		for ( var i = 0, len = localStorage.length; i < len; ++i )
+			{
+			if(localStorage.getItem("nome"+i) !== null)
+				{
+				++indice;
+				}
+			}
+		}
+	
+	} else {    document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";}
+
+return indice;
 
 //---------------------------------------------------------------------------- KIDS  ----------------------------------------------------------------------------
 
