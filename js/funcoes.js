@@ -260,9 +260,9 @@ if(indice>0)
 	document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>" + itens + "</font>";
 	document.getElementById("principal").style.backgroundImage = "url('imagens/fundo_verde.gif')";
 	
-		proporcao = (100 / (2*indice)).toString()+"%";
-		document.getElementById("principal").style.paddingTop = proporcao;
-		document.getElementById("principal").style.paddingBottom = proporcao;
+		//proporcao = (100 / (2*indice)).toString()+"%";
+		//document.getElementById("principal").style.paddingTop = proporcao;
+		//document.getElementById("principal").style.paddingBottom = proporcao;
 	}
 	
 }
