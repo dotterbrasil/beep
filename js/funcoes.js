@@ -263,8 +263,8 @@ if(indice>0)
 	else
 		{
 		proporcao = 80 / (2 * indice); alert(proporcao);
-		document.getElementById("lista").style.margin-top = proporcao+"%";
-		document.getElementById("lista").style.margin-bottom = proporcao+"%";
+		document.getElementById("lista").style.margin-top = proporcao.toString() +"%";
+		document.getElementById("lista").style.margin-bottom = proporcao.toString() +"%";
 		}
 }
 
