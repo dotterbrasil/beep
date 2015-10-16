@@ -27,8 +27,7 @@ div.central {
 	 background-repeat: no-repeat;
 	 background-position: center;
 	 background-size: 100% 100%;
-
-	  
+	 
 	 position:relative;
 	 top:20%;
 	 left:10%;
@@ -79,12 +78,11 @@ img.alerta {
     animation-iteration-count: infinite;
 }
 
-div.icone{
-	z-index: -1;
-	position:relative;
-	top:20%;
-	left:10%;
-	
+img.fundo{
+    position: absolute;
+    left: 15%;
+    top: 20%;
+    z-index: -1;
 }
 
 html, body {
