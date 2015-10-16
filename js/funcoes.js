@@ -177,7 +177,7 @@ if (typeof(Storage) !== "undefined")
 			document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>" + itens + "</font>";
 			document.getElementById("principal").style.backgroundImage = "url('imagens/fundo.gif')";
 			
-			proporcao = (35 - indice*2).toString()+"%";
+			proporcao = (35 - indice*20).toString()+"%";
 			document.getElementById("principal").style.paddingTop = proporcao;
 			document.getElementById("principal").style.paddingBottom = proporcao;
 			}
@@ -194,7 +194,10 @@ function qrcode(i){
 
 var qrcode = "<img src='http://chart.apis.google.com/chart?cht=qr&chl="+localStorage.getItem("kid"+i)+i+"&chs=200x200'>";
 
-document.getElementById("principal").innerHTML = "<font face='sans-serif'>" + localStorage.getItem("kid"+i)+"<img src='imagens/menos.png' width=10% onclick='limpa_kid(" + i + ");'> <br>" + qrcode + "<br> Este QRCODE deve ser impresso e colocado na cadeirinha ou bebe conforto. <div onclick='help_qrcode();'>SAIBA COMO</div>";
+document.getElementById("principal").innerHTML = "<font face='sans-serif'>" + localStorage.getItem("kid"+i)+"<img src='imagens/menos.png' width=10% onclick='limpa_kid(" + i + ");'> <br>" + qrcode + "<br> Este QRCODE deve ser impresso e colocado na cadeirinha. <div onclick='help_qrcode();'>SAIBA COMO</div>";
+
+document.getElementById("principal").style.paddingTop = "0%";
+document.getElementById("principal").style.paddingBottom = "0%";
 
 }
 
