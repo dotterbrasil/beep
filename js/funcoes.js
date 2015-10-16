@@ -165,7 +165,8 @@ if (typeof(Storage) !== "undefined")
 	{ 
  	if(localStorage.length) 
  		{ 
- 		for ( var i = 0; i < indice; ++i ) 
+ 		//for ( var i = 0; i < indice; ++i ) 
+		for ( var i = 0, len = localStorage.length; i < len; ++i )
  			{ 
  			if(localStorage.getItem("kid"+i) !== null) 
  				{ 
@@ -196,6 +197,7 @@ var qrcode = "<img src='http://chart.apis.google.com/chart?cht=qr&chl="+localSto
 
 document.getElementById("principal").innerHTML = "<font face='sans-serif'>" + localStorage.getItem("kid"+i)+"<img src='imagens/menos.png' width=10% onclick='limpa_kid(" + i + ");'> <br>" + qrcode + "<br> Este QRCODE deve ser impresso e colocado na cadeirinha. <div onclick='help_qrcode();'>SAIBA COMO</div>";
 
+document.getElementById("principal").style.backgroundImage = "url('')";
 document.getElementById("principal").style.paddingTop = "0%";
 document.getElementById("principal").style.paddingBottom = "0%";
 
@@ -262,7 +264,7 @@ var itens = "";
 for (var i=0; i<indice; ++i)
 	{
 	localStorage.setItem("in"+i,localStorage.getItem("kid"+i));
-	itens = itens + "<div>"+localStorage.getItem("in"+i) + " <a href='javascript:desativa();' class='green'>CHECK OUT</a></div><br>";
+	itens = itens + "<div>"+localStorage.getItem("in"+i) + " <a href='javascript:startScan();' class='green'>CHECK OUT</a></div><br>";
 	
 	}
 
