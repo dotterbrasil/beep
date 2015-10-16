@@ -263,6 +263,11 @@ if(indice>0)
 		//proporcao = (100 / (2*indice)).toString()+"%";
 		//document.getElementById("principal").style.paddingTop = proporcao;
 		//document.getElementById("principal").style.paddingBottom = proporcao;
+
+		document.getElementById("principal").style.paddingTop = 30%;
+		document.getElementById("principal").style.paddingBottom = 30%;
+
+		
 	}
 	
 }
