@@ -262,8 +262,8 @@ if(indice>0)
 	
 	//proporcao = 80 / (2 * indice); alert(proporcao);
 	proporcao = (100 / (2*indice)).toString()+"%"; alert(proporcao);
-		document.getElementById("principal").style.marginTop = proporcao;
-		document.getElementById("principal").style.marginBottom = proporcao;
+		document.getElementById("principal").style.paddingTop = proporcao;
+		document.getElementById("principal").style.paddingBottom = proporcao;
 	}
 	
 }
