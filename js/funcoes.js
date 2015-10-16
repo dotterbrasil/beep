@@ -251,7 +251,7 @@ var itens = "";
 for (var i=0; i<indice; ++i)
 	{
 	localStorage.setItem("in"+i,localStorage.getItem("kid"+i));
-	itens = itens + "<div id='lista' class='lista'>"+localStorage.getItem("in"+i) + " <a href='javascript:check_out("+i+");' class='green'>CHECK OUT</a></div>";
+	itens = itens + "<div id='item_lista' class='lista'>"+localStorage.getItem("in"+i) + " <a href='javascript:check_out("+i+");' class='green'>CHECK OUT</a></div>";
 	
 	}
 
@@ -263,8 +263,8 @@ if(indice>0)
 	else
 		{
 		proporcao = 80 / (2 * indice); alert(proporcao);
-		document.getElementById("lista").style.margin-top = proporcao.toString() +"%";
-		document.getElementById("lista").style.margin-bottom = proporcao.toString() +"%";
+		//document.getElementById("item_lista").style.margin-top = proporcao.toString() +"%";
+		//document.getElementById("item_lista").style.margin-bottom = proporcao.toString() +"%";
 		}
 }
 
