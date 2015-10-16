@@ -251,11 +251,14 @@ var itens = "";
 for (var i=0; i<indice; ++i)
 	{
 	localStorage.setItem("in"+i,localStorage.getItem("kid"+i));
-	itens = itens + "<div class='lista'>"+localStorage.getItem("in"+i) + " <a href='javascript:check_out("+i+");' class='green'>CHECK OUT</a></div><br>";
+	itens = itens + "<div class='lista'>"+localStorage.getItem("in"+i) + " <a href='javascript:check_out("+i+");' class='green'>CHECK OUT</a></div>";
 	}
 
-document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>" + itens + "</font>";
-document.getElementById("principal").style.backgroundImage = "url('imagens/fundo_verde.gif')";
+if(indice>0)
+	{
+	document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>" + itens + "</font>";
+	document.getElementById("principal").style.backgroundImage = "url('imagens/fundo_verde.gif')";
+	}
 }
 
 function check_out(i){
