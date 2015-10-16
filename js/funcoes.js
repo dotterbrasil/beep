@@ -251,7 +251,7 @@ var itens = "";
 for (var i=0; i<indice; ++i)
 	{
 	localStorage.setItem("in"+i,localStorage.getItem("kid"+i));
-	itens = itens + "<div id='item_lista' class='lista'>"+localStorage.getItem("in"+i) + " <a href='javascript:check_out("+i+");' class='green'>CHECK OUT</a></div>";
+	itens = itens + "<div>"+localStorage.getItem("in"+i) + " <a href='javascript:check_out("+i+");' class='green'>CHECK OUT</a></div>";
 	
 	}
 
