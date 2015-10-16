@@ -251,7 +251,10 @@ var itens = "";
 for (var i=0; i<indice; ++i)
 	{
 	localStorage.setItem("in"+i,localStorage.getItem("kid"+i));
-	itens = itens + "<div class='lista'>"+localStorage.getItem("in"+i) + " <a href='javascript:check_out("+i+");' class='green'>CHECK OUT</a></div>";
+	itens = itens + "<div id='lista' class='lista'>"+localStorage.getItem("in"+i) + " <a href='javascript:check_out("+i+");' class='green'>CHECK OUT</a></div>";
+	
+	document.getElementById("mapa").style.margin-top = 80/(2*indice)+"%";
+	document.getElementById("mapa").style.margin-bottom = 80/(2*indice)+"%";
 	}
 
 if(indice>0)
