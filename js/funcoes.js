@@ -172,7 +172,14 @@ if (typeof(Storage) !== "undefined")
  				itens = itens + "<div onclick='qrcode("+i+");'>"+localStorage.getItem("kid"+i) + "</div><br>"; 
  				} 
  			} 
- 		if(indice>0){ document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>" + itens + "</font>";  }
+ 		if(indice>0)
+			{
+			document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>" + itens + "</font>";
+			document.getElementById("principal").style.backgroundImage = "url('imagens/fundo.gif')";
+			
+			document.getElementById("principal").style.paddingTop = "33%";
+			document.getElementById("principal").style.paddingBottom = "33%";
+			}
  		} 
  		else {	alert("Cadastre as criancas.");	} 
  	 
@@ -251,7 +258,7 @@ var itens = "";
 for (var i=0; i<indice; ++i)
 	{
 	localStorage.setItem("in"+i,localStorage.getItem("kid"+i));
-	itens = itens + "<div>"+localStorage.getItem("in"+i) + " <a href='javascript:desativa();' class='green'>CHECK OUT</a></div>";
+	itens = itens + "<div>"+localStorage.getItem("in"+i) + " <a href='javascript:desativa();' class='green'>CHECK OUT</a></div><br>";
 	
 	}
 
@@ -260,14 +267,8 @@ if(indice>0)
 	document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>" + itens + "</font>";
 	document.getElementById("principal").style.backgroundImage = "url('imagens/fundo_verde.gif')";
 	
-		//proporcao = (100 / (2*indice)).toString()+"%";
-		//document.getElementById("principal").style.paddingTop = proporcao;
-		//document.getElementById("principal").style.paddingBottom = proporcao;
-
-		document.getElementById("principal").style.paddingTop = "30%";
-		document.getElementById("principal").style.paddingBottom = "30%";
-
-		
+	document.getElementById("principal").style.paddingTop = "33%";
+	document.getElementById("principal").style.paddingBottom = "33%";
 	}
 	
 }
