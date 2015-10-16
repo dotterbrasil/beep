@@ -177,7 +177,7 @@ if (typeof(Storage) !== "undefined")
 			document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>" + itens + "</font>";
 			document.getElementById("principal").style.backgroundImage = "url('imagens/fundo.gif')";
 			
-			proporcao = (35 - indice*20).toString()+"%";
+			proporcao = (35 - indice*indice).toString()+"%";
 			document.getElementById("principal").style.paddingTop = proporcao;
 			document.getElementById("principal").style.paddingBottom = proporcao;
 			}
