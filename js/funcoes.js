@@ -232,7 +232,7 @@ for (var i=0; i<indice; ++i)
 	}
 
 document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>" + itens + "</font>";
-
+document.getElementById("principal").style.backgroundImage = "url('imagens/fundo_verde.gif')";
 }
 
 function check_out(i){
@@ -377,43 +377,3 @@ if (indice==0)	{	home();	}
 }
 
 //---------------------------------------------------------------------------- BLUETOOTH  ----------------------------------------------------------------------------
-
-var app = {				
-			time: function(){	
-				document.getElementById("status").innerHTML = 'Load...';
-				var link = localStorage.getItem("carro");
-				var status = localStorage.getItem("dispositivo");
-				
-				if(status == 'desconectado'){
-					alert('Dispositivo desconectado, tenta conexao!');
-					bluetoothSerial.connect(link, app.conectado, app.desconectado);
-				}else{
-					alert('Dispositivo conectado, verifica conexao!');
-					bluetoothSerial.isConnected(app.conectado, app.desconectado);	
-					}
-			},					
-			conectado: function(){
-				alert('On');
-				document.getElementById("status").innerHTML = 'Dispositivo Conectado';
-				localStorage.setItem("dispositivo", "conectado");
-				setTimeout(app.time, 3000);
-			},
-			desconectado: function(){
-				document.getElementById("status").innerHTML = "Dispositivo desconectado!";
-				localStorage.setItem("dispositivo", "desconectado");
-				setTimeout(app.time, 3000);
-			},
-	};
-
-function lista_bluetooh(){alert("aaa");
-					BC.Bluetooth.GetPairedDevices(alert("bbb"),alert("ccc"));
-	}
-	
-function connect(link){ 
-		document.getElementById("dispositivos").innerHTML = "";
-		document.getElementById("dispositivos").innerHTML = 'Dispositivo selecionado:'+link;
-		localStorage.setItem("carro", link);	
-		localStorage.setItem("dispositivo", "desconectado");
-		setTimeout(app.time, 3000);			
-	}
-	
