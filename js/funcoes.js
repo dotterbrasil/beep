@@ -177,8 +177,9 @@ if (typeof(Storage) !== "undefined")
 			document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>" + itens + "</font>";
 			document.getElementById("principal").style.backgroundImage = "url('imagens/fundo.gif')";
 			
-			document.getElementById("principal").style.paddingTop = "33%";
-			document.getElementById("principal").style.paddingBottom = "33%";
+			proporcao = (35 - indice).toString()+"%";
+			document.getElementById("principal").style.paddingTop = proporcao;
+			document.getElementById("principal").style.paddingBottom = proporcao;
 			}
  		} 
  		else {	alert("Cadastre as criancas.");	} 
@@ -267,8 +268,10 @@ if(indice>0)
 	document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>" + itens + "</font>";
 	document.getElementById("principal").style.backgroundImage = "url('imagens/fundo_verde.gif')";
 	
-	document.getElementById("principal").style.paddingTop = "33%";
-	document.getElementById("principal").style.paddingBottom = "33%";
+	proporcao = (35 - indice).toString()+"%";
+	
+	document.getElementById("principal").style.paddingTop = proporcao;
+	document.getElementById("principal").style.paddingBottom = proporcao;
 	}
 	
 }
