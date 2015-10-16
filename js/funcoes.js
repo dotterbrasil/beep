@@ -261,9 +261,9 @@ if(indice>0)
 	document.getElementById("principal").style.backgroundImage = "url('imagens/fundo_verde.gif')";
 	
 	//proporcao = 80 / (2 * indice); alert(proporcao);
-	proporcao = (80 / indice).toString()+"%"; alert(proporcao);
-		document.getElementById("item_lista").style.marginTop = proporcao;
-		//document.getElementById("item_lista").style.margin-bottom = proporcao.toString() + "%";
+	proporcao = (80 / (2*indice)).toString()+"%"; alert(proporcao);
+		document.getElementById("principal").style.marginTop = proporcao;
+		document.getElementById("principal").style.marginBottom = proporcao;
 	}
 	
 }
