@@ -28,9 +28,7 @@ div.central {
 	 background-position: center;
 	 background-size: 100% 100%;
 
-	 height:inherit;
-	 width: inherit;
-	 
+	  
 	 position:relative;
 	 top:20%;
 	 left:10%;
@@ -79,6 +77,14 @@ border: 4px red solid;
 img.alerta {
     animation: blink 1s;
     animation-iteration-count: infinite;
+}
+
+div.icone{
+	z-index: -1;
+	position:relative;
+	top:20%;
+	left:10%;
+	
 }
 
 html, body {
