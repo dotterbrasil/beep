@@ -172,7 +172,7 @@ if (typeof(Storage) !== "undefined")
  				itens = itens + "<div onclick='qrcode("+i+");'>"+localStorage.getItem("kid"+i) + "</div><br>"; 
  				} 
  			} 
- 		document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>" + itens + "</font>"; 
+ 		if(indice>0){ document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>" + itens + "</font>";  }
  		} 
  		else {	alert("Cadastre as criancas.");	} 
  	 
