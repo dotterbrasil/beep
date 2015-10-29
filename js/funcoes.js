@@ -53,7 +53,7 @@ function onSuccess(position) {
     element.innerHTML = 'Latitude: '  + position.coords.latitude      + '<br />' +
                         'Longitude: ' + position.coords.longitude     + '<br />' +
 			'Velocidade: ' + position.coords.speed     + '<br />' +
-                        '<hr />'      + element.innerHTML;
+                        '<hr />'  ;
 }
 
 // onError Callback receives a PositionError object
