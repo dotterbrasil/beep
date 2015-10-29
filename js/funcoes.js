@@ -1,6 +1,8 @@
 
 //---------------------------------------------------------------------------- COORDENADAS  ----------------------------------------------------------------------------
 
+var watchID = "";
+
 function localizacao()
 {
 
@@ -32,6 +34,41 @@ if (navigator.geolocation) {
 	envia_sms(latlon);
 	  
  }
+
+
+function speed_monitor(){
+
+// Options: throw an error if no update is received every 30 seconds.
+//
+watchID = navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 30000 });
+
+}
+
+// onSuccess Callback
+//   This method accepts a `Position` object, which contains
+//   the current GPS coordinates
+//
+function onSuccess(position) {
+    var element = document.getElementById('status');
+    element.innerHTML = 'Latitude: '  + position.coords.latitude      + '<br />' +
+                        'Longitude: ' + position.coords.longitude     + '<br />' +
+			'Velocidade: ' + position.coords.speed     + '<br />' +
+                        '<hr />'      + element.innerHTML;
+}
+
+// onError Callback receives a PositionError object
+//
+function onError(error) {
+    alert('code: '    + error.code    + '\n' +
+          'message: ' + error.message + '\n');
+}
+
+
+function stop_monitor(){
+
+navigator.geolocation.clearWatch(watchID);
+
+}
 
 
 //---------------------------------------------------------------------------- ALERTS  ----------------------------------------------------------------------------
