@@ -33,7 +33,7 @@
 	
 	<gap:plugin name="org.apache.cordova.battery-status" version="0.2.11" />
 	
-	<gap:plugin name="com.badrit.backgroundjs" version="0.1.0" />
+	<gap:plugin name="com.colibrisoftware.plugins.backgroundjs" version="3.3" />
 
     <preference name="phonegap-version" value="cli-5.2.0" />
     <preference name="orientation"      value="portrait" />

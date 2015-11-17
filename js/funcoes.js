@@ -498,11 +498,7 @@ if (indice==0)	{	home();	}
 function onLoad() {
         document.addEventListener("deviceready", onDeviceReady, false);
 		
-		var timerCount = 0;
-window.plugins.BackgroundJS.LockBackgroundTime(function(){}, function(msg){alert(msg);});
-setInterval(function() {
-$('body').html(timerCount++);
-},1000);
+		window.plugins.backgroundjs.lockBackgroundTime();
 		
     }
     function onDeviceReady() {
