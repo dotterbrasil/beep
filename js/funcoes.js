@@ -50,6 +50,7 @@ watchID = navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 300
 //
 function onSuccess(position) {
     var element = document.getElementById('status');
+	
 	var qtde_in = conta_in();
 	
     element.innerHTML = 'Velocidade: ' + position.coords.speed*3.6     + 'km/h <br />' +  '<hr />'  ;
@@ -316,7 +317,8 @@ var itens = "";
 
 for (var i=0; i<indice; ++i)
 	{
-	localStorage.setItem("in"+i,localStorage.getItem("kid"+i));
+	//localStorage.setItem("in"+i,localStorage.getItem("kid"+i));
+	
 	itens = itens + "<div>"+localStorage.getItem("in"+i) + " <a href='javascript:startScan();' class='green'>CHECK OUT</a></div><br>";
 	
 	}
@@ -353,6 +355,10 @@ if (indice==0) { home(); }
 
 function home(){
   document.location.href='index.html';
+  for ( var i = 0, len = localStorage.length; i < len; ++i )
+	{
+	localStorage.removeItem("in"+i);
+	}
 }
  
 
