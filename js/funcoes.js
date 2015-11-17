@@ -497,9 +497,7 @@ if (indice==0)	{	home();	}
 
 function onLoad() {
         document.addEventListener("deviceready", onDeviceReady, false);
-		
-		window.plugins.backgroundjs.lockBackgroundTime();
-		
+				
     }
     function onDeviceReady() {
         window.addEventListener("batterystatus", onBatteryStatus, false);
