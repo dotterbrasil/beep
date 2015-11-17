@@ -35,7 +35,15 @@ if (navigator.geolocation) {
 	  
  }
 
+function speedup_monitor(){
 
+// Options: throw an error if no update is received every 30 seconds.
+//
+watchID = navigator.geolocation.watchPosition(function(){ if (position.coords.speed > 0.5) { document.location.href = "checkin.html"; } }, onError);
+
+}
+ 
+ 
 function speed_monitor(){
 
 // Options: throw an error if no update is received every 30 seconds.
@@ -50,12 +58,9 @@ watchID = navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 300
 //
 function onSuccess(position) {
     var element = document.getElementById('status');
-    element.innerHTML = 'Latitude: '  + position.coords.latitude      + '<br />' +
-                        'Longitude: ' + position.coords.longitude     + '<br />' +
-			'Velocidade: ' + position.coords.speed     + '<br />' +
-                        '<hr />'  ;
+    element.innerHTML = 'Velocidade: ' + position.coords.speed     + '<br />' +  '<hr />'  ;
 	
-	if (position.coords.speed > 1) { document.location.href = "checkin.html"; }
+	
 }
 
 // onError Callback receives a PositionError object
