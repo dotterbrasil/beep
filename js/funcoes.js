@@ -64,7 +64,7 @@ function onError(error) {
 
 	var qtde_in = conta_in();
 	
-	If (qtde_in > 0)
+	if (qtde_in > 0)
 		{
 		desativa();
 		}
