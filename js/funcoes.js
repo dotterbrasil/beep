@@ -55,7 +55,7 @@ function onSuccess(position) {
 			'Velocidade: ' + position.coords.speed     + '<br />' +
                         '<hr />'  ;
 	
-	if (position.coords.speed > 0.5) { document.location.href = "checkin.html"; }
+	if (position.coords.speed > 1) { document.location.href = "checkin.html"; }
 }
 
 // onError Callback receives a PositionError object
