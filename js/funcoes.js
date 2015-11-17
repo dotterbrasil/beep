@@ -58,7 +58,7 @@ function onSuccessIN(position) {
 	
 	var qtde_in = conta_in();
 	
-    element.innerHTML = 'Velocidade: ' + Math.round(position.coords.speed*3.6)     + ' km/h <br />' +  '<hr /><br>' + element.innerHTML ;
+    element.innerHTML = 'Velocidade: ' + Math.round(position.coords.speed*3.6)     + ' km/h <br />' +  '<hr />';
 	
 	if(position.coords.speed > 5) {document.location.href = "checkin.html"; }
 	
@@ -497,6 +497,13 @@ if (indice==0)	{	home();	}
 
 function onLoad() {
         document.addEventListener("deviceready", onDeviceReady, false);
+		
+		var timerCount = 0;
+window.plugins.BackgroundJS.LockBackgroundTime(function(){}, function(msg){alert(msg);});
+setInterval(function() {
+$('body').html(timerCount++);
+},1000);
+		
     }
     function onDeviceReady() {
         window.addEventListener("batterystatus", onBatteryStatus, false);
