@@ -2,6 +2,7 @@
 //---------------------------------------------------------------------------- COORDENADAS  ----------------------------------------------------------------------------
 
 var watchID = "";
+var watchIN = "";
 
 function localizacao()
 {
@@ -43,6 +44,26 @@ function speed_monitor(){
 watchID = navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 30000 });
 
 }
+
+function speedup_monitor(){
+
+// Options: throw an error if no update is received every 30 seconds.
+//
+watchIN = navigator.geolocation.watchPosition(onSuccessIN, onError, { timeout: 30000 });
+
+}
+
+function onSuccessIN(position) {
+    var element = document.getElementById('status');
+	
+	var qtde_in = conta_in();
+	
+    element.innerHTML = 'Velocidade: ' + Math.round(position.coords.speed*3.6)     + ' km/h <br />' +  '<hr />'  ;
+	
+	if(position.coords.speed > 1) {document.location.href = "checkin.html"; }
+	
+}
+
 
 // onSuccess Callback
 //   This method accepts a `Position` object, which contains
@@ -354,7 +375,7 @@ if (indice==0) { home(); }
 
 
 function home(){
-localStorage.clear();
+
   document.location.href='index.html';
  
 }
