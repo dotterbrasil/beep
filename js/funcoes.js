@@ -60,7 +60,7 @@ function onSuccess(position) {
 		}
 		else
 			{
-			if(position.coords.speed < 1) {desativa(); }
+			if(position.coords.speed < 1) {document.location.href = "desativar.html"; }
 			}
 }
 
@@ -72,7 +72,7 @@ function onError(error) {
 	
 	if (qtde_in > 0)
 		{
-		desativa();
+		document.location.href = "desativar.html";
 		}
 		else {	document.location.href = "index.html"; }
 
