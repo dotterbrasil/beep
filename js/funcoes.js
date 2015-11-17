@@ -53,7 +53,7 @@ function onSuccess(position) {
 	
 	var qtde_in = conta_in();
 	
-    element.innerHTML = 'Velocidade: ' + position.coords.speed*3.6     + 'km/h <br />' +  '<hr />'  ;
+    element.innerHTML = 'Velocidade: ' + Math.round(position.coords.speed*3.6)     + ' km/h <br />' +  '<hr />'  ;
 	
 	if (qtde_in == 0)
 		{
@@ -317,7 +317,7 @@ var itens = "";
 
 for (var i=0; i<indice; ++i)
 	{
-	//localStorage.setItem("in"+i,localStorage.getItem("kid"+i));
+	localStorage.setItem("in"+i,localStorage.getItem("kid"+i));
 	
 	itens = itens + "<div>"+localStorage.getItem("in"+i) + " <a href='javascript:startScan();' class='green'>CHECK OUT</a></div><br>";
 	
