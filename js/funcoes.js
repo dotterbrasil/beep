@@ -39,7 +39,7 @@ function speedup_monitor(){
 
 // Options: throw an error if no update is received every 30 seconds.
 //
-watchID = navigator.geolocation.watchPosition(speedUP, onError);
+watchID = navigator.geolocation.watchPosition(speedUP, onError, { frequency: 3000 });
 
 }
  
