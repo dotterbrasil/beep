@@ -44,7 +44,11 @@ watchID = navigator.geolocation.watchPosition(speedUP, onError);
 }
  
  function speedUP(){
-	if (position.coords.speed > 0.5) { document.location.href = "checkin.html"; }
+ 
+ var element = document.getElementById('status');
+    element.innerHTML = 'Velocidade: ' + position.coords.speed     + '<br />' +  '<hr />'  ;
+ 
+	if (position.coords.speed > 1) { document.location.href = "checkin.html"; }
  }
  
 function speed_monitor(){
@@ -61,7 +65,7 @@ watchID = navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 300
 //
 function onSuccess(position) {
     var element = document.getElementById('status');
-    element.innerHTML = 'Velocidade: ' + position.coords.speed     + '<br />' +  '<hr />'  ;
+    element.innerHTML = 'Velocidade: ' + position.coords.speed*3.6     + 'km/h <br />' +  '<hr />'  ;
 	
 	
 }
