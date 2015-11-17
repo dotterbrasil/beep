@@ -39,10 +39,13 @@ function speedup_monitor(){
 
 // Options: throw an error if no update is received every 30 seconds.
 //
-watchID = navigator.geolocation.watchPosition(function(){ if (position.coords.speed > 0.5) { document.location.href = "checkin.html"; } }, onError);
+watchID = navigator.geolocation.watchPosition(speedUP, onError);
 
 }
  
+ function speedUP(){
+	if (position.coords.speed > 0.5) { document.location.href = "checkin.html"; }
+ }
  
 function speed_monitor(){
 
@@ -75,8 +78,7 @@ function onError(error) {
 		}
 		else {	document.location.href = "index.html"; }
 
-    alert('code: '    + error.code    + '\n' +
-          'message: ' + error.message + '\n');
+    //alert('code: '    + error.code    + '\n' + 'message: ' + error.message + '\n');
 }
 
 
