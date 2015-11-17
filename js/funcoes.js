@@ -355,10 +355,7 @@ if (indice==0) { home(); }
 
 function home(){
   document.location.href='index.html';
-  for ( var i = 0, len = localStorage.length; i < len; ++i )
-	{
-	localStorage.removeItem("in"+i);
-	}
+ 
 }
  
 
