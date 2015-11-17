@@ -54,6 +54,8 @@ function onSuccess(position) {
                         'Longitude: ' + position.coords.longitude     + '<br />' +
 			'Velocidade: ' + position.coords.speed     + '<br />' +
                         '<hr />'  ;
+	
+	if (position.coords.speed > 1) { document.location.href = "checkin.html" }
 }
 
 // onError Callback receives a PositionError object
