@@ -60,7 +60,7 @@ function onSuccessIN(position) {
 	
     element.innerHTML = 'Velocidade: ' + Math.round(position.coords.speed*3.6)     + ' km/h <br />' +  '<hr />'  ;
 	
-	if(position.coords.speed > 1) {document.location.href = "checkin.html"; }
+	if(position.coords.speed > 5) {document.location.href = "checkin.html"; }
 	
 }
 
