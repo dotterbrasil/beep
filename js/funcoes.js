@@ -354,6 +354,7 @@ if (indice==0) { home(); }
 
 
 function home(){
+localStorage.clear();
   document.location.href='index.html';
  
 }
