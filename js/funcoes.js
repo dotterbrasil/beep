@@ -35,21 +35,6 @@ if (navigator.geolocation) {
 	  
  }
 
-function speedup_monitor(){
-
-// Options: throw an error if no update is received every 30 seconds.
-//
-watchID = navigator.geolocation.watchPosition(speedUP, onError, { frequency: 3000 });
-
-}
- 
- function speedUP(){
- 
- var element = document.getElementById('status');
-    element.innerHTML = 'Velocidade: ' + position.coords.speed     + '<br />' +  '<hr />'  ;
- 
-	if (position.coords.speed > 1) { document.location.href = "checkin.html"; }
- }
  
 function speed_monitor(){
 
@@ -66,8 +51,8 @@ watchID = navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 300
 function onSuccess(position) {
     var element = document.getElementById('status');
     element.innerHTML = 'Velocidade: ' + position.coords.speed*3.6     + 'km/h <br />' +  '<hr />'  ;
-	
-	
+	alert(document.location.href);
+	if (position.coords.speed > 1)&&(document.location.href !== "checkin.html") { document.location.href = "checkin.html"; }
 }
 
 // onError Callback receives a PositionError object
