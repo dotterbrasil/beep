@@ -51,8 +51,12 @@ watchID = navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 300
 function onSuccess(position) {
     var element = document.getElementById('status');
     element.innerHTML = 'Velocidade: ' + position.coords.speed*3.6     + 'km/h <br />' +  '<hr />'  ;
-	alert(document.location.href);
-	if (position.coords.speed > 1)&&(document.location.href !== "checkin.html") { document.location.href = "checkin.html"; }
+	
+	if (position.coords.speed > 1)
+		{
+				qtde_in = conta_in();
+				if(qtde_in == 0) {document.location.href = "checkin.html"; }
+		}
 }
 
 // onError Callback receives a PositionError object
