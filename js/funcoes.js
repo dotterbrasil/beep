@@ -58,7 +58,7 @@ function onSuccessIN(position) {
 	
 	var qtde_in = conta_in();
 	
-    element.innerHTML = 'Velocidade: ' + Math.round(position.coords.speed*3.6)     + ' km/h <br />' +  '<hr />'  ;
+    element.innerHTML = 'Velocidade: ' + Math.round(position.coords.speed*3.6)     + ' km/h <br />' +  '<hr /><br>' + element.innerHTML ;
 	
 	if(position.coords.speed > 5) {document.location.href = "checkin.html"; }
 	
