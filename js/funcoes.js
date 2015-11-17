@@ -76,14 +76,7 @@ function onSuccess(position) {
 	
     element.innerHTML = 'Velocidade: ' + Math.round(position.coords.speed*3.6)     + ' km/h <br />' +  '<hr />'  ;
 	
-	if (qtde_in == 0)
-		{
-		if(position.coords.speed > 1) {document.location.href = "checkin.html"; }
-		}
-		else
-			{
-			if(position.coords.speed < 1) {document.location.href = "desativar.html"; }
-			}
+	
 }
 
 // onError Callback receives a PositionError object
