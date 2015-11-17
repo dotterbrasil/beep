@@ -494,3 +494,15 @@ if (indice==0)	{	home();	}
 }
 
 //---------------------------------------------------------------------------- BLUETOOTH  ----------------------------------------------------------------------------
+
+function onLoad() {
+        document.addEventListener("deviceready", onDeviceReady, false);
+    }
+    function onDeviceReady() {
+        window.addEventListener("batterystatus", onBatteryStatus, false);
+    }
+    function onBatteryStatus(info) {
+	
+		document.getElementById('status').innerHTML = "Level: " + info.level + " isPlugged: " + info.isPlugged;
+	
+    }
