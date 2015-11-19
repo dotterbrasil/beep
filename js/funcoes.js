@@ -68,7 +68,7 @@ function onSuccessIN(position) {
 		alert("quase onboard");
 		onboard = true;
 		alert("onboard");
-		if (info.isPlugged == true)
+		if (info.isPlugged == "true")
 			{
 			document.location.href="checkin.html";
 			}
@@ -541,5 +541,5 @@ function onBatteryStatus(info) {
 	
 		document.getElementById('status').innerHTML = "Level: " + info.level + " isPlugged: " + info.isPlugged;
 		
-		if ((!info.isPlugged == false)&&(onboard == true)) {document.location.href="desativar.html";}
+		if ((!info.isPlugged == "false")&&(onboard == true)) {document.location.href="desativar.html";}
 	}
