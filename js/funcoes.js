@@ -39,9 +39,9 @@ if (navigator.geolocation) {
  
 function speed_monitor(){
 
-// Options: throw an error if no update is received every 30 seconds.
+// Options: throw an error if no update is received every 5 minutes.
 //
-watchID = navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 30000 });
+watchID = navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 300000 });
 
 }
 
@@ -49,7 +49,9 @@ function speedup_monitor(){
 
 // Options: throw an error if no update is received every 30 seconds.
 //
-watchIN = navigator.geolocation.watchPosition(onSuccessIN, onError, { timeout: 30000 });
+//watchIN = navigator.geolocation.watchPosition(onSuccessIN, onError, { frequency: 1000 });
+
+watchIN = navigator.geolocation.watchPosition(onSuccessIN);
 
 }
 
@@ -60,7 +62,18 @@ function onSuccessIN(position) {
 	
     element.innerHTML = 'Velocidade: ' + Math.round(position.coords.speed*3.6)     + ' km/h <br />' +  '<hr />';
 	
-	if(position.coords.speed > 5) {document.location.href = "checkin.html"; }
+	if(position.coords.speed > 5)
+		{
+		if (info.isPlugged = 'true')
+			{
+			document.location.href="checkin.html";
+			}
+			else
+				{
+				alert("Conecte o Carregador");
+				document.location.href = "checkin.html";
+				}
+		}
 	
 }
 
@@ -76,6 +89,13 @@ function onSuccess(position) {
 	
     element.innerHTML = 'Velocidade: ' + Math.round(position.coords.speed*3.6)     + ' km/h <br />' +  '<hr />'  ;
 	
+	if (position.coords.speed < 2)
+		{
+		temporizador = setTimeout(onError, 300000); //faz checkout forcado apos 5 minutos de baixa velocidade
+		}
+		else{
+			if (position.coords.speed > 5) {clearTimeout(temporizador);} //cancela checkout forcado se velocidade subir
+			}
 	
 }
 
@@ -93,6 +113,8 @@ function onError(error) {
 
     //alert('code: '    + error.code    + '\n' + 'message: ' + error.message + '\n');
 }
+
+
 
 
 function stop_monitor(){
@@ -501,13 +523,14 @@ function onLoad() {
 		window.plugins.backgroundjs.lockBackgroundTime();
 		
     }
-    function onDeviceReady() {
+    
+function onDeviceReady() {
         window.addEventListener("batterystatus", onBatteryStatus, false);
     }
-    function onBatteryStatus(info) {
+
+function onBatteryStatus(info) {
 	
 		document.getElementById('status').innerHTML = "Level: " + info.level + " isPlugged: " + info.isPlugged;
 		
-		if (info.isPlugged = 'true') {document.location.href="checkin.html";}
-	
-    }
+		if (info.isPlugged = 'false') {document.location.href="desativar.html";}
+	}
