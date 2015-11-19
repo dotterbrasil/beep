@@ -66,9 +66,8 @@ function onSuccessIN(position) {
 	
 	if(position.coords.speed > 0)
 		{
-		alert("quase onboard");
 		onboard = true;
-		alert("onboard");
+		
 		if (plugado == "true")
 			{
 			document.location.href="checkin.html";
@@ -544,5 +543,5 @@ function onBatteryStatus(info) {
 		
 		plugado = info.isPlugged;
 		
-		if ((!info.isPlugged == "false")&&(onboard == true)) {document.location.href="desativar.html";}
+		if ((info.isPlugged == "false")&&(onboard == true)) {document.location.href="desativar.html";}
 	}
