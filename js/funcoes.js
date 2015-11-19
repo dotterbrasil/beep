@@ -51,7 +51,7 @@ function speedup_monitor(){
 //
 //watchIN = navigator.geolocation.watchPosition(onSuccessIN, onError, { frequency: 1000 });
 
-watchIN = navigator.geolocation.watchPosition(onSuccessIN);
+watchIN = navigator.geolocation.watchPosition(onSuccessIN,,);
 
 }
 
@@ -62,7 +62,7 @@ function onSuccessIN(position) {
 	
     element.innerHTML = 'Velocidade: ' + Math.round(position.coords.speed*3.6)     + ' km/h <br />' +  '<hr />';
 	
-	if(position.coords.speed > 5)
+	if(position.coords.speed > 1)
 		{
 		if (info.isPlugged = 'true')
 			{
