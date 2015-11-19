@@ -74,7 +74,8 @@ function onSuccessIN(position) {
 			}
 			else
 				{
-				alert("Conecte o Carregador");
+				playsound();
+				element.innerHTML = "<b> Conecte o Carregador </b>";
 				document.location.href = "checkin.html";
 				}
 		}
