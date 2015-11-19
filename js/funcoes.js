@@ -63,9 +63,11 @@ function onSuccessIN(position) {
 	
     element.innerHTML = 'Velocidade: ' + Math.round(position.coords.speed*3.6)     + ' km/h <br />' +  '<hr />';
 	
-	if(position.coords.speed > 1)
+	if(position.coords.speed > 0)
 		{
-		onboard = true;alert("onboard");
+		alert("quase onboard");
+		onboard = true;
+		alert("onboard");
 		if (info.isPlugged == true)
 			{
 			document.location.href="checkin.html";
