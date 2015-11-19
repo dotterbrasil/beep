@@ -541,7 +541,7 @@ function onBatteryStatus(info) {
 	
 		document.getElementById('status').innerHTML = "Level: " + info.level + " isPlugged: " + info.isPlugged;
 		
-		plugado = info.isPlugged;
+		plugado = info.isPlugged;alert("baetria");
 		
-		if ((info.isPlugged == "false")&&(onboard == true)) {document.location.href="desativar.html";}
+		if ((info.isPlugged == "false")&&(onboard)) {document.location.href="desativar.html";}
 	}
