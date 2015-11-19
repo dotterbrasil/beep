@@ -65,7 +65,7 @@ function onSuccessIN(position) {
 	
 	if(position.coords.speed > 1)
 		{
-		onboard = true;
+		onboard = true;alert("onboard");
 		if (info.isPlugged == true)
 			{
 			document.location.href="checkin.html";
