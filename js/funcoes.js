@@ -526,8 +526,6 @@ if (indice==0)	{	home();	}
 
 function onLoad() {
         
-		onboard = false;
-		
 		document.addEventListener("deviceready", onDeviceReady, false);
 		
 		window.plugins.backgroundjs.lockBackgroundTime();
@@ -542,7 +540,7 @@ function onBatteryStatus(info) {
 	
 		document.getElementById('status').innerHTML = "Level: " + info.level + " isPlugged: " + info.isPlugged;
 		
-		plugado = info.isPlugged;alert(onboard);
+		plugado = info.isPlugged;
 		
-		if ((info.isPlugged == "false")&&(onboard == true)) {document.location.href="desativar.html";}
+		if ((info.isPlugged == "false")&&(onboard == true)) { document.location.href="desativar.html"; }
 	}
