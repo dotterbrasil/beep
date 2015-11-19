@@ -4,6 +4,7 @@
 var watchID = "";
 var watchIN = "";
 var onboard = false;
+var plugado = "false";
 
 function localizacao()
 {
@@ -68,7 +69,7 @@ function onSuccessIN(position) {
 		alert("quase onboard");
 		onboard = true;
 		alert("onboard");
-		if (info.isPlugged == "true")
+		if (plugado == "true")
 			{
 			document.location.href="checkin.html";
 			}
@@ -540,6 +541,8 @@ function onDeviceReady() {
 function onBatteryStatus(info) {
 	
 		document.getElementById('status').innerHTML = "Level: " + info.level + " isPlugged: " + info.isPlugged;
+		
+		plugado = info.isPlugged;
 		
 		if ((!info.isPlugged == "false")&&(onboard == true)) {document.location.href="desativar.html";}
 	}
