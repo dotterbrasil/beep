@@ -52,7 +52,7 @@ function speedup_monitor(){
 //
 //watchIN = navigator.geolocation.watchPosition(onSuccessIN, onError, { frequency: 1000 });
 
-watchIN = navigator.geolocation.watchPosition(onSuccessIN,onError,{});
+watchIN = navigator.geolocation.watchPosition(onSuccessIN,onError);
 
 }
 
