@@ -64,7 +64,7 @@ function onSuccessIN(position) {
 	
     element.innerHTML = 'Velocidade: ' + Math.round(position.coords.speed*3.6)     + ' km/h <br />' +  '<hr />';
 	
-	if(position.coords.speed > 0)
+	if(position.coords.speed > 5)
 		{
 		onboard = true;
 		
@@ -542,5 +542,9 @@ function onBatteryStatus(info) {
 		
 		plugado = info.isPlugged;
 		
-		if ((info.isPlugged == "false")&&(onboard == true)) { document.location.href="desativar.html"; }
+		if (info.isPlugged == "false")
+			{
+			if (onboard == true)
+				{ document.location.href="desativar.html"; }
+			}
 	}
