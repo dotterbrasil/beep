@@ -550,7 +550,7 @@ function onBatteryStatus(info) {
 		
 		if (info.isPlugged == "false")
 			{
-			if (onboard)
+			if (onboard == true)
 				{ document.location.href="desativar.html"; }
 			}
 	}
