@@ -524,6 +524,10 @@ if (indice==0)	{	home();	}
 
 //---------------------------------------------------------------------------- BLUETOOTH  ----------------------------------------------------------------------------
 
+
+
+//---------------------------------------------------------------------------- Conexao Bateria  ----------------------------------------------------------------------------
+
 function onLoad() {
         
 		document.addEventListener("deviceready", onDeviceReady, false);
@@ -542,9 +546,11 @@ function onBatteryStatus(info) {
 		
 		plugado = info.isPlugged;
 		
+		alert("Plugado = "+plugado+" - Onboard = "+onboard);
+		
 		if (info.isPlugged == "false")
 			{
-			if (onboard == true)
+			if (onboard)
 				{ document.location.href="desativar.html"; }
 			}
 	}
