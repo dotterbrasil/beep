@@ -548,7 +548,7 @@ function onBatteryStatus(info) {
 		
 		alert("Plugado = "+plugado+" - Onboard = "+onboard);
 		
-		if (plugado == "false")
+		if (plugado === "false")
 			{alert("passou o plugado");
 			if (onboard == true)
 				{ document.location.href = "desativar.html"; }
