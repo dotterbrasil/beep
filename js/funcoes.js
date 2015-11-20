@@ -66,8 +66,6 @@ function onSuccessIN(position) {
 	
 	if(position.coords.speed > 5)
 		{
-		onboard = true;
-		
 		if (plugado == "true")
 			{
 			document.location.href="checkin.html";
@@ -333,6 +331,8 @@ function conta_in(){
 
 var indice = conta_kids();
 var indice_in = 0;
+
+onboard = true;
 
 if (typeof(Storage) !== "undefined")
 	{
