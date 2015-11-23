@@ -430,9 +430,9 @@ alert("Erro de Som");
 
 function mensagem_local(mensagem_texto){
 
-var som = getMediaURL("sons/alerta.wav");
+//var som = getMediaURL("sons/alerta.wav");
 
-window.plugin.notification.local.add({ message: mensagem_texto, sound: som  });
+window.plugin.notification.local.add({ message: 'alerta'  });
 
 }
 
@@ -553,8 +553,6 @@ function onBatteryStatus(info) {
 		document.getElementById('status').innerHTML = "Level: " + info.level + " isPlugged: " + info.isPlugged;
 		
 		plugado = info.isPlugged;
-		
-		alert("Plugado = "+plugado+" - Onboard = "+onboard);
 		
 		if (plugado == false)
 			{
