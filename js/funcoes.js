@@ -562,5 +562,6 @@ function onBatteryStatus(info) {
 				}
 				else{ document.location.href = "checkin.html";}
 			}
+			else{ document.location.href = "index.html";}
 			
 	}
