@@ -532,7 +532,16 @@ if (indice==0)	{	home();	}
 
 //---------------------------------------------------------------------------- BLUETOOTH  ----------------------------------------------------------------------------
 
+function scan_BLE(){
 
+bluetoothSerial.list(function(devices) {
+    devices.forEach(function(device) {
+        alert(device.id);
+    })
+}, failure);
+
+
+}
 
 //---------------------------------------------------------------------------- Conexao Bateria  ----------------------------------------------------------------------------
 
@@ -562,6 +571,8 @@ function onBatteryStatus(info) {
 				}
 				else{ document.location.href = "checkin.html";}
 			}
-			else{ document.location.href = "index.html";}
+			else{
+				if (plugado == true) { document.location.href = "index.html"; }
+				}
 			
 	}

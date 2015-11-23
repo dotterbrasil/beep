@@ -35,6 +35,8 @@
 	
 	<gap:plugin name="com.colibrisoftware.plugins.backgroundjs" version="3.3" />
 	
+	<plugin name="com.megster.cordova.bluetoothserial" spec="0.3.3" source="pgb" />
+	
 	<plugin name="de.appplant.cordova.plugin.local-notification" spec="0.7.4" source="pgb" />
 
     <preference name="phonegap-version" value="cli-5.2.0" />
