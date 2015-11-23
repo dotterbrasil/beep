@@ -398,7 +398,8 @@ if (indice==0) { home(); }
 
 function home(){
 
-  document.location.href='index.html';
+	onboard = false;
+	document.location.href='index.html';
  
 }
  
