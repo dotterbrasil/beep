@@ -74,6 +74,7 @@ function onSuccessIN(position) {
 				{
 				playsound();
 				element.innerHTML = "<b> Conecte o Carregador </b>";
+				mensagem_local('Conecte o Carregador');
 				document.location.href = "checkin.html";
 				}
 		}
@@ -427,6 +428,13 @@ function mediaError(){
 alert("Erro de Som");
 }
 
+function mensagem_local(mensagem_texto){
+
+var som = getMediaURL("sons/alerta.wav");
+
+window.plugin.notification.local.add({ message: mensagem_texto, sound: som  });
+
+}
 
 //---------------------------------------------------------------------------- SMS  ----------------------------------------------------------------------------
 
