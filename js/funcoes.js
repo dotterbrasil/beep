@@ -332,7 +332,6 @@ function conta_in(){
 var indice = conta_kids();
 var indice_in = 0;
 
-onboard = true;
 
 if (typeof(Storage) !== "undefined")
 	{
@@ -551,7 +550,6 @@ function onBatteryStatus(info) {
 		
 		if (plugado == false)
 			{
-			alert("passou o plugado");
 			if (onboard == true)
 				{ document.location.href = "desativar.html"; }
 			}
