@@ -554,10 +554,13 @@ function onBatteryStatus(info) {
 		
 		plugado = info.isPlugged;
 		
-		if (plugado == false)
+		if (onboard == true)
 			{
-			if (onboard == true)
-				{ document.location.href = "desativar.html"; }
+			if (plugado == false)
+				{
+				document.location.href = "desativar.html";
+				}
+				else{ document.location.href = "checkin.html";}
 			}
-			else{alert("nao funciona - plugado = "+plugado);}
+			
 	}
