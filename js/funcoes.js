@@ -393,6 +393,23 @@ var indice = conta_in();
 if (indice==0) { home(); }
 }
 
+
+function carros(){
+
+bluetoothle.initialize(initializeSuccess, initializeError, {request: true, statusReceiver: true});
+
+}
+
+function initializeSuccess(){
+
+alert("BLE on");
+}
+
+function initializeError(){
+alert("BLE off");
+}
+
+
 //---------------------------------------------------------------------------- MEDIA  ----------------------------------------------------------------------------
 
 
