@@ -558,9 +558,9 @@ bluetoothle.startScan(
 		{
         //Device found
 		alert("resultado"+indice);
-		itens = itens + "<div onclick='qrcode("+i+");'>"+obj.name + "</div><br>"; indice++;
+		itens = itens + "<div onclick='qrcode("+i+");'>"+obj.name + "</div><br>"; indice = indice + 1;
 		bluetoothle.stopScan(initializeError, initializeSuccess);
-		if (indice>3) {lista_carros(itens, indice);}
+		lista_carros(itens, indice);
 		}
       else if (obj.status == "scanStarted")
 		{
@@ -594,6 +594,7 @@ alert("BLE erro");
 
 function lista_carros(itens, indice){
 
+bluetoothle.stopScan(initializeError, initializeSuccess);
 
 alert("iniciando lista");
 
