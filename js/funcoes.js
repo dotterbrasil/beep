@@ -538,7 +538,7 @@ var filtro = [];
 
 bluetoothle.initialize(initializeSuccess, initializeError, {request: true, statusReceiver: true});
 
-bluetoothle.startScan(initializeSuccess, initializeError, {allowDuplicates: true});
+bluetoothle.startScan(startScanSuccess, startScanError, {allowDuplicates: true});
 
 
 }
@@ -551,6 +551,16 @@ alert("BLE on");
 function initializeError(){
 alert("BLE off");
 }
+
+function startScanSuccess(){
+
+alert("BLE sucesso");
+}
+
+function startScanError(){
+alert("BLE erro");
+}
+
 
 function lista_carros(devices){
 
