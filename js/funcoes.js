@@ -536,7 +536,7 @@ function carros(){
 
 var filtro = [];
 
-bluetoothle.initialize(initializeSuccess, initializeError, {request: true, statusReceiver: true});
+bluetoothle.initialize(initializeSuccess, initializeError, {request: false, statusReceiver: true});
 
 bluetoothle.startScan(function(obj){alert("here we go");alert(obj.status);}, startScanError, {allowDuplicates: true});
 
