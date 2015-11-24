@@ -1,7 +1,7 @@
 function inicializacao(){
 	onboard = false;
-	bluetoothle.initialize(initializeSuccess, initializeError, {request: false, statusReceiver: true});
-	
+	//bluetoothle.initialize(initializeSuccess, initializeError, {request: false, statusReceiver: true});
+	window.plugins.backgroundjs.lockBackgroundTime();
 }
 
 function home(){
@@ -545,7 +545,7 @@ function carros(){
 var indice = 0;
 var itens = "";
 
-//bluetoothle.initialize(initializeSuccess, initializeError, {request: false, statusReceiver: true});
+bluetoothle.initialize(initializeSuccess, initializeError, {request: false, statusReceiver: true});
 
 alert("teste");
 
