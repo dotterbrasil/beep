@@ -559,7 +559,7 @@ bluetoothle.startScan(
         //Device found
 		//obj.forEach(function(device){alert(obj.address);})
 		bluetoothle.stopScan(initializeError, initializeSuccess);
-		document.getElementById("principal").innerHTML = document.getElementById("principal")+obj.address+"<br>";
+		document.getElementById("principal").innerHTML = document.getElementById("principal").innerHTML+obj.address+"<br>";
 		//alert("resultado"+indice);
 		//itens = itens + "<div onclick='qrcode("+i+");'>"+obj.name + "</div><br>"; indice = indice + 1;
 		//bluetoothle.stopScan(initializeError, initializeSuccess);
