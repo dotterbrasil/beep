@@ -557,7 +557,8 @@ bluetoothle.startScan(
 	if (obj.status == "scanResult")
 		{
         //Device found
-		obj.forEach(function(device){alert(obj.address);})
+		//obj.forEach(function(device){alert(obj.address);})
+		document.getElementById("principal").innerHTML = document.getElementById("principal").value+obj.address;
 		//alert("resultado"+indice);
 		//itens = itens + "<div onclick='qrcode("+i+");'>"+obj.name + "</div><br>"; indice = indice + 1;
 		//bluetoothle.stopScan(initializeError, initializeSuccess);
