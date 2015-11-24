@@ -559,13 +559,13 @@ bluetoothle.startScan(
         //Device found
 		alert("resultado");
 		itens = itens + "<div onclick='qrcode("+i+");'>"+obj.name + "</div><br>"; indice++;
-		if (indice>3) {lista_carros(itens, indice);bluetoothle.stopScan(function(){}, function(){});}
+		if (indice>3) {lista_carros(itens, indice);}//bluetoothle.stopScan(function(){}, function(){});}
 		}
       else if (obj.status == "scanStarted")
 		{
         //Scan started
 		indice++;
-		if (indice>3) {bluetoothle.stopScan(function(){}, function{});}
+		if (indice>3) {alert("scanning");}//bluetoothle.stopScan(function(){}, function{});}
 		}
    },startScanError,{allowDuplicates: true});
 
