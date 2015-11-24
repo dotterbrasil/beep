@@ -550,21 +550,21 @@ var itens = "";
 
 alert("teste");
 
-//bluetoothle.startScan(function(obj){alert("here we go");alert(obj.status);}, startScanError, {allowDuplicates: true});
+bluetoothle.startScan(function(obj){alert("here we go");alert(obj.status);}, startScanError, {allowDuplicates: true});
 
-bluetoothle.startScan(function(obj){if (obj.status == "scanResult")
-      {
+//bluetoothle.startScan(function(obj){if (obj.status == "scanResult")
+//      {
         //Device found
-		itens = itens + "<div onclick='qrcode("+i+");'>"+obj.name + "</div><br>"; indice++;
-		if (indice>8) {lista_carros(itens, indice);bluetoothle.stopScan(function(){}, function(){});}
-     }
-      else if (obj.status == "scanStarted")
-      {
+//		itens = itens + "<div onclick='qrcode("+i+");'>"+obj.name + "</div><br>"; indice++;
+//		if (indice>8) {lista_carros(itens, indice);bluetoothle.stopScan(function(){}, function(){});}
+//     }
+//      else if (obj.status == "scanStarted")
+//      {
         //Scan started
-		indice++;
-		if (indice>8) {bluetoothle.stopScan(function(){}, function{});}
-     }
-   },startScanError,{allowDuplicates: true});
+//		indice++;
+//		if (indice>8) {bluetoothle.stopScan(function(){}, function{});}
+//     }
+//   },startScanError,{allowDuplicates: true});
 
 
 }
