@@ -1,3 +1,19 @@
+function inicializacao(){
+	onboard = false;
+	bluetoothle.initialize(initializeSuccess, initializeError, {request: false, statusReceiver: true});
+	window.plugins.backgroundjs.lockBackgroundTime();
+}
+
+function home(){
+
+	onboard = false;
+	bluetoothle.stopScan(function(){}, function{});
+	document.location.href='index.html';
+	
+}
+
+
+
 
 //---------------------------------------------------------------------------- COORDENADAS  ----------------------------------------------------------------------------
 
@@ -397,14 +413,6 @@ if (indice==0) { home(); }
 //---------------------------------------------------------------------------- MEDIA  ----------------------------------------------------------------------------
 
 
-function home(){
-
-	onboard = false;
-	document.location.href='index.html';
- 
-}
- 
-
 function playsound() {
   
   var url = getMediaURL("sons/alerta.wav");
@@ -534,13 +542,28 @@ if (indice==0)	{	home();	}
 //---------------------------------------------------------------------------- BLUETOOTH  ----------------------------------------------------------------------------
 function carros(){
 
-var filtro = [];
+var indice = 0;
+var itens = "";
 
 //bluetoothle.initialize(initializeSuccess, initializeError, {request: false, statusReceiver: true});
 
 alert("teste");
 
-bluetoothle.startScan(function(obj){alert("here we go");alert(obj.status);}, startScanError, {allowDuplicates: true});
+//bluetoothle.startScan(function(obj){alert("here we go");alert(obj.status);}, startScanError, {allowDuplicates: true});
+
+bluetoothle.startScan(function(obj){if (obj.status == "scanResult")
+      {
+        //Device found
+		itens = itens + "<div onclick='qrcode("+i+");'>"+device.name + "</div><br>"; indice++;
+		if (indice>8) {lista_carros(itens, indice);bluetoothle.stopScan(function(){}, function{});}
+      }
+      else if (obj.status == "scanStarted")
+      {
+        //Scan started
+		indice++;
+		if (indice>8) {bluetoothle.stopScan(function(){}, function{});}
+      }
+    },startScanError,{allowDuplicates: true});
 
 
 }
@@ -564,14 +587,11 @@ alert("BLE erro");
 }
 
 
-function lista_carros(devices){
+function lista_carros(itens, indice){
 
-indice = 0;
-itens = "";
 
 alert("iniciando lista");
 
-devices.forEach(function(device){itens = itens + "<div onclick='qrcode("+i+");'>"+device.name + "</div><br>"; indice++; });
  				
  		if(indice>0)
 			{
