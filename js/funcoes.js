@@ -536,7 +536,7 @@ function carros(){
 
 bluetoothle.initialize(initializeSuccess, initializeError, {request: true, statusReceiver: true});
 
-bluetoothle.startScan(initializeSuccess, erro_carros, {serviceUuids:[]});
+bluetoothle.startScan(initializeSuccess, erro_carros, {serviceUuids:[], allowDuplicates: true});
 
 
 }
