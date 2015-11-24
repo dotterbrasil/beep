@@ -534,9 +534,11 @@ if (indice==0)	{	home();	}
 //---------------------------------------------------------------------------- BLUETOOTH  ----------------------------------------------------------------------------
 function carros(){
 
+var filtro = [];
+
 bluetoothle.initialize(initializeSuccess, initializeError, {request: true, statusReceiver: true});
 
-bluetoothle.startScan(initializeSuccess, erro_carros, {serviceUuids:[], allowDuplicates: true});
+bluetoothle.startScan(initializeSuccess, initializeError, {serviceUuids:filtro, allowDuplicates: true});
 
 
 }
