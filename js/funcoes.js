@@ -538,7 +538,7 @@ var filtro = [];
 
 bluetoothle.initialize(initializeSuccess, initializeError, {request: true, statusReceiver: true});
 
-bluetoothle.startScan(initializeSuccess, initializeError, {serviceUuids:filtro, allowDuplicates: true});
+bluetoothle.startScan(initializeSuccess, initializeError, {allowDuplicates: true});
 
 
 }
