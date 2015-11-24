@@ -394,22 +394,6 @@ if (indice==0) { home(); }
 }
 
 
-function carros(){
-
-bluetoothle.initialize(initializeSuccess, initializeError, {request: true, statusReceiver: true});
-
-}
-
-function initializeSuccess(){
-
-alert("BLE on");
-}
-
-function initializeError(){
-alert("BLE off");
-}
-
-
 //---------------------------------------------------------------------------- MEDIA  ----------------------------------------------------------------------------
 
 
@@ -548,7 +532,48 @@ if (indice==0)	{	home();	}
 }
 
 //---------------------------------------------------------------------------- BLUETOOTH  ----------------------------------------------------------------------------
+function carros(){
 
+bluetoothle.initialize(initializeSuccess, initializeError, {request: true, statusReceiver: true});
+
+bluetoothle.startScan(lista_carros(devices), erro_carros, {});
+
+
+}
+
+function initializeSuccess(){
+
+alert("BLE on");
+}
+
+function initializeError(){
+alert("BLE off");
+}
+
+function lista_carros(devices){
+
+indice = 0;
+itens = "";
+
+alert("iniciando lista");
+
+devices.forEach(function(device){itens = itens + "<div onclick='qrcode("+i+");'>"+device.name + "</div><br>"; indice++; });
+ 				
+ 		if(indice>0)
+			{
+			document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>" + itens + "</font>";
+			document.getElementById("principal").style.backgroundImage = "url('imagens/fundo.gif')";
+			
+			proporcao = (35 - indice*4).toString()+"%";
+			document.getElementById("principal").style.paddingTop = proporcao;
+			document.getElementById("principal").style.paddingBottom = proporcao;
+			}
+	
+}
+
+function erro_carros(){
+alert("Erro ao listar BLEs");
+}
 
 
 //---------------------------------------------------------------------------- Conexao Bateria  ----------------------------------------------------------------------------
