@@ -557,10 +557,11 @@ bluetoothle.startScan(
 	if (obj.status == "scanResult")
 		{
         //Device found
-		alert("resultado"+indice);
-		itens = itens + "<div onclick='qrcode("+i+");'>"+obj.name + "</div><br>"; indice = indice + 1;
-		bluetoothle.stopScan(initializeError, initializeSuccess);
-		lista_carros(itens, indice);
+		obj.forEach(function(device){alert(obj.address);})
+		//alert("resultado"+indice);
+		//itens = itens + "<div onclick='qrcode("+i+");'>"+obj.name + "</div><br>"; indice = indice + 1;
+		//bluetoothle.stopScan(initializeError, initializeSuccess);
+		//lista_carros(itens, indice);
 		}
       else if (obj.status == "scanStarted")
 		{
