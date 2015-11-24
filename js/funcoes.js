@@ -13,7 +13,7 @@ function inicializacao(){
 function home(){
 
 	onboard = false;
-	bluetoothle.stopScan(function(){}, function{});
+	bluetoothle.stopScan(function(){}, function(){});
 	document.location.href='index.html';
 	
 }
@@ -556,7 +556,7 @@ bluetoothle.startScan(function(obj){alert("here we go");alert(obj.status);}, sta
 //      {
         //Device found
 //		itens = itens + "<div onclick='qrcode("+i+");'>"+device.name + "</div><br>"; indice++;
-//		if (indice>8) {lista_carros(itens, indice);bluetoothle.stopScan(function(){}, function{});}
+//		if (indice>8) {lista_carros(itens, indice);bluetoothle.stopScan(function(){}, function(){});}
  //     }
 //      else if (obj.status == "scanStarted")
 //      {
