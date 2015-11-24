@@ -1,7 +1,13 @@
+var watchID = "";
+var watchIN = "";
+var onboard = false;
+var plugado = "false";
+
+
 function inicializacao(){
-	onboard = false;
-	//bluetoothle.initialize(initializeSuccess, initializeError, {request: false, statusReceiver: true});
-	//window.plugins.backgroundjs.lockBackgroundTime();
+	onboard = false;alert("onboard");
+	bluetoothle.initialize(initializeSuccess, initializeError, {request: false, statusReceiver: true});alert("inicializou BLE");
+	window.plugins.backgroundjs.lockBackgroundTime();alert("entrou em background");
 }
 
 function home(){
@@ -16,11 +22,6 @@ function home(){
 
 
 //---------------------------------------------------------------------------- COORDENADAS  ----------------------------------------------------------------------------
-
-var watchID = "";
-var watchIN = "";
-var onboard = false;
-var plugado = "false";
 
 function localizacao()
 {
@@ -545,7 +546,7 @@ function carros(){
 var indice = 0;
 var itens = "";
 
-bluetoothle.initialize(initializeSuccess, initializeError, {request: false, statusReceiver: true});
+//bluetoothle.initialize(initializeSuccess, initializeError, {request: false, statusReceiver: true});
 
 alert("teste");
 
