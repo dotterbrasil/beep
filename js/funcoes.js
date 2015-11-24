@@ -538,24 +538,9 @@ bluetoothle.initialize(initializeSuccess, initializeError, {request: true, statu
 
 //bluetoothle.startScan(lista_carros(devices), erro_carros, {serviceUuids:[]});
 
-bluetoothle.startScan({serviceUuids:[]}).then(null,
-    function(obj) {
-      //Handle errors
-      alert(obj.message);
-    },
-    function(obj) {
-      if (obj.status == "scanResult")
-      {
-        //Device found
-		alert("achou");
-      }
-      else if (obj.status == "scanStarted")
-      {
-        //Scan started
-		alert("iniciou scan");
-      }
-    }
-  );
+bluetoothle.startScan(function(devices){alert("ok");}, erro_carros, {serviceUuids:[]});
+
+
 
 
 }
