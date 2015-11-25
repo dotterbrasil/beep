@@ -6,6 +6,7 @@ var plugado = "false";
     
 function onDeviceReady() {
 		onboard = false;
+		speedup_monitor();
 		bluetoothle.initialize(initializeSuccess, initializeError, {request: false, statusReceiver: true});alert("inicializou BLE");
 		window.plugins.backgroundjs.lockBackgroundTime();alert("entrou em background");
         window.addEventListener("batterystatus", onBatteryStatus, false);
