@@ -563,7 +563,7 @@ for (indice=0; indice<4; indice++)
 				bluetoothle.stopScan(initializeError, initializeSuccess);
 				//document.getElementById("principal").innerHTML = document.getElementById("principal").innerHTML+obj.address+"<br>";
 				//alert("resultado"+indice);
-				itens = itens + "<div onclick='qrcode("+i+");'>"+obj.name + "</div><br>";
+				itens = itens + "<div onclick='qrcode("+indice+");'>"+obj.address + "</div><br>";
 				//bluetoothle.stopScan(initializeError, initializeSuccess);
 				//lista_carros(itens, indice);
 				}
