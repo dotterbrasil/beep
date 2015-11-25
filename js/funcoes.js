@@ -9,7 +9,7 @@ function onDeviceReady() {
 		speedup_monitor();
 		bluetoothle.initialize(initializeSuccess, initializeError, {request: false, statusReceiver: true});alert("inicializou BLE");
 		window.plugins.backgroundjs.lockBackgroundTime();alert("entrou em background");
-        window.addEventListener("batterystatus", onBatteryStatus, false);
+        monitora_bateria();
     }
 
 
@@ -703,7 +703,11 @@ alert("Erro ao listar BLEs");
 
 //---------------------------------------------------------------------------- Conexao Bateria  ----------------------------------------------------------------------------
 
+function monitora_bateria(){
 
+window.addEventListener("batterystatus", onBatteryStatus, false);
+
+}
 
 function onBatteryStatus(info) {
 	
