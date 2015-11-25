@@ -552,27 +552,30 @@ alert("teste");
 
 //bluetoothle.startScan(function(obj){alert("here we go");alert(obj.status);}, startScanError, {allowDuplicates: true});
 
-bluetoothle.startScan(
-	function(obj){
-	if (obj.status == "scanResult")
-		{
-        //Device found
-		//obj.forEach(function(device){alert(obj.address);})
-		bluetoothle.stopScan(initializeError, initializeSuccess);
-		document.getElementById("principal").innerHTML = document.getElementById("principal").innerHTML+obj.address+"<br>";
-		//alert("resultado"+indice);
-		//itens = itens + "<div onclick='qrcode("+i+");'>"+obj.name + "</div><br>"; indice = indice + 1;
-		//bluetoothle.stopScan(initializeError, initializeSuccess);
-		//lista_carros(itens, indice);
-		}
-      else if (obj.status == "scanStarted")
-		{
-        //Scan started
-		indice++;
-		if (indice>3) {alert("scanning");}//bluetoothle.stopScan(function(){}, function{});}
-		}
-   },startScanError,{allowDuplicates: true});
-
+for (indice=0,indice<4,indice++)
+	{
+	bluetoothle.startScan(
+		function(obj){
+			if (obj.status == "scanResult")
+				{
+				//Device found
+				//obj.forEach(function(device){alert(obj.address);})
+				bluetoothle.stopScan(initializeError, initializeSuccess);
+				//document.getElementById("principal").innerHTML = document.getElementById("principal").innerHTML+obj.address+"<br>";
+				//alert("resultado"+indice);
+				itens = itens + "<div onclick='qrcode("+i+");'>"+obj.name + "</div><br>";
+				//bluetoothle.stopScan(initializeError, initializeSuccess);
+				//lista_carros(itens, indice);
+				}
+				else if (obj.status == "scanStarted")
+					{
+					//Scan started
+					//indice++;
+					//if (indice>3) {alert("scanning");}//bluetoothle.stopScan(function(){}, function{});}
+					}
+		},startScanError,{allowDuplicates: false});
+	}
+document.getElementById("principal").innerHTML = document.getElementById("principal").innerHTML+itens+"<br>";
 
 }
 
