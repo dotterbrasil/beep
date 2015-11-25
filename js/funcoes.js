@@ -636,7 +636,9 @@ document.getElementById("principal").innerHTML = "";
 				//document.getElementById("principal").innerHTML = document.getElementById("principal").innerHTML+obj.address+" - "+indice+"<br>";
 				//document.getElementById("principal").innerHTML = document.getElementById("principal").innerHTML + "<div onclick='"+tipo+"("+obj.address+");'>" + obj.address+" - "+indice+"</div><br><hr/>";
 				
-				alert(inicio + tipo + "(" + obj.address + ");'>" + obj.address + fim);
+				tipo = tipo + "('" + obj.address + "')";
+				
+				alert(inicio + tipo + ";'>" + obj.address + fim);
 				
 				document.getElementById("principal").innerHTML += inicio + tipo + "(" + obj.address + ");'>" + obj.address + fim;
 				
