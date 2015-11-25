@@ -622,7 +622,7 @@ function beacar(i){
 
 var beacon = "<img src='imagens/fundo_verde.gif' width='20%'>";
 
-document.getElementById("principal").innerHTML = "<font face='sans-serif'>" + localStorage.getItem("car"+i)+"<img src='imagens/menos.png' width=10% onclick='limpa_car(" + i + ");'> <br>" + beacon + "<br> Este BEACON identifica o seu carro. <div onclick='help_beacar();'>SAIBA COMO</div>";
+document.getElementById("principal").innerHTML = "<font face='sans-serif'>" + beacon + localStorage.getItem("car"+i)+"<img src='imagens/menos.png' width=10% onclick='limpa_car(" + i + ");'> <br>" + localStorage.getItem("car_address"+i) + "<br> Este BEACON identifica o seu carro. <div onclick='help_beacar();'>SAIBA COMO</div>";
 
 document.getElementById("principal").style.backgroundImage = "url('')";
 document.getElementById("principal").style.paddingTop = "0%";
@@ -632,6 +632,8 @@ document.getElementById("principal").style.paddingBottom = "0%";
 
 function limpa_car(i){
 	localStorage.removeItem("car"+i);
+	localStorage.removeItem("car_address"+i);
+	document.getElementById("principal").innerHTML = "";
 	lista_carros();
   }
 
