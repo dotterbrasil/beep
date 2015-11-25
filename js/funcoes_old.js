@@ -3,17 +3,11 @@ var watchIN = "";
 var onboard = false;
 var plugado = "false";
 
-    
-function onDeviceReady() {
-		onboard = false;
-		bluetoothle.initialize(initializeSuccess, initializeError, {request: false, statusReceiver: true});alert("inicializou BLE");
-		window.plugins.backgroundjs.lockBackgroundTime();alert("entrou em background");
-        window.addEventListener("batterystatus", onBatteryStatus, false);
-    }
-
 
 function inicializacao(){
-	document.addEventListener("deviceready", onDeviceReady, false);
+	onboard = false;
+	bluetoothle.initialize(initializeSuccess, initializeError, {request: false, statusReceiver: true});alert("inicializou BLE");
+	window.plugins.backgroundjs.lockBackgroundTime();alert("entrou em background");
 }
 
 function home(){
@@ -702,7 +696,17 @@ alert("Erro ao listar BLEs");
 
 //---------------------------------------------------------------------------- Conexao Bateria  ----------------------------------------------------------------------------
 
-
+function onLoad() {
+        
+		document.addEventListener("deviceready", onDeviceReady, false);
+		
+		window.plugins.backgroundjs.lockBackgroundTime();
+		
+    }
+    
+function onDeviceReady() {
+        window.addEventListener("batterystatus", onBatteryStatus, false);
+    }
 
 function onBatteryStatus(info) {
 	
