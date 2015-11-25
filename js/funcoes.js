@@ -620,12 +620,10 @@ function scanBLE(tipo){
 
 var indice = 0;
 var itens = "";
+var inicio = "<div onclick='";
+var fim = "</div><br><hr/>";
 
-//bluetoothle.initialize(initializeSuccess, initializeError, {request: false, statusReceiver: true});
-
-alert("teste");
-
-//bluetoothle.startScan(function(obj){alert("here we go");alert(obj.status);}, startScanError, {allowDuplicates: true});
+document.getElementById("status").innerHTML = "Escaneando dispositivos BLE";
 
 document.getElementById("principal").innerHTML = "";
 
@@ -634,31 +632,25 @@ document.getElementById("principal").innerHTML = "";
 			if (obj.status == "scanResult")
 				{
 				//Device found
-				//obj.forEach(function(device){alert(obj.address);})
-				//bluetoothle.stopScan(initializeError, initializeSuccess);
 				indice++;
 				//document.getElementById("principal").innerHTML = document.getElementById("principal").innerHTML+obj.address+" - "+indice+"<br>";
-				document.getElementById("principal").innerHTML = document.getElementById("principal").innerHTML + "<div onclick='"+tipo+"("+obj.address+");'>" + obj.address+" - "+indice+"</div><br><hr/>";
-				//alert("resultado"+indice);
-				//indice++;
-				//itens = itens + "<div onclick='qrcode("+indice+");'>"+obj.address + " - " + indice + "</div><br>";
+				//document.getElementById("principal").innerHTML = document.getElementById("principal").innerHTML + "<div onclick='"+tipo+"("+obj.address+");'>" + obj.address+" - "+indice+"</div><br><hr/>";
 				
-				//bluetoothle.stopScan(initializeError, initializeSuccess);
-				//lista_carros(itens, indice);
+				alert(inicio + tipo + "(" + obj.address + ");'>" + obj.address + fim);
+				
+				document.getElementById("principal").innerHTML += inicio + tipo + "(" + obj.address + ");'>" + obj.address + fim;
+				
 				if (indice > 3) {bluetoothle.stopScan(initializeError, initializeSuccess);}
 				}
 				else if (obj.status == "scanStarted")
 					{
 					//Scan started
-					//indice++;
-					//if (indice>3) {alert("scanning");}//bluetoothle.stopScan(function(){}, function{});}
 					if (indice>3) {bluetoothle.stopScan(initializeError, initializeSuccess);}
 					}
 		},startScanError,{allowDuplicates: false});
 
-
-
 }
+
 
 function initializeSuccess(){
 
