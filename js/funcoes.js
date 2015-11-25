@@ -543,10 +543,13 @@ if (indice==0)	{	home();	}
 //---------------------------------------------------------------------------- CARROS  ----------------------------------------------------------------------------
 
 
-function carros(endereco){
+function carros(item){
 
 var carro = prompt("Nome: ","").toUpperCase(); 
 var indice = conta_carros(); 
+var endereco = document.getElementById(item).innerHTML;
+ 
+ alert(endereco);
  
 if (typeof(Storage) !== "undefined") 
 	{ 
@@ -620,8 +623,6 @@ function scanBLE(tipo){
 
 var indice = 0;
 var itens = "";
-var inicio = "<div onclick='";
-var fim = "</div><br><hr/>";
 
 document.getElementById("status").innerHTML = "Escaneando dispositivos BLE";
 
@@ -636,11 +637,7 @@ document.getElementById("principal").innerHTML = "";
 				//document.getElementById("principal").innerHTML = document.getElementById("principal").innerHTML+obj.address+" - "+indice+"<br>";
 				//document.getElementById("principal").innerHTML = document.getElementById("principal").innerHTML + "<div onclick='"+tipo+"("+obj.address+");'>" + obj.address+" - "+indice+"</div><br><hr/>";
 				
-				tipo = tipo + "('" + obj.address + "')";
-				
-				alert(inicio + tipo + ";'>" + obj.address + fim);
-				
-				document.getElementById("principal").innerHTML += inicio + tipo + "(" + obj.address + ");'>" + obj.address + fim;
+				document.getElementById("principal").innerHTML += "<div id="+indice+" onclick='"+tipo+"("+indice+");'>" + obj.address+"</div><br><hr/>";
 				
 				if (indice > 3) {bluetoothle.stopScan(initializeError, initializeSuccess);}
 				}
