@@ -540,8 +540,83 @@ if (indice==0)	{	home();	}
 
 }
 
+//---------------------------------------------------------------------------- CARROS  ----------------------------------------------------------------------------
+
+
+function carros(endereco){
+
+var carro = prompt("Nome: ","").toUpperCase(); 
+var indice = conta_carros(); 
+ 
+if (typeof(Storage) !== "undefined") 
+	{ 
+	localStorage.setItem("car"+indice,carro); 
+	localStorage.setItem("car_address"+indice,endereco);
+	} else {    document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";} 
+ 
+localStorage.setItem("car"+indice,carro); 
+
+lista_carros();
+
+}
+
+
+function conta_carros(){
+var indice = 0;
+
+if (typeof(Storage) !== "undefined")
+	{
+	if(localStorage.length)
+		{
+		for ( var i = 0, len = localStorage.length; i < len; ++i )
+			{
+			if(localStorage.getItem("car"+i) !== null)
+				{
+				++indice;
+				}
+			}
+		}
+	
+	} else {    document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";}
+
+return indice;
+}
+
+function lista_carros(){
+
+var itens = ""; 
+var indice = conta_carros(); 
+ 
+if (typeof(Storage) !== "undefined") 
+	{ 
+ 	if(localStorage.length) 
+ 		{ 
+ 		//for ( var i = 0; i < indice; ++i ) 
+		for ( var i = 0, len = localStorage.length; i < len; ++i )
+ 			{ 
+ 			if(localStorage.getItem("car"+i) !== null) 
+ 				{ 
+ 				itens = itens + "<div onclick='qrcode("+i+");'>"+localStorage.getItem("car"+i) + "</div><br>"; 
+ 				} 
+ 			} 
+ 		if(indice>0)
+			{
+			document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>" + itens + "</font>";
+			document.getElementById("principal").style.backgroundImage = "url('imagens/fundo.gif')";
+			
+			proporcao = (35 - indice*4).toString()+"%";
+			document.getElementById("principal").style.paddingTop = proporcao;
+			document.getElementById("principal").style.paddingBottom = proporcao;
+			}
+ 		} 
+ 		else {	alert("Cadastre seus carros.");	} 
+ 	 
+ 	} else {    document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";} 
+ 
+}
+
 //---------------------------------------------------------------------------- BLUETOOTH  ----------------------------------------------------------------------------
-function carros(){
+function scanBLE(tipo){
 
 var indice = 0;
 var itens = "";
@@ -562,7 +637,8 @@ document.getElementById("principal").innerHTML = "";
 				//obj.forEach(function(device){alert(obj.address);})
 				//bluetoothle.stopScan(initializeError, initializeSuccess);
 				indice++;
-				document.getElementById("principal").innerHTML = document.getElementById("principal").innerHTML+obj.address+" - "+indice+"<br>";
+				//document.getElementById("principal").innerHTML = document.getElementById("principal").innerHTML+obj.address+" - "+indice+"<br>";
+				document.getElementById("principal").innerHTML = document.getElementById("principal").innerHTML + "<div onclick='"+tipo+"("+obj.address+");'>" + obj.address+" - "+indice+"</div><br><hr/>";
 				//alert("resultado"+indice);
 				//indice++;
 				//itens = itens + "<div onclick='qrcode("+indice+");'>"+obj.address + " - " + indice + "</div><br>";
@@ -602,25 +678,6 @@ function startScanError(){
 alert("BLE erro");
 }
 
-
-function lista_carros(itens, indice){
-
-bluetoothle.stopScan(initializeError, initializeSuccess);
-
-alert("iniciando lista");
-
- 				
- 		if(indice>0)
-			{
-			document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>" + itens + "</font>";
-			document.getElementById("principal").style.backgroundImage = "url('imagens/fundo.gif')";
-			
-			proporcao = (35 - indice*4).toString()+"%";
-			document.getElementById("principal").style.paddingTop = proporcao;
-			document.getElementById("principal").style.paddingBottom = proporcao;
-			}
-	
-}
 
 function erro_carros(){
 alert("Erro ao listar BLEs");
