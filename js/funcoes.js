@@ -552,6 +552,7 @@ alert("teste");
 
 //bluetoothle.startScan(function(obj){alert("here we go");alert(obj.status);}, startScanError, {allowDuplicates: true});
 
+document.getElementById("principal").innerHTML = "";
 
 	bluetoothle.startScan(
 		function(obj){
@@ -568,6 +569,7 @@ alert("teste");
 				
 				//bluetoothle.stopScan(initializeError, initializeSuccess);
 				//lista_carros(itens, indice);
+				if (indice > 3) {bluetoothle.stopScan(initializeError, initializeSuccess);}
 				}
 				else if (obj.status == "scanStarted")
 					{
