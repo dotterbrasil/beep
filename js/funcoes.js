@@ -552,7 +552,7 @@ alert("teste");
 
 //bluetoothle.startScan(function(obj){alert("here we go");alert(obj.status);}, startScanError, {allowDuplicates: true});
 
-for (indice=0,indice<4,indice++)
+for (indice=0; indice<4; indice++)
 	{
 	bluetoothle.startScan(
 		function(obj){
