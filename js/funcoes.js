@@ -560,7 +560,8 @@ alert("teste");
 				//Device found
 				//obj.forEach(function(device){alert(obj.address);})
 				//bluetoothle.stopScan(initializeError, initializeSuccess);
-				document.getElementById("principal").innerHTML = document.getElementById("principal").innerHTML+obj.address+"<br>";
+				indice++;
+				document.getElementById("principal").innerHTML = document.getElementById("principal").innerHTML+obj.address+" - "+indice+"<br>";
 				//alert("resultado"+indice);
 				//indice++;
 				//itens = itens + "<div onclick='qrcode("+indice+");'>"+obj.address + " - " + indice + "</div><br>";
@@ -573,7 +574,7 @@ alert("teste");
 					//Scan started
 					//indice++;
 					//if (indice>3) {alert("scanning");}//bluetoothle.stopScan(function(){}, function{});}
-					bluetoothle.stopScan(initializeError, initializeSuccess);
+					if (indice>3) {bluetoothle.stopScan(initializeError, initializeSuccess);}
 					}
 		},startScanError,{allowDuplicates: false});
 
