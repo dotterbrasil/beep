@@ -6,10 +6,10 @@ var plugado = "false";
     
 function onDeviceReady() {
 		onboard = false;
-		//speedup_monitor();
+		speedup_monitor();
 		bluetoothle.initialize(initializeSuccess, initializeError, {request: false, statusReceiver: true});
 		window.plugins.backgroundjs.lockBackgroundTime();
-		monitora_bateria();
+		//monitora_bateria();
     }
 
 
