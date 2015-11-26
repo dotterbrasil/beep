@@ -8,8 +8,8 @@ var startDate = new Date(2015,10,26,15,0,0,0,0); // beware: month 0 = january, 1
   var title = "My nice event";
   var location = "Home";
   var notes = "Some notes about this event.";
-  var success = function(message) { alert("Success: "); };
-  var error = function(message) { alert("Error: "); };
+  //var success = function(message) { alert("Success: "); };
+  //var error = function(message) { alert("Error: "); };
 
     
 function onDeviceReady() {
@@ -17,7 +17,7 @@ function onDeviceReady() {
 		speedup_monitor();
 		bluetoothle.initialize(initializeSuccess, initializeError, {request: false, statusReceiver: true});
 		window.plugins.backgroundjs.lockBackgroundTime();
-		window.plugins.calendar.createEvent(title,location,notes,startDate,endDate,success,error);
+		window.plugins.calendar.createEvent(title,location,notes,startDate,endDate,function(message) { alert("Success: "); },function(message) { alert("Error: "); });
         monitora_bateria();
     }
 
