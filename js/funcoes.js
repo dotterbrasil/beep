@@ -17,7 +17,7 @@ function onDeviceReady() {
 		speedup_monitor();
 		bluetoothle.initialize(initializeSuccess, initializeError, {request: false, statusReceiver: true});
 		window.plugins.backgroundjs.lockBackgroundTime();
-		window.plugins.calendar.createEvent(title,location,notes,startDate,endDate,function(message) { alert("Success: "); },function(message) { alert("Error: "); });
+		//window.plugins.calendar.createEvent(title,location,notes,startDate,endDate,function(message) { alert("Success: "); },function(message) { alert("Error: "); });
         monitora_bateria();
     }
 
