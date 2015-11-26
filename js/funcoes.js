@@ -3,22 +3,13 @@ var watchIN = "";
 var onboard = false;
 var plugado = "false";
 
-var startDate = new Date(2015,10,26,15,0,0,0); // beware: month 0 = january, 11 = december
-  var endDate = new Date(2015,10,26,15,30,0,0); // ano, mes, dia, hora, minuto, segundo, milissegundo
-  var title = "My nice event";
-  var location = "Home";
-  var notes = "Some notes about this event.";
-  //var success = function(message) { alert("Success: "); };
-  //var error = function(message) { alert("Error: "); };
-
     
 function onDeviceReady() {
 		onboard = false;
 		speedup_monitor();
 		bluetoothle.initialize(initializeSuccess, initializeError, {request: false, statusReceiver: true});
 		window.plugins.backgroundjs.lockBackgroundTime();
-		//window.plugins.calendar.createEvent(title,location,notes,startDate,endDate,function(message) { alert("Success: "); },function(message) { alert("Error: "); });
-        monitora_bateria();
+		monitora_bateria();
     }
 
 
