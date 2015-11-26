@@ -8,8 +8,8 @@ var startDate = new Date(2015,10,26,15,0,0,0,0); // beware: month 0 = january, 1
   var title = "My nice event";
   var location = "Home";
   var notes = "Some notes about this event.";
-  var success = function(message) { alert("Success: " + JSON.stringify(message)); };
-  var error = function(message) { alert("Error: " + message); };
+  var success = function(message) { alert("Success: "); };
+  var error = function(message) { alert("Error: "); };
 
     
 function onDeviceReady() {
