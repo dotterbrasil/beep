@@ -6,7 +6,7 @@ var plugado = "false";
     
 function onDeviceReady() {
 		onboard = false;
-		speedup_monitor();
+		//speedup_monitor();
 		bluetoothle.initialize(initializeSuccess, initializeError, {request: false, statusReceiver: true});
 		window.plugins.backgroundjs.lockBackgroundTime();
 		monitora_bateria();
@@ -643,14 +643,7 @@ function limpa_car(i){
 	lista_carros();
   }
   
- function conecta_car(){
- var quantidade = conta_carros();
  
- for (i=0, i<quantidade, i++)
-	{
-	alert("carro");
-	}
- }
 
 //---------------------------------------------------------------------------- BLUETOOTH  ----------------------------------------------------------------------------
 function scanBLE(tipo){
