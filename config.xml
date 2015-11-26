@@ -37,8 +37,7 @@
 	
 	<gap:plugin name="cordova-plugin-bluetoothle" source="npm" />
 	
-	<gap:plugin name="cordova-plugin-wakeuptimer" />
-	
+		
 	<preference name="phonegap-version" value="cli-5.2.0" />
     <preference name="orientation"      value="portrait" />
     <preference name="target-device"    value="universal" />
