@@ -74,7 +74,7 @@ alert("vai");
 
 notification.local.schedule({
     title: "New Message",
-    message: "Hi, are you ready? We are waiting.",
+    message: "Hi, are you ready? We are waiting."
     
 });
 
