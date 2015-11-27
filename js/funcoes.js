@@ -30,28 +30,26 @@ function onDeviceReady() {
 		
 		//notification.local.add({ message: 'Great app!' });
 		
-		notification.local.schedule([{
-	id: 1,
-    text: 'Delayed Notification'      
-}]);
+		//notification.local.schedule([{
+	//id: 1,
+    //text: 'Delayed Notification'      
+//}]);
 		
 notification.local.isScheduled(1, function (scheduled) { 
                     alert(scheduled); alert("1 scheduled");
               }); 
 
-			  notification.local.isScheduled(2, function (scheduled) { 
-                    alert(scheduled); alert("2 scheduled");
+			  notification.local.isPresent(1, function (present) { 
+                    alert(present); alert("1 present");
               }); 
 
-notification.local.on("schedule", function(notification) {
-    alert("scheduled: " + notification.id);
-});
+//notification.local.on("schedule", function(notification) {
+//    alert("scheduled: " + notification.id);
+//});
 		
 		alert("hey");
 		
-notification.local.on('trigger', function (notification) {
-    showToast('triggered: ' + notification.id);
-}, this);
+
 
     }
 
