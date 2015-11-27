@@ -17,6 +17,8 @@ function onDeviceReady() {
 		cordova.plugins.notification.local.hasPermission(function (granted) { 
                    alert(granted);alert("aaaaaa"); 
                  }); 
+				 
+				 notificacao();
 
 		alert('iii');
 		
@@ -70,7 +72,7 @@ function notificacao(){
 
 alert("vai");
 
-cordova.plugins.notification.local.schedule({
+notification.local.schedule({
     title: "New Message",
     message: "Hi, are you ready? We are waiting.",
     
