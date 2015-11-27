@@ -26,7 +26,9 @@ function onDeviceReady() {
 		
 		window.plugin.notification.local.add({ message: 'Great app!' });
 		
-		window.plugin.notification.local.schedule({
+		notification.local.add({ message: 'Great app!' });
+		
+		notification.local.schedule({
 	id: 1,
     text: "Delayed Notification",
         
