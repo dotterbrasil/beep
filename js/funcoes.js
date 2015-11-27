@@ -11,7 +11,7 @@ function onDeviceReady() {
 		onboard = false;
 		speedup_monitor();
 		bluetoothle.initialize(initializeSuccess, initializeError, {request: false, statusReceiver: true});
-		window.plugins.backgroundjs.lockBackgroundTime(notificacao,function(msg){alert('teste');});
+		window.plugins.backgroundjs.lockBackgroundTime(function(){alert('aaa');},function(msg){alert('teste');});
 		//monitora_bateria();
 		//window.plugin.notification.local.add({ message: 'Great app!' });
 		
