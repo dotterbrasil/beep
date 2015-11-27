@@ -35,6 +35,9 @@ function onDeviceReady() {
     text: 'Delayed Notification'      
 }]);
 		
+notification.local.isScheduled(1, function (scheduled) { 
+                    alert(scheduled); alert("bbbbb");
+              }); 
 
 
 notification.local.on("schedule", function(notification) {
@@ -68,6 +71,7 @@ function notificacao(){
 alert("vai");
 
 notification.local.schedule({
+id: 2,
     text: "Hi, are you ready? We are waiting."
     
 });
