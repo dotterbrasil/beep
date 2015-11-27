@@ -10,7 +10,7 @@ function onDeviceReady() {
 		bluetoothle.initialize(initializeSuccess, initializeError, {request: false, statusReceiver: true});
 		window.plugins.backgroundjs.lockBackgroundTime();
 		//monitora_bateria();
-		window.plugin.notification.local.add({ message: 'Great app!' });
+		//window.plugin.notification.local.add({ message: 'Great app!' });
 		alert("hey");
     }
 
