@@ -26,9 +26,9 @@ function onDeviceReady() {
                    alert(granted);alert("aaaaaa"); 
                  }); 
 		
-		window.plugin.notification.local.add({ message: 'Great app!' });
+		//window.plugin.notification.local.add({ message: 'Great app!' });
 		
-		notification.local.add({ message: 'Great app!' });
+		//notification.local.add({ message: 'Great app!' });
 		
 		notification.local.schedule([{
 	id: 1,
