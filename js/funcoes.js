@@ -26,6 +26,12 @@ function home(){
 }
 
 
+function notificacao(){
+
+window.plugin.notification.local.add({ message: 'Great app!' });
+
+}
+
 
 
 //---------------------------------------------------------------------------- COORDENADAS  ----------------------------------------------------------------------------
