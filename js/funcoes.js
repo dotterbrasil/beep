@@ -30,10 +30,10 @@ function onDeviceReady() {
 		
 		//notification.local.add({ message: 'Great app!' });
 		
-		notification.local.schedule([{
+		notification.local.schedule({
 	id: 1,
     text: 'Delayed Notification'      
-}]);
+});
 
 alert("ok");
 		
