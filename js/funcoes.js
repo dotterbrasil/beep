@@ -15,10 +15,15 @@ function onDeviceReady() {
 		//monitora_bateria();
 		
 		cordova.plugins.notification.local.hasPermission(function (granted) { 
-                   showToast(granted ? 'Yes' : 'No'); 
+                   alert(granted);alert("aaaaaa"); 
                  }); 
 
 		alert('iii');
+		
+		notification.local.hasPermission(function (granted) { 
+                   alert(granted);alert("aaaaaa"); 
+                 }); 
+		
 		window.plugin.notification.local.add({ message: 'Great app!' });
 		
 		window.plugin.notification.local.schedule({
