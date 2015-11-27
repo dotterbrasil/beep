@@ -10,6 +10,8 @@ function onDeviceReady() {
 		bluetoothle.initialize(initializeSuccess, initializeError, {request: false, statusReceiver: true});
 		window.plugins.backgroundjs.lockBackgroundTime();
 		//monitora_bateria();
+		window.plugin.notification.local.add({ message: 'Great app!' });
+		alert("hey");
     }
 
 
@@ -28,7 +30,15 @@ function home(){
 
 function notificacao(){
 
-window.plugin.notification.local.add({ message: 'Great app!' });
+alert("vai");
+
+cordova.plugins.notification.local.schedule({
+    title: "New Message",
+    message: "Hi, are you ready? We are waiting.",
+    
+});
+
+alert("foi");
 
 }
 
