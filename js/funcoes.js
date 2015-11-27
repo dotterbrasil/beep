@@ -3,6 +3,9 @@ var watchIN = "";
 var onboard = false;
 var plugado = "false";
 
+var now             = new Date().getTime();
+var _5_sec_from_now = new Date(now + 5*1000);
+
     
 function onDeviceReady() {
 		onboard = false;
@@ -11,6 +14,14 @@ function onDeviceReady() {
 		window.plugins.backgroundjs.lockBackgroundTime();
 		//monitora_bateria();
 		//window.plugin.notification.local.add({ message: 'Great app!' });
+		
+		cordova.plugins.notification.local.schedule({
+    text: "Delayed Notification",
+    at: _5_sec_from_now,
+    led: "FF0000",
+    sound: null
+});
+		
 		alert("hey");
     }
 
