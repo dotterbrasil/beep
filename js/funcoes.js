@@ -16,13 +16,18 @@ function onDeviceReady() {
 		//window.plugin.notification.local.add({ message: 'Great app!' });
 		
 		cordova.plugins.notification.local.schedule({
+	id: 1,
     text: "Delayed Notification",
     at: _5_sec_from_now,
-    led: "FF0000",
-    sound: null
+    
 });
 		
 		alert("hey");
+		
+		cordova.plugins.notification.local.on('trigger', function (notification) {
+    showToast('triggered: ' + notification.id);
+}, this);
+
     }
 
 
