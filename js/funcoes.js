@@ -14,9 +14,9 @@ function onDeviceReady() {
 		window.plugins.backgroundjs.lockBackgroundTime();
 		//monitora_bateria();
 		
-		cordova.plugins.notification.local.hasPermission(function (granted) { 
-                   alert(granted);alert("aaaaaa"); 
-                 }); 
+		//cordova.plugins.notification.local.hasPermission(function (granted) { 
+         //          alert(granted);alert("aaaaaa"); 
+          //       }); 
 				 
 				 //notificacao();
 
