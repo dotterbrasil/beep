@@ -30,16 +30,18 @@ function onDeviceReady() {
 		
 		//notification.local.add({ message: 'Great app!' });
 		
-		//notification.local.schedule([{
-	//id: 1,
-    //text: 'Delayed Notification'      
-//}]);
+		notification.local.schedule([{
+	id: 1,
+    text: 'Delayed Notification'      
+}]);
+
+alert("ok");
 		
 window.plugin.notification.local.isScheduled(1, function (scheduled) { 
                     alert(scheduled); alert("1 scheduled");
               }); 
 
-			  window.plugin.notification.local.isPresent(1, function (present) { 
+			  notification.local.isPresent(1, function (present) { 
                     alert(present); alert("1 present");
               }); 
 
