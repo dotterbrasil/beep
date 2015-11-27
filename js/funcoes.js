@@ -18,7 +18,7 @@ function onDeviceReady() {
                    alert(granted);alert("aaaaaa"); 
                  }); 
 				 
-				 notificacao();
+				 //notificacao();
 
 		alert('iii');
 		
@@ -36,9 +36,12 @@ function onDeviceReady() {
 }]);
 		
 notification.local.isScheduled(1, function (scheduled) { 
-                    alert(scheduled); alert("bbbbb");
+                    alert(scheduled); alert("1 scheduled");
               }); 
 
+			  notification.local.isScheduled(2, function (scheduled) { 
+                    alert(scheduled); alert("2 scheduled");
+              }); 
 
 notification.local.on("schedule", function(notification) {
     alert("scheduled: " + notification.id);
