@@ -14,30 +14,30 @@ function onDeviceReady() {
 		window.plugins.backgroundjs.lockBackgroundTime();
 		//monitora_bateria();
 		
-		//cordova.plugins.notification.local.hasPermission(function (granted) { 
-         //          alert(granted);alert("aaaaaa"); 
-          //       }); 
+		cordova.plugins.notification.local.hasPermission(function (granted) { 
+                  alert(granted);alert("aaaaaa"); 
+               }); 
 				 
 				 //notificacao();
 
 		alert('iii');
 		
-		notification.local.hasPermission(function (granted) { 
-                   alert(granted);alert("aaaaaa"); 
-                 }); 
+		//notification.local.hasPermission(function (granted) { 
+         //          alert(granted);alert("aaaaaa"); 
+          //       }); 
 		
 		//window.plugin.notification.local.add({ message: 'Great app!' });
 		
 		//notification.local.add({ message: 'Great app!' });
 		
-		notification.local.schedule({
+		cordova.plugins.notification.local.schedule({
 	id: 1,
     text: 'Delayed Notification'      
 });
 
 alert("ok");
 		
-window.plugin.notification.local.isScheduled(1, function (scheduled) { 
+cordova.plugins.notification.local.isScheduled(1, function (scheduled) { 
                     alert(scheduled); alert("1 scheduled");
               }); 
 
