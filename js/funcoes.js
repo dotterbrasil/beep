@@ -17,9 +17,12 @@ function onDeviceReady() {
 		
 		cordova.plugins.notification.local.schedule({
 	id: 1,
-    text: "Delayed Notification",
-    at: _5_sec_from_now,
-    
+    text: "Delayed Notification"
+        
+});
+
+cordova.plugins.notification.local.on("schedule", function(notification) {
+    alert("scheduled: " + notification.id);
 });
 		
 		alert("hey");
