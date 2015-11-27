@@ -32,13 +32,13 @@ function onDeviceReady() {
 		
 		notification.local.schedule({
 	id: 1,
-    text: "Delayed Notification",
+    text: "Delayed Notification"
         
 });
 		
 		cordova.plugins.notification.local.schedule({
 	id: 1,
-    text: "Delayed Notification",
+    text: "Delayed Notification"
         
 });
 
@@ -73,8 +73,7 @@ function notificacao(){
 alert("vai");
 
 notification.local.schedule({
-    title: "New Message",
-    message: "Hi, are you ready? We are waiting."
+    text: "Hi, are you ready? We are waiting."
     
 });
 
