@@ -30,25 +30,20 @@ function onDeviceReady() {
 		
 		notification.local.add({ message: 'Great app!' });
 		
-		notification.local.schedule({
+		notification.local.schedule([{
 	id: 1,
-    text: "Delayed Notification"
-        
-});
+    text: 'Delayed Notification'      
+}]);
 		
-		cordova.plugins.notification.local.schedule({
-	id: 1,
-    text: "Delayed Notification"
-        
-});
 
-cordova.plugins.notification.local.on("schedule", function(notification) {
+
+notification.local.on("schedule", function(notification) {
     alert("scheduled: " + notification.id);
 });
 		
 		alert("hey");
 		
-		cordova.plugins.notification.local.on('trigger', function (notification) {
+notification.local.on('trigger', function (notification) {
     showToast('triggered: ' + notification.id);
 }, this);
 
