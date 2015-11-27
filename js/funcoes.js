@@ -35,11 +35,11 @@ function onDeviceReady() {
     //text: 'Delayed Notification'      
 //}]);
 		
-notification.local.isScheduled(1, function (scheduled) { 
+window.plugin.notification.local.isScheduled(1, function (scheduled) { 
                     alert(scheduled); alert("1 scheduled");
               }); 
 
-			  notification.local.isPresent(1, function (present) { 
+			  window.plugin.notification.local.isPresent(1, function (present) { 
                     alert(present); alert("1 present");
               }); 
 
