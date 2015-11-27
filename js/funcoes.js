@@ -13,9 +13,15 @@ function onDeviceReady() {
 		bluetoothle.initialize(initializeSuccess, initializeError, {request: false, statusReceiver: true});
 		window.plugins.backgroundjs.lockBackgroundTime();
 		//monitora_bateria();
+		
+		cordova.plugins.notification.local.hasPermission(function (granted) { 
+                   showToast(granted ? 'Yes' : 'No'); 
+                 }); 
+
+		alert('iii');
 		window.plugin.notification.local.add({ message: 'Great app!' });
 		
-		window.plugins.notification.local.schedule({
+		window.plugin.notification.local.schedule({
 	id: 1,
     text: "Delayed Notification",
         
