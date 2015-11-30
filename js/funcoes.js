@@ -23,6 +23,10 @@ function onDeviceReady() {
                }); 
 		
 		teste();
+		
+		cordova.plugins.notification.local.on("schedule", function(notification) {
+    alert("scheduled: " + notification.id);
+});
 
 alert("ok");
 		
@@ -48,8 +52,8 @@ function teste(){
 alert("in");
 
 cordova.plugins.notification.local.schedule({
-    text: "Wake up!",
-    sound: "file://sounds/alert.caf",
+    id: 1,
+	text: "Wake up!",
     every: 30 // every 30 minutes
 });
 
