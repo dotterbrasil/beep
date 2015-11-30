@@ -22,6 +22,10 @@ function onDeviceReady() {
 		cordova.plugins.notification.local.registerPermission(function (granted) { 
                   alert(granted);alert("Permissao Registrada"); 
                }); 
+			   
+			   cordova.plugins.notification.local.on("scheduled", function (notification) {
+    alert(notification);alert('aaaaaabbbbbbcccccc');
+});
 		
 		teste();
 		
