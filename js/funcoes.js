@@ -22,6 +22,8 @@ function onDeviceReady() {
 		cordova.plugins.notification.local.schedule({
     id: 1,
     text: "Single Notification",
+	sound: null, 
+    data: { test: id } 
  });
 
 alert("ok");
