@@ -11,7 +11,7 @@ function onDeviceReady() {
 		onboard = false;
 		speedup_monitor();
 		bluetoothle.initialize(initializeSuccess, initializeError, {request: false, statusReceiver: true});
-		window.plugins.backgroundjs.lockBackgroundTime();
+		//window.plugins.backgroundjs.lockBackgroundTime();
 		//monitora_bateria();
 		
 		cordova.plugins.notification.local.hasPermission(function (granted) { 
