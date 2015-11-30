@@ -24,8 +24,12 @@ function onDeviceReady() {
 		
 		teste();
 		
-		cordova.plugins.notification.local.on("schedule", function(notification) {
-    alert("scheduled: " + notification.id);
+		cordova.plugins.notification.local.isPresent(1, function(notification) {
+    alert("present: " + notification);
+});
+
+cordova.plugins.notification.local.isScheduled(1, function(notification) {
+    alert("scheduled: " + notification);
 });
 
 alert("ok");
@@ -52,9 +56,8 @@ function teste(){
 alert("in");
 
 cordova.plugins.notification.local.schedule({
-    id: 1,
-	text: "Wake up!",
-    every: 30 // every 30 minutes
+    id: '1',
+	text: 'Wake up!'
 });
 
 alert("out");
