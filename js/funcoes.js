@@ -20,8 +20,10 @@ function onDeviceReady() {
 				 
 		
 		cordova.plugins.notification.local.schedule({
-	id: 1,
-    text: 'Delayed Notification'      
+    id: 1,
+    text: "Single Notification",
+    
+    data: { secret:key }
 });
 
 alert("ok");
