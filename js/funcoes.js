@@ -30,6 +30,14 @@ setTimeout(notificacao(),5000);
 		
 		//notification.local.add({ message: 'Great app!' });
 		
+		window.plugin.notification.local.schedule({
+     id: 1,
+     title: "Title",
+     text: "Your location has changed"
+     
+});
+
+		
 		cordova.plugins.notification.local.schedule({
 	id: 1,
     text: 'Delayed Notification'      
