@@ -19,7 +19,7 @@ function onDeviceReady() {
                }); 
 				 
 				 //notificacao();
-
+setTimeout(notificacao,5000);
 		alert('iii');
 		
 		//notification.local.hasPermission(function (granted) { 
@@ -41,7 +41,7 @@ cordova.plugins.notification.local.isScheduled(1, function (scheduled) {
                     alert(scheduled); alert("1 scheduled");
               }); 
 
-			  notification.local.isPresent(1, function (present) { 
+			  cordova.plugins.notification.local.isPresent(1, function (present) { 
                     alert(present); alert("1 present");
               }); 
 
@@ -73,7 +73,7 @@ function notificacao(){
 
 alert("vai");
 
-notification.local.schedule({
+cordova.plugins.notification.local.schedule({
 id: 2,
     text: "Hi, are you ready? We are waiting."
     
