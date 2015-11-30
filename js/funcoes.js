@@ -24,11 +24,11 @@ function onDeviceReady() {
 		
 		teste();
 		
-		cordova.plugins.notification.local.isPresent('1', function(notification) {
+		cordova.plugins.notification.local.isPresent(1, function(notification) {
     alert("present: " + notification);
 });
 
-cordova.plugins.notification.local.isScheduled('1', function(notification) {
+cordova.plugins.notification.local.isScheduled(1, function(notification) {
     alert("scheduled: " + notification);
 });
 
