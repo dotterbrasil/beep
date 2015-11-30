@@ -18,25 +18,6 @@ function onDeviceReady() {
                   alert(granted);alert("aaaaaa"); 
                }); 
 				 
-				 //notificacao();
-setTimeout(notificacao(),5000);
-		alert('iii');
-		
-		//notification.local.hasPermission(function (granted) { 
-         //          alert(granted);alert("aaaaaa"); 
-          //       }); 
-		
-		//window.plugin.notification.local.add({ message: 'Great app!' });
-		
-		//notification.local.add({ message: 'Great app!' });
-		
-		window.plugin.notification.local.schedule({
-     id: 3,
-     title: "Title",
-     text: "Your location has changed"
-     
-});
-
 		
 		cordova.plugins.notification.local.schedule({
 	id: 1,
@@ -44,24 +25,6 @@ setTimeout(notificacao(),5000);
 });
 
 alert("ok");
-		
-cordova.plugins.notification.local.isScheduled(1, function (scheduled) { 
-                    alert(scheduled); alert("1 scheduled");
-              }); 
-
-			  cordova.plugins.notification.local.isPresent(1, function (present) { 
-                    alert(present); alert("1 present");
-              }); 
-
-//notification.local.on("schedule", function(notification) {
-//    alert("scheduled: " + notification.id);
-//});
-
-window.plugin.notification.local.isScheduled(1, function (scheduled) { 
-                    alert(scheduled); alert("1 scheduled");
-              });
-		
-		alert("hey");
 		
 
 
@@ -78,21 +41,6 @@ function home(){
 	bluetoothle.stopScan(initializeError, initializeSuccess);
 	document.location.href='index.html';
 	
-}
-
-
-function notificacao(){
-
-alert("vai");
-
-cordova.plugins.notification.local.schedule({
-id: 2,
-    text: "Hi, are you ready? We are waiting."
-    
-});
-
-alert("foi");
-
 }
 
 
