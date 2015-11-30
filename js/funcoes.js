@@ -12,32 +12,18 @@ function onDeviceReady() {
 		onboard = false;
 		speedup_monitor();
 		bluetoothle.initialize(initializeSuccess, initializeError, {request: false, statusReceiver: true});
-		//window.plugins.backgroundjs.lockBackgroundTime();
+		
 		//monitora_bateria();
 			
 		cordova.plugins.notification.local.hasPermission(function (granted) { 
-                  alert(granted);alert("aaaaaa"); 
+                  if(granted == true)
+					{
+					teste();
+					}
                }); 
-				 
-		cordova.plugins.notification.local.registerPermission(function (granted) { 
-                  alert(granted);alert("Permissao Registrada"); 
-               }); 
-			   
-			   cordova.plugins.notification.local.on("scheduled", function (notification) {
-    alert(notification);alert('aaaaaabbbbbbcccccc');
-});
-		
-		teste();
-		
-		cordova.plugins.notification.local.isPresent(id, function(notification) {
-    alert("present: " + notification);
-});
+		 
 
-cordova.plugins.notification.local.isScheduled(id, function(notification) {
-    alert("scheduled: " + notification);
-});
-
-window.plugins.Backgroundjs.setBackgroundSeconds(20);
+window.plugins.backgroundjs.lockBackgroundTime();
 
 alert("ok");
 		
@@ -65,7 +51,9 @@ alert("in");
 var now = new Date().getTime();
 var _5_sec_from_now = new Date(now + 5 * 1000); 
 
-var sound = device.platform == 'Android' ? 'file://sound.mp3' : 'file://beep.caf'; 
+//var sound = device.platform == 'Android' ? 'file://sound.mp3' : 'file://beep.caf'; 
+
+alert(_5_sec_from_now);
 
 cordova.plugins.notification.local.schedule({ 
                      id: 1, 
