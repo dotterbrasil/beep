@@ -45,14 +45,15 @@ function home(){
 
 function teste(){
 
-cordova.plugins.notification.local.schedule({ 
-                     id: 1, 
-                     text: 'Test Message 1', 
-                     icon: 'http://www.optimizeordie.de/wp-content/plugins/social-media-widget/images/default/64/googleplus.png', 
-                     sound: null, 
-                     data: { test: id } 
-                 }); 
+alert("in");
 
+cordova.plugins.notification.local.schedule({
+    text: "Wake up!",
+    sound: "file://sounds/alert.caf",
+    every: 30 // every 30 minutes
+});
+
+alert("out");
 
 }
 
