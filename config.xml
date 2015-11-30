@@ -15,8 +15,10 @@
 
     <gap:plugin name="com.phonegap.plugins.barcodescanner"/>
 	
-    <gap:plugin name="org.apache.cordova.device" version="0.2.8"/>
+    
 
+	<plugin name="cordova-plugin-device" />
+	
     <gap:plugin name="org.apache.cordova.media" />
 
     <gap:plugin name="com.cordova.plugins.sms" version="0.1.2" />
