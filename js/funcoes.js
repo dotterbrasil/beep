@@ -24,11 +24,11 @@ function onDeviceReady() {
 		
 		teste();
 		
-		cordova.plugins.notification.local.isPresent(1, function(notification) {
+		cordova.plugins.notification.local.isPresent('1', function(notification) {
     alert("present: " + notification);
 });
 
-cordova.plugins.notification.local.isScheduled(1, function(notification) {
+cordova.plugins.notification.local.isScheduled('1', function(notification) {
     alert("scheduled: " + notification);
 });
 
@@ -56,7 +56,7 @@ function teste(){
 alert("in");
 
 cordova.plugins.notification.local.schedule({
-    id: '1',
+    id: 1,
 	text: 'Wake up!'
 });
 
