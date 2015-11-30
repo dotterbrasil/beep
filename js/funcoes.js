@@ -18,6 +18,9 @@ function onDeviceReady() {
                   alert(granted);alert("aaaaaa"); 
                }); 
 				 
+		cordova.plugins.notification.local.registerPermission(function (granted) { 
+                  alert(granted);alert("Permissao Registrada"); 
+               }); 
 		
 		teste();
 
