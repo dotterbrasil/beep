@@ -31,7 +31,7 @@ setTimeout(notificacao(),5000);
 		//notification.local.add({ message: 'Great app!' });
 		
 		window.plugin.notification.local.schedule({
-     id: 1,
+     id: 3,
      title: "Title",
      text: "Your location has changed"
      
@@ -56,6 +56,10 @@ cordova.plugins.notification.local.isScheduled(1, function (scheduled) {
 //notification.local.on("schedule", function(notification) {
 //    alert("scheduled: " + notification.id);
 //});
+
+window.plugin.notification.local.isScheduled(1, function (scheduled) { 
+                    alert(scheduled); alert("1 scheduled");
+              });
 		
 		alert("hey");
 		
