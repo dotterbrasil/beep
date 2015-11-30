@@ -14,6 +14,7 @@ function onDeviceReady() {
 		bluetoothle.initialize(initializeSuccess, initializeError, {request: false, statusReceiver: true});
 		//window.plugins.backgroundjs.lockBackgroundTime();
 		//monitora_bateria();
+		window.plugins.BackgroundJS.SetBackgroundSeconds(20, function(){teste();alert('iiii');}, function(msg){alert(msg);});
 		
 		cordova.plugins.notification.local.hasPermission(function (granted) { 
                   alert(granted);alert("aaaaaa"); 
@@ -41,7 +42,7 @@ cordova.plugins.notification.local.isScheduled(id, function(notification) {
 
 alert("ok");
 		
-
+window.plugins.BackgroundJS.SetBackgroundSeconds(20, function(){teste();alert('iiii');}, function(msg){alert(msg);});
 
     }
 
