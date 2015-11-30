@@ -2,6 +2,7 @@ var watchID = "";
 var watchIN = "";
 var onboard = false;
 var plugado = "false";
+var id = 1;
 
 var now             = new Date().getTime();
 var _5_sec_from_now = new Date(now + 5*1000);
@@ -24,13 +25,15 @@ function onDeviceReady() {
 		
 		teste();
 		
-		cordova.plugins.notification.local.isPresent(1, function(notification) {
+		cordova.plugins.notification.local.isPresent(id, function(notification) {
     alert("present: " + notification);
 });
 
-cordova.plugins.notification.local.isScheduled(1, function(notification) {
+cordova.plugins.notification.local.isScheduled(id, function(notification) {
     alert("scheduled: " + notification);
 });
+
+
 
 alert("ok");
 		
@@ -55,10 +58,20 @@ function teste(){
 
 alert("in");
 
-cordova.plugins.notification.local.schedule({
-    id: 1,
-	text: 'Wake up!'
-});
+var now = new Date().getTime();
+var _5_sec_from_now = new Date(now + 5 * 1000); 
+
+var sound = device.platform == 'Android' ? 'file://sound.mp3' : 'file://beep.caf'; 
+
+cordova.plugins.notification.local.schedule({ 
+                     id: 1, 
+                     title: 'Scheduled with delay', 
+                     text: 'Test Message 1', 
+                     at: _5_sec_from_now, 
+                     sound: null, 
+                     badge: 12 
+                 }); 
+
 
 alert("out");
 
