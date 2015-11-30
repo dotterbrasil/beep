@@ -19,7 +19,7 @@ function onDeviceReady() {
                }); 
 				 
 				 //notificacao();
-setTimeout(notificacao,5000);
+setTimeout(notificacao(),5000);
 		alert('iii');
 		
 		//notification.local.hasPermission(function (granted) { 
