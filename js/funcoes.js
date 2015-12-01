@@ -4,10 +4,6 @@ var onboard = false;
 var plugado = "false";
 
 
-var now             = new Date().getTime();
-var _5_sec_from_now = new Date(now + 5*1000);
-
-    
 function onDeviceReady() {
 		onboard = false;
 		speedup_monitor();
@@ -18,15 +14,12 @@ function onDeviceReady() {
 		cordova.plugins.notification.local.hasPermission(function (granted) { 
                   if(granted == true)
 					{
-					teste();
+					notificacao_local('VELOCIDADE',' TESTE', 1);
 					}
                }); 
 		 
 
 window.plugins.backgroundjs.lockBackgroundTime();
-
-alert("ok");
-		
 
 
     }
@@ -44,23 +37,27 @@ function home(){
 	
 }
 
-function teste(){
+function notificacao_local(tipo, mensagem_local, indice){
+//notificacao_local(tipo, mensagem, badge)
+//tipo: ALERTA, VELOCIDADE, BATERIA
+//badge: 1, 2, 3
 
 var som = getMediaURL("sons/alerta.wav");
 var now = new Date().getTime();
-var _5_sec_from_now = new Date(now + 10 * 1000); 
+var _5_sec_from_now = new Date(now + 5 * 1000); 
+
 
 //var sound = device.platform == 'Android' ? 'file://sound.mp3' : 'file://beep.caf'; 
 
 alert(_5_sec_from_now);
 
 cordova.plugins.notification.local.schedule({ 
-                     id: 1, 
-                     title: 'Scheduled with delay', 
-                     text: 'Test Message 1', 
+                     //id: 1, 
+                     title: tipo, 
+                     text: mensagem_local, 
                      at: _5_sec_from_now, 
                      sound: som, 
-                     badge: 1 
+                     badge: indice 
                  }); 
 
 
@@ -87,6 +84,8 @@ if (navigator.geolocation) {
 
  function showPosition(position) {
     var latlon = position.coords.latitude + "," + position.coords.longitude;
+	
+	notificacao_local('ALERTA','Crianca no Carro: ' + latlon, 1);
 	
 	 document.getElementById("status").innerHTML = "Buscando localizacao no mapa...";
     
@@ -128,6 +127,8 @@ function onSuccessIN(position) {
 	
     element.innerHTML = 'Velocidade: ' + Math.round(position.coords.speed*3.6)     + ' km/h <br />' +  '<hr />';
 	
+	window.plugins.backgroundjs.lockBackgroundTime();
+	
 	if(position.coords.speed > 5)
 		{
 		if (plugado == "true")
@@ -138,6 +139,7 @@ function onSuccessIN(position) {
 				{
 				playsound();
 				element.innerHTML = "<b> Conecte o Carregador </b>";
+				notificacao_local('VELOCIDADE','Checkin Efetuado. Conecte o carregador.', 2);
 				document.location.href = "checkin.html";
 				}
 		}
@@ -156,8 +158,11 @@ function onSuccess(position) {
 	
     element.innerHTML = 'Velocidade: ' + Math.round(position.coords.speed*3.6)     + ' km/h <br />' +  '<hr />'  ;
 	
+	window.plugins.backgroundjs.lockBackgroundTime();
+	
 	if (position.coords.speed < 2)
 		{
+		notificacao_local('VELOCIDADE','Avaliando saida do carro.', 2);
 		temporizador = setTimeout(onError, 300000); //faz checkout forcado apos 5 minutos de baixa velocidade
 		}
 		else{
@@ -484,13 +489,7 @@ function mediaError(){
 alert("Erro de Som");
 }
 
-function mensagem_local(mensagem_texto){
 
-//var som = getMediaURL("sons/alerta.wav");
-
-window.plugin.notification.local.add({ message: 'alerta'  });
-
-}
 
 //---------------------------------------------------------------------------- SMS  ----------------------------------------------------------------------------
 
