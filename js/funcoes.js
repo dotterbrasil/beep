@@ -2,7 +2,7 @@ var watchID = "";
 var watchIN = "";
 var onboard = false;
 var plugado = "false";
-var notificacoes = 1;
+
 
 var now             = new Date().getTime();
 var _5_sec_from_now = new Date(now + 5*1000);
@@ -60,10 +60,10 @@ cordova.plugins.notification.local.schedule({
                      text: 'Test Message 1', 
                      at: _5_sec_from_now, 
                      sound: som, 
-                     badge: notificacoes 
+                     badge: 1 
                  }); 
 
-notificacoes++;
+
 
 }
 
