@@ -45,6 +45,7 @@ function notificacao_local(tipo, mensagem_local, indice){
 var som = getMediaURL("sons/alerta.wav");
 var now = new Date().getTime();
 var _5_sec_from_now = new Date(now + 5 * 1000); 
+var agora = new Date(now);
 
 
 //var sound = device.platform == 'Android' ? 'file://sound.mp3' : 'file://beep.caf'; 
@@ -53,7 +54,7 @@ cordova.plugins.notification.local.schedule({
                      //id: 1, 
                      title: tipo, 
                      text: mensagem_local, 
-                     at: _5_sec_from_now, 
+                     at: agora, 
                      sound: som, 
                      badge: indice 
                  }); 
@@ -161,7 +162,7 @@ function onSuccess(position) {
 	if (position.coords.speed < 2)
 		{
 		notificacao_local('VELOCIDADE','Avaliando saida do carro.', 2);
-		temporizador = setTimeout(onError, 300000); //faz checkout forcado apos 5 minutos de baixa velocidade
+		temporizador = setTimeout(onError, 30000); //faz checkout forcado apos 5 minutos de baixa velocidade
 		}
 		else{
 			if (position.coords.speed > 5) {clearTimeout(temporizador);} //cancela checkout forcado se velocidade subir
