@@ -48,6 +48,8 @@
     <preference name="target-device"    value="universal" />
     <preference name="fullscreen"       value="false" />
     <preference name="webviewbounce"    value="false" />
+	
+	<preference name="android-build-tool" value="gradle" />
 
     <icon src="icon.png" />
     <gap:splash src="logo.png" />

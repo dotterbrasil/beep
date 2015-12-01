@@ -49,8 +49,6 @@ var _5_sec_from_now = new Date(now + 5 * 1000);
 
 //var sound = device.platform == 'Android' ? 'file://sound.mp3' : 'file://beep.caf'; 
 
-alert(_5_sec_from_now);
-
 cordova.plugins.notification.local.schedule({ 
                      //id: 1, 
                      title: tipo, 
@@ -179,6 +177,7 @@ function onError(error) {
 	
 	if (qtde_in > 0)
 		{
+		notificacao_local('ALERTA','Crianca presente no carro.', 1);
 		document.location.href = "desativar.html";
 		}
 		else{
@@ -759,6 +758,7 @@ function onBatteryStatus(info) {
 			{
 			if (plugado == false)
 				{
+				notificacao_local('ALERTA','Crianca presente no carro.', 1);
 				document.location.href = "desativar.html";
 				}
 				else{ document.location.href = "checkin.html";}
