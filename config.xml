@@ -39,7 +39,8 @@
 	
 	<gap:plugin name="cordova-plugin-bluetoothle" source="npm" />
 	
-	<gap:plugin name="de.appplant.cordova.plugin.local-notification" />
+	<gap:plugin name="de.appplant.cordova.plugin.local-notification" version="0.8.1" source="plugins.cordova.io" />
+
 	
 	<plugin name="de.appplant.cordova.common.registerusernotificationsettings" spec="1.0.1" source="pgb" />
 		
