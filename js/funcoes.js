@@ -2,7 +2,7 @@ var watchID = "";
 var watchIN = "";
 var onboard = false;
 var plugado = "false";
-var id = 1;
+var notificacoes = 1;
 
 var now             = new Date().getTime();
 var _5_sec_from_now = new Date(now + 5*1000);
@@ -46,10 +46,9 @@ function home(){
 
 function teste(){
 
-alert("in");
-
+var som = getMediaURL("sons/alerta.wav");
 var now = new Date().getTime();
-var _5_sec_from_now = new Date(now + 5 * 1000); 
+var _5_sec_from_now = new Date(now + 10 * 1000); 
 
 //var sound = device.platform == 'Android' ? 'file://sound.mp3' : 'file://beep.caf'; 
 
@@ -60,12 +59,11 @@ cordova.plugins.notification.local.schedule({
                      title: 'Scheduled with delay', 
                      text: 'Test Message 1', 
                      at: _5_sec_from_now, 
-                     sound: null, 
-                     badge: 12 
+                     sound: som, 
+                     badge: notificacoes 
                  }); 
 
-
-alert("out");
+notificacoes++;
 
 }
 
