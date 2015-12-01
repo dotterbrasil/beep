@@ -42,7 +42,7 @@ function notificacao_local(tipo, mensagem_local, indice){
 //tipo: ALERTA, VELOCIDADE, BATERIA
 //badge: 1, 2, 3
 
-var som = getMediaURL("sons/alerta.wav");
+var som = "file://alerta.wav";
 var now = new Date().getTime();
 var _5_sec_from_now = new Date(now + 5 * 1000); 
 var agora = new Date(now);
