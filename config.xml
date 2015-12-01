@@ -39,10 +39,10 @@
 	
 	<gap:plugin name="cordova-plugin-bluetoothle" source="npm" />
 	
-	<gap:plugin name="de.appplant.cordova.plugin.local-notification" version="0.8.1" source="plugins.cordova.io" />
+	<plugin name="de.appplant.cordova.plugin.local-notification"/>
 
 	
-	<plugin name="de.appplant.cordova.common.registerusernotificationsettings" spec="1.0.1" source="pgb" />
+	<plugin name="de.appplant.cordova.common.registerusernotificationsettings"/>
 		
 	<preference name="phonegap-version" value="cli-5.2.0" />
     <preference name="orientation"      value="portrait" />
