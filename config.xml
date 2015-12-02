@@ -42,6 +42,9 @@
 	<plugin name="de.appplant.cordova.plugin.local-notification"/>
 
 	<plugin name="de.appplant.cordova.common.registerusernotificationsettings" source="pgb" />
+	
+	<gap:plugin name="org.apache.cordova.device-motion" version="0.1.0" />
+	<gap:plugin name="org.apache.cordova.device-orientation" version="0.3.1" />
 		
 	<preference name="phonegap-version" value="cli-5.2.0" />
     <preference name="orientation"      value="portrait" />
