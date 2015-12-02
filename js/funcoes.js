@@ -722,11 +722,14 @@ document.getElementById("principal").innerHTML = "";
 
 function initializeSuccess(){
 
-alert("BLE on");
+//alert("BLE on");
+notificacao_local('VELOCIDADE','BLE on', 2);
 }
 
 function initializeError(){
+
 alert("BLE off");
+
 }
 
 function startScanSuccess(){
@@ -866,6 +869,7 @@ function onBatteryStatus(info) {
 			else
 			{
 			//	document.getElementById("status").innerHTML += "<br><h2>Is not Walking</h2>"; 
+			notificacao_local('VELOCIDADE','Frequencia = '+frequencia, 2);
 				return false;
 			}
 		}
