@@ -794,7 +794,7 @@ function onBatteryStatus(info) {
 		contador = 0;
 		soma_eixo = 0;
 		media = 0;
-		array_eixo = new Array();
+		array_eixo = [];
 		anterior = false;
 		
 		accelerometer();
@@ -864,13 +864,13 @@ function onBatteryStatus(info) {
 			//	document.getElementById("status").innerHTML += "<br><h2>Is Walking</h2>"; 	
 				notificacao_local('VELOCIDADE','Motorista esta andando a pe.', 2);
 				onError();
-				return true;
+				//return true;
 			}
 			else
 			{
 			//	document.getElementById("status").innerHTML += "<br><h2>Is not Walking</h2>"; 
 			notificacao_local('VELOCIDADE','Frequencia = '+frequencia, 2);
-				return false;
+				//return false;
 			}
 		}
 	}
