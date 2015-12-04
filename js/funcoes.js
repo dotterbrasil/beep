@@ -5,24 +5,21 @@ var plugado = "false";
 
 
 function onDeviceReady() {
+		window.plugins.backgroundjs.lockBackgroundTime();
 		onboard = false;
 		speedup_monitor();
 		bluetoothle.initialize(initializeSuccess, initializeError, {request: false, statusReceiver: true});
 		
 		//monitora_bateria();
 			
-		cordova.plugins.notification.local.hasPermission(function (granted) { 
-                  if(granted == true)
-					{
-					notificacao_local('VELOCIDADE',' TESTE', 1);
-					}
-               }); 
+		//cordova.plugins.notification.local.hasPermission(function (granted) { 
+        //          if(granted == true)
+		//			{
+		//			notificacao_local('VELOCIDADE',' TESTE', 1);
+		//			}
+         //      }); 
 		 
-
-window.plugins.backgroundjs.lockBackgroundTime();
-
-
-    }
+}
 
 
 function inicializacao(){
@@ -31,7 +28,8 @@ function inicializacao(){
 
 function home(){
 
-	onboard = false;
+	//onboard = false;
+	navigator.geolocation.clearWatch(watchID);
 	bluetoothle.stopScan(initializeError, initializeSuccess);
 	document.location.href='index.html';
 	
@@ -126,7 +124,7 @@ function onSuccessIN(position) {
 	
     element.innerHTML = 'Velocidade: ' + Math.round(position.coords.speed*3.6)     + ' km/h <br />' +  '<hr />';
 	
-	window.plugins.backgroundjs.lockBackgroundTime();
+	//window.plugins.backgroundjs.lockBackgroundTime();
 	
 	if(position.coords.speed > 5)
 		{
@@ -138,7 +136,7 @@ function onSuccessIN(position) {
 				{
 				playsound();
 				element.innerHTML = "<b> Conecte o Carregador </b>";
-				notificacao_local('VELOCIDADE','Checkin Efetuado. Conecte o carregador.', 2);
+				//notificacao_local('VELOCIDADE','Checkin Efetuado. Conecte o carregador.', 2);
 				document.location.href = "checkin.html";
 				}
 		}
@@ -157,7 +155,7 @@ function onSuccess(position) {
 	
     element.innerHTML = 'Velocidade: ' + Math.round(position.coords.speed*3.6)     + ' km/h <br />' +  '<hr />'  ;
 	
-	window.plugins.backgroundjs.lockBackgroundTime();
+	//window.plugins.backgroundjs.lockBackgroundTime();
 	
 	if (position.coords.speed < 2)
 		{
@@ -167,9 +165,9 @@ function onSuccess(position) {
 			iswalking();
 			}
 		}
-		else{
-			if (position.coords.speed > 5) {clearTimeout(temporizador);} //cancela checkout forcado se velocidade subir
-			}
+		//else{
+		//	if (position.coords.speed > 5) {clearTimeout(temporizador);} //cancela checkout forcado se velocidade subir
+		//	}
 	
 }
 
@@ -184,9 +182,9 @@ function onError(error) {
 		notificacao_local('ALERTA','Crianca presente no carro.', 1);
 		document.location.href = "desativar.html";
 		}
-		else{
-			document.location.href = "index.html"; 
-			}
+		//else{
+		//	document.location.href = "index.html"; 
+		//	}
 
     //alert('code: '    + error.code    + '\n' + 'message: ' + error.message + '\n');
 }
@@ -194,11 +192,11 @@ function onError(error) {
 
 
 
-function stop_monitor(){
+//function stop_monitor(){
 
-navigator.geolocation.clearWatch(watchID);
+//navigator.geolocation.clearWatch(watchID);
 
-}
+//}
 
 
 //---------------------------------------------------------------------------- ALERTS  ----------------------------------------------------------------------------
@@ -789,7 +787,7 @@ function onBatteryStatus(info) {
 	
 	function iswalking(){ 
 	//	document.getElementById("status").innerHTML = "";
-		
+		navigator.geolocation.clearWatch(watchID);
 		loop = 0;	
 		contador = 0;
 		soma_eixo = 0;
@@ -862,15 +860,15 @@ function onBatteryStatus(info) {
 		
 			if(frequencia > '1.2' && frequencia < '3.4'){
 			//	document.getElementById("status").innerHTML += "<br><h2>Is Walking</h2>"; 	
-				notificacao_local('VELOCIDADE','Motorista esta andando a pe.', 2);
+			//	notificacao_local('VELOCIDADE','Motorista esta andando a pe.', 2);
 				onError();
 				//return true;
 			}
-			else
-			{
+			//else
+			//{
 			//	document.getElementById("status").innerHTML += "<br><h2>Is not Walking</h2>"; 
-			notificacao_local('VELOCIDADE','Frequencia = '+frequencia, 2);
-				//return false;
-			}
+			
+			//}
+			speed_monitor();
 		}
 	}
