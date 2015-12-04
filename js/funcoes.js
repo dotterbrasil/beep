@@ -161,7 +161,8 @@ function onSuccess(position) {
 		{
 		if (plugado == "false")
 			{
-			notificacao_local('VELOCIDADE','Avaliando saida do carro.', 2);
+			element.innerHTML = 'VELOCIDADE','Avaliando saida do carro.';
+			//notificacao_local('VELOCIDADE','Avaliando saida do carro.', 2);
 			iswalking();
 			}
 		}
