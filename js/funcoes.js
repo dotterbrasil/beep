@@ -27,6 +27,10 @@ function onDeviceReady() {
 
 function inicializacao(){
 
+	document.addEventListener("deviceready", onDeviceReady, false);
+}
+
+function inicio(){
 watchID = "";
 watchIN = "";
 onboard = false;
@@ -38,8 +42,6 @@ window.plugins.backgroundjs.lockBackgroundTime();
 		speedup_monitor();
 		cordova.plugins.notification.local.clearAll();
 		 navigator.geolocation.clearWatch(watchID);
-
-	document.addEventListener("deviceready", onDeviceReady, false);
 }
 
 function home(){
