@@ -23,6 +23,15 @@ function onDeviceReady() {
 
 
 function inicializacao(){
+
+watchID = "";
+watchIN = "";
+onboard = false;
+plugado = "false";
+notification_id = 1;
+
+cordova.plugins.notification.local.clearAll();
+
 	document.addEventListener("deviceready", onDeviceReady, false);
 }
 
@@ -857,7 +866,7 @@ function onBatteryStatus(info) {
 			} 
 			frequencia = contador / 5;
 			
-			document.getElementById("status").innerHTML += "<br><h2>Result</h2><br>Frequência "+ frequencia; 	
+			//document.getElementById("status").innerHTML += "<br><h2>Result</h2><br>Frequência "+ frequencia; 	
 		
 		
 			if(frequencia > '1.0' && frequencia < '3.4'){
