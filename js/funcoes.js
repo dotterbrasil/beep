@@ -38,7 +38,18 @@ cordova.plugins.notification.local.clearAll();
 function home(){
 
 	//onboard = false;
+	
 	navigator.geolocation.clearWatch(watchID);
+	
+	watchID = "";
+watchIN = "";
+onboard = false;
+plugado = "false";
+notification_id = 1;
+
+cordova.plugins.notification.local.clearAll();
+	
+	
 	bluetoothle.stopScan(initializeError, initializeSuccess);
 	document.location.href='index.html';
 	
