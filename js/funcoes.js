@@ -54,7 +54,7 @@ cordova.plugins.notification.local.schedule({
                      text: mensagem_local, 
                      at: agora, 
                      sound: som, 
-                     badge: indice 
+                     badge: notification_id 
                  }); 
 
 notification_id++;
@@ -857,9 +857,10 @@ function onBatteryStatus(info) {
 			} 
 			frequencia = contador / 5;
 			
-		//	document.getElementById("status").innerHTML += "<br><h2>Result</h2><br>Frequência "+ frequencia; 	
+			document.getElementById("status").innerHTML += "<br><h2>Result</h2><br>Frequência "+ frequencia; 	
 		
-			if(frequencia > '1.2' && frequencia < '3.4'){
+		
+			if(frequencia > '1.0' && frequencia < '3.4'){
 			//	document.getElementById("status").innerHTML += "<br><h2>Is Walking</h2>"; 	
 			//	notificacao_local('VELOCIDADE','Motorista esta andando a pe.', 2);
 				onError();
