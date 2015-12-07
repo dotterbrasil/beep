@@ -2,7 +2,7 @@ var watchID = "";
 var watchIN = "";
 var onboard = false;
 var plugado = "false";
-
+var notification_id = 1;
 
 function onDeviceReady() {
 		window.plugins.backgroundjs.lockBackgroundTime();
@@ -49,7 +49,7 @@ var agora = new Date(now);
 //var sound = device.platform == 'Android' ? 'file://sound.mp3' : 'file://beep.caf'; 
 
 cordova.plugins.notification.local.schedule({ 
-                     //id: 1, 
+                     id: notification_id, 
                      title: tipo, 
                      text: mensagem_local, 
                      at: agora, 
@@ -57,7 +57,7 @@ cordova.plugins.notification.local.schedule({
                      badge: indice 
                  }); 
 
-
+notification_id++;
 
 }
 
