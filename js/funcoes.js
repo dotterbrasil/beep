@@ -5,10 +5,12 @@ var plugado = "false";
 var notification_id = 1;
 
 function onDeviceReady() {
-		window.plugins.backgroundjs.lockBackgroundTime();
+		
 		onboard = false;
 		speedup_monitor();
 		bluetoothle.initialize(initializeSuccess, initializeError, {request: false, statusReceiver: true});
+		
+		window.plugins.backgroundjs.lockBackgroundTime();
 		
 		//monitora_bateria();
 			
