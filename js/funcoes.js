@@ -5,12 +5,10 @@ var plugado = "false";
 var notification_id = 1;
 
 function onDeviceReady() {
-		
+		window.plugins.backgroundjs.lockBackgroundTime();
 		onboard = false;
 		speedup_monitor();
 		bluetoothle.initialize(initializeSuccess, initializeError, {request: false, statusReceiver: true});
-		
-		window.plugins.backgroundjs.lockBackgroundTime();
 		
 		//monitora_bateria();
 			
@@ -20,7 +18,10 @@ function onDeviceReady() {
 		//			notificacao_local('VELOCIDADE',' TESTE', 1);
 		//			}
          //      }); 
-		 
+		 cordova.plugins.notification.local.clearAll();
+		 navigator.geolocation.clearWatch(watchID);
+		 			
+	bluetoothle.stopScan(initializeError, initializeSuccess);
 }
 
 
@@ -32,8 +33,6 @@ onboard = false;
 plugado = "false";
 notification_id = 1;
 
-cordova.plugins.notification.local.clearAll();
-
 	document.addEventListener("deviceready", onDeviceReady, false);
 }
 
@@ -41,18 +40,6 @@ function home(){
 
 	//onboard = false;
 	
-	navigator.geolocation.clearWatch(watchID);
-	
-	watchID = "";
-watchIN = "";
-onboard = false;
-plugado = "false";
-notification_id = 1;
-
-cordova.plugins.notification.local.clearAll();
-	
-	
-	bluetoothle.stopScan(initializeError, initializeSuccess);
 	document.location.href='index.html';
 	
 }
