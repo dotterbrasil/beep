@@ -198,7 +198,7 @@ function onError(error) {
 	if (qtde_in > 0)
 		{
 		notificacao_local('ALERTA','Crianca presente no carro.', 1);
-		document.location.href = "desativar.html";
+		//document.location.href = "desativar.html";
 		}
 		//else{
 		//	document.location.href = "index.html"; 
