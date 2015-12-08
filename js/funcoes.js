@@ -139,7 +139,7 @@ function onSuccessIN(position) {
 	
 	var qtde_in = conta_in();
 	
-    element.innerHTML = element.innerHTML + 'Velocidade: ' + Math.round(position.coords.speed*3.6)     + ' km/h <br />' +  '<hr />';
+    element.innerHTML = 'Velocidade: ' + Math.round(position.coords.speed*3.6)     + ' km/h <br />' +  '<hr />';
 	
 	//window.plugins.backgroundjs.lockBackgroundTime();
 	
