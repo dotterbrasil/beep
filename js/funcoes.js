@@ -121,7 +121,9 @@ function speed_monitor(){
 
 // Options: throw an error if no update is received every 5 minutes.
 //
-watchID = navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 300000 });
+//watchID = navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 300000 });
+
+watchID = navigator.geolocation.watchPosition(onSuccess, onError, { maximumAge:5000 });
 
 }
 
@@ -131,7 +133,9 @@ function speedup_monitor(){
 //
 //watchIN = navigator.geolocation.watchPosition(onSuccessIN, onError, { frequency: 1000 });
 
-watchIN = navigator.geolocation.watchPosition(onSuccessIN,onError, { enableHighAccuracy: true });
+//watchIN = navigator.geolocation.watchPosition(onSuccessIN,onError, { enableHighAccuracy: true });
+
+watchIN = navigator.geolocation.watchPosition(onSuccessIN,onError, { maximumAge:5000 });
 
 }
 
@@ -149,14 +153,15 @@ function onSuccessIN(position) {
 		if (plugado == "true")
 			{
 			//document.location.href="checkin.html";
+			notificacao_local('VELOCIDADE','Checkin Efetuado. Conectado.', 2);
 			onboard = true;check_in();navigator.geolocation.clearWatch(watchIN);speed_monitor();monitora_bateria();
 			
 			}
 			else
 				{
 				playsound();
-				element.innerHTML = "<b> Conecte o Carregador </b>";
-				//notificacao_local('VELOCIDADE','Checkin Efetuado. Conecte o carregador.', 2);
+				//element.innerHTML = "<b> Conecte o Carregador </b>";
+				notificacao_local('VELOCIDADE','Checkin Efetuado. Conecte o carregador.', 2);
 				//document.location.href = "checkin.html";
 				onboard = true;check_in();navigator.geolocation.clearWatch(watchIN);speed_monitor();monitora_bateria();
 				}
