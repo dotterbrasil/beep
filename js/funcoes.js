@@ -106,8 +106,8 @@ if (navigator.geolocation) {
     
 	var teste = setInterval(playsound,3000);
 	
-	//document.getElementById("mapa").style.backgroundImage = "url('imagens/fundo_alerta.gif')";
-	document.getElementById("principal").style.backgroundImage = "url('imagens/fundo_alerta.gif')";
+	document.getElementById("mapa").style.backgroundImage = "url('imagens/fundo_alerta.gif')";
+	//document.getElementById("principal").style.backgroundImage = "url('imagens/fundo_alerta.gif')";
 	
      document.getElementById("principal").innerHTML = "<br><br><iframe width=80% height=80% src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe><br><img src='imagens/alert.gif' width=100% align='center' class='alerta' onclick='desativa();'>";
 	 
@@ -153,9 +153,10 @@ function onSuccessIN(position) {
 		{
 		if (plugado == "true")
 			{
-			//document.location.href="checkin.html";
+			
 			notificacao_local('VELOCIDADE','Checkin Efetuado. Conectado.', 2);
-			onboard = true;check_in();navigator.geolocation.clearWatch(watchIN);speed_monitor();monitora_bateria();
+			document.location.href="checkin.html";
+			//onboard = true;check_in();navigator.geolocation.clearWatch(watchIN);speed_monitor();monitora_bateria();
 			
 			}
 			else
@@ -163,8 +164,8 @@ function onSuccessIN(position) {
 				playsound();
 				//element.innerHTML = "<b> Conecte o Carregador </b>";
 				notificacao_local('VELOCIDADE','Checkin Efetuado. Conecte o carregador.', 2);
-				//document.location.href = "checkin.html";
-				onboard = true;check_in();navigator.geolocation.clearWatch(watchIN);speed_monitor();monitora_bateria();
+				document.location.href = "checkin.html";
+				//onboard = true;check_in();navigator.geolocation.clearWatch(watchIN);speed_monitor();monitora_bateria();
 				}
 		}
 	
@@ -208,8 +209,8 @@ function onError(error) {
 	if (qtde_in > 0)
 		{
 		notificacao_local('ALERTA','Crianca presente no carro.', 1);
-		//document.location.href = "desativar.html";
-		onboard = false;setTimeout(localizacao,5000);speedup_monitor();monitora_bateria();
+		document.location.href = "desativar.html";
+		//onboard = false;setTimeout(localizacao,5000);speedup_monitor();monitora_bateria();
 		}
 		//else{
 		//	document.location.href = "index.html"; 
@@ -793,19 +794,19 @@ function onBatteryStatus(info) {
 			if (plugado == false)
 				{
 				notificacao_local('ALERTA','Crianca presente no carro.', 1);
-				//document.location.href = "desativar.html";
-				onboard = false;setTimeout(localizacao,5000);speedup_monitor();monitora_bateria();
+				document.location.href = "desativar.html";
+				//onboard = false;setTimeout(localizacao,5000);speedup_monitor();monitora_bateria();
 				}
 				else{
-					//document.location.href = "checkin.html";
-					onboard = true;check_in();navigator.geolocation.clearWatch(watchIN);speed_monitor();monitora_bateria();
+					document.location.href = "checkin.html";
+					//onboard = true;check_in();navigator.geolocation.clearWatch(watchIN);speed_monitor();monitora_bateria();
 					}
 			}
 			else{
 				if (plugado == true)
 					{
-					//document.location.href = "index.html";
-					inicio();
+					document.location.href = "index.html";
+					//inicio();
 					}
 				}
 			
@@ -907,6 +908,6 @@ function onBatteryStatus(info) {
 			//	document.getElementById("status").innerHTML += "<br><h2>Is not Walking</h2>"; 
 			
 			//}
-			speed_monitor();
+			//speed_monitor();
 		}
 	}
