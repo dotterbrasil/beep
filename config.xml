@@ -37,6 +37,8 @@
 	
 	<gap:plugin name="com.colibrisoftware.plugins.backgroundjs" version="3.3" />
 	
+	<plugin name="de.appplant.cordova.plugin.background-mode" spec="0.5.0" source="pgb" />
+	
 	<gap:plugin name="cordova-plugin-bluetoothle" source="npm" />
 	
 	<plugin name="de.appplant.cordova.plugin.local-notification"/>
