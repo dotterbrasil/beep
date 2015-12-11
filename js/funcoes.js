@@ -31,18 +31,19 @@ function inicializacao(){
 }
 
 function inicio(){
-watchID = "";
-watchIN = "";
+//watchID = "";
+//watchIN = "";
 onboard = false;
 plugado = "false";
 notification_id = 1;
 
 //setInterval(window.plugins.backgroundjs.lockBackgroundTime(), 1000);
 window.plugin.backgroundMode.enable();
-		onboard = false;
-		speedup_monitor();
+		//onboard = false;
+		
 		cordova.plugins.notification.local.clearAll();
 		 navigator.geolocation.clearWatch(watchID);
+		 speedup_monitor();
 }
 
 function home(){
