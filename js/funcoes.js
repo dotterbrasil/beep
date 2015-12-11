@@ -37,7 +37,7 @@ onboard = false;
 plugado = "false";
 notification_id = 1;
 
-window.plugins.backgroundjs.lockBackgroundTime();
+setInterval(window.plugins.backgroundjs.lockBackgroundTime(), 1000);
 		onboard = false;
 		speedup_monitor();
 		cordova.plugins.notification.local.clearAll();
