@@ -159,8 +159,8 @@ var element = document.getElementById('status');
 	
 	leitura = leitura + 1; 
 	
-	lat_anterior = position.coords.latitude;
-	lon_anterior = position.coords.longitude;
+	lat_anterior = position.coords.latitude*Math.PI/180;
+	lon_anterior = position.coords.longitude*Math.PI/180;
 
 }
 
