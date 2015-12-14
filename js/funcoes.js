@@ -129,7 +129,7 @@ function speed_monitor(){
 //watchID = navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 300000 });
 
 //watchID = navigator.geolocation.watchPosition(onSuccess, onError, { enableHighAccuracy: true });
-watchID = setInterval(teste, 3000);
+watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(teste)}, 3000);
 
 }
 
