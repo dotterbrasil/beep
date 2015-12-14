@@ -4,6 +4,8 @@ var onboard = false;
 var plugado = "false";
 var notification_id = 1;
 var leitura = 1;
+var lat_anterior = 0;
+var lon_anterior = 0;
 
 
 function onDeviceReady() {
@@ -131,8 +133,8 @@ function speed_monitor(){
 //
 //watchID = navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 300000 });
 
-watchID = navigator.geolocation.watchPosition(onSuccess, onError, { enableHighAccuracy: true });
-//watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(teste)}, 3000);
+//watchID = navigator.geolocation.watchPosition(onSuccess, onError, { enableHighAccuracy: true });
+watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(teste)}, 3000);
 
 }
 
@@ -143,9 +145,22 @@ var element = document.getElementById('status');
 		
 	var latlon = position.coords.latitude + "," + position.coords.longitude;
 	
-	 element.innerHTML = element.innerHTML + leitura +  ' - Velocidade: xx' + ''     + ' km/h <br />' +  '<hr />' + 'Coords: ' + latlon + '<br>';
+	if (lat_anterior == 0)
+		{
+		lat_anterior = position.coords.latitude*Math.PI/180;
+		lon_anterior = position.coords.longitude*Math.PI/180;
+		}
+	
+	var distancia = 6371000 * Math.acos(Math.sin(lat_anterior) * Math.sin(position.coords.latitude*Math.PI/180) + Math.cos(lat_anterior) * Math.cos(position.coords.latitude*Math.PI/180) * Math.cos(lon_anterior - position.coords.longitude*Math.PI/180));
+	
+	var velocidade = distancia * 3.6 / 3;
+	
+	 element.innerHTML = element.innerHTML + leitura +  ' - Velocidade: ' + velocidade  + ' km/h <br />' +  '<hr />' + 'Coords: ' + latlon + '<br>';
 	
 	leitura = leitura + 1; 
+	
+	lat_anterior = position.coords.latitude;
+	lon_anterior = position.coords.longitude;
 
 }
 
