@@ -118,7 +118,7 @@ if (navigator.geolocation) {
 	document.getElementById("mapa").style.backgroundImage = "url('imagens/fundo_alerta.gif')";
 	//document.getElementById("principal").style.backgroundImage = "url('imagens/fundo_alerta.gif')";
 	
-     document.getElementById("principal").innerHTML = "<br><br><iframe width=80% height=80% src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe><br><img src='imagens/alert.gif' width=100% align='center' class='alerta' onclick='desativa();'>";
+     document.getElementById("mapa").innerHTML = "<br><br><iframe width=80% height=80% src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe><br><img src='imagens/alert.gif' width=100% align='center' class='alerta' onclick='desativa();'>";
 	 
 	 document.getElementById("status").innerHTML = "Clique sobre o ALERT para desativar o alarme!";
 
@@ -167,9 +167,12 @@ var element = document.getElementById('status');
 		{
 		if (plugado == "false")
 			{
-			element.innerHTML += 'Avaliando saida do carro.';
-			//notificacao_local('VELOCIDADE','Avaliando saida do carro.', 2);
-			iswalking();
+			if (onboard == true)
+				{
+				element.innerHTML += 'Avaliando saida do carro.';
+				//notificacao_local('VELOCIDADE','Avaliando saida do carro.', 2);
+				iswalking();
+				}
 			}
 		}
 
@@ -300,7 +303,7 @@ function onError(error) {
 		{
 		notificacao_local('ALERTA','Crianca presente no carro.', 1);
 		document.location.href = "desativar.html";
-		//onboard = false;setTimeout(localizacao,5000);speedup_monitor();monitora_bateria();
+		//onboard = false;setTimeout(localizacao,5000);
 		}
 		//else{
 		//	document.location.href = "index.html"; 
