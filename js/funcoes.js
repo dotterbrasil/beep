@@ -3,6 +3,7 @@
 var onboard = false;
 var plugado = "false";
 var notification_id = 1;
+var leitura = 1;
 
 
 function onDeviceReady() {
@@ -189,11 +190,12 @@ function onSuccess(position) {
 	
 	var qtde_in = conta_in();
 	
-	var tempo = Date(now);
 	
-	 element.innerHTML = element.innerHTML + tempo.getMinutes() + ':' + tempo.getSeconds() + ' - Velocidade: ' + Math.round(position.coords.speed*3.6)     + ' km/h <br />' +  '<hr />';
 	
-    	
+	 element.innerHTML = element.innerHTML + leitura +  ' - Velocidade: ' + Math.round(position.coords.speed*3.6)     + ' km/h <br />' +  '<hr />';
+	
+leitura = leitura + 1;    
+	
 	//window.plugins.backgroundjs.lockBackgroundTime();
 	
 	if (position.coords.speed < 0)
