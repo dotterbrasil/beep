@@ -40,11 +40,10 @@ plugado = "false";
 notification_id = 1;
 
 //setInterval(window.plugins.backgroundjs.lockBackgroundTime(), 1000);
-//window.plugin.backgroundMode.enable();
-alert('vai');
+
 window.plugins.backgroundjs.lockBackgroundTime();
-alert('foi');
-//cordova.plugins.backgroundMode.onactivate = function() {alert('yupi');};
+
+
 		//onboard = false;
 		
 		cordova.plugins.notification.local.clearAll();
@@ -132,8 +131,8 @@ function speed_monitor(){
 //
 //watchID = navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 300000 });
 
-//watchID = navigator.geolocation.watchPosition(onSuccess, onError, { enableHighAccuracy: true });
-watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(teste)}, 3000);
+watchID = navigator.geolocation.watchPosition(onSuccess, onError, { enableHighAccuracy: true });
+//watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(teste)}, 3000);
 
 }
 
