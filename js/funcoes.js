@@ -41,8 +41,10 @@ notification_id = 1;
 
 //setInterval(window.plugins.backgroundjs.lockBackgroundTime(), 1000);
 //window.plugin.backgroundMode.enable();
+alert('vai');
 cordova.plugins.backgroundMode.enable();
-cordova.plugins.backgroundMode.onactivate = function() {alert('yupi');};
+alert('foi');
+//cordova.plugins.backgroundMode.onactivate = function() {alert('yupi');};
 		//onboard = false;
 		
 		cordova.plugins.notification.local.clearAll();
