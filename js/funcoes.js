@@ -193,7 +193,7 @@ function onSuccess(position) {
     	
 	//window.plugins.backgroundjs.lockBackgroundTime();
 	
-	if (position.coords.speed < 1)
+	if (position.coords.speed < 0)
 		{
 		if (plugado == "false")
 			{
