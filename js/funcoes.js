@@ -161,10 +161,10 @@ var element = document.getElementById('status');
 	var velocidade = distancia * 3.6 / 3;
 	//var velocidade = position.coords.speed*3.6;
 	
-	 element.innerHTML = element.innerHTML + leitura +  ' - Velocidade: ' + velocidade  + ' km/h <br />' +  '<hr />' + 'Coords: ' + latlon + '<br>';
-	leitura = leitura + 1; 
+	 //element.innerHTML = element.innerHTML + leitura +  ' - Velocidade: ' + velocidade  + ' km/h <br />' +  '<hr />' + 'Coords: ' + latlon + '<br>';
+	//leitura = leitura + 1; 
 	
-	//element.innerHTML = 'Velocidade: ' + velocidade  + ' km/h <br />' +  '<hr />' + 'Coords: ' + latlon + '<br>' + 'teste: '+position.coords.speed*3.6;
+	element.innerHTML = 'Velocidade: ' + velocidade  + ' km/h <br />' +  '<hr />' + 'Coords: ' + latlon + '<br>';
 	
 	lat_anterior = position.coords.latitude*Math.PI/180;
 	lon_anterior = position.coords.longitude*Math.PI/180;
