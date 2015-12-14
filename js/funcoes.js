@@ -3,6 +3,7 @@
 var onboard = false;
 var plugado = "false";
 var notification_id = 1;
+var agora = new Date(now);
 
 function onDeviceReady() {
 		//window.plugins.backgroundjs.lockBackgroundTime();
@@ -63,7 +64,7 @@ function notificacao_local(tipo, mensagem_local, indice){
 var som = "file://alerta.wav";
 var now = new Date().getTime();
 var _5_sec_from_now = new Date(now + 5 * 1000); 
-var agora = new Date(now);
+
 
 
 //var sound = device.platform == 'Android' ? 'file://sound.mp3' : 'file://beep.caf'; 
@@ -186,9 +187,7 @@ function onSuccess(position) {
 	
 	var qtde_in = conta_in();
 	
-	var latlon = position.coords.latitude + "," + position.coords.longitude;
-	
-    element.innerHTML = 'Velocidade: ' + Math.round(position.coords.speed*3.6)     + ' km/h <br />' +  '<hr />' + 'Coordenadas: ' + latlon;
+	 element.innerHTML += agora.getMinutes()+':'+agora.getSeconds()+' - Velocidade: ' + Math.round(position.coords.speed*3.6)     + ' km/h <br />' +  '<hr />';
 	
     	
 	//window.plugins.backgroundjs.lockBackgroundTime();
@@ -205,7 +204,7 @@ function onSuccess(position) {
 		//else{
 		//	if (position.coords.speed > 5) {clearTimeout(temporizador);} //cancela checkout forcado se velocidade subir
 		//	}
-	if(position.coords.speed > 1)
+	if(position.coords.speed > 3)
 		{
 		if (plugado == "true")
 			{
