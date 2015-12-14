@@ -128,7 +128,21 @@ function speed_monitor(){
 //
 //watchID = navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 300000 });
 
-watchID = navigator.geolocation.watchPosition(onSuccess, onError, { enableHighAccuracy: true });
+//watchID = navigator.geolocation.watchPosition(onSuccess, onError, { enableHighAccuracy: true });
+watchID = setInterval(teste, 3000);
+
+}
+
+function teste(){
+
+var element = document.getElementById('status');
+	
+		
+	var latlon = position.coords.latitude + "," + position.coords.longitude;
+	
+	 element.innerHTML = element.innerHTML + leitura +  ' - Velocidade: xx' + ''     + ' km/h <br />' +  '<hr />' + 'Coords: ' + latlon + '<br>';
+	
+	leitura = leitura + 1; 
 
 }
 
