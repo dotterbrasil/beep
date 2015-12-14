@@ -190,15 +190,15 @@ function onSuccess(position) {
 	
 	var qtde_in = conta_in();
 	
+	var latlon = position.coords.latitude + "," + position.coords.longitude;
 	
-	
-	 element.innerHTML = element.innerHTML + leitura +  ' - Velocidade: ' + Math.round(position.coords.speed*3.6)     + ' km/h <br />' +  '<hr />';
+	 element.innerHTML = element.innerHTML + leitura +  ' - Velocidade: ' + Math.round(position.coords.speed*3.6)     + ' km/h <br />' +  '<hr />' + 'Coords: ' + latlon + '<br>';
 	
 leitura = leitura + 1;    
 	
 	//window.plugins.backgroundjs.lockBackgroundTime();
 	
-	if (position.coords.speed < 0)
+	if (position.coords.speed > 10)
 		{
 		if (plugado == "false")
 			{
