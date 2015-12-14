@@ -151,7 +151,7 @@ var element = document.getElementById('status');
 		lon_anterior = position.coords.longitude*Math.PI/180;
 		}
 	
-	var distancia = 6371000 * Math.acos(Math.sin(lat_anterior) * Math.sin(position.coords.latitude*Math.PI/180) + Math.cos(lat_anterior) * Math.cos(position.coords.latitude*Math.PI/180) * Math.cos(lon_anterior - position.coords.longitude*Math.PI/180));
+	var distancia = 6371.795477598 * Math.acos(Math.sin(lat_anterior) * Math.sin(position.coords.latitude*Math.PI/180) + Math.cos(lat_anterior) * Math.cos(position.coords.latitude*Math.PI/180) * Math.cos(lon_anterior - position.coords.longitude*Math.PI/180));
 	
 	var velocidade = distancia * 3.6 / 3;
 	
@@ -161,6 +161,39 @@ var element = document.getElementById('status');
 	
 	lat_anterior = position.coords.latitude*Math.PI/180;
 	lon_anterior = position.coords.longitude*Math.PI/180;
+	
+	if (velocidade < 5)
+		{
+		if (plugado == "false")
+			{
+			element.innerHTML += 'Avaliando saida do carro.';
+			notificacao_local('VELOCIDADE','Avaliando saida do carro.', 2);
+			iswalking();
+			}
+		}
+		//else{
+		//	if (position.coords.speed > 5) {clearTimeout(temporizador);} //cancela checkout forcado se velocidade subir
+		//	}
+	if(velocidade > 20)
+		{
+		if (plugado == "true")
+			{
+			
+			notificacao_local('VELOCIDADE','Checkin Efetuado. Conectado.', 2);
+			//document.location.href="checkin.html";
+			onboard = true;check_in();
+			
+			}
+			else
+				{
+				playsound();
+				//element.innerHTML = "<b> Conecte o Carregador </b>";
+				notificacao_local('VELOCIDADE','Checkin Efetuado. Conecte o carregador.', 2);
+				onboard = true;check_in();
+				//document.location.href = "checkin.html";
+				//onboard = true;check_in();navigator.geolocation.clearWatch(watchIN);speed_monitor();monitora_bateria();
+				}
+		}
 
 }
 
