@@ -133,7 +133,7 @@ watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(teste)
 
 }
 
-function teste(){
+function teste(position){
 
 var element = document.getElementById('status');
 	
