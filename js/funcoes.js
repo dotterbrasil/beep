@@ -3,7 +3,7 @@
 var onboard = false;
 var plugado = "false";
 var notification_id = 1;
-var agora = new Date(now);
+
 
 function onDeviceReady() {
 		//window.plugins.backgroundjs.lockBackgroundTime();
@@ -64,7 +64,7 @@ function notificacao_local(tipo, mensagem_local, indice){
 var som = "file://alerta.wav";
 var now = new Date().getTime();
 var _5_sec_from_now = new Date(now + 5 * 1000); 
-
+var agora = new Date(now);
 
 
 //var sound = device.platform == 'Android' ? 'file://sound.mp3' : 'file://beep.caf'; 
@@ -150,6 +150,8 @@ function onSuccessIN(position) {
 	
 	var latlon = position.coords.latitude + "," + position.coords.longitude;
 	
+	
+	
     element.innerHTML = 'Velocidade: ' + Math.round(position.coords.speed*3.6)     + ' km/h <br />' +  '<hr />' + 'Coordenadas: ' + latlon;
 	
 	
@@ -187,7 +189,9 @@ function onSuccess(position) {
 	
 	var qtde_in = conta_in();
 	
-	 element.innerHTML += agora.getMinutes()+':'+agora.getSeconds()+' - Velocidade: ' + Math.round(position.coords.speed*3.6)     + ' km/h <br />' +  '<hr />';
+	var tempo = Date(now);
+	
+	 element.innerHTML = element.innerHTML + tempo.getMinutes() + ':' + tempo.getSeconds() + ' - Velocidade: ' + Math.round(position.coords.speed*3.6)     + ' km/h <br />' +  '<hr />';
 	
     	
 	//window.plugins.backgroundjs.lockBackgroundTime();
