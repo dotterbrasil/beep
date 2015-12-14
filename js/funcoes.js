@@ -145,16 +145,21 @@ var element = document.getElementById('status');
 		
 	var latlon = position.coords.latitude + "," + position.coords.longitude;
 	
+	var latidude = position.coords.latitude*Math.PI/180;
+	var longitude = position.coords.longitude*Math.PI/180;
+	
 	if (lat_anterior == 0)
 		{
 		lat_anterior = position.coords.latitude*Math.PI/180;
 		lon_anterior = position.coords.longitude*Math.PI/180;
 		}
 	
-	var distancia = 6371795.477598 * Math.acos(Math.sin(lat_anterior) * Math.sin(position.coords.latitude*Math.PI/180) + Math.cos(lat_anterior) * Math.cos(position.coords.latitude*Math.PI/180) * Math.cos(lon_anterior - position.coords.longitude*Math.PI/180));
+	//var distancia = 6371795.477598 * Math.acos(Math.sin(lat_anterior) * Math.sin(position.coords.latitude*Math.PI/180) + Math.cos(lat_anterior) * Math.cos(position.coords.latitude*Math.PI/180) * Math.cos(lon_anterior - position.coords.longitude*Math.PI/180));
 	
-	//var velocidade = distancia * 3.6 / 3;
-	var velocidade = position.coords.speed*3.6;
+	var distancia = 6371795.477598 * Math.acos(Math.sin(lat_anterior) * Math.sin(latitude) + Math.cos(lat_anterior) * Math.cos(latitude) * Math.cos(lon_anterior - longitude));
+	
+	var velocidade = distancia * 3.6 / 3;
+	//var velocidade = position.coords.speed*3.6;
 	
 	 element.innerHTML = element.innerHTML + leitura +  ' - Velocidade: ' + velocidade  + ' km/h <br />' +  '<hr />' + 'Coords: ' + latlon + '<br>';
 	leitura = leitura + 1; 
