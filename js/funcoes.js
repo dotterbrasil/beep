@@ -197,7 +197,7 @@ function onSuccess(position) {
 		{
 		if (plugado == "false")
 			{
-			element.innerHTML = 'Avaliando saida do carro.';
+			element.innerHTML += 'Avaliando saida do carro.';
 			notificacao_local('VELOCIDADE','Avaliando saida do carro.', 2);
 			iswalking();
 			}
@@ -852,7 +852,7 @@ function onBatteryStatus(info) {
 	
 	function iswalking(){ 
 	//	document.getElementById("status").innerHTML = "";
-		navigator.geolocation.clearWatch(watchID);
+		//navigator.geolocation.clearWatch(watchID);
 		loop = 0;	
 		contador = 0;
 		soma_eixo = 0;
