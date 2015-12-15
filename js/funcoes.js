@@ -160,7 +160,7 @@ var element = document.getElementById('status');
 	
 	//var distancia = 6371 * Math.acos(Math.sin(lat_anterior) * Math.sin(latitude_x) + Math.cos(lat_anterior) * Math.cos(latitude_x) * Math.cos(lon_anterior - longitude_x));
 	
-	var velocidade = distancia * 3600 / 3;
+	var velocidade = distancia * 3.6 / 3;
 	//var velocidade = position.coords.speed*3.6;
 	
 	 element.innerHTML = element.innerHTML + leitura +  ' - Velocidade: ' + velocidade  + ' km/h <br />' +  '<hr />' + 'Coords: ' + latlon + '<br>';
