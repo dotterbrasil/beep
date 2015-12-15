@@ -193,8 +193,8 @@ var tempo = new Date();
 			{
 			if (onboard == true)
 				{
-				//element.innerHTML += 'Avaliando saida do carro.';
-				notificacao_local('VELOCIDADE','Avaliando saida do carro.', 1);
+				element.innerHTML = 'Avaliando saida do carro.';
+				//notificacao_local('VELOCIDADE','Avaliando saida do carro.', 1);
 				iswalking();
 				}
 			}
@@ -204,12 +204,12 @@ var tempo = new Date();
 		{
 		if (plugado == "true")
 			{
-			if (onboard == false) {	notificacao_local('VELOCIDADE','Checkin Efetuado. Conectado.', 2); }
+			if (onboard == false) {	element.innerHTML = 'Checkin Efetuado. Conectado.'; }
 			}
 			else
 				{
 				if (onboard == false) 
-					{ notificacao_local('VELOCIDADE','Checkin Efetuado. Conecte o carregador.', 2);	}
+					{ notificacao_local('VELOCIDADE','Checkin Efetuado. Conecte o carregador.', 1);	}
 				}
 		onboard = true;
 		check_in();		
