@@ -187,7 +187,7 @@ var element = document.getElementById('status');
 			if (onboard == true)
 				{
 				//element.innerHTML += 'Avaliando saida do carro.';
-				notificacao_local('VELOCIDADE','Avaliando saida do carro.', );
+				notificacao_local('VELOCIDADE','Avaliando saida do carro.', 1);
 				iswalking();
 				}
 			}
