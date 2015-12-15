@@ -3,7 +3,7 @@
 var onboard = false;
 var plugado = "false";
 var notification_id = 1;
-var leitura = 1;
+
 var lat_anterior = 0;
 var lon_anterior = 0;
 var tempo_anterior = 0;
@@ -175,16 +175,12 @@ var tempo = new Date();
 		}
 		else{	velocidade_media = Math.round((velocidade_media + velocidade)/2); }
 	
-	 element.innerHTML = element.innerHTML + leitura +  ' - Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coords: ' + latlon + ' - ' + Math.round(tempo.getTime()/1000) + '<br>';
-	leitura = leitura + 1; 
-	
+	 //element.innerHTML = element.innerHTML + leitura +  ' - Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coords: ' + latlon + ' - ' + Math.round(tempo.getTime()/1000) + '<br>';
+		
 	//element.innerHTML = 'Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coordenadas: ' + latlon + '<br>';
 	
-	if (leitura > 10)
-		{
-		leitura = 1;
-		element.innerHTML = 'Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coordenadas: ' + latlon + '<br>';
-		}
+		element.innerHTML = 'Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coord: ' + latlon + '<br>';
+	
 	
 	
 	lat_anterior = position.coords.latitude*Math.PI/180;
