@@ -6,6 +6,7 @@ var notification_id = 1;
 var leitura = 1;
 var lat_anterior = 0;
 var lon_anterior = 0;
+var velocidade_media = 0;
 
 
 function onDeviceReady() {
@@ -163,15 +164,23 @@ var element = document.getElementById('status');
 	var velocidade = distancia * 3.6 / 3;
 	//var velocidade = position.coords.speed*3.6;
 	
-	 element.innerHTML = element.innerHTML + leitura +  ' - Velocidade: ' + velocidade  + ' km/h <br />' +  '<hr />' + 'Coords: ' + latlon + '<br>';
+	 element.innerHTML = element.innerHTML + leitura +  ' - Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coords: ' + latlon + '<br>';
 	leitura = leitura + 1; 
 	
-	element.innerHTML = 'Velocidade: ' + velocidade  + ' km/h <br />' +  '<hr />' + 'Coords: ' + latlon + '<br>';
+	//element.innerHTML = 'Velocidade: ' + velocidade  + ' km/h <br />' +  '<hr />' + 'Coords: ' + latlon + '<br>';
+	
+	velocidade_media = Math.round((velocidade_media + velocidade)/3);
+	
+	if (leitura == 3)
+		{
+		leitura = 1;
+		element.innerHTML = 'Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coords: ' + latlon + '<br>';
+		}
 	
 	lat_anterior = position.coords.latitude*Math.PI/180;
 	lon_anterior = position.coords.longitude*Math.PI/180;
 	
-	if (velocidade < 5)
+	if (velocidade_media < 5)
 		{
 		if (plugado == "false")
 			{
@@ -184,7 +193,7 @@ var element = document.getElementById('status');
 			}
 		}
 
-	if(velocidade > 20)
+	if(velocidade_media > 20)
 		{
 		onboard = true;
 		check_in();
