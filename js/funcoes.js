@@ -144,7 +144,7 @@ watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(teste)
 function teste(position){
 
 var element = document.getElementById('status');
-	
+var tempo = new Date();	
 		
 	var latlon = position.coords.latitude + "," + position.coords.longitude;
 	
@@ -164,10 +164,10 @@ var element = document.getElementById('status');
 	var velocidade = distancia * 3.6 / 3;
 	//var velocidade = position.coords.speed*3.6;
 	
-	 //element.innerHTML = element.innerHTML + leitura +  ' - Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coords: ' + latlon + '<br>';
+	 element.innerHTML = element.innerHTML + leitura +  ' - Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coords: ' + latlon + '<br>' + Math.round(tempo.getTime()/1000);
 	leitura = leitura + 1; 
 	
-	element.innerHTML = 'Velocidade: ' + velocidade  + ' km/h <br />' +  '<hr />' + 'Coordenadas: ' + latlon + '<br>';
+	//element.innerHTML = 'Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coordenadas: ' + latlon + '<br>';
 	
 	velocidade_media = Math.round((velocidade_media + velocidade)/3);
 	
