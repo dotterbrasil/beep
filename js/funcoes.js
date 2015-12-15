@@ -115,14 +115,16 @@ if (navigator.geolocation) {
     
 	var teste = setInterval(playsound,3000);
 	
-	document.getElementById("mapa").style.backgroundImage = "url('imagens/fundo_alerta.gif')";
-	//document.getElementById("principal").style.backgroundImage = "url('imagens/fundo_alerta.gif')";
+	//document.getElementById("mapa").style.backgroundImage = "url('imagens/fundo_alerta.gif')";
+	document.getElementById("principal").style.backgroundImage = "url('imagens/fundo_alerta.gif')";
 	
-     document.getElementById("mapa").innerHTML = "<br><br><iframe width=80% height=80% src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe><br><img src='imagens/alert.gif' width=100% align='center' class='alerta' onclick='desativa();'>";
+     //document.getElementById("mapa").innerHTML = "<br><br><iframe width=80% height=80% src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe><br><img src='imagens/alert.gif' width=100% align='center' class='alerta' onclick='desativa();'>";
+	 
+	 document.getElementById("principal").innerHTML = "<br><br><iframe width=80% height=80% src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe><br><img src='imagens/alert.gif' width=100% align='center' class='alerta' onclick='desativa();'>";
 	 
 	 document.getElementById("status").innerHTML = "Clique sobre o ALERT para desativar o alarme!";
 
-	envia_sms(latlon);
+	//envia_sms(latlon);
 	  
  }
 
@@ -156,13 +158,13 @@ var element = document.getElementById('status');
 	
 	//var distancia = 6371795.477598 * Math.acos(Math.sin(lat_anterior) * Math.sin(position.coords.latitude*Math.PI/180) + Math.cos(lat_anterior) * Math.cos(position.coords.latitude*Math.PI/180) * Math.cos(lon_anterior - position.coords.longitude*Math.PI/180));
 	
-	//var distancia = 6371795.477598 * Math.acos(Math.sin(lat_anterior) * Math.sin(latitude_x) + Math.cos(lat_anterior) * Math.cos(latitude_x) * Math.cos(lon_anterior - longitude_x));
+	var distancia = 6371.795477598 * Math.acos(Math.sin(lat_anterior) * Math.sin(latitude_x) + Math.cos(lat_anterior) * Math.cos(latitude_x) * Math.cos(lon_anterior - longitude_x));
 	
-	//var velocidade = distancia * 3.6 / 3;
-	var velocidade = position.coords.speed*3.6;
+	var velocidade = distancia * 3600 / 3;
+	//var velocidade = position.coords.speed*3.6;
 	
-	 //element.innerHTML = element.innerHTML + leitura +  ' - Velocidade: ' + velocidade  + ' km/h <br />' +  '<hr />' + 'Coords: ' + latlon + '<br>';
-	//leitura = leitura + 1; 
+	 element.innerHTML = element.innerHTML + leitura +  ' - Velocidade: ' + velocidade  + ' km/h <br />' +  '<hr />' + 'Coords: ' + latlon + '<br>';
+	leitura = leitura + 1; 
 	
 	element.innerHTML = 'Velocidade: ' + velocidade  + ' km/h <br />' +  '<hr />' + 'Coords: ' + latlon + '<br>';
 	
@@ -308,8 +310,8 @@ function onError(error) {
 	if (qtde_in > 0)
 		{
 		notificacao_local('ALERTA','Crianca presente no carro.', 1);
-		document.location.href = "desativar.html";
-		//onboard = false;setTimeout(localizacao,5000);
+		//document.location.href = "desativar.html";
+		onboard = false;setTimeout(localizacao,5000);
 		}
 		//else{
 		//	document.location.href = "index.html"; 
@@ -996,7 +998,7 @@ function onBatteryStatus(info) {
 			//document.getElementById("status").innerHTML += "<br><h2>Result</h2><br>Frequência "+ frequencia; 	
 		
 		
-			if(frequencia > '1.0' && frequencia < '3.4'){
+			if(frequencia > '1.2' && frequencia < '4.4'){
 			//	document.getElementById("status").innerHTML += "<br><h2>Is Walking</h2>"; 	
 			//	notificacao_local('VELOCIDADE','Motorista esta andando a pe.', 2);
 				onError();
