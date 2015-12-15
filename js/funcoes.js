@@ -6,6 +6,7 @@ var notification_id = 1;
 var leitura = 1;
 var lat_anterior = 0;
 var lon_anterior = 0;
+var tempo_anterior = 0;
 var velocidade_media = 0;
 
 
@@ -155,21 +156,24 @@ var tempo = new Date();
 		{
 		lat_anterior = position.coords.latitude*Math.PI/180;
 		lon_anterior = position.coords.longitude*Math.PI/180;
+		tempo_anterior = Math.round(tempo.getTime()/1000)-3;
 		}
 	
 	var distancia = 6371795.477598 * Math.acos(Math.sin(lat_anterior) * Math.sin(position.coords.latitude*Math.PI/180) + Math.cos(lat_anterior) * Math.cos(position.coords.latitude*Math.PI/180) * Math.cos(lon_anterior - position.coords.longitude*Math.PI/180));
 	
 	//var distancia = 6371 * Math.acos(Math.sin(lat_anterior) * Math.sin(latitude_x) + Math.cos(lat_anterior) * Math.cos(latitude_x) * Math.cos(lon_anterior - longitude_x));
 	
-	var velocidade = distancia * 3.6 / 3;
+	var velocidade = distancia * 3.6 / (Math.round(tempo.getTime()/1000) - tempo_anterior);
 	//var velocidade = position.coords.speed*3.6;
 	
-	 element.innerHTML = element.innerHTML + leitura +  ' - Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coords: ' + latlon + '<br>' + Math.round(tempo.getTime()/1000);
+	velocidade_media = Math.round((velocidade_media + velocidade)/3);
+	
+	 element.innerHTML = element.innerHTML + leitura +  ' - Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coords: ' + latlon + ' - ' + Math.round(tempo.getTime()/1000) + '<br>';
 	leitura = leitura + 1; 
 	
 	//element.innerHTML = 'Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coordenadas: ' + latlon + '<br>';
 	
-	velocidade_media = Math.round((velocidade_media + velocidade)/3);
+	
 	
 	if (leitura == 3)
 		{
@@ -179,6 +183,7 @@ var tempo = new Date();
 	
 	lat_anterior = position.coords.latitude*Math.PI/180;
 	lon_anterior = position.coords.longitude*Math.PI/180;
+	tempo_anterior = Math.round(tempo.getTime()/1000);
 	
 	if (velocidade_media < 5)
 		{
