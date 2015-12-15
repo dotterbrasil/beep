@@ -159,6 +159,7 @@ var tempo = new Date();
 		tempo_anterior = Math.round(tempo.getTime()/1000)-3;
 		}
 	
+	//assegura que as medicoes ocorram com, no minimo, 3 segundos de intervalo.
 	while (Math.round(tempo.getTime()/1000) == tempo_anterior) { myVar = setTimeout(function(){ clearTimeout(myVar) }, 3000);}
 	
 	var distancia = 6371795.477598 * Math.acos(Math.sin(lat_anterior) * Math.sin(position.coords.latitude*Math.PI/180) + Math.cos(lat_anterior) * Math.cos(position.coords.latitude*Math.PI/180) * Math.cos(lon_anterior - position.coords.longitude*Math.PI/180));
@@ -168,13 +169,22 @@ var tempo = new Date();
 	var velocidade = distancia * 3.6 / (Math.round(tempo.getTime()/1000) - tempo_anterior);
 	//var velocidade = position.coords.speed*3.6;
 	
-	velocidade_media = Math.round((velocidade_media + velocidade)/3);
+	if (velocidade > 200)
+		{
+			velocidade = velocidade_media;
+		}
+		else{	velocidade_media = Math.round((velocidade_media + velocidade)/2); }
 	
 	 element.innerHTML = element.innerHTML + leitura +  ' - Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coords: ' + latlon + ' - ' + Math.round(tempo.getTime()/1000) + '<br>';
 	leitura = leitura + 1; 
 	
 	//element.innerHTML = 'Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coordenadas: ' + latlon + '<br>';
 	
+	if (leitura > 10)
+		{
+		leitura = 1;
+		element.innerHTML = 'Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coordenadas: ' + latlon + '<br>';
+		}
 	
 	
 	lat_anterior = position.coords.latitude*Math.PI/180;
