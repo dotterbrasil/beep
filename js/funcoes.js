@@ -146,6 +146,7 @@ function teste(position){
 
 var element = document.getElementById('status');
 var tempo = new Date();	
+var velocidade = 0;
 		
 	var latlon = position.coords.latitude + "," + position.coords.longitude;
 	
@@ -159,19 +160,21 @@ var tempo = new Date();
 		tempo_anterior = Math.round(tempo.getTime()/1000)-3;
 		}
 	
-	//assegura que as medicoes ocorram com, no minimo, 3 segundos de intervalo.
-	while (Math.round(tempo.getTime()/1000) == tempo_anterior) { myVar = setTimeout(function(){ clearTimeout(myVar) }, 3000);}
 	
 	var distancia = 6371795.477598 * Math.acos(Math.sin(lat_anterior) * Math.sin(position.coords.latitude*Math.PI/180) + Math.cos(lat_anterior) * Math.cos(position.coords.latitude*Math.PI/180) * Math.cos(lon_anterior - position.coords.longitude*Math.PI/180));
 	
 	//var distancia = 6371 * Math.acos(Math.sin(lat_anterior) * Math.sin(latitude_x) + Math.cos(lat_anterior) * Math.cos(latitude_x) * Math.cos(lon_anterior - longitude_x));
 	
-	var velocidade = distancia * 3.6 / (Math.round(tempo.getTime()/1000) - tempo_anterior);
-	//var velocidade = position.coords.speed*3.6;
-	
-	if (velocidade > 200)
+	if (Math.round(tempo.getTime()/1000) == tempo_anterior)
 		{
-			velocidade = velocidade_media;
+		velocidade = distancia * 3.6 / (Math.round(tempo.getTime()/1000) + 1 - tempo_anterior);
+		}
+		else { velocidade = distancia * 3.6 / (Math.round(tempo.getTime()/1000) - tempo_anterior); }
+	
+	
+	if (velocidade > (velocidade_media + 30))
+		{
+			velocidade_media = Math.round((velocidade_media + velocidade_media + 15)/2);
 		}
 		else{	velocidade_media = Math.round((velocidade_media + velocidade)/2); }
 	
@@ -179,7 +182,7 @@ var tempo = new Date();
 		
 	//element.innerHTML = 'Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coordenadas: ' + latlon + '<br>';
 	
-		element.innerHTML = 'Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coord: ' + latlon + '<br>';
+		element.innerHTML = element.innerHTML + 'Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coord: ' + latlon + '<br>';
 	
 	
 	
