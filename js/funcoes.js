@@ -7,6 +7,7 @@ var lat_anterior = 0;
 var lon_anterior = 0;
 var tempo_anterior = 0;
 var velocidade_media = 0;
+var speed_matrix = [0, 0, 0, 0, 0];
 
 
 
@@ -146,6 +147,7 @@ function teste(position){
 var element = document.getElementById('status');
 var tempo = new Date();	
 var velocidade = 0;
+var soma = 0;
 
 		
 	var latlon = position.coords.latitude + "," + position.coords.longitude;
@@ -171,13 +173,26 @@ var velocidade = 0;
 	
 	if (isNaN(velocidade)) { velocidade = velocidade_media;}
 	
-		
-	
 	if (velocidade > (velocidade_media + 30))
 		{
-			velocidade_media = velocidade_media;
+			velocidade = velocidade_media;
 		}
-		else{	velocidade_media = Math.round((velocidade_media + velocidade)/2); }
+		
+		
+	speed_matrix[0] = velocidade;
+	
+	if ((speed_matrix[1]>speed_matrix[0])&&(speed_matrix[1]>speed_matrix[2]))
+				{
+					speed_matrix[1] = (speed_matrix[0] + speed_matrix[2]) / 2;
+				}
+	
+	for (var varredura = 0; varredura <5; varredura++)
+		{
+			soma = soma + speed_matrix[varredura];
+		}
+	
+	velocidade_media = Math.round(soma / 5);
+	
 	
 	 //element.innerHTML = element.innerHTML + leitura +  ' - Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coords: ' + latlon + ' - ' + Math.round(tempo.getTime()/1000) + '<br>';
 		
@@ -190,6 +205,13 @@ var velocidade = 0;
 	lat_anterior = position.coords.latitude*Math.PI/180;
 	lon_anterior = position.coords.longitude*Math.PI/180;
 	tempo_anterior = Math.round(tempo.getTime()/1000);
+	
+	speed_matrix[4] = speed_matrix[3];
+	speed_matrix[3] = speed_matrix[2];
+	speed_matrix[2] = speed_matrix[1];
+	speed_matrix[1] = speed_matrix[0];
+	speed_matrix[0] = 0;
+	
 	
 	if (velocidade_media < 5)
 		{
