@@ -1,5 +1,4 @@
-//var watchID = "";
-//var watchIN = "";
+
 var onboard = false;
 var plugado = "false";
 var notification_id = 1;
@@ -37,8 +36,7 @@ function inicializacao(){
 }
 
 function inicio(){
-//watchID = "";
-//watchIN = "";
+
 onboard = false;
 plugado = "false";
 notification_id = 1;
@@ -138,7 +136,7 @@ function speed_monitor(){
 //watchID = navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 300000 });
 
 //watchID = navigator.geolocation.watchPosition(onSuccess, onError, { enableHighAccuracy: true });
-watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(teste)}, 3000);
+watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(teste)}, 1000);
 
 }
 
@@ -150,14 +148,12 @@ var velocidade = 0;
 		
 	var latlon = position.coords.latitude + "," + position.coords.longitude;
 	
-	//var latidude_x = position.coords.latitude*Math.PI/180;
-	//var longitude_x = position.coords.longitude*Math.PI/180;
 	
 	if (lat_anterior == 0)
 		{
 		lat_anterior = position.coords.latitude*Math.PI/180;
 		lon_anterior = position.coords.longitude*Math.PI/180;
-		tempo_anterior = Math.round(tempo.getTime()/1000)-3;
+		tempo_anterior = Math.round(tempo.getTime()/1000)-1;
 		}
 	
 	
@@ -171,6 +167,7 @@ var velocidade = 0;
 		}
 		else { velocidade = distancia * 3.6 / (Math.round(tempo.getTime()/1000) - tempo_anterior); }
 	
+	if (isNaN(velocidade)) { velocidade = velocidade_media;}
 	
 	if (velocidade > (velocidade_media + 30))
 		{
