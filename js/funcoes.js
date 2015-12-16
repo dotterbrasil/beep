@@ -970,7 +970,7 @@ function onBatteryStatus(info) {
 	function iswalking(){ 
 	//	document.getElementById("status").innerHTML = "";
 		//navigator.geolocation.clearWatch(watchID);
-		//clearInterval(watchID);
+		clearInterval(watchID);
 		loop = 0;	
 		contador = 0;
 		soma_eixo = 0;
@@ -1049,7 +1049,7 @@ function onBatteryStatus(info) {
 				onError();
 				//return true;
 				}
-			//else {speed_monitor();}
+			else {speed_monitor();}
 			//	document.getElementById("status").innerHTML += "<br><h2>Is not Walking</h2>"; 
 			
 			
