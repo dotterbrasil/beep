@@ -9,13 +9,14 @@ var tempo_anterior = 0;
 var velocidade_media = 0;
 
 
+
 function onDeviceReady() {
 		//window.plugins.backgroundjs.lockBackgroundTime();
 		//onboard = false;
 		//speedup_monitor();
 		bluetoothle.initialize(initializeSuccess, initializeError, {request: false, statusReceiver: true});
 		
-		monitora_bateria();
+		//monitora_bateria();
 			
 		//cordova.plugins.notification.local.hasPermission(function (granted) { 
         //          if(granted == true)
@@ -45,7 +46,7 @@ notification_id = 1;
 
 window.plugins.backgroundjs.lockBackgroundTime();
 
-
+monitora_bateria();
 		//onboard = false;
 		
 		cordova.plugins.notification.local.clearAll();
@@ -145,6 +146,7 @@ function teste(position){
 var element = document.getElementById('status');
 var tempo = new Date();	
 var velocidade = 0;
+
 		
 	var latlon = position.coords.latitude + "," + position.coords.longitude;
 	
@@ -169,9 +171,11 @@ var velocidade = 0;
 	
 	if (isNaN(velocidade)) { velocidade = velocidade_media;}
 	
+		
+	
 	if (velocidade > (velocidade_media + 30))
 		{
-			velocidade_media = Math.round((velocidade_media + velocidade_media + 15)/2);
+			velocidade_media = velocidade_media;
 		}
 		else{	velocidade_media = Math.round((velocidade_media + velocidade)/2); }
 	
@@ -179,7 +183,7 @@ var velocidade = 0;
 		
 	//element.innerHTML = 'Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coordenadas: ' + latlon + '<br>';
 	
-		element.innerHTML = element.innerHTML + 'Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coord: ' + latlon + '<br>';
+		element.innerHTML = 'Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coord: ' + latlon + '<br>';
 	
 	
 	
@@ -902,7 +906,7 @@ window.addEventListener("batterystatus", onBatteryStatus, false);
 
 function onBatteryStatus(info) {
 	
-		document.getElementById('status').innerHTML = "Level: " + info.level + " isPlugged: " + info.isPlugged;
+		//document.getElementById('status').innerHTML = "Level: " + info.level + " isPlugged: " + info.isPlugged;
 		
 		plugado = info.isPlugged;
 		
@@ -916,8 +920,8 @@ function onBatteryStatus(info) {
 				onboard = false;setTimeout(localizacao,5000);
 				}
 				else{
-					document.location.href = "checkin.html";
-					//onboard = true;check_in();navigator.geolocation.clearWatch(watchIN);speed_monitor();monitora_bateria();
+					//document.location.href = "checkin.html";
+					onboard = true;check_in();
 					}
 			}
 			else{
