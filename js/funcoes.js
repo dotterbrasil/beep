@@ -970,7 +970,7 @@ function onBatteryStatus(info) {
 	function iswalking(){ 
 	//	document.getElementById("status").innerHTML = "";
 		//navigator.geolocation.clearWatch(watchID);
-		clearInterval(watchID);
+		//clearInterval(watchID);
 		loop = 0;	
 		contador = 0;
 		soma_eixo = 0;
@@ -1042,14 +1042,14 @@ function onBatteryStatus(info) {
 			//document.getElementById("status").innerHTML += "<br><h2>Result</h2><br>Frequência "+ frequencia; 	
 		
 		
-			if(frequencia > '1.2' && frequencia < '4.4')
+			if(frequencia > '1.0' && frequencia < '4.4')
 				{
 			//	document.getElementById("status").innerHTML += "<br><h2>Is Walking</h2>"; 	
 			//	notificacao_local('VELOCIDADE','Motorista esta andando a pe.', 2);
 				onError();
 				//return true;
 				}
-			else {speed_monitor();}
+			//else {speed_monitor();}
 			//	document.getElementById("status").innerHTML += "<br><h2>Is not Walking</h2>"; 
 			
 			
