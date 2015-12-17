@@ -897,8 +897,8 @@ document.getElementById("principal").innerHTML = "";
 
 function initializeSuccess(){
 
-//alert("BLE on");
-notificacao_local('VELOCIDADE','BLE on', 2);
+alert("BLE on");
+notificacao_local('VELOCIDADE','BLE on', 1);
 }
 
 function initializeError(){
