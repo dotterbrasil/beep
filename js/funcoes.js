@@ -937,7 +937,7 @@ window.addEventListener("batterystatus", onBatteryStatus, false);
 
 function onBatteryStatus(info) {
 	
-		//document.getElementById('status').innerHTML = "Level: " + info.level + " isPlugged: " + info.isPlugged;
+		document.getElementById('status').innerHTML = "Level: " + info.level + " isPlugged: " + info.isPlugged;
 		
 		plugado = info.isPlugged;
 		
@@ -945,7 +945,7 @@ function onBatteryStatus(info) {
 			{
 			if (plugado == false)
 				{
-				notificacao_local('ALERTA','Crianca presente no carro.', 1);
+				notificacao_local('ALERTA','Crianca presente no carro. Bateria.', 1);
 				//document.location.href = "desativar.html";
 				//onboard = false;setTimeout(localizacao,5000);speedup_monitor();monitora_bateria();
 				onboard = false;setTimeout(localizacao,5000);
