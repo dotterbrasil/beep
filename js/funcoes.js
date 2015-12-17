@@ -20,7 +20,7 @@ function onDeviceReady() {
 		bluetoothle.initialize(initializeSuccess, initializeError, {request: false, statusReceiver: true});
 		
 		
-		alert('pronto');
+		
 		//monitora_bateria();
 			
 		//cordova.plugins.notification.local.hasPermission(function (granted) { 
@@ -37,7 +37,7 @@ function onDeviceReady() {
 
 
 function inicializacao(){
-
+bluetoothle.initialize(initializeSuccess, initializeError, {request: false, statusReceiver: true});
 	document.addEventListener("deviceready", onDeviceReady, false);
 }
 
