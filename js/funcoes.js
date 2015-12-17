@@ -15,6 +15,8 @@ function onDeviceReady() {
 		//window.plugins.backgroundjs.lockBackgroundTime();
 		//onboard = false;
 		//speedup_monitor();
+		alert('pronto');
+		
 		bluetoothle.initialize(initializeSuccess, initializeError, {request: false, statusReceiver: true});
 		
 		//monitora_bateria();
