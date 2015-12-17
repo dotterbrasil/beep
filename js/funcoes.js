@@ -15,10 +15,12 @@ function onDeviceReady() {
 		//window.plugins.backgroundjs.lockBackgroundTime();
 		//onboard = false;
 		//speedup_monitor();
-		alert('pronto');
+		alert('quase');
 		
 		bluetoothle.initialize(initializeSuccess, initializeError, {request: false, statusReceiver: true});
 		
+		
+		alert('pronto');
 		//monitora_bateria();
 			
 		//cordova.plugins.notification.local.hasPermission(function (granted) { 
