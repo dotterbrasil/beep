@@ -209,7 +209,7 @@ var soma = 0;
 	
 		//element.innerHTML = 'Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coord: ' + latlon + '<br>';
 	
-	element.innerHTML = element.innerHTML + leitura +  ' - Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coords: ' + latlon + ' - ' + Math.round(tempo.getTime()/1000) + '<br>';
+	element.innerHTML = element.innerHTML + 'Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coords: ' + latlon + ' - ' + Math.round(tempo.getTime()/1000) + '<br>';
 	
 	
 	lat_anterior = position.coords.latitude*Math.PI/180;
