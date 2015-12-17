@@ -1051,7 +1051,7 @@ function onBatteryStatus(info) {
 			//document.getElementById("status").innerHTML += "<br><h2>Result</h2><br>Frequência "+ frequencia; 	
 		
 		
-			if(frequencia > '1.0' && frequencia < '4.4')
+			if(frequencia > '1.2' && frequencia < '3.4')
 				{
 			//	document.getElementById("status").innerHTML += "<br><h2>Is Walking</h2>"; 	
 			//	notificacao_local('VELOCIDADE','Motorista esta andando a pe.', 2);
