@@ -15,8 +15,7 @@ function onDeviceReady() {
 		//window.plugins.backgroundjs.lockBackgroundTime();
 		//onboard = false;
 		//speedup_monitor();
-		alert('quase');
-		
+				
 		bluetoothle.initialize(initializeSuccess, initializeError, {request: false, statusReceiver: true});
 		
 		
@@ -31,13 +30,19 @@ function onDeviceReady() {
          //      }); 
 		 //cordova.plugins.notification.local.clearAll();
 		 //navigator.geolocation.clearWatch(watchID);
-		 			
-	
+		
+		onboard = false;
+plugado = "false";
+notification_id = 1;
+	window.plugins.backgroundjs.lockBackgroundTime();
+cordova.plugins.notification.local.clearAll();
+monitora_bateria();
+speed_monitor();
 }
 
 
 function inicializacao(){
-bluetoothle.initialize(initializeSuccess, initializeError, {request: false, statusReceiver: true});
+
 	document.addEventListener("deviceready", onDeviceReady, false);
 }
 
