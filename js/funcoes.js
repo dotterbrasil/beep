@@ -8,7 +8,7 @@ var lon_anterior = 0;
 var tempo_anterior = 0;
 var velocidade_media = 0;
 var speed_matrix = [0, 0, 0, 0, 0];
-
+var leitura = 0;
 
 
 function onDeviceReady() {
@@ -211,6 +211,8 @@ var soma = 0;
 	
 	element.innerHTML = element.innerHTML + 'Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coords: ' + latlon + ' - ' + Math.round(tempo.getTime()/1000) + '<br>';
 	
+	leitura++;
+	if (leitura > 10) {element.innerHTML = 'Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coord: ' + latlon + '<br>';}
 	
 	lat_anterior = position.coords.latitude*Math.PI/180;
 	lon_anterior = position.coords.longitude*Math.PI/180;
