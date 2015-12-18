@@ -214,7 +214,11 @@ var soma = 0;
 	element.innerHTML = element.innerHTML + 'Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coords: ' + latlon + ' - ' + Math.round(tempo.getTime()/1000) + '<br>';
 	
 	leitura++;
-	if (leitura > 10) {element.innerHTML = 'Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coord: ' + latlon + '<br>';}
+	if (leitura > 10)
+		{
+			element.innerHTML = 'Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coord: ' + latlon + '<br>';
+			leitura = 0;
+		}
 	
 	lat_anterior = position.coords.latitude*Math.PI/180;
 	lon_anterior = position.coords.longitude*Math.PI/180;
