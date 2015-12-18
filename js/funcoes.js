@@ -227,7 +227,7 @@ var soma = 0;
 	
 	
 	
-	if (velocidade_media < 5)
+	if (velocidade_media < 0)//5
 		{
 		if (plugado == "false")
 			{
@@ -240,7 +240,7 @@ var soma = 0;
 			}
 		}
 
-	if(velocidade_media > 20)
+	if(velocidade_media > 1)//20
 		{
 		if (plugado == "true")
 			{
