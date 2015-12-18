@@ -39,7 +39,7 @@ notification_id = 1;
 	
 	alert('Habilitado: ' + cordova.plugins.backgroundMode.isEnabled());
 	
-	cordova.plugins.backgroundMode.onactivate = function() {notificacao_local('Background','Ativado.', 1);};
+	cordova.plugins.backgroundMode.onactivate = function() {notificacao_local('Background','Ativado.', 1); var teste = setInterval(notificacao_local('Background','Ativado.', 1),2000);};
 	
 cordova.plugins.notification.local.clearAll();
 monitora_bateria();
