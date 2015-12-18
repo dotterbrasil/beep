@@ -39,7 +39,7 @@ notification_id = 1;
 	
 	alert('Habilitado: ' + cordova.plugins.backgroundMode.isEnabled());
 	
-	cordova.plugins.backgroundMode.onactivate = function() {notificacao_local('Background','Ativado.', 1); var teste = setInterval(notificacao_local('Background','Ativado.', 1),2000);};
+	cordova.plugins.backgroundMode.onactivate = function() {notificacao_local('Background','Ativado.', 1);};
 	
 cordova.plugins.notification.local.clearAll();
 monitora_bateria();
@@ -272,7 +272,7 @@ function onSuccess(position) {
 	var latlon = position.coords.latitude + "," + position.coords.longitude;
 	
 	 element.innerHTML = 'Velocidade: ' + Math.round(position.coords.speed*3.6)     + ' km/h <br />' +  '<hr />' + 'Coords: ' + latlon + '<br>';
-	
+	notificacao_local('Background',Math.round(position.coords.speed*3.6), 1)
 	
 	if (position.coords.speed < 2)
 		{
