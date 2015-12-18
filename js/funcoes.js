@@ -152,8 +152,8 @@ function speed_monitor(){
 //
 //watchID = navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 300000 });
 
-//watchID = navigator.geolocation.watchPosition(onSuccess, onError, { enableHighAccuracy: true });
-watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(teste)}, 1000);
+watchID = navigator.geolocation.watchPosition(onSuccess, onError, { enableHighAccuracy: true });
+//watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(teste)}, 1000);
 
 }
 
@@ -257,53 +257,7 @@ var soma = 0;
 
 }
 
-function speedup_monitor(){
 
-// Options: throw an error if no update is received every 30 seconds.
-//
-//watchIN = navigator.geolocation.watchPosition(onSuccessIN, onError, { frequency: 1000 });
-
-//watchIN = navigator.geolocation.watchPosition(onSuccessIN,onError, { enableHighAccuracy: true });
-
-watchIN = navigator.geolocation.watchPosition(onSuccessIN,onError, { maximumAge:5000 });
-
-}
-
-function onSuccessIN(position) {
-    var element = document.getElementById('status');
-	
-	var qtde_in = conta_in();
-	
-	var latlon = position.coords.latitude + "," + position.coords.longitude;
-	
-	
-	
-    element.innerHTML = 'Velocidade: ' + Math.round(position.coords.speed*3.6)     + ' km/h <br />' +  '<hr />' + 'Coordenadas: ' + latlon;
-	
-	
-	//window.plugins.backgroundjs.lockBackgroundTime();
-	
-	if(position.coords.speed > 5)
-		{
-		if (plugado == "true")
-			{
-			
-			notificacao_local('VELOCIDADE','Checkin Efetuado. Conectado.', 2);
-			document.location.href="checkin.html";
-			//onboard = true;check_in();navigator.geolocation.clearWatch(watchIN);speed_monitor();monitora_bateria();
-			
-			}
-			else
-				{
-				playsound();
-				//element.innerHTML = "<b> Conecte o Carregador </b>";
-				notificacao_local('VELOCIDADE','Checkin Efetuado. Conecte o carregador.', 2);
-				document.location.href = "checkin.html";
-				//onboard = true;check_in();navigator.geolocation.clearWatch(watchIN);speed_monitor();monitora_bateria();
-				}
-		}
-	
-}
 
 
 // onSuccess Callback
@@ -317,17 +271,14 @@ function onSuccess(position) {
 	
 	var latlon = position.coords.latitude + "," + position.coords.longitude;
 	
-	 element.innerHTML = element.innerHTML + leitura +  ' - Velocidade: ' + Math.round(position.coords.speed*3.6)     + ' km/h <br />' +  '<hr />' + 'Coords: ' + latlon + '<br>';
+	 element.innerHTML = 'Velocidade: ' + Math.round(position.coords.speed*3.6)     + ' km/h <br />' +  '<hr />' + 'Coords: ' + latlon + '<br>';
 	
-leitura = leitura + 1;    
 	
-	//window.plugins.backgroundjs.lockBackgroundTime();
-	
-	if (position.coords.speed > 10)
+	if (position.coords.speed < 2)
 		{
 		if (plugado == "false")
 			{
-			element.innerHTML += 'Avaliando saida do carro.';
+			element.innerHTML = 'Avaliando saida do carro.';
 			notificacao_local('VELOCIDADE','Avaliando saida do carro.', 2);
 			iswalking();
 			}
@@ -335,7 +286,7 @@ leitura = leitura + 1;
 		//else{
 		//	if (position.coords.speed > 5) {clearTimeout(temporizador);} //cancela checkout forcado se velocidade subir
 		//	}
-	if(position.coords.speed > 3)
+	if(position.coords.speed > 5)
 		{
 		if (plugado == "true")
 			{
@@ -347,7 +298,7 @@ leitura = leitura + 1;
 			}
 			else
 				{
-				playsound();
+				//playsound();
 				//element.innerHTML = "<b> Conecte o Carregador </b>";
 				notificacao_local('VELOCIDADE','Checkin Efetuado. Conecte o carregador.', 2);
 				onboard = true;check_in();
@@ -369,9 +320,9 @@ function onError(error) {
 		//document.location.href = "desativar.html";
 		onboard = false;setTimeout(localizacao,5000);
 		}
-		else{ speed_monitor(); 
+		//else{ speed_monitor(); 
 		//	document.location.href = "index.html"; 
-			}
+		//	}
 
     //alert('code: '    + error.code    + '\n' + 'message: ' + error.message + '\n');
 }
