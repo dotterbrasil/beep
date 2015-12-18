@@ -34,7 +34,9 @@ function onDeviceReady() {
 		onboard = false;
 plugado = "false";
 notification_id = 1;
-	window.plugins.backgroundjs.lockBackgroundTime();
+	//window.plugins.backgroundjs.lockBackgroundTime();
+	window.plugin.backgroundMode.enable();
+	
 cordova.plugins.notification.local.clearAll();
 monitora_bateria();
 speed_monitor();
