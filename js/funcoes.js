@@ -35,7 +35,11 @@ function onDeviceReady() {
 plugado = "false";
 notification_id = 1;
 	//window.plugins.backgroundjs.lockBackgroundTime();
-	window.plugin.backgroundMode.enable();
+	cordova.plugins.backgroundMode.enable();
+	
+	alert('Habilitado: ' = cordova.plugins.backgroundMode.isEnabled());
+	
+	cordova.plugins.backgroundMode.onactivate = function() {notificacao_local('Background','Ativado.', 1);};
 	
 cordova.plugins.notification.local.clearAll();
 monitora_bateria();
