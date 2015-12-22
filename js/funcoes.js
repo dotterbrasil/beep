@@ -157,7 +157,7 @@ watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(teste)
 
 }
 
-function teste(position){
+function teste_old(position){
 
 var element = document.getElementById('status');
 var tempo = new Date();	
@@ -257,6 +257,98 @@ var soma = 0;
 
 }
 
+function teste(position){
+
+var element = document.getElementById('status');
+var tempo = new Date();	
+var velocidade = 0;
+var soma = 0;
+
+		
+	var latlon = position.coords.latitude + "," + position.coords.longitude;
+	
+	
+	if (lat_anterior == 0)
+		{
+		lat_anterior = position.coords.latitude*Math.PI/180;
+		lon_anterior = position.coords.longitude*Math.PI/180;
+		tempo_anterior = Math.round(tempo.getTime()/1000)-1;
+		}
+	
+	
+	var distancia = 6371795.477598 * Math.acos(Math.sin(lat_anterior) * Math.sin(position.coords.latitude*Math.PI/180) + Math.cos(lat_anterior) * Math.cos(position.coords.latitude*Math.PI/180) * Math.cos(lon_anterior - position.coords.longitude*Math.PI/180));
+	
+	//var distancia = 6371 * Math.acos(Math.sin(lat_anterior) * Math.sin(latitude_x) + Math.cos(lat_anterior) * Math.cos(latitude_x) * Math.cos(lon_anterior - longitude_x));
+	
+	if (Math.round(tempo.getTime()/1000) == tempo_anterior)
+		{
+		velocidade = distancia * 3.6 / (Math.round(tempo.getTime()/1000) + 1 - tempo_anterior);
+		}
+		else { velocidade = distancia * 3.6 / (Math.round(tempo.getTime()/1000) - tempo_anterior); }
+	
+	if (isNaN(velocidade)) { velocidade = velocidade_media;}
+	
+	if (velocidade < (velocidade_media + 30))
+		{
+			speed_matrix[0] = velocidade;
+	
+			if ((speed_matrix[1]>speed_matrix[0])&&(speed_matrix[1]>speed_matrix[2]))
+					{
+					speed_matrix[1] = (speed_matrix[0] + speed_matrix[2]) / 2;
+					}
+	
+			for (var varredura = 0; varredura <5; varredura++)
+				{
+				soma = soma + speed_matrix[varredura];
+				}
+	
+			velocidade_media = Math.round(soma / 5);
+	
+	
+			element.innerHTML = 'Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coord: ' + latlon + '<br>';
+	
+	
+			lat_anterior = position.coords.latitude*Math.PI/180;
+			lon_anterior = position.coords.longitude*Math.PI/180;
+			tempo_anterior = Math.round(tempo.getTime()/1000);
+	
+			speed_matrix[4] = speed_matrix[3];
+			speed_matrix[3] = speed_matrix[2];
+			speed_matrix[2] = speed_matrix[1];
+			speed_matrix[1] = speed_matrix[0];
+		}
+		
+		
+	
+	if (velocidade_media < 5)
+		{
+		if (plugado == "false")
+			{
+			if (onboard == true)
+				{
+				element.innerHTML = 'Avaliando saida do carro.';
+				//notificacao_local('VELOCIDADE','Avaliando saida do carro.', 1);
+				iswalking();
+				}
+			}
+		}
+
+	if(velocidade_media > 20)
+		{
+		if (plugado == "true")
+			{
+			if (onboard == false) {	element.innerHTML = 'Checkin Efetuado. Conectado.'; }
+			}
+			else
+				{
+				if (onboard == false) 
+					{ notificacao_local('VELOCIDADE','Checkin Efetuado. Conecte o carregador.', 1);	}
+				}
+		onboard = true;
+		check_in();		
+		}
+
+}
 
 
 
