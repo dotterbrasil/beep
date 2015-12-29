@@ -153,7 +153,7 @@ function speed_monitor(){
 //watchID = navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 300000 });
 
 //watchID = navigator.geolocation.watchPosition(onSuccess, onError, { enableHighAccuracy: true });
-watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(teste)}, 1000);
+watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(teste, showError);}, 1000);
 
 }
 
@@ -288,6 +288,8 @@ var soma = 0;
 	
 	if (isNaN(velocidade)) { velocidade = velocidade_media;}
 	
+	if (velocidade < 0) { velocidade = 0;}
+	
 	if (velocidade < (velocidade_media + 30))
 		{
 			speed_matrix[0] = velocidade;
@@ -351,6 +353,12 @@ var soma = 0;
 }
 
 
+function showError(){
+
+    var element = document.getElementById('status');
+notificacao_local('ERRO','Erro ao obter coordenadas.', 1);
+
+}
 
 // onSuccess Callback
 //   This method accepts a `Position` object, which contains
