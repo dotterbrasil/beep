@@ -58,14 +58,7 @@
     <icon src="icon.png" />
     <gap:splash src="logo.png" />
 	
-	 <gap:config-file platform="ios" parent="UIBackgroundModes" overwrite="true">
- <array>
- <string>audio</string>
- <string>location</string>
- </array>
- </gap:config-file> 
-	
-	
+	 
 
 
 </widget>
