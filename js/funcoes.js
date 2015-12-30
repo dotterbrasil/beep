@@ -153,7 +153,7 @@ function speed_monitor(){
 //watchID = navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 300000 });
 
 //watchID = navigator.geolocation.watchPosition(onSuccess, onError, { enableHighAccuracy: true });
-watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(teste, showError);}, 1000);
+watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(teste, showError);}, 3000);
 
 }
 
@@ -290,8 +290,8 @@ var soma = 0;
 	
 	if (velocidade < 0) { velocidade = 0;}
 	
-	if (velocidade < (velocidade_media + 30))
-		{
+	//if (velocidade < (velocidade_media + 30))
+	//	{
 			speed_matrix[0] = velocidade;
 	
 			if ((speed_matrix[1]>speed_matrix[0])&&(speed_matrix[1]>speed_matrix[2]))
@@ -308,7 +308,7 @@ var soma = 0;
 	
 	
 			element.innerHTML = 'Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coord: ' + latlon + '<br>';
-	
+	notificacao_local('VELOCIDADE',velocidade_media, 1);
 	
 			lat_anterior = position.coords.latitude*Math.PI/180;
 			lon_anterior = position.coords.longitude*Math.PI/180;
@@ -318,11 +318,11 @@ var soma = 0;
 			speed_matrix[3] = speed_matrix[2];
 			speed_matrix[2] = speed_matrix[1];
 			speed_matrix[1] = speed_matrix[0];
-		}
+	//	}
 		
 		
 	
-	if (velocidade_media < 5)
+	if (velocidade_media < 2)
 		{
 		if (plugado == "false")
 			{
@@ -353,7 +353,7 @@ var soma = 0;
 }
 
 
-function showError(){
+function showError(error){
 
     var element = document.getElementById('status');
 notificacao_local('ERRO','Erro ao obter coordenadas.', 1);
