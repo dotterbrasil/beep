@@ -32,8 +32,7 @@
     <gap:plugin name="hu.dpal.phonegap.plugins.contactnumberpicker" version="0.1.1" />
 
     <gap:plugin name="org.apache.cordova.geolocation" />
-	<gap:plugin name="org.transistorsoft.cordova.background-geolocation" />
-
+	<plugin name="org.transistorsoft.cordova.background-geolocation" spec="0.1.0" source="pgb" />
 	
 	<gap:plugin name="org.apache.cordova.battery-status" />
 	
