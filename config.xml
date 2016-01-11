@@ -40,11 +40,9 @@
 	
 	<plugin name="cordova-plugin-bluetoothle" source="npm" />
 	
-	<plugin name="de.appplant.cordova.plugin.local-notification" spec="0.7.8"/>
+	<plugin name="de.appplant.cordova.plugin.local-notification">
 	
-	<plugin name="cordova-plugin-app-event"/>
-
-	<plugin name="de.appplant.cordova.common.registerusernotificationsettings" spec="1.0.1" source="pgb"/>
+	<plugin name="de.appplant.cordova.common.registerusernotificationsettings" source="pgb"/>
 	
 	<plugin name="cordova-plugin-device-motion" spec="1.1.1" source="pgb" />
 			
