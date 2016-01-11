@@ -31,8 +31,8 @@
 
     <gap:plugin name="hu.dpal.phonegap.plugins.contactnumberpicker" version="0.1.1" />
 
-    <gap:plugin name="org.apache.cordova.geolocation" />
-	
+    
+	<plugin name="org.transistorsoft.cordova.background-geolocation" spec="0.1.0" source="pgb" />
 	
 	<gap:plugin name="org.apache.cordova.battery-status" />
 	
@@ -42,11 +42,11 @@
 	
 	<plugin name="cordova-plugin-bluetoothle" source="npm" />
 	
-	<plugin name="de.appplant.cordova.plugin.local-notification"/>
+	<plugin name="de.appplant.cordova.plugin.local-notification" spec="0.7.8"/>
 
 	<plugin name="de.appplant.cordova.common.registerusernotificationsettings" source="pgb" />
 	
-	
+	<plugin name="cordova-plugin-device-motion" spec="1.1.1" source="pgb" />
 			
 	<preference name="phonegap-version" value="cli-5.2.0" />
     <preference name="orientation"      value="portrait" />
