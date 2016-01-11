@@ -153,6 +153,9 @@ function speed_monitor(){
 //watchID = navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 300000 });
 
 
+//watchID = navigator.geolocation.watchPosition(onSuccess, onError, { enableHighAccuracy: true });
+watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(teste, showError);}, 3000);
+
 var bgGeo = window.plugins.backgroundGeoLocation;
  
 var callbackFn = function(location){
@@ -171,11 +174,6 @@ bgGeo.configure(callbackFn, failureFn, {
 });
 
 bgGeo.start();
-
-
-
-//watchID = navigator.geolocation.watchPosition(onSuccess, onError, { enableHighAccuracy: true });
-watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(teste_background, showError);}, 3000);
 
 }
 
