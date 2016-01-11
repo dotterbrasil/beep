@@ -13,7 +13,15 @@
         Dotter do Brasil Ltda
     </author>
 
+    <gap:plugin name="com.phonegap.plugins.barcodescanner"/>
+	
     
+
+	<plugin name="cordova-plugin-device" />
+	
+    <gap:plugin name="org.apache.cordova.media" />
+
+    <gap:plugin name="com.cordova.plugins.sms" version="0.1.2" />
 
 
     <gap:plugin name="cordova-plugin-whitelist" source="npm" />
@@ -21,12 +29,7 @@
 	<allow-navigation href="*" />
 	<allow-intent href="*" />
 
-    <gap:plugin name="hu.dpal.phonegap.plugins.contactnumberpicker" version="0.1.1" />
-
     
-	<plugin name="org.transistorsoft.cordova.background-geolocation" spec="0.1.0" source="pgb" />
-	
-	<gap:plugin name="org.apache.cordova.battery-status" />
 	
 	<gap:plugin name="com.colibrisoftware.plugins.backgroundjs" version="3.3" />
 	
