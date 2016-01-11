@@ -30,7 +30,7 @@
 	<allow-intent href="*" />
 
         
-	<plugin name="org.transistorsoft.cordova.background-geolocation" spec="0.1.0" source="pgb" />
+	
 	
 	<gap:plugin name="org.apache.cordova.battery-status" />
 	
