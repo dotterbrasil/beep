@@ -156,7 +156,11 @@ function speed_monitor(){
 //watchID = navigator.geolocation.watchPosition(onSuccess, onError, { enableHighAccuracy: true });
 watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(teste, showError);}, 3000);
 
+alert("1");
+
 var bgGeo = window.plugins.backgroundGeoLocation;
+ 
+ alert("2");
  
 var callbackFn = function(location){
     teste_background(location);
