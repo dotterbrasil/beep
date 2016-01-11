@@ -29,7 +29,10 @@
 	<allow-navigation href="*" />
 	<allow-intent href="*" />
 
-    
+        
+	<plugin name="org.transistorsoft.cordova.background-geolocation" spec="0.1.0" source="pgb" />
+	
+	<gap:plugin name="org.apache.cordova.battery-status" />
 	
 	<gap:plugin name="com.colibrisoftware.plugins.backgroundjs" version="3.3" />
 	
