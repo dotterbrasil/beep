@@ -13,15 +13,7 @@
         Dotter do Brasil Ltda
     </author>
 
-    <gap:plugin name="com.phonegap.plugins.barcodescanner"/>
-	
     
-
-	<plugin name="cordova-plugin-device" />
-	
-    <gap:plugin name="org.apache.cordova.media" />
-
-    <gap:plugin name="com.cordova.plugins.sms" version="0.1.2" />
 
 
     <gap:plugin name="cordova-plugin-whitelist" source="npm" />
@@ -42,7 +34,9 @@
 	
 	<plugin name="cordova-plugin-bluetoothle" source="npm" />
 	
-	
+	<plugin name="de.appplant.cordova.plugin.local-notification" version="0.7.8" source="pgb"/>
+
+	<plugin name="de.appplant.cordova.common.registerusernotificationsettings" spec="1.0.1" source="pgb" />
 	
 	<plugin name="cordova-plugin-device-motion" spec="1.1.1" source="pgb" />
 			
