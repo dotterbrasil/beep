@@ -31,8 +31,8 @@
 
     <gap:plugin name="hu.dpal.phonegap.plugins.contactnumberpicker" version="0.1.1" />
 
-    
-	<plugin name="org.transistorsoft.cordova.background-geolocation" source="pgb" />
+    <gap:plugin name="org.apache.cordova.geolocation" />
+	
 	
 	<gap:plugin name="org.apache.cordova.battery-status" />
 	
@@ -46,7 +46,7 @@
 
 	<plugin name="de.appplant.cordova.common.registerusernotificationsettings" source="pgb" />
 	
-	<plugin name="cordova-plugin-device-motion"/>
+	<plugin name="cordova-plugin-device-motion" />
 			
 	<preference name="phonegap-version" value="cli-5.2.0" />
     <preference name="orientation"      value="portrait" />
