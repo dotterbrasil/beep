@@ -152,12 +152,34 @@ function speed_monitor(){
 //
 //watchID = navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 300000 });
 
+
+var bgGeo = navigator.plugins.backgroundGeoLocation;
+ 
+var callbackFn = function(location){
+    teste_background(location);
+};
+ 
+var failureFn = function(error){
+    alert('Geolocation Error');
+};
+ 
+bgGeo.configure(callbackFn, failureFn, {
+    desiredAccuracy: 10,
+    stationaryRadius: 10,
+    distanceFilter: 30,
+    debug: true
+});
+
+bgGeo.start();
+
+
+
 //watchID = navigator.geolocation.watchPosition(onSuccess, onError, { enableHighAccuracy: true });
-watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(teste, showError);}, 3000);
+watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(teste_background, showError);}, 3000);
 
 }
 
-function teste_old(position){
+function teste_background(position){
 
 var element = document.getElementById('status');
 var tempo = new Date();	
@@ -165,20 +187,19 @@ var velocidade = 0;
 var soma = 0;
 
 		
-	var latlon = position.coords.latitude + "," + position.coords.longitude;
+	var latlon = location.latitude + "," + location.longitude;
 	
 	
 	if (lat_anterior == 0)
 		{
-		lat_anterior = position.coords.latitude*Math.PI/180;
-		lon_anterior = position.coords.longitude*Math.PI/180;
+		lat_anterior = location.latitude*Math.PI/180;
+		lon_anterior = location.longitude*Math.PI/180;
 		tempo_anterior = Math.round(tempo.getTime()/1000)-1;
 		}
 	
 	
-	var distancia = 6371795.477598 * Math.acos(Math.sin(lat_anterior) * Math.sin(position.coords.latitude*Math.PI/180) + Math.cos(lat_anterior) * Math.cos(position.coords.latitude*Math.PI/180) * Math.cos(lon_anterior - position.coords.longitude*Math.PI/180));
+	var distancia = 6371795.477598 * Math.acos(Math.sin(lat_anterior) * Math.sin(location.latitude*Math.PI/180) + Math.cos(lat_anterior) * Math.cos(location.latitude*Math.PI/180) * Math.cos(lon_anterior - location.longitude*Math.PI/180));
 	
-	//var distancia = 6371 * Math.acos(Math.sin(lat_anterior) * Math.sin(latitude_x) + Math.cos(lat_anterior) * Math.cos(latitude_x) * Math.cos(lon_anterior - longitude_x));
 	
 	if (Math.round(tempo.getTime()/1000) == tempo_anterior)
 		{
@@ -188,46 +209,41 @@ var soma = 0;
 	
 	if (isNaN(velocidade)) { velocidade = velocidade_media;}
 	
-	if (velocidade > (velocidade_media + 30))
-		{
-			velocidade = velocidade_media;
-		}
-		
-		
-	speed_matrix[0] = velocidade;
+	if (velocidade < 0) { velocidade = 0;}
 	
-	if ((speed_matrix[1]>speed_matrix[0])&&(speed_matrix[1]>speed_matrix[2]))
-				{
+	//if (velocidade < (velocidade_media + 30))
+	//	{
+			speed_matrix[0] = velocidade;
+	
+			if ((speed_matrix[1]>speed_matrix[0])&&(speed_matrix[1]>speed_matrix[2]))
+					{
 					speed_matrix[1] = (speed_matrix[0] + speed_matrix[2]) / 2;
+					}
+	
+			for (var varredura = 0; varredura <5; varredura++)
+				{
+				soma = soma + speed_matrix[varredura];
 				}
 	
-	for (var varredura = 0; varredura <5; varredura++)
-		{
-			soma = soma + speed_matrix[varredura];
-		}
-	
-	velocidade_media = Math.round(soma / 5);
+			velocidade_media = Math.round(soma / 5);
 	
 	
-	 //element.innerHTML = element.innerHTML + leitura +  ' - Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coords: ' + latlon + ' - ' + Math.round(tempo.getTime()/1000) + '<br>';
+			element.innerHTML = 'Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coord: ' + latlon + '<br>';
+	notificacao_local('VELOCIDADE',velocidade_media, 1);
+	
+			lat_anterior = position.coords.latitude*Math.PI/180;
+			lon_anterior = position.coords.longitude*Math.PI/180;
+			tempo_anterior = Math.round(tempo.getTime()/1000);
+	
+			speed_matrix[4] = speed_matrix[3];
+			speed_matrix[3] = speed_matrix[2];
+			speed_matrix[2] = speed_matrix[1];
+			speed_matrix[1] = speed_matrix[0];
+	//	}
 		
-	//element.innerHTML = 'Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coordenadas: ' + latlon + '<br>';
+		
 	
-		element.innerHTML = 'Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coord: ' + latlon + '<br>';
-	
-	
-	lat_anterior = position.coords.latitude*Math.PI/180;
-	lon_anterior = position.coords.longitude*Math.PI/180;
-	tempo_anterior = Math.round(tempo.getTime()/1000);
-	
-	speed_matrix[4] = speed_matrix[3];
-	speed_matrix[3] = speed_matrix[2];
-	speed_matrix[2] = speed_matrix[1];
-	speed_matrix[1] = speed_matrix[0];
-	
-	
-	
-	if (velocidade_media < 5)
+	if (velocidade_media < 2)
 		{
 		if (plugado == "false")
 			{
