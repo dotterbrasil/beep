@@ -42,7 +42,13 @@ notification_id = 1;
 	cordova.plugins.backgroundMode.onactivate = function() {notificacao_local('Background','Ativado.', 1);};
 	
 cordova.plugins.notification.local.clearAll();
+
+alert('notificacoes');
+
 monitora_bateria();
+
+alert('bateria');
+
 speed_monitor();
 }
 
