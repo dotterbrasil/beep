@@ -153,7 +153,7 @@ function speed_monitor(){
 //watchID = navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 300000 });
 
 
-var bgGeo = navigator.plugins.backgroundGeoLocation;
+var bgGeo = window.plugins.backgroundGeoLocation;
  
 var callbackFn = function(location){
     teste_background(location);
