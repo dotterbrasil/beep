@@ -40,7 +40,7 @@
 	
 	<plugin name="cordova-plugin-bluetoothle" source="npm" />
 	
-	<plugin name="de.appplant.cordova.plugin.local-notification" />
+	<plugin name="de.appplant.cordova.plugin.local-notification" spec="0.8.3"/>
 
 	<plugin name="de.appplant.cordova.common.registerusernotificationsettings" spec="1.0.1" source="pgb"/>
 	
