@@ -189,6 +189,8 @@ alert("3");
 
 bgGeo.start();
 
+alert("4");
+
 }
 
 function teste_background(position){
@@ -198,6 +200,7 @@ var tempo = new Date();
 var velocidade = 0;
 var soma = 0;
 
+alert("5");
 		
 	var latlon = location.latitude + "," + location.longitude;
 	
