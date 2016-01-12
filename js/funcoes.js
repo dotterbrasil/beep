@@ -288,7 +288,13 @@ alert("5");
 		check_in();		
 		}
 		
-		bgGeo.finish();
+		bgGeo.stop(finaliza, failureFn);
+
+}
+
+function finaliza(){
+
+alert('saiu do geolocation');
 
 }
 
