@@ -213,7 +213,7 @@ alert("5");
 		lon_anterior = location.longitude*Math.PI/180;
 		tempo_anterior = Math.round(tempo.getTime()/1000)-1;
 		}
-	
+	alert("?!?");
 	
 	var distancia = 6371795.477598 * Math.acos(Math.sin(lat_anterior) * Math.sin(location.latitude*Math.PI/180) + Math.cos(lat_anterior) * Math.cos(location.latitude*Math.PI/180) * Math.cos(lon_anterior - location.longitude*Math.PI/180));
 	
