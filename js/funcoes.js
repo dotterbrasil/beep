@@ -47,6 +47,8 @@ monitora_bateria();
 
 speed_monitor();
 
+geoback();
+
 }
 
 
@@ -161,7 +163,49 @@ watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(teste,
 
 }
 
+function geoback(){
 
+var bgGeo = window.plugins.backgroundGeoLocation;
+
+ var yourAjaxCallback = function(response) {
+        ////
+        // IMPORTANT:  You must execute the #finish method here to inform the native plugin that you're finished,
+        //  and the background-task may be completed.  You must do this regardless if your HTTP request is successful or not.
+        // IF YOU DON'T, ios will CRASH YOUR APP for spending too much time in the background.
+        //
+        //
+        bgGeo.finish();
+    };
+
+	var callbackFn = function(location) {
+	notificacao_local('VELOCIDADE',location.latitude, 1);
+        alert('[js] BackgroundGeoLocation callback:  ' + location.latitude + ',' + location.longitude);
+        // Do your HTTP request here to POST location to your server.
+        //
+        //
+        yourAjaxCallback.call(this);
+    };
+ 
+    var failureFn = function(error) {
+        console.log('BackgroundGeoLocation error');
+    }
+
+	// BackgroundGeoLocation is highly configurable.
+    bgGeo.configure(callbackFn, failureFn, {
+        desiredAccuracy: 10,
+        stationaryRadius: 20,
+        distanceFilter: 30,
+        activityType: 'AutomotiveNavigation',
+        debug: true, // <-- enable this hear sounds for background-geolocation life-cycle.
+        stopOnTerminate: false // <-- enable this to clear background location settings when the app terminates
+    });
+ 
+    // Turn ON the background-geolocation system.  The user will be tracked whenever they suspend the app.
+    bgGeo.start();
+
+
+
+}
 
 function teste_background(position){
 
