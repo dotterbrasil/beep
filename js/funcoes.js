@@ -178,11 +178,14 @@ var bgGeo = window.plugins.backgroundGeoLocation;
     };
 
 	var callbackFn = function(location, taskId) {
-	notificacao_local('VELOCIDADE',location.latitude, 1);
-        alert('[js] BackgroundGeoLocation callback:  ' + location.latitude + ',' + location.longitude);
+		//notificacao_local('VELOCIDADE',location.latitude, 1);
+        //alert('[js] BackgroundGeoLocation callback:  ' + location.latitude + ',' + location.longitude);
         // Do your HTTP request here to POST location to your server.
         //
         //
+		
+		navigator.geolocation.getCurrentPosition(teste_background, showError);
+		
         setTimeout(function() {
           bgGeo.finish(taskId); // <-- execute #finish when your work in callbackFn is complete
         }, 1000);
@@ -224,7 +227,7 @@ var soma = 0;
 		lon_anterior = location.longitude*Math.PI/180;
 		tempo_anterior = Math.round(tempo.getTime()/1000)-1;
 		}
-	alert("?!?");
+	
 	
 	var distancia = 6371795.477598 * Math.acos(Math.sin(lat_anterior) * Math.sin(location.latitude*Math.PI/180) + Math.cos(lat_anterior) * Math.cos(location.latitude*Math.PI/180) * Math.cos(lon_anterior - location.longitude*Math.PI/180));
 	
@@ -356,7 +359,7 @@ var soma = 0;
 	
 	
 			element.innerHTML = 'Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coord: ' + latlon + '<br>';
-	notificacao_local('VELOCIDADE',velocidade_media, 1);
+	//notificacao_local('VELOCIDADE',velocidade_media, 1);
 	
 			lat_anterior = position.coords.latitude*Math.PI/180;
 			lon_anterior = position.coords.longitude*Math.PI/180;
