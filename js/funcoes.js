@@ -201,6 +201,9 @@ var bgGeo = window.plugins.backgroundGeoLocation;
         activityType: 'AutomotiveNavigation'
     });
  
+ // Turn ON the background-geolocation system.  The user will be tracked whenever they suspend the app.
+    bgGeo.start();
+
     
 }
 
