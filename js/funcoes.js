@@ -177,17 +177,20 @@ var bgGeo = window.plugins.backgroundGeoLocation;
         bgGeo.finish();
     };
 
-	var callbackFn = function(location) {
+	var callbackFn = function(location, taskId) {
 	notificacao_local('VELOCIDADE',location.latitude, 1);
         alert('[js] BackgroundGeoLocation callback:  ' + location.latitude + ',' + location.longitude);
         // Do your HTTP request here to POST location to your server.
         //
         //
-        yourAjaxCallback.call(this);
+        setTimeout(function() {
+          bgGeo.finish(taskId); // <-- execute #finish when your work in callbackFn is complete
+        }, 1000);
+
     };
  
     var failureFn = function(error) {
-        console.log('BackgroundGeoLocation error');
+        alert('BackgroundGeoLocation error');
     }
 
 	// BackgroundGeoLocation is highly configurable.
@@ -195,9 +198,7 @@ var bgGeo = window.plugins.backgroundGeoLocation;
         desiredAccuracy: 10,
         stationaryRadius: 20,
         distanceFilter: 30,
-        activityType: 'AutomotiveNavigation',
-        debug: true, // <-- enable this hear sounds for background-geolocation life-cycle.
-        stopOnTerminate: false // <-- enable this to clear background location settings when the app terminates
+        activityType: 'AutomotiveNavigation'
     });
  
     
