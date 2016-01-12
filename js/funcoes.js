@@ -184,6 +184,8 @@ bgGeo.configure(callbackFn, failureFn, {
     debug: true
 });
 
+alert("3");
+
 bgGeo.start();
 
 }
