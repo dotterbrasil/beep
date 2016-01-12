@@ -40,7 +40,7 @@ notification_id = 1;
 	alert('Habilitado: ' + cordova.plugins.backgroundMode.isEnabled());
 	notificacao_local('Teste','Sim.', 1);
 	
-	cordova.plugins.backgroundMode.onactivate = function() {notificacao_local('Background','Ativado.', 1);};
+	cordova.plugins.backgroundMode.onactivate = function() {notificacao_local('Background','Ativado.', 1);bgGeo.start(callbackFn, failureFn);};
 	
 cordova.plugins.notification.local.clearAll();
 
@@ -163,8 +163,31 @@ function speed_monitor(){
 
 
 //watchID = navigator.geolocation.watchPosition(onSuccess, onError, { enableHighAccuracy: true });
-watchID = setInterval(function(){alert("la vai"); navigator.geolocation.getCurrentPosition(teste, showError);}, 3000);
+watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(teste, showError);}, 3000);
 
+alert("1");
+
+var bgGeo = window.plugins.backgroundGeoLocation;
+ 
+ alert("2");
+ 
+var callbackFn = function(location){
+    teste_background(location);
+	bgGeo.finish();
+};
+ 
+var failureFn = function(error){
+    alert('Geolocation Error');
+};
+ 
+bgGeo.configure(callbackFn, failureFn, {
+    desiredAccuracy: 10,
+    stationaryRadius: 10,
+    distanceFilter: 30,
+    debug: true
+});
+
+alert("3");
 
 
 }
