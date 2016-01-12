@@ -51,6 +51,8 @@ monitora_bateria();
 alert('bateria');
 
 speed_monitor();
+
+alert('speed');
 }
 
 
@@ -187,7 +189,7 @@ bgGeo.configure(callbackFn, failureFn, {
 
 alert("3");
 
-bgGeo.start();
+bgGeo.start(callbackFn, failureFn);
 
 alert("4");
 
