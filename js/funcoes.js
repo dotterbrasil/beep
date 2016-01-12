@@ -38,23 +38,15 @@ notification_id = 1;
 	cordova.plugins.backgroundMode.enable();
 	
 	alert('Habilitado: ' + cordova.plugins.backgroundMode.isEnabled());
-	notificacao_local('Teste','Sim.', 1);
-	
-	cordova.plugins.backgroundMode.onactivate = function() {notificacao_local('Background','Ativado.', 1);bgGeo.start(callbackFn, failureFn);};
+		
+	cordova.plugins.backgroundMode.onactivate = function() {notificacao_local('Background','Ativado.', 1);};
 	
 cordova.plugins.notification.local.clearAll();
 
-alert('notificacoes');
-
 monitora_bateria();
-
-alert('bateria');
 
 speed_monitor();
 
-alert('speed');
-
-geoback();
 }
 
 
@@ -169,33 +161,7 @@ watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(teste,
 
 }
 
-function geoback(){
 
-alert("1");
-
-var bgGeo = window.plugins.backgroundGeoLocation;
- 
- alert("2");
- 
-var callbackFn = function(location){
-    teste_background(location);
-	bgGeo.finish();
-};
- 
-var failureFn = function(error){
-    alert('Geolocation Error');
-};
- 
-bgGeo.configure(callbackFn, failureFn, {
-    desiredAccuracy: 10,
-    stationaryRadius: 10,
-    distanceFilter: 30,
-    debug: true
-});
-
-alert("3");
-
-}
 
 function teste_background(position){
 
@@ -204,7 +170,6 @@ var tempo = new Date();
 var velocidade = 0;
 var soma = 0;
 
-alert("5");
 		
 	var latlon = location.latitude + "," + location.longitude;
 	
@@ -294,11 +259,7 @@ alert("5");
 
 }
 
-function finaliza(){
 
-alert('saiu do geolocation');
-
-}
 
 function teste(position){
 
@@ -307,7 +268,6 @@ var tempo = new Date();
 var velocidade = 0;
 var soma = 0;
 
-alert("6");
 		
 	var latlon = position.coords.latitude + "," + position.coords.longitude;
 	
