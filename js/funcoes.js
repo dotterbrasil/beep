@@ -38,7 +38,7 @@ notification_id = 1;
 	cordova.plugins.backgroundMode.enable();
 	
 	alert('Habilitado: ' + cordova.plugins.backgroundMode.isEnabled());
-	
+	notificacao_local('Teste','Sim.', 1);
 	
 	cordova.plugins.backgroundMode.onactivate = function() {notificacao_local('Background','Ativado.', 1);};
 	
