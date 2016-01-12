@@ -39,8 +39,6 @@ notification_id = 1;
 	
 	alert('Habilitado: ' + cordova.plugins.backgroundMode.isEnabled());
 	
-	var myNotification = new Notification("Hello World");
-
 	
 	cordova.plugins.backgroundMode.onactivate = function() {notificacao_local('Background','Ativado.', 1);};
 	
