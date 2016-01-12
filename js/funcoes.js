@@ -200,11 +200,7 @@ var bgGeo = window.plugins.backgroundGeoLocation;
         stopOnTerminate: false // <-- enable this to clear background location settings when the app terminates
     });
  
-    // Turn ON the background-geolocation system.  The user will be tracked whenever they suspend the app.
-    bgGeo.start();
-
-
-
+    
 }
 
 function teste_background(position){
