@@ -171,7 +171,7 @@ var bgGeo = window.plugins.backgroundGeoLocation;
  
 var callbackFn = function(location){
     teste_background(location);
-	bgGeo.finish();
+	
 };
  
 var failureFn = function(error){
@@ -282,6 +282,8 @@ var soma = 0;
 		onboard = true;
 		check_in();		
 		}
+		
+		bgGeo.finish();
 
 }
 
