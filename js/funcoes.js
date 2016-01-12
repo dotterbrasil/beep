@@ -53,6 +53,8 @@ alert('bateria');
 speed_monitor();
 
 alert('speed');
+
+geoback();
 }
 
 
@@ -165,6 +167,10 @@ function speed_monitor(){
 //watchID = navigator.geolocation.watchPosition(onSuccess, onError, { enableHighAccuracy: true });
 watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(teste, showError);}, 3000);
 
+}
+
+function geoback(){
+
 alert("1");
 
 var bgGeo = window.plugins.backgroundGeoLocation;
@@ -188,7 +194,6 @@ bgGeo.configure(callbackFn, failureFn, {
 });
 
 alert("3");
-
 
 }
 
