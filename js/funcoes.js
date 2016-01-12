@@ -173,7 +173,7 @@ var bgGeo = window.plugins.backgroundGeoLocation;
  
 var callbackFn = function(location){
     teste_background(location);
-	
+	bgGeo.finish();
 };
  
 var failureFn = function(error){
