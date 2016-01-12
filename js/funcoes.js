@@ -161,7 +161,7 @@ function speed_monitor(){
 
 
 //watchID = navigator.geolocation.watchPosition(onSuccess, onError, { enableHighAccuracy: true });
-watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(teste, showError);}, 3000);
+watchID = setInterval(function(){alert("la vai"); navigator.geolocation.getCurrentPosition(teste, showError);}, 3000);
 
 alert("1");
 
@@ -297,6 +297,7 @@ var tempo = new Date();
 var velocidade = 0;
 var soma = 0;
 
+alert("6");
 		
 	var latlon = position.coords.latitude + "," + position.coords.longitude;
 	
