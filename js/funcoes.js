@@ -191,7 +191,7 @@ var bgGeo = window.plugins.backgroundGeoLocation;
     };
 
 	var callbackFn = function(location, taskId) {
-		//notificacao_local('VELOCIDADE',location.latitude, 1);
+		notificacao_local('VELOCIDADE',location.latitude, 1);
         //alert('[js] BackgroundGeoLocation callback:  ' + location.latitude + ',' + location.longitude);
         // Do your HTTP request here to POST location to your server.
         //
