@@ -165,8 +165,9 @@ var isbackground = false;
 
 watchID = setInterval(function(){
 							isbackground = cordova.plugins.backgroundMode.isActive(); 
+							notificacao_local('Background',isbackground, 1);
 							if (isbackground == true)
-								{navigator.geolocation.getCurrentPosition(teste_background, showError);}
+								{notificacao_local('Background','agora em back', 1);navigator.geolocation.getCurrentPosition(teste_background, showError);}
 								else
 									{navigator.geolocation.getCurrentPosition(teste, showError);}
 							}, 3000);
