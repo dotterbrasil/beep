@@ -29,6 +29,8 @@
 	<allow-navigation href="*" />
 	<allow-intent href="*" />
 
+	<gap:plugin name="org.apache.cordova.geolocation" />
+
     
 	<plugin name="cordova-background-geolocation-lt" />
 	
