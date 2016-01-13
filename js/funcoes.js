@@ -212,15 +212,15 @@ var bgGeo = window.plugins.backgroundGeoLocation;
 
 	// BackgroundGeoLocation is highly configurable.
     bgGeo.configure(callbackFn, failureFn, {
-        desiredAccuracy: 0,
-        stationaryRadius: 0,
-        distanceFilter: 0,
+        desiredAccuracy: 10,
+        stationaryRadius: 10,
+        distanceFilter: 10,
         activityType: 'Fitness'
     });
  
  // Turn ON the background-geolocation system.  The user will be tracked whenever they suspend the app.
     bgGeo.start();
-
+alert('ok');
     
 }
 
