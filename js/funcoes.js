@@ -161,16 +161,16 @@ function speed_monitor(){
 //watchID = navigator.geolocation.watchPosition(onSuccess, onError, { enableHighAccuracy: true });
 //watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(teste, showError);}, 3000);
 
-var isbackground = false;
+//var isbackground = false;
 
-watchID = setInterval(function(){
-							isbackground = cordova.plugins.backgroundMode.isActive(); 
-							notificacao_local('Background',isbackground, 1);
-							if (isbackground == true)
-								{notificacao_local('Background','agora em back', 1);navigator.geolocation.getCurrentPosition(teste_background, showError);}
-								else
-									{navigator.geolocation.getCurrentPosition(teste, showError);}
-							}, 3000);
+//watchID = setInterval(function(){
+//							isbackground = cordova.plugins.backgroundMode.isActive(); 
+//							notificacao_local('Background',isbackground, 1);
+//							if (isbackground == true)
+//								{notificacao_local('Background','agora em back', 1);navigator.geolocation.getCurrentPosition(teste_background, showError);}
+//								else
+//									{navigator.geolocation.getCurrentPosition(teste, showError);}
+//							}, 3000);
 
 }
 
@@ -195,7 +195,7 @@ var bgGeo = window.plugins.backgroundGeoLocation;
         //
         //
 		
-		//navigator.geolocation.getCurrentPosition(teste_background, showError);
+		navigator.geolocation.getCurrentPosition(teste_background, showError);
 		
 		
         setTimeout(function() {
@@ -210,9 +210,9 @@ var bgGeo = window.plugins.backgroundGeoLocation;
 
 	// BackgroundGeoLocation is highly configurable.
     bgGeo.configure(callbackFn, failureFn, {
-        desiredAccuracy: 10,
-        stationaryRadius: 20,
-        distanceFilter: 30,
+        desiredAccuracy: 0,
+        stationaryRadius: 0,
+        distanceFilter: 0,
         activityType: 'AutomotiveNavigation'
     });
  
