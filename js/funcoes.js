@@ -10,6 +10,7 @@ var velocidade_media = 0;
 var speed_matrix = [0, 0, 0, 0, 0];
 var leitura = 0;
 
+var xspeed = 0;
 
 function onDeviceReady() {
 		//window.plugins.backgroundjs.lockBackgroundTime();
@@ -174,7 +175,29 @@ navigator.geolocation.getCurrentPosition(teste, showError);
 //									{navigator.geolocation.getCurrentPosition(teste, showError);}
 //							}, 3000);
 
+
+
+xyz = navigator.accelerometer.watchAcceleration(XSuccess, XError, Xoptions);
+
 }
+
+function XSuccess(acceleration) {
+    //alert('Acceleration X: ' + acceleration.x + '\n' +
+     //     'Acceleration Y: ' + acceleration.y + '\n' +
+      //    'Acceleration Z: ' + acceleration.z + '\n' +
+       //   'Timestamp: '      + acceleration.timestamp + '\n');
+	   
+	   xspeed = xspeed + acceleration.x;
+	   notificacao_local('Velocidade X',xspeed, 1);
+}
+
+function XError() {
+    alert('onError!');
+}
+
+var Xoptions = { frequency: 1000 };  // Update every 3 seconds
+
+
 
 function geoback(){
 
@@ -217,7 +240,7 @@ alert('2');
         distanceFilter: 10,
         activityType: 'Fitness'
     });
- 
+ alert('3');
  // Turn ON the background-geolocation system.  The user will be tracked whenever they suspend the app.
     bgGeo.start();
 alert('ok');
