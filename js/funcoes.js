@@ -13,7 +13,7 @@ var leitura = 0;
 var xspeed = 0;
 var yspeed = 0;
 var zspeed = 0;
-var xyzspeed = 0;
+var xyzspeed = -9.83;
 var pre_accX = 0;
 var pre_accY = 0;
 var pre_accZ = 0;
@@ -205,10 +205,16 @@ function XSuccess(acceleration) {
 	   yspeed = yspeed + accY;
 	   zspeed = zspeed + accZ;
 	   
-	   xyzspeed = Math.sqrt(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2));
+	   xyzspeed = Math.sqrt(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2)) * 3.6;
 	   //notificacao_local('Velocidade X',xspeed, 1);
 	   var element = document.getElementById('status');
 	   element.innerHTML = 'Velocidade XYZ: ' + xyzspeed;
+	   if (xyzspeed > 20)
+			{
+			onboard = true;
+			check_in();
+			notificacao_local('VELOCIDADE','checkin', 1);
+			}
 }
 
 function XError() {
