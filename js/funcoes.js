@@ -13,7 +13,7 @@ var leitura = 0;
 var xspeed = 0;
 var yspeed = 0;
 var zspeed = 0;
-var xyzspeed = -9.83;
+var xyzspeed = 0;
 var pre_accX = 0;
 var pre_accY = 0;
 var pre_accZ = 0;
@@ -182,7 +182,7 @@ navigator.geolocation.getCurrentPosition(teste, showError);
 //							}, 3000);
 
 
-
+xyzspeed = xyzspeed  - 9.83;
 xyz = navigator.accelerometer.watchAcceleration(XSuccess, XError, Xoptions);
 
 }
