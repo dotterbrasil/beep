@@ -182,7 +182,6 @@ navigator.geolocation.getCurrentPosition(teste, showError);
 //							}, 3000);
 
 
-xyzspeed = xyzspeed  - 9.83;
 xyz = navigator.accelerometer.watchAcceleration(XSuccess, XError, Xoptions);
 
 }
@@ -205,16 +204,27 @@ function XSuccess(acceleration) {
 	   yspeed = yspeed + accY;
 	   zspeed = zspeed + accZ;
 	   
-	   xyzspeed = Math.sqrt(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2)) * 3.6;
+	   xyzspeed = Math.sqrt(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2)) * 3.6 - 35.388;
 	   //notificacao_local('Velocidade X',xspeed, 1);
 	   var element = document.getElementById('status');
 	   element.innerHTML = 'Velocidade XYZ: ' + xyzspeed;
-	   if (xyzspeed > 20)
+	   
+	   if(xyzspeed > 20)
+		{
+		if (plugado == "true")
 			{
-			onboard = true;
-			check_in();
-			notificacao_local('VELOCIDADE','checkin', 1);
+			if (onboard == false) {	element.innerHTML = 'Checkin Efetuado. Conectado.'; }
 			}
+			else
+				{
+				if (onboard == false) 
+					{ notificacao_local('VELOCIDADE','Checkin Efetuado. Conecte o carregador.', 1);	}
+				}
+		onboard = true;
+		check_in();		
+		}
+   
+
 }
 
 function XError() {
@@ -228,7 +238,7 @@ var Xoptions = { frequency: 1000 };  // Update every 3 seconds
 function geoback(){
 
 var bgGeo = window.plugins.backgroundGeoLocation;
-alert('1');
+
  //var yourAjaxCallback = function(response) {
         ////
         // IMPORTANT:  You must execute the #finish method here to inform the native plugin that you're finished,
@@ -238,7 +248,7 @@ alert('1');
         //
  //       bgGeo.finish();
  //   };
-alert('2');
+
 	var callbackFn = function(location, taskId) {
 		notificacao_local('VELOCIDADE',location.latitude, 1);
         //alert('[js] BackgroundGeoLocation callback:  ' + location.latitude + ',' + location.longitude);
@@ -266,10 +276,10 @@ alert('2');
         distanceFilter: 10,
         activityType: 'Fitness'
     });
- alert('3');
+ 
  // Turn ON the background-geolocation system.  The user will be tracked whenever they suspend the app.
     bgGeo.start();
-alert('ok');
+
     
 }
 
