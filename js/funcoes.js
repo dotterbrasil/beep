@@ -159,7 +159,17 @@ function speed_monitor(){
 
 
 //watchID = navigator.geolocation.watchPosition(onSuccess, onError, { enableHighAccuracy: true });
-watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(teste_background, showError);}, 3000);
+//watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(teste, showError);}, 3000);
+
+var isbackground = false;
+
+watchID = setInterval(function(){
+							isbackground = cordova.plugins.backgroundMode.isActive(); 
+							if (isbackground == true)
+								{navigator.geolocation.getCurrentPosition(teste_background, showError);}
+								else
+									{navigator.geolocation.getCurrentPosition(teste, showError);}
+							}, 3000);
 
 }
 
