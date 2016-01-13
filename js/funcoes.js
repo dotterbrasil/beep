@@ -14,6 +14,9 @@ var xspeed = 0;
 var yspeed = 0;
 var zspeed = 0;
 var xyzspeed = 0;
+var pre_accX = 0;
+var pre_accY = 0;
+var pre_accZ = 0;
 
 function onDeviceReady() {
 		//window.plugins.backgroundjs.lockBackgroundTime();
@@ -190,9 +193,17 @@ function XSuccess(acceleration) {
       //    'Acceleration Z: ' + acceleration.z + '\n' +
        //   'Timestamp: '      + acceleration.timestamp + '\n');
 	   
-	   xspeed = xspeed + acceleration.x;
-	   yspeed = yspeed + acceleration.y;
-	   zspeed = zspeed + acceleration.z;
+	   var accX = acceleration.x - pre_accX;
+	   var accY = acceleration.y - pre_accY;
+	   var accZ = acceleration.z - pre_accZ;
+	   
+	   pre_accX = acceleration.x;
+	   pre_accY = acceleration.y;
+	   pre_accZ = acceleration.z;
+	   
+	   xspeed = xspeed + accX;
+	   yspeed = yspeed + accY;
+	   zspeed = zspeed + accZ;
 	   
 	   xyzspeed = Math.sqrt(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2));
 	   //notificacao_local('Velocidade X',xspeed, 1);
