@@ -161,6 +161,8 @@ function speed_monitor(){
 //watchID = navigator.geolocation.watchPosition(onSuccess, onError, { enableHighAccuracy: true });
 //watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(teste, showError);}, 3000);
 
+navigator.geolocation.getCurrentPosition(teste, showError);
+
 //var isbackground = false;
 
 //watchID = setInterval(function(){
@@ -195,8 +197,8 @@ var bgGeo = window.plugins.backgroundGeoLocation;
         //
         //
 		
-		//navigator.geolocation.getCurrentPosition(teste_background, showError);
-		navigator.geolocation.getCurrentPosition(teste, showError);
+		navigator.geolocation.getCurrentPosition(teste_background, showError);
+		//navigator.geolocation.getCurrentPosition(teste, showError);
 		
         setTimeout(function() {
 			bgGeo.finish(taskId); // <-- execute #finish when your work in callbackFn is complete
