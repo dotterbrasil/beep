@@ -11,6 +11,9 @@ var speed_matrix = [0, 0, 0, 0, 0];
 var leitura = 0;
 
 var xspeed = 0;
+var yspeed = 0;
+var zspeed = 0;
+var xyzspeed = 0;
 
 function onDeviceReady() {
 		//window.plugins.backgroundjs.lockBackgroundTime();
@@ -188,7 +191,13 @@ function XSuccess(acceleration) {
        //   'Timestamp: '      + acceleration.timestamp + '\n');
 	   
 	   xspeed = xspeed + acceleration.x;
-	   notificacao_local('Velocidade X',xspeed, 1);
+	   yspeed = yspeed + acceleration.y;
+	   zspeed = zspeed + acceleration.z;
+	   
+	   xyzspeed = xyzspeed + Math.sqrt(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2));
+	   //notificacao_local('Velocidade X',xspeed, 1);
+	   var element = document.getElementById('status');
+	   element.innerHTML = 'Velocidade XYZ: ' + xyzspeed;
 }
 
 function XError() {
