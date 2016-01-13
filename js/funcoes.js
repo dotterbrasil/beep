@@ -179,17 +179,17 @@ navigator.geolocation.getCurrentPosition(teste, showError);
 function geoback(){
 
 var bgGeo = window.plugins.backgroundGeoLocation;
-
- var yourAjaxCallback = function(response) {
+alert('1');
+ //var yourAjaxCallback = function(response) {
         ////
         // IMPORTANT:  You must execute the #finish method here to inform the native plugin that you're finished,
         //  and the background-task may be completed.  You must do this regardless if your HTTP request is successful or not.
         // IF YOU DON'T, ios will CRASH YOUR APP for spending too much time in the background.
         //
         //
-        bgGeo.finish();
-    };
-
+ //       bgGeo.finish();
+ //   };
+alert('2');
 	var callbackFn = function(location, taskId) {
 		notificacao_local('VELOCIDADE',location.latitude, 1);
         //alert('[js] BackgroundGeoLocation callback:  ' + location.latitude + ',' + location.longitude);
