@@ -194,7 +194,7 @@ function XSuccess(acceleration) {
 	   yspeed = yspeed + acceleration.y;
 	   zspeed = zspeed + acceleration.z;
 	   
-	   xyzspeed = xyzspeed + Math.sqrt(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2));
+	   xyzspeed = Math.sqrt(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2));
 	   //notificacao_local('Velocidade X',xspeed, 1);
 	   var element = document.getElementById('status');
 	   element.innerHTML = 'Velocidade XYZ: ' + xyzspeed;
