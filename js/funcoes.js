@@ -207,13 +207,27 @@ function XSuccess(acceleration) {
 	   xyzspeed = Math.round(Math.sqrt(Math.sqrt(Math.pow(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2) - 96.6289, 2))) * 3.6);
 	   //notificacao_local('Velocidade X',xspeed, 1);
 	   
+	    
+	   speed_matrix[0] = xyzspeed;
+	
+			for (var varredura = 0; varredura <5; varredura++)
+				{
+				soma = soma + speed_matrix[varredura];
+				}
+	
+			velocidade_media = Math.round(soma / 5);
+			
+			speed_matrix[4] = speed_matrix[3];
+			speed_matrix[3] = speed_matrix[2];
+			speed_matrix[2] = speed_matrix[1];
+			speed_matrix[1] = speed_matrix[0];
 	   
 	   
 	   var element = document.getElementById('status');
-	   element.innerHTML = 'Velocidade XYZ: ' + xyzspeed;
+	   element.innerHTML = 'Velocidade XYZ: ' + xyzspeed + 'velocidade media:' + velocidade_media;
 	   
 	   if(xyzspeed > 20)
-		{
+		{alert('hey');
 		if (plugado == "true")
 			{
 			if (onboard == false) {	element.innerHTML = 'Checkin Efetuado. Conectado.'; }
