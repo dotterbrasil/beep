@@ -213,7 +213,7 @@ function XSuccess(acceleration) {
 	   yspeed = yspeed + accY;
 	   zspeed = zspeed + accZ;
 	   
-	   xyzspeed = Math.round(Math.sqrt(Math.sqrt(Math.pow(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2) - 24.465867, 2))) * 3.6);
+	   xyzspeed = Math.round(Math.sqrt(Math.sqrt(Math.pow(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2) - 24.54303, 2))) * 3.6);
 	   //xyzspeed = Math.round(Math.sqrt(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2)) * 3.6);
 	   //notificacao_local('Velocidade X',xspeed, 1);
 	   
@@ -251,7 +251,7 @@ function XSuccess(acceleration) {
 		check_in();		
 		}
 		
-		if (velocidade_media < 2)
+		if (velocidade_media < 7)
 		{
 		if (plugado == "false")
 			{
