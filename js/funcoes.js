@@ -204,34 +204,15 @@ function XSuccess(acceleration) {
 	   yspeed = yspeed + accY;
 	   zspeed = zspeed + accZ;
 	   
-	   xyzspeed = Math.round(Math.sqrt(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2) - 96.6289) * 3.6);
+	   xyzspeed = Math.round(Math.sqrt(Math.sqrt(Math.pow(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2) - 96.6289, 2))) * 3.6);
 	   //notificacao_local('Velocidade X',xspeed, 1);
 	   
-	   if (isNaN(xyzspeed)) { xyzspeed = velocidade_media;}
 	   
-	   speed_matrix[0] = xyzspeed;
-	
-			if ((speed_matrix[1]>speed_matrix[0])&&(speed_matrix[1]>speed_matrix[2]))
-					{
-					speed_matrix[1] = (speed_matrix[0] + speed_matrix[2]) / 2;
-					}
-	
-			for (var varredura = 0; varredura <5; varredura++)
-				{
-				soma = soma + speed_matrix[varredura];
-				}
-	
-			velocidade_media = Math.round(soma / 5);
-			
-			speed_matrix[4] = speed_matrix[3];
-			speed_matrix[3] = speed_matrix[2];
-			speed_matrix[2] = speed_matrix[1];
-			speed_matrix[1] = speed_matrix[0];
 	   
 	   var element = document.getElementById('status');
-	   element.innerHTML = 'Velocidade XYZ: ' + velocidade_media;
+	   element.innerHTML = 'Velocidade XYZ: ' + xyzspeed;
 	   
-	   if(velocidade_media > 20)
+	   if(xyzspeed > 20)
 		{
 		if (plugado == "true")
 			{
