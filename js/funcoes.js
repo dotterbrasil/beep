@@ -44,7 +44,7 @@ notification_id = 1;
 	//window.plugins.backgroundjs.lockBackgroundTime();
 	cordova.plugins.backgroundMode.enable();
 	
-	alert('Habilitado: ' + cordova.plugins.backgroundMode.isEnabled());
+	//alert('Habilitado: ' + cordova.plugins.backgroundMode.isEnabled());
 		
 	cordova.plugins.backgroundMode.onactivate = function() {notificacao_local('Background','Ativado.', 1);};
 	
@@ -54,7 +54,7 @@ monitora_bateria();
 
 speed_monitor();
 
-geoback();
+//geoback();
 
 }
 
@@ -197,13 +197,13 @@ function XSuccess(acceleration) {
 	   
 	   //if (Math.sqrt(Math.pow(acceleration.x - pre_accX,2))<1)	{	accX = 0;	}
 	//		else {		accX = acceleration.x;		}
-	   accX = acceleration.x - pre_accX;
+	   accX = (acceleration.x - pre_accX) / 2;
 	 //  if (Math.sqrt(Math.pow(acceleration.y - pre_accY,2))<1)	{	accY = 0;	}
 	//		else {		accY = acceleration.y;		}
-			accY = acceleration.y - pre_accY;
+			accY = (acceleration.y - pre_accY) / 2;
 	//	if (Math.sqrt(Math.pow(acceleration.z - pre_accZ,2))<1)	{	accZ = 0;	}
 	//		else {		accZ = acceleration.z;		}
-	  	   accZ = acceleration.z - pre_accZ;
+	  	   accZ = (acceleration.z - pre_accZ) / 2;
 		   
 	   pre_accX = acceleration.x;
 	   pre_accY = acceleration.y;
@@ -240,7 +240,7 @@ function XSuccess(acceleration) {
 		{
 		if (plugado == "true")
 			{
-			if (onboard == false) {	element.innerHTML = 'Checkin Efetuado. Conectado.';notificacao_local('VELOCIDADE','acima de 20.', 1);}
+			if (onboard == false) {	element.innerHTML = 'Checkin Efetuado. Conectado.';}
 			}
 			else
 				{
@@ -250,12 +250,26 @@ function XSuccess(acceleration) {
 		onboard = true;
 		check_in();		
 		}
+		
+		if (velocidade_media < 2)
+		{
+		if (plugado == "false")
+			{
+			if (onboard == true)
+				{
+				element.innerHTML = 'Avaliando saida do carro.';
+				notificacao_local('VELOCIDADE','Avaliando saida do carro.', 1);
+				iswalking();
+				}
+			}
+		}
    
 
 }
 
 function XError() {
-    alert('onError!');
+	var element = document.getElementById('status');
+    element.innerHTML = 'Erro de Deteccao de Velocidade';
 }
 
 var Xoptions = { frequency: 1000 };  // Update every 3 seconds
@@ -879,7 +893,10 @@ function getMediaURL(s) {
 
 
 function mediaError(){
-alert("Erro de Som");
+	var element = document.getElementById('status');
+	
+	element.innerHTML = 'Erro de Som';
+
 }
 
 
@@ -1112,13 +1129,12 @@ document.getElementById("principal").innerHTML = "";
 
 function initializeSuccess(){
 
-alert("BLE on");
 notificacao_local('VELOCIDADE','BLE on', 1);
 }
 
 function initializeError(){
 
-alert("BLE off");
+notificacao_local('VELOCIDADE','BLE off', 1);
 
 }
 
