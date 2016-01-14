@@ -195,13 +195,13 @@ function XSuccess(acceleration) {
 	   	   	   		   
 	   var soma = 0;
 	   
-	   if ((acceleration.x - pre_accX)<1)	{	accX = 0;	}
+	   if (Math.sqrt(Math.pow(acceleration.x - pre_accX,2))<1)	{	accX = 0;	}
 			else {		accX = acceleration.x;		}
 	   
-	   if ((acceleration.y - pre_accY)<1)	{	accY = 0;	}
+	   if (Math.sqrt(Math.pow(acceleration.y - pre_accY,2))<1)	{	accY = 0;	}
 			else {		accY = acceleration.y;		}
 			
-		if ((acceleration.z - pre_accZ)<1)	{	accZ = 0;	}
+		if (Math.sqrt(Math.pow(acceleration.z - pre_accZ,2))<1)	{	accZ = 0;	}
 			else {		accZ = acceleration.z;		}
 	  	   
 	   pre_accX = acceleration.x;
