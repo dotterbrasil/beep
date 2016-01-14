@@ -207,12 +207,12 @@ function XSuccess(acceleration) {
 	   if (xspeed == 0)
 		{
 		//tempo_anterior = Math.round(tempo.getTime()/1000)-1;
-		tempo_anterior = (tempo.getTime()/1000);
+		tempo_anterior = tempo.getTime();
 		}
 	   
-	   var delta_tempo = (tempo.getTime()/1000) - tempo_anterior;
+	   var delta_tempo = tempo.getTime() - tempo_anterior;
 	   
-	   tempo_anterior = (tempo.getTime()/1000);
+	   tempo_anterior = tempo.getTime();
 	   
 	   pre_accX = acceleration.x;
 	   pre_accY = acceleration.y;
