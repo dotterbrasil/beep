@@ -191,13 +191,18 @@ function XSuccess(acceleration) {
      //     'Acceleration Y: ' + acceleration.y + '\n' +
       //    'Acceleration Z: ' + acceleration.z + '\n' +
        //   'Timestamp: '      + acceleration.timestamp + '\n');
-	   
-	   var accX = acceleration.x - pre_accX;
-	   var accY = acceleration.y - pre_accY;
-	   var accZ = acceleration.z - pre_accZ;
-	   	   	   
+
+	   	   	   		   
 	   var soma = 0;
 	   
+	   if ((acceleration.x - pre_accX)<2)	{	accX = 0;	}
+			else {		accX = acceleration.x;		}
+	   
+	   if ((acceleration.y - pre_accY)<2)	{	accY = 0;	}
+			else {		accY = acceleration.y;		}
+			
+		if ((acceleration.z - pre_accZ)<2)	{	accZ = 0;	}
+			else {		accZ = acceleration.z;		}
 	  	   
 	   pre_accX = acceleration.x;
 	   pre_accY = acceleration.y;
