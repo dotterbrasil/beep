@@ -192,13 +192,13 @@ function XSuccess(acceleration) {
       //    'Acceleration Z: ' + acceleration.z + '\n' +
        //   'Timestamp: '      + acceleration.timestamp + '\n');
 	   
-	   //var accX = acceleration.x - pre_accX;
-	   //var accY = acceleration.y - pre_accY;
-	   //var accZ = acceleration.z - pre_accZ;
+	   var accX = acceleration.x - pre_accX;
+	   var accY = acceleration.y - pre_accY;
+	   var accZ = acceleration.z - pre_accZ;
 	   
-	   var accX = (acceleration.x + pre_accX)/2;
-	   var accY = (acceleration.y + pre_accY)/2;
-	   var accZ = (acceleration.z + pre_accZ)/2;
+	   //var accX = (acceleration.x + pre_accX)/2;
+	   //var accY = (acceleration.y + pre_accY)/2;
+	   //var accZ = (acceleration.z + pre_accZ)/2;
 	  
 	   var tempo = new Date();	
 	   	   
@@ -207,7 +207,7 @@ function XSuccess(acceleration) {
 	   if (xspeed == 0)
 		{
 		//tempo_anterior = Math.round(tempo.getTime()/1000)-1;
-		tempo_anterior = Math.round(tempo.getTime()/1000);
+		tempo_anterior = (tempo.getTime()/1000);
 		}
 	   
 	   var delta_tempo = (tempo.getTime()/1000) - tempo_anterior;
