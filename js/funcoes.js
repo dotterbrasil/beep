@@ -192,10 +192,14 @@ function XSuccess(acceleration) {
       //    'Acceleration Z: ' + acceleration.z + '\n' +
        //   'Timestamp: '      + acceleration.timestamp + '\n');
 	   
-	   var accX = acceleration.x - pre_accX;
-	   var accY = acceleration.y - pre_accY;
-	   var accZ = acceleration.z - pre_accZ;
+	   //var accX = acceleration.x - pre_accX;
+	   //var accY = acceleration.y - pre_accY;
+	   //var accZ = acceleration.z - pre_accZ;
 	   
+	   var accX = (acceleration.x + pre_accX)/2;
+	   var accY = (acceleration.y + pre_accY)/2;
+	   var accZ = (acceleration.z + pre_accZ)/2;
+	  
 	   var tempo = new Date();	
 	   	   
 	   var soma = 0;
@@ -218,8 +222,8 @@ function XSuccess(acceleration) {
 	   yspeed = yspeed + accY * delta_tempo;
 	   zspeed = zspeed + accZ * delta_tempo;
 	   
-	   //xyzspeed = Math.round(Math.sqrt(Math.sqrt(Math.pow(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2) - 96.6289, 2))) * 3.6);
-	   xyzspeed = Math.round(Math.sqrt(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2)) * 3.6);
+	   xyzspeed = Math.round(Math.sqrt(Math.sqrt(Math.pow(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2) - 96.6289, 2))) * 3.6);
+	   //xyzspeed = Math.round(Math.sqrt(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2)) * 3.6);
 	   //notificacao_local('Velocidade X',xspeed, 1);
 	   
 	    
