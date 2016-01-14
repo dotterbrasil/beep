@@ -209,12 +209,12 @@ function XSuccess(acceleration) {
 	   pre_accY = acceleration.y;
 	   pre_accZ = acceleration.z;
 	   
-	   xspeed = xspeed + accX*0.5;
-	   yspeed = yspeed + accY*0.5;
-	   zspeed = zspeed + accZ*0.5;
+	   xspeed = xspeed + accX;
+	   yspeed = yspeed + accY;
+	   zspeed = zspeed + accZ;
 	   
-	   //xyzspeed = Math.round(Math.sqrt(Math.sqrt(Math.pow(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2) - 96.6289, 2))) * 3.6);
-	   xyzspeed = Math.round(Math.sqrt(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2)) * 3.6);
+	   xyzspeed = Math.round(Math.sqrt(Math.sqrt(Math.pow(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2) - 96.6289, 2))) * 3.6);
+	   //xyzspeed = Math.round(Math.sqrt(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2)) * 3.6);
 	   //notificacao_local('Velocidade X',xspeed, 1);
 	   
 	    
@@ -236,11 +236,11 @@ function XSuccess(acceleration) {
 	   var element = document.getElementById('status');
 	   element.innerHTML = 'Velocidade XYZ: ' + xyzspeed + 'velocidade media: ' + velocidade_media;
 	   
-	   if(xyzspeed > 20)
-		{notificacao_local('VELOCIDADE','acima de 20.', 1);
+	   if(velocidade_media > 20)
+		{
 		if (plugado == "true")
 			{
-			if (onboard == false) {	element.innerHTML = 'Checkin Efetuado. Conectado.'; }
+			if (onboard == false) {	element.innerHTML = 'Checkin Efetuado. Conectado.';notificacao_local('VELOCIDADE','acima de 20.', 1);}
 			}
 			else
 				{
@@ -258,7 +258,7 @@ function XError() {
     alert('onError!');
 }
 
-var Xoptions = { frequency: 500 };  // Update every 3 seconds
+var Xoptions = { frequency: 1000 };  // Update every 3 seconds
 
 
 
