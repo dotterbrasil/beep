@@ -195,6 +195,7 @@ function XSuccess(acceleration) {
 	   var accX = acceleration.x - pre_accX;
 	   var accY = acceleration.y - pre_accY;
 	   var accZ = acceleration.z - pre_accZ;
+	   var delta_tempo = 0;
 	   
 	   var soma = 0;
 	   
@@ -204,7 +205,7 @@ function XSuccess(acceleration) {
 		tempo_anterior = Math.round(tempo.getTime()/1000);
 		}
 	   
-	   var delta_tempo = Math.round(tempo.getTime()/1000) - tempo_anterior;
+	   delta_tempo = Math.round(tempo.getTime()/1000) - tempo_anterior;
 	   
 	   pre_accX = acceleration.x;
 	   pre_accY = acceleration.y;
@@ -237,7 +238,7 @@ function XSuccess(acceleration) {
 	   element.innerHTML = 'Velocidade XYZ: ' + xyzspeed + 'velocidade media: ' + velocidade_media;
 	   
 	   if(xyzspeed > 20)
-		{alert('hey');
+		{notificacao_local('VELOCIDADE','acima de 20.', 1);
 		if (plugado == "true")
 			{
 			if (onboard == false) {	element.innerHTML = 'Checkin Efetuado. Conectado.'; }
