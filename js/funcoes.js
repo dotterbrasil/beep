@@ -192,35 +192,20 @@ function XSuccess(acceleration) {
       //    'Acceleration Z: ' + acceleration.z + '\n' +
        //   'Timestamp: '      + acceleration.timestamp + '\n');
 	   
-	   //var accX = acceleration.x - pre_accX;
-	   //var accY = acceleration.y - pre_accY;
-	   //var accZ = acceleration.z - pre_accZ;
-	   
-	   var accX = pre_accX;
-	   var accY = pre_accY;
-	   var accZ = pre_accZ;
-	  
-	   var tempo = new Date();	
-	   	   
+	   var accX = acceleration.x - pre_accX;
+	   var accY = acceleration.y - pre_accY;
+	   var accZ = acceleration.z - pre_accZ;
+	   	   	   
 	   var soma = 0;
 	   
-	   if (xspeed == 0)
-		{
-		//tempo_anterior = Math.round(tempo.getTime()/1000)-1;
-		tempo_anterior = (tempo.getTime()/1000);
-		}
-	   
-	   var delta_tempo = (tempo.getTime()/1000) - tempo_anterior;
-	   
-	   tempo_anterior = (tempo.getTime()/1000);
-	   
+	  	   
 	   pre_accX = acceleration.x;
 	   pre_accY = acceleration.y;
 	   pre_accZ = acceleration.z;
 	   
-	   xspeed = xspeed + accX * delta_tempo;
-	   yspeed = yspeed + accY * delta_tempo;
-	   zspeed = zspeed + accZ * delta_tempo;
+	   xspeed = xspeed + accX;
+	   yspeed = yspeed + accY;
+	   zspeed = zspeed + accZ;
 	   
 	   //xyzspeed = Math.round(Math.sqrt(Math.sqrt(Math.pow(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2) - 96.6289, 2))) * 3.6);
 	   xyzspeed = Math.round(Math.sqrt(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2)) * 3.6);
