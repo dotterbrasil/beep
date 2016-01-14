@@ -168,7 +168,7 @@ function speed_monitor(){
 //watchID = navigator.geolocation.watchPosition(onSuccess, onError, { enableHighAccuracy: true });
 //watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(teste, showError);}, 3000);
 
-navigator.geolocation.getCurrentPosition(teste, showError);
+//navigator.geolocation.getCurrentPosition(teste, showError);
 
 //var isbackground = false;
 
@@ -195,6 +195,8 @@ function XSuccess(acceleration) {
 	   var accX = acceleration.x - pre_accX;
 	   var accY = acceleration.y - pre_accY;
 	   var accZ = acceleration.z - pre_accZ;
+	   
+	   var soma = 0;
 	   
 	   pre_accX = acceleration.x;
 	   pre_accY = acceleration.y;
@@ -224,7 +226,7 @@ function XSuccess(acceleration) {
 	   
 	   
 	   var element = document.getElementById('status');
-	   element.innerHTML = 'Velocidade XYZ: ' + xyzspeed + 'velocidade media:' + velocidade_media;
+	   element.innerHTML = 'Velocidade XYZ: ' + xyzspeed + 'velocidade media: ' + velocidade_media;
 	   
 	   if(xyzspeed > 20)
 		{alert('hey');
