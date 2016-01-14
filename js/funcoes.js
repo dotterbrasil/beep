@@ -195,13 +195,13 @@ function XSuccess(acceleration) {
 	   	   	   		   
 	   var soma = 0;
 	   
-	   if (Math.sqrt(Math.pow(acceleration.x - pre_accX,2))<1)	{	accX = 0;	}
+	   if (Math.sqrt(Math.pow(acceleration.x - pre_accX,2))<2)	{	accX = 0;	}
 			else {		accX = (acceleration.x + pre_accX) / 2;		}
 	   //accX = (acceleration.x + pre_accX) / 2;
-	   if (Math.sqrt(Math.pow(acceleration.y - pre_accY,2))<1)	{	accY = 0;	}
+	   if (Math.sqrt(Math.pow(acceleration.y - pre_accY,2))<2)	{	accY = 0;	}
 			else {		accY = (acceleration.y + pre_accY) / 2;		}
 			//accY = (acceleration.y + pre_accY) / 2;
-		if (Math.sqrt(Math.pow(acceleration.z - pre_accZ,2))<1)	{	accZ = 0;	}
+		if (Math.sqrt(Math.pow(acceleration.z - pre_accZ,2))<2)	{	accZ = 0;	}
 			else {		accZ = (acceleration.z + pre_accZ) / 2;	}
 	  	   //accZ = (acceleration.z + pre_accZ) / 2;
 		   
@@ -234,7 +234,7 @@ function XSuccess(acceleration) {
 	   
 	   
 	   var element = document.getElementById('status');
-	   element.innerHTML = 'Velocidade XYZ: ' + xyzspeed + 'velocidade media: ' + velocidade_media;
+	   element.innerHTML = 'Velocidade XYZ: ' + xyzspeed + ' velocidade media: ' + velocidade_media + ' accX: ' + accX;
 	   
 	   if(velocidade_media > 30)
 		{
