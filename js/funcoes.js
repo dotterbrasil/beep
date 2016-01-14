@@ -195,25 +195,25 @@ function XSuccess(acceleration) {
 	   	   	   		   
 	   var soma = 0;
 	   
-	   if ((acceleration.x - pre_accX)<2)	{	accX = 0;	}
+	   if ((acceleration.x - pre_accX)<1)	{	accX = 0;	}
 			else {		accX = acceleration.x;		}
 	   
-	   if ((acceleration.y - pre_accY)<2)	{	accY = 0;	}
+	   if ((acceleration.y - pre_accY)<1)	{	accY = 0;	}
 			else {		accY = acceleration.y;		}
 			
-		if ((acceleration.z - pre_accZ)<2)	{	accZ = 0;	}
+		if ((acceleration.z - pre_accZ)<1)	{	accZ = 0;	}
 			else {		accZ = acceleration.z;		}
 	  	   
 	   pre_accX = acceleration.x;
 	   pre_accY = acceleration.y;
 	   pre_accZ = acceleration.z;
 	   
-	   xspeed = xspeed + accX;
-	   yspeed = yspeed + accY;
-	   zspeed = zspeed + accZ;
+	   xspeed = xspeed + accX*0.5;
+	   yspeed = yspeed + accY*0.5;
+	   zspeed = zspeed + accZ*0.5;
 	   
-	   //xyzspeed = Math.round(Math.sqrt(Math.sqrt(Math.pow(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2) - 96.6289, 2))) * 3.6);
-	   xyzspeed = Math.round(Math.sqrt(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2)) * 3.6);
+	   xyzspeed = Math.round(Math.sqrt(Math.sqrt(Math.pow(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2) - 96.6289, 2))) * 3.6);
+	   //xyzspeed = Math.round(Math.sqrt(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2)) * 3.6);
 	   //notificacao_local('Velocidade X',xspeed, 1);
 	   
 	    
@@ -257,7 +257,7 @@ function XError() {
     alert('onError!');
 }
 
-var Xoptions = { frequency: 1000 };  // Update every 3 seconds
+var Xoptions = { frequency: 500 };  // Update every 3 seconds
 
 
 
