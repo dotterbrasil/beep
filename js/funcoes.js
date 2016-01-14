@@ -197,13 +197,13 @@ function XSuccess(acceleration) {
 	   
 	   //if (Math.sqrt(Math.pow(acceleration.x - pre_accX,2))<1)	{	accX = 0;	}
 	//		else {		accX = acceleration.x;		}
-	   accX = (acceleration.x - pre_accX) / 2;
+	   accX = (acceleration.x - pre_accX);
 	 //  if (Math.sqrt(Math.pow(acceleration.y - pre_accY,2))<1)	{	accY = 0;	}
 	//		else {		accY = acceleration.y;		}
-			accY = (acceleration.y - pre_accY) / 2;
+			accY = (acceleration.y - pre_accY);
 	//	if (Math.sqrt(Math.pow(acceleration.z - pre_accZ,2))<1)	{	accZ = 0;	}
 	//		else {		accZ = acceleration.z;		}
-	  	   accZ = (acceleration.z - pre_accZ) / 2;
+	  	   accZ = (acceleration.z - pre_accZ);
 		   
 	   pre_accX = acceleration.x;
 	   pre_accY = acceleration.y;
@@ -236,7 +236,7 @@ function XSuccess(acceleration) {
 	   var element = document.getElementById('status');
 	   element.innerHTML = 'Velocidade XYZ: ' + xyzspeed + 'velocidade media: ' + velocidade_media;
 	   
-	   if(velocidade_media > 20)
+	   if(velocidade_media > 30)
 		{
 		if (plugado == "true")
 			{
