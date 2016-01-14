@@ -234,7 +234,7 @@ function XSuccess(acceleration) {
 	   
 	   
 	   var element = document.getElementById('status');
-	   element.innerHTML = 'Velocidade XYZ: ' + xyzspeed + ' velocidade media: ' + velocidade_media + ' accX: ' + accX;
+	   element.innerHTML = 'Velocidade XYZ: ' + xyzspeed + ' velocidade media: ' + velocidade_media + ' sX: ' + xspeed + ' sY: ' + yspeed + ' sZ: ' + zspeed;
 	   
 	   if(velocidade_media > 30)
 		{
