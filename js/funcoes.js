@@ -195,15 +195,15 @@ function XSuccess(acceleration) {
 	   	   	   		   
 	   var soma = 0;
 	   
-	   //if (Math.sqrt(Math.pow(acceleration.x - pre_accX,2))<1)	{	accX = 0;	}
-	//		else {		accX = acceleration.x;		}
-	   accX = (acceleration.x - pre_accX) / 2;
-	 //  if (Math.sqrt(Math.pow(acceleration.y - pre_accY,2))<1)	{	accY = 0;	}
-	//		else {		accY = acceleration.y;		}
-			accY = (acceleration.y - pre_accY) / 2;
-	//	if (Math.sqrt(Math.pow(acceleration.z - pre_accZ,2))<1)	{	accZ = 0;	}
-	//		else {		accZ = acceleration.z;		}
-	  	   accZ = (acceleration.z - pre_accZ) / 2;
+	   if (Math.sqrt(Math.pow(acceleration.x - pre_accX,2))<1)	{	accX = 0;	}
+			else {		accX = (acceleration.x + pre_accX) / 2;		}
+	   //accX = (acceleration.x + pre_accX) / 2;
+	   if (Math.sqrt(Math.pow(acceleration.y - pre_accY,2))<1)	{	accY = 0;	}
+			else {		accY = (acceleration.y + pre_accY) / 2;		}
+			//accY = (acceleration.y + pre_accY) / 2;
+		if (Math.sqrt(Math.pow(acceleration.z - pre_accZ,2))<1)	{	accZ = 0;	}
+			else {		accZ = (acceleration.z + pre_accZ) / 2;	}
+	  	   //accZ = (acceleration.z + pre_accZ) / 2;
 		   
 	   pre_accX = acceleration.x;
 	   pre_accY = acceleration.y;
@@ -213,8 +213,8 @@ function XSuccess(acceleration) {
 	   yspeed = yspeed + accY;
 	   zspeed = zspeed + accZ;
 	   
-	   xyzspeed = Math.round(Math.sqrt(Math.sqrt(Math.pow(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2) - 24.49135, 2))) * 3.6);
-	   //xyzspeed = Math.round(Math.sqrt(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2)) * 3.6);
+	   //xyzspeed = Math.round(Math.sqrt(Math.sqrt(Math.pow(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2) - 24.49135, 2))) * 3.6);
+	   xyzspeed = Math.round(Math.sqrt(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2)) * 3.6);
 	   //notificacao_local('Velocidade X',xspeed, 1);
 	   
 	    
