@@ -210,9 +210,9 @@ function XSuccess(acceleration) {
 		tempo_anterior = Math.round(tempo.getTime()/1000);
 		}
 	   
-	   var delta_tempo = Math.round(tempo.getTime()/1000) - tempo_anterior;
+	   var delta_tempo = (tempo.getTime()/1000) - tempo_anterior;
 	   
-	   tempo_anterior = Math.round(tempo.getTime()/1000);
+	   tempo_anterior = (tempo.getTime()/1000);
 	   
 	   pre_accX = acceleration.x;
 	   pre_accY = acceleration.y;
@@ -222,8 +222,8 @@ function XSuccess(acceleration) {
 	   yspeed = yspeed + accY * delta_tempo;
 	   zspeed = zspeed + accZ * delta_tempo;
 	   
-	   xyzspeed = Math.round(Math.sqrt(Math.sqrt(Math.pow(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2) - 96.6289, 2))) * 3.6);
-	   //xyzspeed = Math.round(Math.sqrt(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2)) * 3.6);
+	   //xyzspeed = Math.round(Math.sqrt(Math.sqrt(Math.pow(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2) - 96.6289, 2))) * 3.6);
+	   xyzspeed = Math.round(Math.sqrt(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2)) * 3.6);
 	   //notificacao_local('Velocidade X',xspeed, 1);
 	   
 	    
