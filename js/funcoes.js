@@ -208,6 +208,8 @@ function XSuccess(acceleration) {
 	   
 	   var delta_tempo = Math.round(tempo.getTime()/1000) - tempo_anterior;
 	   
+	   tempo_anterior = Math.round(tempo.getTime()/1000);
+	   
 	   pre_accX = acceleration.x;
 	   pre_accY = acceleration.y;
 	   pre_accZ = acceleration.z;
