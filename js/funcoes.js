@@ -247,9 +247,9 @@ function XSuccess(acceleration) {
 	   pre_accY = acceleration.y;
 	   pre_accZ = acceleration.z;
 	   
-	   if (accX == 0) {xspeed = xspeed / 2;} else { xspeed = xspeed + accX; }
-	   if (accY == 0) {yspeed = yspeed / 2;} else { yspeed = yspeed + accY; }
-	   if (accZ == 0) {zspeed = zspeed / 2;} else { zspeed = zspeed + accZ; }
+	   if (accX == 0) {xspeed = xspeed / 2;} else { xspeed = xspeed + accX * 0.1; } // simula o efeito do atrito sobre a velocidade do carro
+	   if (accY == 0) {yspeed = yspeed / 2;} else { yspeed = yspeed + accY * 0.1; } // exigindo que exista aceleracao para manter a velocidade
+	   if (accZ == 0) {zspeed = zspeed / 2;} else { zspeed = zspeed + accZ * 0.1; } // caso contrario, a velocidade comeca a cair
 	   
 	   //xyzspeed = Math.round(Math.sqrt(Math.sqrt(Math.pow(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2) - 97.0225, 2))) * 3.6);
 	   xyzspeed = Math.round(Math.sqrt(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2)) * 3.6);
@@ -310,7 +310,7 @@ function XError() {
     element.innerHTML = 'Erro de Deteccao de Velocidade';
 }
 
-var Xoptions = { frequency: 1000 };  // Update every 3 seconds
+var Xoptions = { frequency: 100 };  // Update every 3 seconds
 
 
 
