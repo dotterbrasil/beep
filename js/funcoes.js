@@ -251,8 +251,8 @@ function XSuccess(acceleration) {
 	   if (accY == 0) {yspeed = yspeed / 2;} else { yspeed = yspeed + accY; }
 	   if (accZ == 0) {zspeed = zspeed / 2;} else { zspeed = zspeed + accZ; }
 	   
-	   xyzspeed = Math.round(Math.sqrt(Math.sqrt(Math.pow(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2) - 97.0225, 2))) * 3.6);
-	   //xyzspeed = Math.round(Math.sqrt(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2)) * 3.6);
+	   //xyzspeed = Math.round(Math.sqrt(Math.sqrt(Math.pow(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2) - 97.0225, 2))) * 3.6);
+	   xyzspeed = Math.round(Math.sqrt(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2)) * 3.6);
 	   //notificacao_local('Velocidade X',xspeed, 1);
 	   
 	    
