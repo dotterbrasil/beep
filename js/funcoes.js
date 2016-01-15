@@ -205,20 +205,17 @@ function XSuccess(acceleration) {
 
 		if ((modulo(acceleration.x)>2)&&(modulo(acceleration.x - pre_accX)<2))
 			{alert('componente gravidade x');
-			accX = 0;
-			accY = acceleration.y;
-			accZ = acceleration.z;
+			accX = acceleration.x - pre_accX;
 			}
 			else {
 				accX = acceleration.x;
 				if ((modulo(acceleration.y)>2)&&(modulo(acceleration.y - pre_accY)<2))
 					{alert('componente gravidade y');
-					accY = 0;
-					accZ = acceleration.z;
+					accY = acceleration.y - pre_accY;
 					}
 					else {
 						accY = acceleration.y;
-						if ((modulo(acceleration.z)>2)&&(modulo(acceleration.z - pre_accZ)<2)) {	alert('componente gravidade z');accZ = 0; }
+						if ((modulo(acceleration.z)>2)&&(modulo(acceleration.z - pre_accZ)<2)) {	alert('componente gravidade z');accZ = acceleration.z - pre_accZ; }
 							else {		accZ = acceleration.z;	}
 						}
 				}
