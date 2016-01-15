@@ -203,22 +203,22 @@ function XSuccess(acceleration) {
 	   var soma = 0;
 	   
 
-		if ((modulo(acceleration.x)>0)&&(modulo(acceleration.x - pre_accX)<2))
-			{
+		if ((modulo(acceleration.x)>2)&&(modulo(acceleration.x - pre_accX)<2))
+			{alert('componente gravidade x');
 			accX = 0;
 			accY = acceleration.y;
 			accZ = acceleration.z;
 			}
 			else {
 				accX = acceleration.x;
-				if ((modulo(acceleration.y)>0)&&(modulo(acceleration.y - pre_accY)<2))
-					{
+				if ((modulo(acceleration.y)>2)&&(modulo(acceleration.y - pre_accY)<2))
+					{alert('componente gravidade y');
 					accY = 0;
 					accZ = acceleration.z;
 					}
 					else {
 						accY = acceleration.y;
-						if ((modulo(acceleration.z)>0)&&(modulo(acceleration.z - pre_accZ)<2)) {	accZ = 0; }
+						if ((modulo(acceleration.z)>2)&&(modulo(acceleration.z - pre_accZ)<2)) {	alert('componente gravidade z');accZ = 0; }
 							else {		accZ = acceleration.z;	}
 						}
 				}
