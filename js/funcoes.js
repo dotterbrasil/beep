@@ -220,24 +220,26 @@ function XSuccess(acceleration) {
 	   	   	   		   
 	   var soma = 0;
 	   var componentes = "";
+	   var accX = 0;
+	   var accY = 0;
+	   var accZ = 0;
 
 		if ((modulo(acceleration.x)>2)&&(modulo(acceleration.x - pre_accX)<2))
 			{componentes = componentes + "x";
 			accX = 0;
 			}
-			else { if (modulo(acceleration.x)>2){accX = acceleration.x;} }
-			}
-		if ((modulo(acceleration.y)>2)&&(modulo(acceleration.y - pre_accY)<2))
+			else {
+				if (modulo(acceleration.x)>2){accX = acceleration.x;}
+				if ((modulo(acceleration.y)>2)&&(modulo(acceleration.y - pre_accY)<2))
 					{componentes = componentes + "y";
 					accY = 0;
 					}
 					else {
 						if (modulo(acceleration.y)>2){accY = acceleration.y;}
-					}
-		if ((modulo(acceleration.z)>2)&&(modulo(acceleration.z - pre_accZ)<2)) {componentes = componentes + "z";accZ = 0; }
-					else {		if (modulo(acceleration.z)>2){accZ = acceleration.z;}	}
-						
-				
+						if ((modulo(acceleration.z)>2)&&(modulo(acceleration.z - pre_accZ)<2)) {componentes = componentes + "z";accZ = 0; }
+							else {		if (modulo(acceleration.z)>2){accZ = acceleration.z;}	}
+						}
+				}
 		
 		
 		   
