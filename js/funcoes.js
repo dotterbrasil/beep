@@ -201,21 +201,21 @@ function XSuccess(acceleration) {
 
 	   	   	   		   
 	   var soma = 0;
-	   
+	   var componentes = "";
 
-		if ((modulo(acceleration.x)>2)&&(modulo(acceleration.x - pre_accX)<2))
-			{alert('componente gravidade x');
+		if ((modulo(acceleration.x)>0)&&(modulo(acceleration.x - pre_accX)<1))
+			{componentes = componentes + "x";
 			accX = acceleration.x - pre_accX;
 			}
 			else {
 				accX = acceleration.x;
-				if ((modulo(acceleration.y)>2)&&(modulo(acceleration.y - pre_accY)<2))
-					{alert('componente gravidade y');
+				if ((modulo(acceleration.y)>0)&&(modulo(acceleration.y - pre_accY)<1))
+					{componentes = componentes + "y";
 					accY = acceleration.y - pre_accY;
 					}
 					else {
 						accY = acceleration.y;
-						if ((modulo(acceleration.z)>2)&&(modulo(acceleration.z - pre_accZ)<2)) {	alert('componente gravidade z');accZ = acceleration.z - pre_accZ; }
+						if ((modulo(acceleration.z)>0)&&(modulo(acceleration.z - pre_accZ)<1)) {componentes = componentes + "z";accZ = acceleration.z - pre_accZ; }
 							else {		accZ = acceleration.z;	}
 						}
 				}
@@ -251,7 +251,7 @@ function XSuccess(acceleration) {
 	   
 	   
 	   var element = document.getElementById('status');
-	   element.innerHTML = 'Velocidade XYZ: ' + xyzspeed + ' velocidade media: ' + velocidade_media + ' sX: ' + xspeed + ' sY: ' + yspeed + ' sZ: ' + zspeed;
+	   element.innerHTML = 'Velocidade XYZ: ' + xyzspeed + ' velocidade media: ' + velocidade_media + ' gravidade em: ' + componentes;
 	   
 	   if(velocidade_media > 30)
 		{
