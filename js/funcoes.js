@@ -117,6 +117,13 @@ notification_id++;
 
 }
 
+function modulo(argumento){
+
+var resultado = Math.sqrt(Math.pow(argumento,2));
+
+return resultado;
+	
+}
 
 //---------------------------------------------------------------------------- COORDENADAS  ----------------------------------------------------------------------------
 
@@ -195,7 +202,8 @@ function XSuccess(acceleration) {
 	   	   	   		   
 	   var soma = 0;
 	   
-	   if (Math.sqrt(Math.pow((acceleration.x - pre_accX),2))<2)
+
+		if ((modulo(acceleration.x)>0)&&(modulo(acceleration.x - pre_accX)<2))
 			{
 			accX = 0;
 			accY = acceleration.y;
@@ -203,14 +211,14 @@ function XSuccess(acceleration) {
 			}
 			else {
 				accX = acceleration.x;
-				if (Math.sqrt(Math.pow((acceleration.y - pre_accY),2))<2)
+				if ((modulo(acceleration.y)>0)&&(modulo(acceleration.y - pre_accY)<2))
 					{
 					accY = 0;
 					accZ = acceleration.z;
 					}
 					else {
 						accY = acceleration.y;
-						if (Math.sqrt(Math.pow((acceleration.z - pre_accZ),2))<2)	{	accZ = 0; }
+						if ((modulo(acceleration.z)>0)&&(modulo(acceleration.z - pre_accZ)<2)) {	accZ = 0; }
 							else {		accZ = acceleration.z;	}
 						}
 				}
