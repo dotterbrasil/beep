@@ -223,17 +223,17 @@ function XSuccess(acceleration) {
 
 		if ((modulo(acceleration.x)>2)&&(modulo(acceleration.x - pre_accX)<2))
 			{componentes = componentes + "x";
-			accX = acceleration.x - pre_accX;
+			accX = 0;
 			}
 			else {
 				accX = acceleration.x;
 				if ((modulo(acceleration.y)>2)&&(modulo(acceleration.y - pre_accY)<2))
 					{componentes = componentes + "y";
-					accY = acceleration.y - pre_accY;
+					accY = 0;
 					}
 					else {
 						accY = acceleration.y;
-						if ((modulo(acceleration.z)>2)&&(modulo(acceleration.z - pre_accZ)<2)) {componentes = componentes + "z";accZ = acceleration.z - pre_accZ; }
+						if ((modulo(acceleration.z)>2)&&(modulo(acceleration.z - pre_accZ)<2)) {componentes = componentes + "z";accZ = 0; }
 							else {		accZ = acceleration.z;	}
 						}
 				}
