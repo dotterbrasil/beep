@@ -195,15 +195,27 @@ function XSuccess(acceleration) {
 	   	   	   		   
 	   var soma = 0;
 	   
-	   if (Math.sqrt(Math.pow((acceleration.x - pre_accX),2))<2)	{	accX = 0;	}
-			else {		accX = acceleration.x;		}
-	   //accX = (acceleration.x + pre_accX) / 2;
-	   if (Math.sqrt(Math.pow((acceleration.y - pre_accY),2))<2)	{	accY = 0;	}
-			else {		accY = acceleration.y;		}
-			//accY = (acceleration.y + pre_accY) / 2;
-		if (Math.sqrt(Math.pow((acceleration.z - pre_accZ),2))<2)	{	accZ = 0;	}
-			else {		accZ = acceleration.z;	}
-	  	   //accZ = (acceleration.z + pre_accZ) / 2;
+	   if (Math.sqrt(Math.pow((acceleration.x - pre_accX),2))<2)
+			{
+			accX = 0;
+			accY = acceleration.y;
+			accZ = acceleration.z;
+			}
+			else {
+				accX = acceleration.x;
+				if (Math.sqrt(Math.pow((acceleration.y - pre_accY),2))<2)
+					{
+					accY = 0;
+					accZ = acceleration.z;
+					}
+					else {
+						accY = acceleration.y;
+						if (Math.sqrt(Math.pow((acceleration.z - pre_accZ),2))<2)	{	accZ = 0; }
+							else {		accZ = acceleration.z;	}
+						}
+				}
+		
+		
 		   
 	   pre_accX = acceleration.x;
 	   pre_accY = acceleration.y;
