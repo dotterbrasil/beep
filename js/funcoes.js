@@ -61,6 +61,24 @@ speed_monitor();
 
 function inicializacao(){
 
+onboard = false;
+plugado = "false";
+notification_id = 1;
+
+lat_anterior = 0;
+lon_anterior = 0;
+tempo_anterior = 0;
+velocidade_media = 0;
+leitura = 0;
+
+xspeed = 0;
+yspeed = 0;
+zspeed = 0;
+xyzspeed = 0;
+pre_accX = 0;
+pre_accY = 0;
+pre_accZ = 0;
+
 	document.addEventListener("deviceready", onDeviceReady, false);
 }
 
