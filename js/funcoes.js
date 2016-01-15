@@ -229,15 +229,15 @@ function XSuccess(acceleration) {
 			accX = 0;
 			}
 			else {
-				if (modulo(acceleration.x)>1){accX = acceleration.x;}
+				if (modulo(acceleration.x)>1.5){accX = acceleration.x;}
 				if ((modulo(acceleration.y)>2)&&(modulo(acceleration.y - pre_accY)<2))
 					{componentes = componentes + "y";
 					accY = 0;
 					}
 					else {
-						if (modulo(acceleration.y)>1){accY = acceleration.y;}
+						if (modulo(acceleration.y)>1.5){accY = acceleration.y;}
 						if ((modulo(acceleration.z)>2)&&(modulo(acceleration.z - pre_accZ)<2)) {componentes = componentes + "z";accZ = 0; }
-							else { if (modulo(acceleration.z)>1){accZ = acceleration.z;} }
+							else { if (modulo(acceleration.z)>1.5){accZ = acceleration.z;} }
 						}
 				}
 		
