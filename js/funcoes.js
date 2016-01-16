@@ -213,17 +213,15 @@ xyz = navigator.accelerometer.watchAcceleration(acctes, XError, Xoptions);
 
 }
 
-Function acctes(acceleration){
+function acctes(acceleration){
 
 var soma = 0;
 
-alert('on');
 
 accxyz = Math.sqrt(Math.pow( acceleration.x + acceleration.y + acceleration.z - 9.85,2));
 
 if (accxyz > 0.5) { xyzspeed = xyzspeed + accxyz * 0.1; } else { xyzspeed = xyzspeed / 2;}
 
-alert(accxyz);
 
 speed_matrix[0] = xyzspeed;
 	
