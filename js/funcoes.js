@@ -218,7 +218,7 @@ function acctes(acceleration){
 var soma = 0;
 
 
-accxyz = Math.sqrt(Math.pow( acceleration.x + acceleration.y + acceleration.z - 9.85,2));
+accxyz = Math.sqrt(Math.pow(acceleration.x ,2) + Math.pow(acceleration.y, 2) + Math.pow(acceleration.z, 2) - 97.0225 ));
 
 if (accxyz > 0.5) { xyzspeed = xyzspeed + accxyz * 0.1; } else { xyzspeed = xyzspeed / 2;}
 
