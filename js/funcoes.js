@@ -242,6 +242,34 @@ speed_matrix[0] = xyzspeed;
 	   //element.innerHTML = 'Velocidade XYZ: ' + xyzspeed + ' velocidade media: ' + velocidade_media + ' sX: ' + xspeed + ' sY: ' + yspeed + ' sZ: ' + zspeed;
 	   element.innerHTML = 'Velocidade XYZ: ' + xyzspeed + ' velocidade media: ' + velocidade_media;
 
+	   if(velocidade_media > 30)
+		{
+		if (plugado == "true")
+			{
+			if (onboard == false) {	element.innerHTML = 'Checkin Efetuado. Conectado.';}
+			}
+			else
+				{
+				if (onboard == false) 
+					{ notificacao_local('VELOCIDADE','Checkin Efetuado. Conecte o carregador.', 1);	}
+				}
+		onboard = true;
+		check_in();		
+		}
+		
+		if (velocidade_media < 3)
+		{
+		if (plugado == "false")
+			{
+			if (onboard == true)
+				{
+				element.innerHTML = 'Avaliando saida do carro.';
+				notificacao_local('VELOCIDADE','Avaliando saida do carro.', 1);
+				iswalking();
+				}
+			}
+		}
+
 }
 
 
