@@ -207,9 +207,41 @@ function speed_monitor(){
 //							}, 3000);
 
 
-xyz = navigator.accelerometer.watchAcceleration(XSuccess, XError, Xoptions);
+//xyz = navigator.accelerometer.watchAcceleration(XSuccess, XError, Xoptions);
+
+xyz = navigator.accelerometer.watchAcceleration(acc, XError, Xoptions);
 
 }
+
+Function acc(acceleration){
+
+var soma = 0;
+
+accxyz = acceleration.x + acceleration.y + acceleration.z - 9.85;
+
+if (accxyz > 0.5) { xyzspeed = xyzspeed + accxyz * 0.1; } else { xyzspeed = xyzspeed / 2;}
+
+speed_matrix[0] = xyzspeed;
+	
+			for (var varredura = 0; varredura <5; varredura++)
+				{
+				soma = soma + speed_matrix[varredura];
+				}
+	
+			velocidade_media = Math.round(soma / 5);
+			
+			speed_matrix[4] = speed_matrix[3];
+			speed_matrix[3] = speed_matrix[2];
+			speed_matrix[2] = speed_matrix[1];
+			speed_matrix[1] = speed_matrix[0];
+	   
+	   
+	   var element = document.getElementById('status');
+	   //element.innerHTML = 'Velocidade XYZ: ' + xyzspeed + ' velocidade media: ' + velocidade_media + ' sX: ' + xspeed + ' sY: ' + yspeed + ' sZ: ' + zspeed;
+	   element.innerHTML = 'Velocidade XYZ: ' + xyzspeed + ' velocidade media: ' + velocidade_media;
+
+}
+
 
 function XSuccess(acceleration) {
     //alert('Acceleration X: ' + acceleration.x + '\n' +
