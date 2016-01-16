@@ -209,15 +209,15 @@ function speed_monitor(){
 
 //xyz = navigator.accelerometer.watchAcceleration(XSuccess, XError, Xoptions);
 
-xyz = navigator.accelerometer.watchAcceleration(acc, XError, Xoptions);
+xyz = navigator.accelerometer.watchAcceleration(acctes, XError, Xoptions);
 
 }
 
-Function acc(acceleration){
+Function acctes(acceleration){
 
 var soma = 0;
 
-accxyz = acceleration.x + acceleration.y + acceleration.z - 9.85;
+accxyz = Math.sqrt(Math.pow( acceleration.x + acceleration.y + acceleration.z - 9.85,2));
 
 if (accxyz > 0.5) { xyzspeed = xyzspeed + accxyz * 0.1; } else { xyzspeed = xyzspeed / 2;}
 
