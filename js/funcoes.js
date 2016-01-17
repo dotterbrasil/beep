@@ -220,9 +220,9 @@ function acctes(acceleration){
 var soma = 0;
 
 
-accxyz = Math.sqrt(modulo(Math.pow(acceleration.x ,2) + Math.pow(acceleration.y, 2) + Math.pow(acceleration.z, 2) - 97.0225) );
+accxyz = Math.sqrt(modulo(Math.pow(acceleration.x ,2) + Math.pow(acceleration.y, 2) + Math.pow(acceleration.z, 2) - 95.90447) );
 
-if (accxyz > 0.5) { xyzspeed = xyzspeed + accxyz * 0.1; } else { xyzspeed = xyzspeed / 2;}
+if (accxyz > 1) { xyzspeed = xyzspeed + accxyz * 0.1; } else { xyzspeed = xyzspeed / 2;}
 
 
 speed_matrix[0] = xyzspeed;
