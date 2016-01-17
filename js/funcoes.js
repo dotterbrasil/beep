@@ -1356,6 +1356,7 @@ function onBatteryStatus(info) {
 		{		
 			var m = soma_eixo / 50;
 			media = Math.round(m);
+walking_monitor = false;
 			
 			for (i = 0; i < 50; i++){	
 				var v = array_eixo[i] - media;
@@ -1396,6 +1397,5 @@ function onBatteryStatus(info) {
 			
 			//speed_monitor();
 
-walking_monitor = false;
 		}
 	}
