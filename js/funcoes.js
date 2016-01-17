@@ -1,6 +1,7 @@
 
 var onboard = false;
 var plugado = "false";
+var walking_monitor = false;
 var notification_id = 1;
 
 var lat_anterior = 0;
@@ -63,6 +64,7 @@ function inicializacao(){
 
 onboard = false;
 plugado = "false";
+walking_monitor = false;
 notification_id = 1;
 
 lat_anterior = 0;
@@ -264,8 +266,11 @@ speed_matrix[0] = xyzspeed;
 			if (onboard == true)
 				{
 				element.innerHTML = 'Avaliando saida do carro.';
+if (walking_monitor == false){
 				notificacao_local('VELOCIDADE','Avaliando saida do carro.', 1);
+walking_monitor = true;
 				iswalking();
+}
 				}
 			}
 		}
@@ -1390,5 +1395,7 @@ function onBatteryStatus(info) {
 			
 			
 			//speed_monitor();
+
+walking_monitor = false;
 		}
 	}
