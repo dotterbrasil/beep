@@ -222,7 +222,7 @@ var soma = 0;
 
 accxyz = Math.sqrt(Math.pow(acceleration.x ,2) + Math.pow(acceleration.y, 2) + Math.pow(acceleration.z, 2) - 97.0225 );
 
-if (accxyz > 0.5) { xyzspeed = xyzspeed + accxyz * 0.1; } else { xyzspeed = xyzspeed / 2;}
+if (accxyz > 0.2) { xyzspeed = xyzspeed + accxyz * 0.1; } else { xyzspeed = xyzspeed / 2;}
 
 
 speed_matrix[0] = xyzspeed;
@@ -242,7 +242,7 @@ speed_matrix[0] = xyzspeed;
 	   
 	   var element = document.getElementById('status');
 	   //element.innerHTML = 'Velocidade XYZ: ' + xyzspeed + ' velocidade media: ' + velocidade_media + ' sX: ' + xspeed + ' sY: ' + yspeed + ' sZ: ' + zspeed;
-	   element.innerHTML = 'Velocidade XYZ: ' + xyzspeed + ' velocidade media: ' + velocidade_media;
+	   element.innerHTML = 'Velocidade XYZ: ' + xyzspeed + ' velocidade media: ' + velocidade_media + ' Acc: ' + accxyz;
 
 	   if(velocidade_media > 30)
 		{
