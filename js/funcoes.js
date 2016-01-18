@@ -211,18 +211,44 @@ function speed_monitor(){
 
 //xyz = navigator.accelerometer.watchAcceleration(XSuccess, XError, Xoptions);
 
-xyz = navigator.accelerometer.watchAcceleration(acctes, XError, Xoptions);
+xyz = navigator.accelerometer.watchAcceleration(ac_media, XError, Xoptions);
 
 }
 
-function acctes(acceleration){
+function ac_media(acceleration){
+
+if (leitura < 10)
+	{
+		pre_accX = pre_accX + acceleration.x;
+		pre_accY = pre_accY + acceleration.y;
+		pre_accZ = pre_accZ + acceleration.z;
+		leitura++;
+	}
+	else{
+		leitura = 0;
+		pre_accX = pre_accX / 10;
+		pre_accY = pre_accY / 10;
+		pre_accZ = pre_accZ / 10;
+		accxyz = Math.sqrt(modulo(Math.pow(pre_accX ,2) + Math.pow(pre_accY, 2) + Math.pow(pre_accZ, 2) - 95.90447) );
+		acctes(accxyz);
+		pre_accX = 0;
+		pre_accY = 0;
+		pre_accZ = 0;
+		}
+	
+	
+}
+
+function acctes(accxyz){
 
 var soma = 0;
 
 
-accxyz = Math.sqrt(modulo(Math.pow(acceleration.x ,2) + Math.pow(acceleration.y, 2) + Math.pow(acceleration.z, 2) - 95.90447) );
+//accxyz = Math.sqrt(modulo(Math.pow(acceleration.x ,2) + Math.pow(acceleration.y, 2) + Math.pow(acceleration.z, 2) - 95.90447) );
 
-if (accxyz > 1) { xyzspeed = xyzspeed + accxyz * 0.1; } else { xyzspeed = xyzspeed / 2;}
+//if (accxyz > 1) { xyzspeed = xyzspeed + accxyz * 0.1; } else { xyzspeed = xyzspeed / 2;}
+
+if (accxyz > 1) { xyzspeed = xyzspeed + accxyz * 1; } else { xyzspeed = xyzspeed / 2;}
 
 
 speed_matrix[0] = xyzspeed;
