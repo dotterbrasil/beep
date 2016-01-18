@@ -18,6 +18,7 @@ var xyzspeed = 0;
 var pre_accX = 0;
 var pre_accY = 0;
 var pre_accZ = 0;
+var pre_accxyz = 0;
 
 function onDeviceReady() {
 		//window.plugins.backgroundjs.lockBackgroundTime();
@@ -232,13 +233,13 @@ if (leitura < 10)
 		pre_accY = pre_accY / 10;
 		pre_accZ = pre_accZ / 10;
 		accxyz = Math.sqrt( Math.pow(pre_accX ,2) + Math.pow(pre_accY, 2) + Math.pow(pre_accZ, 2) );
-		element.innerHTML = "X: " + pre_accX + "<br>Y: " + pre_accY + "<br>Z: " + pre_accZ + "<br>total: " + accxyz;
+		element.innerHTML = "X: " + pre_accX + "<br>Y: " + pre_accY + "<br>Z: " + pre_accZ + "<br>total: " + accxyz + "<br>variacao: " + modulo((accxyz - pre_accxyz));
 		if ((accxyz/3)<3.3)
 			{accxyz = 0;} //elimina aceleracao quando unico componente for a gravidade
 			else{accxyz = Math.sqrt(modulo(Math.pow(pre_accX ,2) + Math.pow(pre_accY, 2) + Math.pow(pre_accZ, 2) - 95.90447) );}
 		//acctes(accxyz);
 		//element.innerHTML = "X: " + pre_accX + "<br>Y: " + pre_accX + "<br>Z: " + pre_accZ + "<br>total: " + accxyz;
-		
+		pre_accxyz = accxyz;
 		pre_accX = 0;
 		pre_accY = 0;
 		pre_accZ = 0;
