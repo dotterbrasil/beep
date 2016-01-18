@@ -194,7 +194,7 @@ function speed_monitor(){
 
 
 //watchID = navigator.geolocation.watchPosition(onSuccess, onError, { enableHighAccuracy: true });
-//watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(teste, showError);}, 3000);
+watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(teste, showError);}, 3000);
 
 //navigator.geolocation.getCurrentPosition(teste, showError);
 
@@ -212,9 +212,12 @@ function speed_monitor(){
 
 //xyz = navigator.accelerometer.watchAcceleration(XSuccess, XError, Xoptions);
 
-xyz = navigator.accelerometer.watchAcceleration(ac_media, XError, Xoptions);
+//xyz = navigator.accelerometer.watchAcceleration(ac_media, XError, Xoptions);
+
+
 
 }
+
 
 function ac_media(acceleration){
 	
@@ -616,7 +619,7 @@ var soma = 0;
 	
 	
 			element.innerHTML = 'Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coord: ' + latlon + '<br>';
-	//notificacao_local('VELOCIDADE',velocidade_media, 1);
+	notificacao_local('VELOCIDADE',velocidade_media, 1);
 	
 			lat_anterior = position.coords.latitude*Math.PI/180;
 			lon_anterior = position.coords.longitude*Math.PI/180;
