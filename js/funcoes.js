@@ -18,7 +18,7 @@ var xyzspeed = 0;
 var pre_accX = 0;
 var pre_accY = 0;
 var pre_accZ = 0;
-var pre_accxyz = 0;
+var pre_accxyz = 9.87;
 
 function onDeviceReady() {
 		//window.plugins.backgroundjs.lockBackgroundTime();
@@ -239,7 +239,7 @@ if (leitura < 10)
 			else{accxyz = Math.sqrt(modulo(Math.pow(pre_accX ,2) + Math.pow(pre_accY, 2) + Math.pow(pre_accZ, 2) - 95.90447) );}
 		//acctes(accxyz);
 		//element.innerHTML = "X: " + pre_accX + "<br>Y: " + pre_accX + "<br>Z: " + pre_accZ + "<br>total: " + accxyz;
-		pre_accxyz = accxyz;
+		if (leitura == 0) {pre_accxyz = accxyz;}
 		pre_accX = 0;
 		pre_accY = 0;
 		pre_accZ = 0;
