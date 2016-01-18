@@ -251,7 +251,7 @@ var soma = 0;
 
 //if (accxyz > 1) { xyzspeed = xyzspeed + accxyz * 0.1; } else { xyzspeed = xyzspeed / 2;}
 
-if (accxyz > 1) { xyzspeed = xyzspeed + accxyz * 1; } else { xyzspeed = xyzspeed / 2;}
+if (accxyz > 0) { xyzspeed = xyzspeed + accxyz * 1; } else { xyzspeed = xyzspeed / 2;}
 
 
 speed_matrix[0] = xyzspeed;
