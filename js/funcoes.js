@@ -229,8 +229,10 @@ if (leitura < 10)
 		pre_accX = pre_accX / 10;
 		pre_accY = pre_accY / 10;
 		pre_accZ = pre_accZ / 10;
-		accxyz = Math.sqrt(modulo(Math.pow(pre_accX ,2) + Math.pow(pre_accY, 2) + Math.pow(pre_accZ, 2) - 95.90447) );
-		if ((accxyz/3)<3.3) {accxyz = 0;} //elimina aceleracao quando unico componente for a gravidade
+		accxyz = Math.sqrt( Math.pow(pre_accX ,2) + Math.pow(pre_accY, 2) + Math.pow(pre_accZ, 2) );
+		if ((accxyz/3)<3.3)
+			{accxyz = 0;} //elimina aceleracao quando unico componente for a gravidade
+			else{accxyz = Math.sqrt(modulo(Math.pow(pre_accX ,2) + Math.pow(pre_accY, 2) + Math.pow(pre_accZ, 2) - 95.90447) );}
 		acctes(accxyz);
 		pre_accX = 0;
 		pre_accY = 0;
