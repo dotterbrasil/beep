@@ -619,7 +619,7 @@ var soma = 0;
 	
 	
 			element.innerHTML = 'Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coord: ' + latlon + '<br>';
-	notificacao_local('VELOCIDADE',velocidade_media, 1);
+	//notificacao_local('VELOCIDADE',velocidade_media, 1);
 	
 			lat_anterior = position.coords.latitude*Math.PI/180;
 			lon_anterior = position.coords.longitude*Math.PI/180;
@@ -633,15 +633,19 @@ var soma = 0;
 		
 		
 	
-	if (velocidade_media < 2)
+	if (velocidade_media < 3)
 		{
 		if (plugado == "false")
 			{
 			if (onboard == true)
 				{
-				element.innerHTML = 'Avaliando saida do carro.';
-				//notificacao_local('VELOCIDADE','Avaliando saida do carro.', 1);
-				iswalking();
+				if (walking_monitor == false)
+					{
+					element.innerHTML = 'Avaliando saida do carro.';
+					notificacao_local('VELOCIDADE','Avaliando saida do carro.', 1);
+					walking_monitor = true;
+					iswalking();
+					}
 				}
 			}
 		}
@@ -650,7 +654,7 @@ var soma = 0;
 		{
 		if (plugado == "true")
 			{
-			if (onboard == false) {	element.innerHTML = 'Checkin Efetuado. Conectado.'; }
+			if (onboard == false) {	element.innerHTML = 'Checkin Efetuado. Conectado.'; notificacao_local('VELOCIDADE','Checkin Efetuado.', 1);}
 			}
 			else
 				{
@@ -1396,7 +1400,7 @@ function onBatteryStatus(info) {
 		{		
 			var m = soma_eixo / 50;
 			media = Math.round(m);
-walking_monitor = false;
+			walking_monitor = false;
 			
 			for (i = 0; i < 50; i++){	
 				var v = array_eixo[i] - media;
