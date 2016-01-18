@@ -633,7 +633,7 @@ var soma = 0;
 		
 		
 	
-	if (velocidade_media < 3)
+	if (velocidade_media < 5)
 		{
 		if (plugado == "false")
 			{
