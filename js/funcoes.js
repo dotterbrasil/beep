@@ -236,7 +236,7 @@ if (leitura < 10)
 			{accxyz = 0;} //elimina aceleracao quando unico componente for a gravidade
 			else{accxyz = Math.sqrt(modulo(Math.pow(pre_accX ,2) + Math.pow(pre_accY, 2) + Math.pow(pre_accZ, 2) - 95.90447) );}
 		//acctes(accxyz);
-		element.innerHTML = "X: " + pre_accX + "<br>Y: " + pre_accX + "<br>Z: " + pre_accZ;
+		element.innerHTML = "X: " + pre_accX + "<br>Y: " + pre_accX + "<br>Z: " + pre_accZ + "<br>total: " + accxyz;
 		pre_accX = 0;
 		pre_accY = 0;
 		pre_accZ = 0;
