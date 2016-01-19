@@ -2,6 +2,7 @@
 var onboard = false;
 var plugado = "false";
 var walking_monitor = false;
+var alerta = false;
 var notification_id = 1;
 
 var lat_anterior = 0;
@@ -661,6 +662,7 @@ var soma = 0;
 				if (onboard == false) 
 					{ notificacao_local('VELOCIDADE','Checkin Efetuado. Conecte o carregador.', 1);	}
 				}
+		if (alerta == true) { home(); }
 		onboard = true;
 		check_in();		
 		}
@@ -736,7 +738,9 @@ function onError(error) {
 		{
 		notificacao_local('ALERTA','Crianca presente no carro.', 1);
 		//document.location.href = "desativar.html";
-		onboard = false;setTimeout(localizacao,5000);
+		onboard = false;
+		alerta = true;
+		setTimeout(localizacao,30000);
 		}
 		//else{ speed_monitor(); 
 		//	document.location.href = "index.html"; 
@@ -1321,10 +1325,10 @@ function onBatteryStatus(info) {
 			{
 			if (plugado == false)
 				{
-				notificacao_local('ALERTA','Crianca presente no carro. Bateria.', 1);
+				notificacao_local('ALERTA','Recomenda-se o uso com o carregador conectado.', 1);
 				//document.location.href = "desativar.html";
 				//onboard = false;setTimeout(localizacao,5000);speedup_monitor();monitora_bateria();
-				onboard = false;setTimeout(localizacao,5000);
+				onboard = false;setTimeout(localizacao,30000);
 				}
 				else{
 					//document.location.href = "checkin.html";
