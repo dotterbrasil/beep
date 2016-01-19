@@ -1318,10 +1318,12 @@ window.addEventListener("batterystatus", onBatteryStatus, false);
 function onBatteryStatus(info) {
 	
 		document.getElementById('status').innerHTML = "Level: " + info.level + " isPlugged: " + info.isPlugged;
-		alert('ok');
-		alert(info.isPlugged);
-		if ((plugado == false)&&(info.isPlugged == 'true')) { alert('ligou');}
-		if ((plugado == true)&&(info.isPlugged == 'false')) { alert('desligou');}
+		
+		if (plugado == true)
+			{
+				plugado = info.isPlugged;
+				if (plugado == false) {alert('desligou');}
+			}
 		
 		plugado = info.isPlugged;
 		
