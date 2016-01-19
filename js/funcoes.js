@@ -1320,7 +1320,8 @@ function onBatteryStatus(info) {
 		document.getElementById('status').innerHTML = "Level: " + info.level + " isPlugged: " + info.isPlugged;
 		alert('ok');
 		alert(info.isPlugged);
-		if ((plugado == false)&&(info.isPlugged == true)) { alert('teste');}
+		if ((plugado == false)&&(info.isPlugged == 'true')) { alert('ligou');}
+		if ((plugado == true)&&(info.isPlugged == 'false')) { alert('desligou');}
 		
 		plugado = info.isPlugged;
 		
