@@ -1319,35 +1319,15 @@ function onBatteryStatus(info) {
 	
 		document.getElementById('status').innerHTML = "Level: " + info.level + " isPlugged: " + info.isPlugged;
 		
-		if (plugado == true)
+		if (plugado == 'true')
 			{
 				plugado = info.isPlugged;
-				if (plugado == false) {alert('desligou');}
+				if (plugado == 'false') {alert('desligou');}
 			}
 		
 		plugado = info.isPlugged;
 		
-		if (onboard == true)
-			{
-			if (plugado == false)
-				{
-				notificacao_local('ALERTA','Recomenda-se o uso com o carregador conectado.', 1);
-				//document.location.href = "desativar.html";
-				//onboard = false;setTimeout(localizacao,5000);speedup_monitor();monitora_bateria();
-				onboard = false;setTimeout(localizacao,30000);
-				}
-				else{
-					//document.location.href = "checkin.html";
-					onboard = true;check_in();
-					}
-			}
-			else{
-				if (plugado == true)
-					{
-					document.location.href = "index.html";
-					//inicio();
-					}
-				}
+		
 			
 	}
 	
