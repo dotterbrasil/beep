@@ -67,7 +67,13 @@ function inicializacao(){
 onboard = false;
 plugado = "false";
 walking_monitor = false;
+alerta = false;
 notification_id = 1;
+
+clearInterval(som_alerta);
+clearInterval(watchID);
+clearTimeout(walking_timer);
+clearTimeout(timer_alerta);
 
 lat_anterior = 0;
 lon_anterior = 0;
@@ -171,7 +177,7 @@ if (navigator.geolocation) {
 	
 	 document.getElementById("status").innerHTML = "Buscando localizacao no mapa...";
     
-	var teste = setInterval(playsound,3000);
+	var som_alerta = setInterval(playsound,3000);
 	
 	//document.getElementById("mapa").style.backgroundImage = "url('imagens/fundo_alerta.gif')";
 	document.getElementById("principal").style.backgroundImage = "url('imagens/fundo_alerta.gif')";
@@ -740,7 +746,7 @@ function onError(error) {
 		//document.location.href = "desativar.html";
 		onboard = false;
 		alerta = true;
-		setTimeout(localizacao,30000);
+		timer_alerta = setTimeout(localizacao,30000);
 		}
 		//else{ speed_monitor(); 
 		//	document.location.href = "index.html"; 
@@ -1317,29 +1323,42 @@ window.addEventListener("batterystatus", onBatteryStatus, false);
 
 function onBatteryStatus(info) {
 	
-		document.getElementById('status').innerHTML = "Level: " + info.level + " isPlugged: " + info.isPlugged;
+		//document.getElementById('status').innerHTML = "Level: " + info.level + " isPlugged: " + info.isPlugged;
+		
+		var ligou = false
+		var desligou = false;
+		
+		//ligou = info.isPlugged && !(plugado);
+		//desligou = !(info.isPlugged) && plugado;
 		
 		plugado = info.isPlugged;
 		
+		alert('ligou: '+ligou+' - desligou: '+desligou);
+		
 		if (onboard == true)
 			{
-			if (plugado == false)
+			if (plugado == true)
 				{
-				notificacao_local('ALERTA','Recomenda-se o uso com o carregador conectado.', 1);
-				//document.location.href = "desativar.html";
-				//onboard = false;setTimeout(localizacao,5000);speedup_monitor();monitora_bateria();
-				onboard = false;setTimeout(localizacao,30000);
+					plugado = info.isPlugged;
+					if (plugado == false)
+						{
+						notificacao_local('ALERTA','Recomenda-se o uso com o carregador conectado.', 1);
+						onError();
+						}
+						//else{
+						//	onboard = true;check_in();
+						//	}
 				}
 				else{
-					//document.location.href = "checkin.html";
-					onboard = true;check_in();
+					notificacao_local('ALERTA','Recomenda-se o uso com o carregador conectado.', 1);
+					plugado = info.isPlugged;
 					}
 			}
 			else{
+				plugado = info.isPlugged;
 				if (plugado == true)
 					{
-					document.location.href = "index.html";
-					//inicio();
+					home();
 					}
 				}
 			
@@ -1398,7 +1417,7 @@ function onBatteryStatus(info) {
 			
 			soma_eixo = soma_eixo + eixo;
 			loop++;
-			setTimeout(accelerometer, 100);	
+			walking_timer = setTimeout(accelerometer, 100);	
 		}
 		else
 		{		

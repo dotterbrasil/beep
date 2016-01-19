@@ -1,25 +1,157 @@
-var watchID = "";
-var watchIN = "";
+
 var onboard = false;
 var plugado = "false";
+var walking_monitor = false;
+var alerta = false;
+var notification_id = 1;
+
+var lat_anterior = 0;
+var lon_anterior = 0;
+var tempo_anterior = 0;
+var velocidade_media = 0;
+var speed_matrix = [0, 0, 0, 0, 0];
+var leitura = 0;
+
+var xspeed = 0;
+var yspeed = 0;
+var zspeed = 0;
+var xyzspeed = 0;
+var pre_accX = 0;
+var pre_accY = 0;
+var pre_accZ = 0;
+var pre_accxyz = 9.87;
+
+function onDeviceReady() {
+		//window.plugins.backgroundjs.lockBackgroundTime();
+		//onboard = false;
+		//speedup_monitor();
+				
+		bluetoothle.initialize(initializeSuccess, initializeError, {request: false, statusReceiver: true});
+		
+		
+		
+		//monitora_bateria();
+			
+		//cordova.plugins.notification.local.hasPermission(function (granted) { 
+        //          if(granted == true)
+		//			{
+		//			notificacao_local('VELOCIDADE',' TESTE', 1);
+		//			}
+         //      }); 
+		 //cordova.plugins.notification.local.clearAll();
+		 //navigator.geolocation.clearWatch(watchID);
+		
+		onboard = false;
+plugado = "false";
+notification_id = 1;
+	//window.plugins.backgroundjs.lockBackgroundTime();
+	cordova.plugins.backgroundMode.enable();
+	
+	//alert('Habilitado: ' + cordova.plugins.backgroundMode.isEnabled());
+		
+	cordova.plugins.backgroundMode.onactivate = function() {notificacao_local('Background','Ativado.', 1);};
+	
+cordova.plugins.notification.local.clearAll();
+
+monitora_bateria();
+
+speed_monitor();
+
+//geoback();
+
+}
 
 
 function inicializacao(){
-	onboard = false;
-	bluetoothle.initialize(initializeSuccess, initializeError, {request: false, statusReceiver: true});alert("inicializou BLE");
-	window.plugins.backgroundjs.lockBackgroundTime();alert("entrou em background");
+
+onboard = false;
+plugado = "false";
+walking_monitor = false;
+alerta = false;
+notification_id = 1;
+
+clearInterval(som_alerta);
+clearInterval(watchID);
+clearTimeout(walking_timer);
+clearTimeout(timer_alerta);
+
+lat_anterior = 0;
+lon_anterior = 0;
+tempo_anterior = 0;
+velocidade_media = 0;
+leitura = 0;
+
+xspeed = 0;
+yspeed = 0;
+zspeed = 0;
+xyzspeed = 0;
+pre_accX = 0;
+pre_accY = 0;
+pre_accZ = 0;
+
+	document.addEventListener("deviceready", onDeviceReady, false);
+}
+
+function inicio(){
+
+onboard = false;
+plugado = "false";
+notification_id = 1;
+
+//setInterval(window.plugins.backgroundjs.lockBackgroundTime(), 1000);
+
+window.plugins.backgroundjs.lockBackgroundTime();
+
+monitora_bateria();
+		//onboard = false;
+		
+		cordova.plugins.notification.local.clearAll();
+		 //navigator.geolocation.clearWatch(watchID);
+		 //speedup_monitor();
+		 speed_monitor();
 }
 
 function home(){
 
-	onboard = false;
+	//onboard = false;
 	bluetoothle.stopScan(initializeError, initializeSuccess);
 	document.location.href='index.html';
 	
 }
 
+function notificacao_local(tipo, mensagem_local, indice){
+//notificacao_local(tipo, mensagem, badge)
+//tipo: ALERTA, VELOCIDADE, BATERIA
+//badge: 1, 2, 3
+
+var som = "file://alerta.wav";
+var now = new Date().getTime();
+var _5_sec_from_now = new Date(now + 5 * 1000); 
+var agora = new Date(now);
 
 
+//var sound = device.platform == 'Android' ? 'file://sound.mp3' : 'file://beep.caf'; 
+
+cordova.plugins.notification.local.schedule({ 
+                     id: notification_id, 
+                     title: tipo, 
+                     text: mensagem_local, 
+                     at: agora, 
+                     sound: som, 
+                     badge: notification_id 
+                 }); 
+
+notification_id++;
+
+}
+
+function modulo(argumento){
+
+var resultado = Math.sqrt(Math.pow(argumento,2));
+
+return resultado;
+	
+}
 
 //---------------------------------------------------------------------------- COORDENADAS  ----------------------------------------------------------------------------
 
@@ -41,17 +173,22 @@ if (navigator.geolocation) {
  function showPosition(position) {
     var latlon = position.coords.latitude + "," + position.coords.longitude;
 	
+	notificacao_local('ALERTA','Crianca no Carro: ' + latlon, 1);
+	
 	 document.getElementById("status").innerHTML = "Buscando localizacao no mapa...";
     
-	var teste = setInterval(playsound,3000);
+	var som_alerta = setInterval(playsound,3000);
 	
-	document.getElementById("mapa").style.backgroundImage = "url('imagens/fundo_alerta.gif')";
+	//document.getElementById("mapa").style.backgroundImage = "url('imagens/fundo_alerta.gif')";
+	document.getElementById("principal").style.backgroundImage = "url('imagens/fundo_alerta.gif')";
 	
-     document.getElementById("mapa").innerHTML = "<br><br><iframe width=80% height=80% src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe><br><img src='imagens/alert.gif' width=100% align='center' class='alerta' onclick='desativa();'>";
+     //document.getElementById("mapa").innerHTML = "<br><br><iframe width=80% height=80% src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe><br><img src='imagens/alert.gif' width=100% align='center' class='alerta' onclick='desativa();'>";
+	 
+	 document.getElementById("principal").innerHTML = "<br><br><iframe width=80% height=80% src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe><br><img src='imagens/alert.gif' width=100% align='center' class='alerta' onclick='desativa();'>";
 	 
 	 document.getElementById("status").innerHTML = "Clique sobre o ALERT para desativar o alarme!";
 
-	envia_sms(latlon);
+	//envia_sms(latlon);
 	  
  }
 
@@ -60,44 +197,491 @@ function speed_monitor(){
 
 // Options: throw an error if no update is received every 5 minutes.
 //
-watchID = navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 300000 });
+//watchID = navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 300000 });
+
+
+//watchID = navigator.geolocation.watchPosition(onSuccess, onError, { enableHighAccuracy: true });
+watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(teste, showError);}, 3000);
+
+//navigator.geolocation.getCurrentPosition(teste, showError);
+
+//var isbackground = false;
+
+//watchID = setInterval(function(){
+//							isbackground = cordova.plugins.backgroundMode.isActive(); 
+//							notificacao_local('Background',isbackground, 1);
+//							if (isbackground == true)
+//								{notificacao_local('Background','agora em back', 1);navigator.geolocation.getCurrentPosition(teste_background, showError);}
+//								else
+//									{navigator.geolocation.getCurrentPosition(teste, showError);}
+//							}, 3000);
+
+
+//xyz = navigator.accelerometer.watchAcceleration(XSuccess, XError, Xoptions);
+
+//xyz = navigator.accelerometer.watchAcceleration(ac_media, XError, Xoptions);
+
+
 
 }
 
-function speedup_monitor(){
 
-// Options: throw an error if no update is received every 30 seconds.
-//
-//watchIN = navigator.geolocation.watchPosition(onSuccessIN, onError, { frequency: 1000 });
+function ac_media(acceleration){
+	
+	var element = document.getElementById('status');
 
-watchIN = navigator.geolocation.watchPosition(onSuccessIN,onError, { enableHighAccuracy: true });
-
+if (leitura < 10)
+	{
+		pre_accX = pre_accX + acceleration.x;
+		pre_accY = pre_accY + acceleration.y;
+		pre_accZ = pre_accZ + acceleration.z;
+		leitura++;
+	}
+	else{
+		leitura = 0;
+		pre_accX = pre_accX / 10;
+		pre_accY = pre_accY / 10;
+		pre_accZ = pre_accZ / 10;
+		accxyz = Math.sqrt( Math.pow(pre_accX ,2) + Math.pow(pre_accY, 2) + Math.pow(pre_accZ, 2) );
+		//element.innerHTML = "X: " + pre_accX + "<br>Y: " + pre_accY + "<br>Z: " + pre_accZ + "<br>total: " + accxyz + "<br>pre: " + pre_accxyz + "<br>variacao: " + ((accxyz - pre_accxyz));
+		acctes((accxyz - pre_accxyz));
+		if (leitura == 0) {pre_accxyz = accxyz;}
+		if ((accxyz/3)<3.3)
+			{accxyz = 0;} //elimina aceleracao quando unico componente for a gravidade
+			else{accxyz = Math.sqrt(modulo(Math.pow(pre_accX ,2) + Math.pow(pre_accY, 2) + Math.pow(pre_accZ, 2) - 95.90447) );}
+		//acctes((accxyz - pre_accxyz));
+		//element.innerHTML = "X: " + pre_accX + "<br>Y: " + pre_accX + "<br>Z: " + pre_accZ + "<br>total: " + accxyz;
+		
+		pre_accX = 0;
+		pre_accY = 0;
+		pre_accZ = 0;
+		}
+	
+	
 }
 
-function onSuccessIN(position) {
-    var element = document.getElementById('status');
+function acctes(accxyz){
+
+var soma = 0;
+
+
+//accxyz = Math.sqrt(modulo(Math.pow(acceleration.x ,2) + Math.pow(acceleration.y, 2) + Math.pow(acceleration.z, 2) - 95.90447) );
+
+//if (accxyz > 1) { xyzspeed = xyzspeed + accxyz * 0.1; } else { xyzspeed = xyzspeed / 2;}
+
+if (modulo(accxyz) > 0) { xyzspeed = xyzspeed + accxyz * 1; } else { xyzspeed = xyzspeed / 2;}
+
+
+speed_matrix[0] = xyzspeed;
 	
-	var qtde_in = conta_in();
+			for (var varredura = 0; varredura <5; varredura++)
+				{
+				soma = soma + speed_matrix[varredura];
+				}
 	
-    element.innerHTML = 'Velocidade: ' + Math.round(position.coords.speed*3.6)     + ' km/h <br />' +  '<hr />';
-	
-	if(position.coords.speed > 5)
+			velocidade_media = Math.round(soma / 5);
+			
+			speed_matrix[4] = speed_matrix[3];
+			speed_matrix[3] = speed_matrix[2];
+			speed_matrix[2] = speed_matrix[1];
+			speed_matrix[1] = speed_matrix[0];
+	   
+	   
+	   var element = document.getElementById('status');
+	   //element.innerHTML = 'Velocidade XYZ: ' + xyzspeed + ' velocidade media: ' + velocidade_media + ' sX: ' + xspeed + ' sY: ' + yspeed + ' sZ: ' + zspeed;
+	   element.innerHTML = 'Velocidade XYZ: ' + xyzspeed + ' velocidade media: ' + velocidade_media + ' Acc: ' + accxyz;
+
+	   if(velocidade_media > 30)
 		{
 		if (plugado == "true")
 			{
-			document.location.href="checkin.html";
+			if (onboard == false) {	element.innerHTML = 'Checkin Efetuado. Conectado.';}
 			}
 			else
 				{
-				playsound();
-				element.innerHTML = "<b> Conecte o Carregador </b>";
-				mensagem_local('Conecte o Carregador');
-				document.location.href = "checkin.html";
+				if (onboard == false) 
+					{ notificacao_local('VELOCIDADE','Checkin Efetuado. Conecte o carregador.', 1);	}
 				}
+		onboard = true;
+		check_in();		
 		}
-	
+		
+		if (velocidade_media < 3)
+		{
+		if (plugado == "false")
+			{
+			if (onboard == true)
+				{
+				element.innerHTML = 'Avaliando saida do carro.';
+if (walking_monitor == false){
+				notificacao_local('VELOCIDADE','Avaliando saida do carro.', 1);
+walking_monitor = true;
+				iswalking();
+}
+				}
+			}
+		}
+
 }
 
+
+function XSuccess(acceleration) {
+    //alert('Acceleration X: ' + acceleration.x + '\n' +
+     //     'Acceleration Y: ' + acceleration.y + '\n' +
+      //    'Acceleration Z: ' + acceleration.z + '\n' +
+       //   'Timestamp: '      + acceleration.timestamp + '\n');
+
+	   	   	   		   
+	   var soma = 0;
+	   var componentes = "";
+	   var accX = 0;
+	   var accY = 0;
+	   var accZ = 0;
+
+		if ((modulo(acceleration.x)>2)&&(modulo(acceleration.x - pre_accX)<2))
+			{componentes = componentes + "x";
+			accX = 0;
+			}
+			else {
+				if (modulo(acceleration.x)>0){accX = acceleration.x;}
+				if ((modulo(acceleration.y)>2)&&(modulo(acceleration.y - pre_accY)<2))
+					{componentes = componentes + "y";
+					accY = 0;
+					}
+					else {
+						if (modulo(acceleration.y)>0){accY = acceleration.y;}
+						if ((modulo(acceleration.z)>2)&&(modulo(acceleration.z - pre_accZ)<2)) {componentes = componentes + "z";accZ = 0; }
+							else { if (modulo(acceleration.z)>0){accZ = acceleration.z;} }
+						}
+				}
+		
+		
+		   
+	   pre_accX = acceleration.x;
+	   pre_accY = acceleration.y;
+	   pre_accZ = acceleration.z;
+	   
+	   if (accX == 0) {xspeed = xspeed / 2;} else { xspeed = xspeed + accX * 0.1; } // simula o efeito do atrito sobre a velocidade do carro
+	   if (accY == 0) {yspeed = yspeed / 2;} else { yspeed = yspeed + accY * 0.1; } // exigindo que exista aceleracao para manter a velocidade
+	   if (accZ == 0) {zspeed = zspeed / 2;} else { zspeed = zspeed + accZ * 0.1; } // caso contrario, a velocidade comeca a cair
+	   
+	   //xyzspeed = Math.round(Math.sqrt(Math.sqrt(Math.pow(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2) - 97.0225, 2))) * 3.6);
+	   xyzspeed = Math.round(Math.sqrt(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2)) * 3.6);
+	   //notificacao_local('Velocidade X',xspeed, 1);
+	   
+	    
+	   speed_matrix[0] = xyzspeed;
+	
+			for (var varredura = 0; varredura <5; varredura++)
+				{
+				soma = soma + speed_matrix[varredura];
+				}
+	
+			velocidade_media = Math.round(soma / 5);
+			
+			speed_matrix[4] = speed_matrix[3];
+			speed_matrix[3] = speed_matrix[2];
+			speed_matrix[2] = speed_matrix[1];
+			speed_matrix[1] = speed_matrix[0];
+	   
+	   
+	   var element = document.getElementById('status');
+	   //element.innerHTML = 'Velocidade XYZ: ' + xyzspeed + ' velocidade media: ' + velocidade_media + ' sX: ' + xspeed + ' sY: ' + yspeed + ' sZ: ' + zspeed;
+	   element.innerHTML = 'Velocidade XYZ: ' + xyzspeed + ' velocidade media: ' + velocidade_media;
+	   
+	   if(velocidade_media > 30)
+		{
+		if (plugado == "true")
+			{
+			if (onboard == false) {	element.innerHTML = 'Checkin Efetuado. Conectado.';}
+			}
+			else
+				{
+				if (onboard == false) 
+					{ notificacao_local('VELOCIDADE','Checkin Efetuado. Conecte o carregador.', 1);	}
+				}
+		onboard = true;
+		check_in();		
+		}
+		
+		if (velocidade_media < 3)
+		{
+		if (plugado == "false")
+			{
+			if (onboard == true)
+				{
+				element.innerHTML = 'Avaliando saida do carro.';
+				notificacao_local('VELOCIDADE','Avaliando saida do carro.', 1);
+				iswalking();
+				}
+			}
+		}
+   
+
+}
+
+function XError() {
+	var element = document.getElementById('status');
+    element.innerHTML = 'Erro de Deteccao de Velocidade';
+}
+
+var Xoptions = { frequency: 100 };  // Update every 3 seconds
+
+
+
+function geoback(){
+
+var bgGeo = window.plugins.backgroundGeoLocation;
+
+ //var yourAjaxCallback = function(response) {
+        ////
+        // IMPORTANT:  You must execute the #finish method here to inform the native plugin that you're finished,
+        //  and the background-task may be completed.  You must do this regardless if your HTTP request is successful or not.
+        // IF YOU DON'T, ios will CRASH YOUR APP for spending too much time in the background.
+        //
+        //
+ //       bgGeo.finish();
+ //   };
+
+	var callbackFn = function(location, taskId) {
+		notificacao_local('VELOCIDADE',location.latitude, 1);
+        //alert('[js] BackgroundGeoLocation callback:  ' + location.latitude + ',' + location.longitude);
+        // Do your HTTP request here to POST location to your server.
+        //
+        //
+		
+		navigator.geolocation.getCurrentPosition(teste_background, showError);
+		//navigator.geolocation.getCurrentPosition(teste, showError);
+		
+        setTimeout(function() {
+			bgGeo.finish(taskId); // <-- execute #finish when your work in callbackFn is complete
+        }, 1000);
+
+    };
+ 
+    var failureFn = function(error) {
+        alert('BackgroundGeoLocation error');
+    }
+
+	// BackgroundGeoLocation is highly configurable.
+    bgGeo.configure(callbackFn, failureFn, {
+        desiredAccuracy: 10,
+        stationaryRadius: 10,
+        distanceFilter: 10,
+        activityType: 'Fitness'
+    });
+ 
+ // Turn ON the background-geolocation system.  The user will be tracked whenever they suspend the app.
+    bgGeo.start();
+
+    
+}
+
+function teste_background(position){
+
+var element = document.getElementById('status');
+var tempo = new Date();	
+var velocidade = 0;
+var soma = 0;
+
+		
+	var latlon = location.latitude + "," + location.longitude;
+	
+	
+	if (lat_anterior == 0)
+		{
+		lat_anterior = location.latitude*Math.PI/180;
+		lon_anterior = location.longitude*Math.PI/180;
+		tempo_anterior = Math.round(tempo.getTime()/1000)-1;
+		}
+	
+	
+	var distancia = 6371795.477598 * Math.acos(Math.sin(lat_anterior) * Math.sin(location.latitude*Math.PI/180) + Math.cos(lat_anterior) * Math.cos(location.latitude*Math.PI/180) * Math.cos(lon_anterior - location.longitude*Math.PI/180));
+	
+	
+	if (Math.round(tempo.getTime()/1000) == tempo_anterior)
+		{
+		velocidade = distancia * 3.6 / (Math.round(tempo.getTime()/1000) + 1 - tempo_anterior);
+		}
+		else { velocidade = distancia * 3.6 / (Math.round(tempo.getTime()/1000) - tempo_anterior); }
+	
+	if (isNaN(velocidade)) { velocidade = velocidade_media;}
+	
+	if (velocidade < 0) { velocidade = 0;}
+	
+	//if (velocidade < (velocidade_media + 30))
+	//	{
+			speed_matrix[0] = velocidade;
+	
+			if ((speed_matrix[1]>speed_matrix[0])&&(speed_matrix[1]>speed_matrix[2]))
+					{
+					speed_matrix[1] = (speed_matrix[0] + speed_matrix[2]) / 2;
+					}
+	
+			for (var varredura = 0; varredura <5; varredura++)
+				{
+				soma = soma + speed_matrix[varredura];
+				}
+	
+			velocidade_media = Math.round(soma / 5);
+	
+	
+			element.innerHTML = 'Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coord: ' + latlon + '<br>';
+	notificacao_local('VELOCIDADE',velocidade_media, 1);
+	
+			lat_anterior = position.coords.latitude*Math.PI/180;
+			lon_anterior = position.coords.longitude*Math.PI/180;
+			tempo_anterior = Math.round(tempo.getTime()/1000);
+	
+			speed_matrix[4] = speed_matrix[3];
+			speed_matrix[3] = speed_matrix[2];
+			speed_matrix[2] = speed_matrix[1];
+			speed_matrix[1] = speed_matrix[0];
+	//	}
+		
+		
+	
+	if (velocidade_media < 2)
+		{
+		if (plugado == "false")
+			{
+			if (onboard == true)
+				{
+				element.innerHTML = 'Avaliando saida do carro.';
+				//notificacao_local('VELOCIDADE','Avaliando saida do carro.', 1);
+				iswalking();
+				}
+			}
+		}
+
+	if(velocidade_media > 20)
+		{
+		if (plugado == "true")
+			{
+			if (onboard == false) {	element.innerHTML = 'Checkin Efetuado. Conectado.'; }
+			}
+			else
+				{
+				if (onboard == false) 
+					{ notificacao_local('VELOCIDADE','Checkin Efetuado. Conecte o carregador.', 1);	}
+				}
+		onboard = true;
+		check_in();		
+		}
+		
+		bgGeo.stop(finaliza, failureFn);
+
+}
+
+
+
+function teste(position){
+
+var element = document.getElementById('status');
+var tempo = new Date();	
+var velocidade = 0;
+var soma = 0;
+
+		
+	var latlon = position.coords.latitude + "," + position.coords.longitude;
+	
+	
+	if (lat_anterior == 0)
+		{
+		lat_anterior = position.coords.latitude*Math.PI/180;
+		lon_anterior = position.coords.longitude*Math.PI/180;
+		tempo_anterior = Math.round(tempo.getTime()/1000)-1;
+		}
+	
+	
+	var distancia = 6371795.477598 * Math.acos(Math.sin(lat_anterior) * Math.sin(position.coords.latitude*Math.PI/180) + Math.cos(lat_anterior) * Math.cos(position.coords.latitude*Math.PI/180) * Math.cos(lon_anterior - position.coords.longitude*Math.PI/180));
+	
+	//var distancia = 6371 * Math.acos(Math.sin(lat_anterior) * Math.sin(latitude_x) + Math.cos(lat_anterior) * Math.cos(latitude_x) * Math.cos(lon_anterior - longitude_x));
+	
+	if (Math.round(tempo.getTime()/1000) == tempo_anterior)
+		{
+		velocidade = distancia * 3.6 / (Math.round(tempo.getTime()/1000) + 1 - tempo_anterior);
+		}
+		else { velocidade = distancia * 3.6 / (Math.round(tempo.getTime()/1000) - tempo_anterior); }
+	
+	if (isNaN(velocidade)) { velocidade = velocidade_media;}
+	
+	if (velocidade < 0) { velocidade = 0;}
+	
+	//if (velocidade < (velocidade_media + 30))
+	//	{
+			speed_matrix[0] = velocidade;
+	
+			if ((speed_matrix[1]>speed_matrix[0])&&(speed_matrix[1]>speed_matrix[2]))
+					{
+					speed_matrix[1] = (speed_matrix[0] + speed_matrix[2]) / 2;
+					}
+	
+			for (var varredura = 0; varredura <5; varredura++)
+				{
+				soma = soma + speed_matrix[varredura];
+				}
+	
+			velocidade_media = Math.round(soma / 5);
+	
+	
+			element.innerHTML = 'Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coord: ' + latlon + '<br>';
+	//notificacao_local('VELOCIDADE',velocidade_media, 1);
+	
+			lat_anterior = position.coords.latitude*Math.PI/180;
+			lon_anterior = position.coords.longitude*Math.PI/180;
+			tempo_anterior = Math.round(tempo.getTime()/1000);
+	
+			speed_matrix[4] = speed_matrix[3];
+			speed_matrix[3] = speed_matrix[2];
+			speed_matrix[2] = speed_matrix[1];
+			speed_matrix[1] = speed_matrix[0];
+	//	}
+		
+		
+	
+	if (velocidade_media < 5)
+		{
+		if (plugado == "false")
+			{
+			if (onboard == true)
+				{
+				if (walking_monitor == false)
+					{
+					element.innerHTML = 'Avaliando saida do carro.';
+					notificacao_local('VELOCIDADE','Avaliando saida do carro.', 1);
+					walking_monitor = true;
+					iswalking();
+					}
+				}
+			}
+		}
+
+	if(velocidade_media > 20)
+		{
+		if (plugado == "true")
+			{
+			if (onboard == false) {	element.innerHTML = 'Checkin Efetuado. Conectado.'; notificacao_local('VELOCIDADE','Checkin Efetuado.', 1);}
+			}
+			else
+				{
+				if (onboard == false) 
+					{ notificacao_local('VELOCIDADE','Checkin Efetuado. Conecte o carregador.', 1);	}
+				}
+		if (alerta == true) { home(); }
+		onboard = true;
+		check_in();		
+		}
+
+}
+
+
+function showError(error){
+
+    var element = document.getElementById('status');
+notificacao_local('ERRO','Erro ao obter coordenadas.', 1);
+
+}
 
 // onSuccess Callback
 //   This method accepts a `Position` object, which contains
@@ -108,16 +692,46 @@ function onSuccess(position) {
 	
 	var qtde_in = conta_in();
 	
-    element.innerHTML = 'Velocidade: ' + Math.round(position.coords.speed*3.6)     + ' km/h <br />' +  '<hr />'  ;
+	var latlon = position.coords.latitude + "," + position.coords.longitude;
 	
-	if (position.coords.speed < 2)
+	 element.innerHTML = 'Velocidade: ' + Math.round(position.coords.speed*3.6)     + ' km/h <br />' +  '<hr />' + 'Coords: ' + latlon + '<br>';
+	
+	
+	if (position.coords.speed < 0)
 		{
-		temporizador = setTimeout(onError, 300000); //faz checkout forcado apos 5 minutos de baixa velocidade
-		}
-		else{
-			if (position.coords.speed > 5) {clearTimeout(temporizador);} //cancela checkout forcado se velocidade subir
+		if (plugado == "false")
+			{
+			if (onboard == true)
+				{
+				element.innerHTML = 'Avaliando saida do carro.';
+				notificacao_local('VELOCIDADE','Avaliando saida do carro.', 1);
+				iswalking();
+				}
 			}
-	
+		}
+		//else{
+		//	if (position.coords.speed > 5) {clearTimeout(temporizador);} //cancela checkout forcado se velocidade subir
+		//	}
+	if(position.coords.speed > 1)
+		{
+		if (onboard == false)
+			{
+			if (plugado == "true")
+				{
+				notificacao_local('VELOCIDADE','Checkin Efetuado. Conectado.', 1);
+				//document.location.href="checkin.html";
+				}
+				else
+					{
+					//playsound();
+					//element.innerHTML = "<b> Conecte o Carregador </b>";
+					notificacao_local('VELOCIDADE','Checkin Efetuado. Conecte o carregador.', 1);
+					//document.location.href = "checkin.html";
+					//onboard = true;check_in();navigator.geolocation.clearWatch(watchIN);speed_monitor();monitora_bateria();
+					}
+			onboard = true;check_in();
+			}
+		}
 }
 
 // onError Callback receives a PositionError object
@@ -128,11 +742,15 @@ function onError(error) {
 	
 	if (qtde_in > 0)
 		{
-		document.location.href = "desativar.html";
+		notificacao_local('ALERTA','Crianca presente no carro.', 1);
+		//document.location.href = "desativar.html";
+		onboard = false;
+		alerta = true;
+		timer_alerta = setTimeout(localizacao,30000);
 		}
-		else{
-			document.location.href = "index.html"; 
-			}
+		//else{ speed_monitor(); 
+		//	document.location.href = "index.html"; 
+		//	}
 
     //alert('code: '    + error.code    + '\n' + 'message: ' + error.message + '\n');
 }
@@ -140,11 +758,11 @@ function onError(error) {
 
 
 
-function stop_monitor(){
+//function stop_monitor(){
 
-navigator.geolocation.clearWatch(watchID);
+//navigator.geolocation.clearWatch(watchID);
 
-}
+//}
 
 
 //---------------------------------------------------------------------------- ALERTS  ----------------------------------------------------------------------------
@@ -435,16 +1053,13 @@ function getMediaURL(s) {
 
 
 function mediaError(){
-alert("Erro de Som");
-}
-
-function mensagem_local(mensagem_texto){
-
-//var som = getMediaURL("sons/alerta.wav");
-
-window.plugin.notification.local.add({ message: 'alerta'  });
+	var element = document.getElementById('status');
+	
+	element.innerHTML = 'Erro de Som';
 
 }
+
+
 
 //---------------------------------------------------------------------------- SMS  ----------------------------------------------------------------------------
 
@@ -636,6 +1251,8 @@ function limpa_car(i){
 	document.getElementById("principal").innerHTML = "";
 	lista_carros();
   }
+  
+ 
 
 //---------------------------------------------------------------------------- BLUETOOTH  ----------------------------------------------------------------------------
 function scanBLE(tipo){
@@ -672,11 +1289,13 @@ document.getElementById("principal").innerHTML = "";
 
 function initializeSuccess(){
 
-alert("BLE on");
+notificacao_local('VELOCIDADE','BLE on', 1);
 }
 
 function initializeError(){
-alert("BLE off");
+
+notificacao_local('VELOCIDADE','BLE off', 1);
+
 }
 
 function startScanSuccess(){
@@ -696,34 +1315,154 @@ alert("Erro ao listar BLEs");
 
 //---------------------------------------------------------------------------- Conexao Bateria  ----------------------------------------------------------------------------
 
-function onLoad() {
-        
-		document.addEventListener("deviceready", onDeviceReady, false);
-		
-		window.plugins.backgroundjs.lockBackgroundTime();
-		
-    }
-    
-function onDeviceReady() {
-        window.addEventListener("batterystatus", onBatteryStatus, false);
-    }
+function monitora_bateria(){
+
+window.addEventListener("batterystatus", onBatteryStatus, false);
+
+}
 
 function onBatteryStatus(info) {
 	
-		document.getElementById('status').innerHTML = "Level: " + info.level + " isPlugged: " + info.isPlugged;
+		//document.getElementById('status').innerHTML = "Level: " + info.level + " isPlugged: " + info.isPlugged;
+		
+		var ligou = false
+		var desligou = false;
+		
+		//ligou = info.isPlugged && !(plugado);
+		//desligou = !(info.isPlugged) && plugado;
 		
 		plugado = info.isPlugged;
 		
+		alert('ligou: '+ligou+' - desligou: '+desligou);
+		
 		if (onboard == true)
 			{
-			if (plugado == false)
+			if (plugado == true)
 				{
-				document.location.href = "desativar.html";
+					plugado = info.isPlugged;
+					if (plugado == false)
+						{
+						notificacao_local('ALERTA','Recomenda-se o uso com o carregador conectado.', 1);
+						onError();
+						}
+						//else{
+						//	onboard = true;check_in();
+						//	}
 				}
-				else{ document.location.href = "checkin.html";}
+				else{
+					notificacao_local('ALERTA','Recomenda-se o uso com o carregador conectado.', 1);
+					plugado = info.isPlugged;
+					}
 			}
 			else{
-				if (plugado == true) { document.location.href = "index.html"; }
+				plugado = info.isPlugged;
+				if (plugado == true)
+					{
+					home();
+					}
 				}
 			
+	}
+	
+	
+//---------------------------------------------------------------------------- Avaliacao de Caminhada  ----------------------------------------------------------------------------
+
+	var loop = 0;	
+	var contador = 0;
+	var soma_eixo = 0;
+	var media = 0;
+	var array_eixo = new Array();
+	var anterior = false;
+	
+	
+	function iswalking(){ 
+	//	document.getElementById("status").innerHTML = "";
+		//navigator.geolocation.clearWatch(watchID);
+		//clearInterval(watchID);
+		loop = 0;	
+		contador = 0;
+		soma_eixo = 0;
+		media = 0;
+		array_eixo = [];
+		anterior = false;
+		
+		accelerometer();
+	}		
+	function accelerometer(){ 
+		navigator.accelerometer.getCurrentAcceleration(motion, error);
+	}
+	function error(){
+		alert('Error!');
+	}
+	function motion(acceleration){
+		var x = acceleration.x;
+		var x_int = Math.round(x);
+		var accel_x = Math.pow(x_int, 2);
+		
+		var y = acceleration.y;
+		var y_int = Math.round(y);
+		var accel_y = Math.pow(y_int, 2);
+		
+		var z = acceleration.z;
+		var z_int = Math.round(z);
+		var accel_z = Math.pow(z_int, 2);
+		
+		if(loop < 50){			
+		//	document.getElementById("status").innerHTML = "<br><h2>"+loop+"</h2>"; 		
+	
+			var xyz = accel_x + accel_y + accel_z;
+			var xyzSqrt = Math.sqrt(xyz);
+			var eixo = Math.round(xyzSqrt);
+			array_eixo.push(eixo);
+			
+			soma_eixo = soma_eixo + eixo;
+			loop++;
+			walking_timer = setTimeout(accelerometer, 100);	
+		}
+		else
+		{		
+			var m = soma_eixo / 50;
+			media = Math.round(m);
+			walking_monitor = false;
+			
+			for (i = 0; i < 50; i++){	
+				var v = array_eixo[i] - media;
+				var vetor = Math.round(v);
+				
+				if(!anterior){
+					if(vetor > 1){
+						contador++;
+						anterior = true;					
+					}
+					else if (vetor <= '-2')
+					{
+						anterior = false;
+					}
+				}
+				else 
+				{
+					if(vetor <= '-2') {
+						anterior = false; 
+					}
+				}  
+			} 
+			frequencia = contador / 5;
+			
+			//document.getElementById("status").innerHTML += "<br><h2>Result</h2><br>Frequência "+ frequencia; 	
+		
+		
+			if(frequencia > '1.2' && frequencia < '3.4')
+				{
+			//	document.getElementById("status").innerHTML += "<br><h2>Is Walking</h2>"; 	
+			//	notificacao_local('VELOCIDADE','Motorista esta andando a pe.', 2);
+				onError();
+				//return true;
+				}
+			//else {speed_monitor();}
+			//	document.getElementById("status").innerHTML += "<br><h2>Is not Walking</h2>"; 
+			
+			
+			//speed_monitor();
+
+		}
 	}
