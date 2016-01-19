@@ -1,6 +1,7 @@
 
 var onboard = false;
 var plugado = "false";
+var plugado_anterior = false;
 var walking_monitor = false;
 var alerta = false;
 var notification_id = 1;
@@ -1319,12 +1320,6 @@ function onBatteryStatus(info) {
 	
 		document.getElementById('status').innerHTML = "Level: " + info.level + " isPlugged: " + info.isPlugged;
 		
-		if (plugado == "true")
-			{alert('verdadeiro');
-				plugado = info.isPlugged;
-				if (plugado == "false") {alert('desligou');}
-			}
-		
 		plugado = info.isPlugged;
 		
 		if (onboard == true)
@@ -1334,16 +1329,19 @@ function onBatteryStatus(info) {
 				notificacao_local('ALERTA','Recomenda-se o uso com o carregador conectado.', 1);
 				//document.location.href = "desativar.html";
 				//onboard = false;setTimeout(localizacao,5000);speedup_monitor();monitora_bateria();
-				onboard = false;setTimeout(localizacao,30000);
+				if (plugado_anterior == true) { onboard = false;setTimeout(localizacao,30000); }
+				plugado_anterior = false;
 				}
 				else{
 					//document.location.href = "checkin.html";
+					plugado_anterior = true;
 					onboard = true;check_in();
 					}
 			}
 			else{
 				if (plugado == true)
 					{
+					plugado_anterior = true;
 					document.location.href = "index.html";
 					//inicio();
 					}
