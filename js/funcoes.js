@@ -1,7 +1,7 @@
 
 var onboard = false;
 var plugado = "false";
-var plugado_anterior = false;
+var plugado_anterior = "false";
 var walking_monitor = false;
 var alerta = false;
 var notification_id = 1;
@@ -67,6 +67,7 @@ function inicializacao(){
 
 onboard = false;
 plugado = "false";
+plugado_anterior = "false";
 walking_monitor = false;
 notification_id = 1;
 
@@ -1330,23 +1331,23 @@ function onBatteryStatus(info) {
 				//document.location.href = "desativar.html";
 				//onboard = false;setTimeout(localizacao,5000);speedup_monitor();monitora_bateria();
 				if (plugado_anterior == true) { onboard = false;setTimeout(localizacao,30000); }
-				plugado_anterior = false;
+				//plugado_anterior = false;
 				}
 				else{
 					//document.location.href = "checkin.html";
-					plugado_anterior = true;
+					//plugado_anterior = true;
 					onboard = true;check_in();
 					}
 			}
 			else{
 				if (plugado == true)
 					{
-					plugado_anterior = true;
+					//plugado_anterior = true;
 					document.location.href = "index.html";
 					//inicio();
 					}
 				}
-		
+		plugado_anterior = plugado;
 			
 	}
 	
