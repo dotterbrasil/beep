@@ -11,79 +11,42 @@ var lon_anterior = 0;
 var tempo_anterior = 0;
 var velocidade_media = 0;
 var speed_matrix = [0, 0, 0, 0, 0];
-var leitura = 0;
 
-var xspeed = 0;
-var yspeed = 0;
-var zspeed = 0;
-var xyzspeed = 0;
-var pre_accX = 0;
-var pre_accY = 0;
-var pre_accZ = 0;
-var pre_accxyz = 9.87;
 
 function onDeviceReady() {
-		//window.plugins.backgroundjs.lockBackgroundTime();
-		//onboard = false;
-		//speedup_monitor();
 				
 		bluetoothle.initialize(initializeSuccess, initializeError, {request: false, statusReceiver: true});
-		
-		
-		
-		//monitora_bateria();
-			
-		//cordova.plugins.notification.local.hasPermission(function (granted) { 
-        //          if(granted == true)
-		//			{
-		//			notificacao_local('VELOCIDADE',' TESTE', 1);
-		//			}
-         //      }); 
-		 //cordova.plugins.notification.local.clearAll();
-		 //navigator.geolocation.clearWatch(watchID);
-		
+
 		onboard = false;
-plugado = "false";
-notification_id = 1;
-	//window.plugins.backgroundjs.lockBackgroundTime();
-	cordova.plugins.backgroundMode.enable();
-	
-	//alert('Habilitado: ' + cordova.plugins.backgroundMode.isEnabled());
-		
-	cordova.plugins.backgroundMode.onactivate = function() {notificacao_local('Background','Ativado.', 1);};
-	
-cordova.plugins.notification.local.clearAll();
+		plugado = "false";
+		notification_id = 1;
+		cordova.plugins.backgroundMode.enable();
+		cordova.plugins.backgroundMode.onactivate = function() {notificacao_local('Background','Ativado.', 1);};
+		cordova.plugins.notification.local.clearAll();
 
-monitora_bateria();
-
-speed_monitor();
-
-//geoback();
+		monitora_bateria();
+		speed_monitor();
 
 }
 
 
 function inicializacao(){
 
-onboard = false;
-plugado = "false";
-plugado_anterior = "false";
-walking_monitor = false;
-notification_id = 1;
+	onboard = false;
+	plugado = "false";
+	plugado_anterior = "false";
+	walking_monitor = false;
+	notification_id = 1;
 
-lat_anterior = 0;
-lon_anterior = 0;
-tempo_anterior = 0;
-velocidade_media = 0;
-leitura = 0;
+	lat_anterior = 0;
+	lon_anterior = 0;
+	tempo_anterior = 0;
+	velocidade_media = 0;
 
-xspeed = 0;
-yspeed = 0;
-zspeed = 0;
-xyzspeed = 0;
-pre_accX = 0;
-pre_accY = 0;
-pre_accZ = 0;
+	for (var limpa_matrix = 0; limpa_matrix <5; limpa_matrix++)
+				{
+				speed_matrix[limpa_matrix] = 0;
+				}
 
 	document.addEventListener("deviceready", onDeviceReady, false);
 }
@@ -94,22 +57,17 @@ onboard = false;
 plugado = "false";
 notification_id = 1;
 
-//setInterval(window.plugins.backgroundjs.lockBackgroundTime(), 1000);
 
 window.plugins.backgroundjs.lockBackgroundTime();
 
 monitora_bateria();
-		//onboard = false;
 		
 		cordova.plugins.notification.local.clearAll();
-		 //navigator.geolocation.clearWatch(watchID);
-		 //speedup_monitor();
 		 speed_monitor();
 }
 
 function home(){
 
-	//onboard = false;
 	bluetoothle.stopScan(initializeError, initializeSuccess);
 	document.location.href='index.html';
 	
@@ -125,8 +83,6 @@ var now = new Date().getTime();
 var _5_sec_from_now = new Date(now + 5 * 1000); 
 var agora = new Date(now);
 
-
-//var sound = device.platform == 'Android' ? 'file://sound.mp3' : 'file://beep.caf'; 
 
 cordova.plugins.notification.local.schedule({ 
                      id: notification_id, 
@@ -222,353 +178,6 @@ watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(teste,
 }
 
 
-function ac_media(acceleration){
-	
-	var element = document.getElementById('status');
-
-if (leitura < 10)
-	{
-		pre_accX = pre_accX + acceleration.x;
-		pre_accY = pre_accY + acceleration.y;
-		pre_accZ = pre_accZ + acceleration.z;
-		leitura++;
-	}
-	else{
-		leitura = 0;
-		pre_accX = pre_accX / 10;
-		pre_accY = pre_accY / 10;
-		pre_accZ = pre_accZ / 10;
-		accxyz = Math.sqrt( Math.pow(pre_accX ,2) + Math.pow(pre_accY, 2) + Math.pow(pre_accZ, 2) );
-		//element.innerHTML = "X: " + pre_accX + "<br>Y: " + pre_accY + "<br>Z: " + pre_accZ + "<br>total: " + accxyz + "<br>pre: " + pre_accxyz + "<br>variacao: " + ((accxyz - pre_accxyz));
-		acctes((accxyz - pre_accxyz));
-		if (leitura == 0) {pre_accxyz = accxyz;}
-		if ((accxyz/3)<3.3)
-			{accxyz = 0;} //elimina aceleracao quando unico componente for a gravidade
-			else{accxyz = Math.sqrt(modulo(Math.pow(pre_accX ,2) + Math.pow(pre_accY, 2) + Math.pow(pre_accZ, 2) - 95.90447) );}
-		//acctes((accxyz - pre_accxyz));
-		//element.innerHTML = "X: " + pre_accX + "<br>Y: " + pre_accX + "<br>Z: " + pre_accZ + "<br>total: " + accxyz;
-		
-		pre_accX = 0;
-		pre_accY = 0;
-		pre_accZ = 0;
-		}
-	
-	
-}
-
-function acctes(accxyz){
-
-var soma = 0;
-
-
-//accxyz = Math.sqrt(modulo(Math.pow(acceleration.x ,2) + Math.pow(acceleration.y, 2) + Math.pow(acceleration.z, 2) - 95.90447) );
-
-//if (accxyz > 1) { xyzspeed = xyzspeed + accxyz * 0.1; } else { xyzspeed = xyzspeed / 2;}
-
-if (modulo(accxyz) > 0) { xyzspeed = xyzspeed + accxyz * 1; } else { xyzspeed = xyzspeed / 2;}
-
-
-speed_matrix[0] = xyzspeed;
-	
-			for (var varredura = 0; varredura <5; varredura++)
-				{
-				soma = soma + speed_matrix[varredura];
-				}
-	
-			velocidade_media = Math.round(soma / 5);
-			
-			speed_matrix[4] = speed_matrix[3];
-			speed_matrix[3] = speed_matrix[2];
-			speed_matrix[2] = speed_matrix[1];
-			speed_matrix[1] = speed_matrix[0];
-	   
-	   
-	   var element = document.getElementById('status');
-	   //element.innerHTML = 'Velocidade XYZ: ' + xyzspeed + ' velocidade media: ' + velocidade_media + ' sX: ' + xspeed + ' sY: ' + yspeed + ' sZ: ' + zspeed;
-	   element.innerHTML = 'Velocidade XYZ: ' + xyzspeed + ' velocidade media: ' + velocidade_media + ' Acc: ' + accxyz;
-
-	   if(velocidade_media > 30)
-		{
-		if (plugado == true)
-			{
-			if (onboard == false) {	element.innerHTML = 'Checkin Efetuado. Conectado.';}
-			}
-			else
-				{
-				if (onboard == false) 
-					{ notificacao_local('VELOCIDADE','Checkin Efetuado. Conecte o carregador.', 1);	}
-				}
-		onboard = true;
-		check_in();		
-		}
-		
-		if (velocidade_media < 3)
-		{
-		if (plugado == false)
-			{
-			if (onboard == true)
-				{
-				element.innerHTML = 'Avaliando saida do carro.';
-if (walking_monitor == false){
-				notificacao_local('VELOCIDADE','Avaliando saida do carro.', 1);
-walking_monitor = true;
-				iswalking();
-}
-				}
-			}
-		}
-
-}
-
-
-function XSuccess(acceleration) {
-    //alert('Acceleration X: ' + acceleration.x + '\n' +
-     //     'Acceleration Y: ' + acceleration.y + '\n' +
-      //    'Acceleration Z: ' + acceleration.z + '\n' +
-       //   'Timestamp: '      + acceleration.timestamp + '\n');
-
-	   	   	   		   
-	   var soma = 0;
-	   var componentes = "";
-	   var accX = 0;
-	   var accY = 0;
-	   var accZ = 0;
-
-		if ((modulo(acceleration.x)>2)&&(modulo(acceleration.x - pre_accX)<2))
-			{componentes = componentes + "x";
-			accX = 0;
-			}
-			else {
-				if (modulo(acceleration.x)>0){accX = acceleration.x;}
-				if ((modulo(acceleration.y)>2)&&(modulo(acceleration.y - pre_accY)<2))
-					{componentes = componentes + "y";
-					accY = 0;
-					}
-					else {
-						if (modulo(acceleration.y)>0){accY = acceleration.y;}
-						if ((modulo(acceleration.z)>2)&&(modulo(acceleration.z - pre_accZ)<2)) {componentes = componentes + "z";accZ = 0; }
-							else { if (modulo(acceleration.z)>0){accZ = acceleration.z;} }
-						}
-				}
-		
-		
-		   
-	   pre_accX = acceleration.x;
-	   pre_accY = acceleration.y;
-	   pre_accZ = acceleration.z;
-	   
-	   if (accX == 0) {xspeed = xspeed / 2;} else { xspeed = xspeed + accX * 0.1; } // simula o efeito do atrito sobre a velocidade do carro
-	   if (accY == 0) {yspeed = yspeed / 2;} else { yspeed = yspeed + accY * 0.1; } // exigindo que exista aceleracao para manter a velocidade
-	   if (accZ == 0) {zspeed = zspeed / 2;} else { zspeed = zspeed + accZ * 0.1; } // caso contrario, a velocidade comeca a cair
-	   
-	   //xyzspeed = Math.round(Math.sqrt(Math.sqrt(Math.pow(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2) - 97.0225, 2))) * 3.6);
-	   xyzspeed = Math.round(Math.sqrt(Math.pow(xspeed, 2) + Math.pow(yspeed, 2) + Math.pow(zspeed, 2)) * 3.6);
-	   //notificacao_local('Velocidade X',xspeed, 1);
-	   
-	    
-	   speed_matrix[0] = xyzspeed;
-	
-			for (var varredura = 0; varredura <5; varredura++)
-				{
-				soma = soma + speed_matrix[varredura];
-				}
-	
-			velocidade_media = Math.round(soma / 5);
-			
-			speed_matrix[4] = speed_matrix[3];
-			speed_matrix[3] = speed_matrix[2];
-			speed_matrix[2] = speed_matrix[1];
-			speed_matrix[1] = speed_matrix[0];
-	   
-	   
-	   var element = document.getElementById('status');
-	   //element.innerHTML = 'Velocidade XYZ: ' + xyzspeed + ' velocidade media: ' + velocidade_media + ' sX: ' + xspeed + ' sY: ' + yspeed + ' sZ: ' + zspeed;
-	   element.innerHTML = 'Velocidade XYZ: ' + xyzspeed + ' velocidade media: ' + velocidade_media;
-	   
-	   if(velocidade_media > 30)
-		{
-		if (plugado == true)
-			{
-			if (onboard == false) {	element.innerHTML = 'Checkin Efetuado. Conectado.';}
-			}
-			else
-				{
-				if (onboard == false) 
-					{ notificacao_local('VELOCIDADE','Checkin Efetuado. Conecte o carregador.', 1);	}
-				}
-		onboard = true;
-		check_in();		
-		}
-		
-		if (velocidade_media < 3)
-		{
-		if (plugado == false)
-			{
-			if (onboard == true)
-				{
-				element.innerHTML = 'Avaliando saida do carro.';
-				notificacao_local('VELOCIDADE','Avaliando saida do carro.', 1);
-				iswalking();
-				}
-			}
-		}
-   
-
-}
-
-function XError() {
-	var element = document.getElementById('status');
-    element.innerHTML = 'Erro de Deteccao de Velocidade';
-}
-
-var Xoptions = { frequency: 100 };  // Update every 3 seconds
-
-
-
-function geoback(){
-
-var bgGeo = window.plugins.backgroundGeoLocation;
-
- //var yourAjaxCallback = function(response) {
-        ////
-        // IMPORTANT:  You must execute the #finish method here to inform the native plugin that you're finished,
-        //  and the background-task may be completed.  You must do this regardless if your HTTP request is successful or not.
-        // IF YOU DON'T, ios will CRASH YOUR APP for spending too much time in the background.
-        //
-        //
- //       bgGeo.finish();
- //   };
-
-	var callbackFn = function(location, taskId) {
-		notificacao_local('VELOCIDADE',location.latitude, 1);
-        //alert('[js] BackgroundGeoLocation callback:  ' + location.latitude + ',' + location.longitude);
-        // Do your HTTP request here to POST location to your server.
-        //
-        //
-		
-		navigator.geolocation.getCurrentPosition(teste_background, showError);
-		//navigator.geolocation.getCurrentPosition(teste, showError);
-		
-        setTimeout(function() {
-			bgGeo.finish(taskId); // <-- execute #finish when your work in callbackFn is complete
-        }, 1000);
-
-    };
- 
-    var failureFn = function(error) {
-        alert('BackgroundGeoLocation error');
-    }
-
-	// BackgroundGeoLocation is highly configurable.
-    bgGeo.configure(callbackFn, failureFn, {
-        desiredAccuracy: 10,
-        stationaryRadius: 10,
-        distanceFilter: 10,
-        activityType: 'Fitness'
-    });
- 
- // Turn ON the background-geolocation system.  The user will be tracked whenever they suspend the app.
-    bgGeo.start();
-
-    
-}
-
-function teste_background(position){
-
-var element = document.getElementById('status');
-var tempo = new Date();	
-var velocidade = 0;
-var soma = 0;
-
-		
-	var latlon = location.latitude + "," + location.longitude;
-	
-	
-	if (lat_anterior == 0)
-		{
-		lat_anterior = location.latitude*Math.PI/180;
-		lon_anterior = location.longitude*Math.PI/180;
-		tempo_anterior = Math.round(tempo.getTime()/1000)-1;
-		}
-	
-	
-	var distancia = 6371795.477598 * Math.acos(Math.sin(lat_anterior) * Math.sin(location.latitude*Math.PI/180) + Math.cos(lat_anterior) * Math.cos(location.latitude*Math.PI/180) * Math.cos(lon_anterior - location.longitude*Math.PI/180));
-	
-	
-	if (Math.round(tempo.getTime()/1000) == tempo_anterior)
-		{
-		velocidade = distancia * 3.6 / (Math.round(tempo.getTime()/1000) + 1 - tempo_anterior);
-		}
-		else { velocidade = distancia * 3.6 / (Math.round(tempo.getTime()/1000) - tempo_anterior); }
-	
-	if (isNaN(velocidade)) { velocidade = velocidade_media;}
-	
-	if (velocidade < 0) { velocidade = 0;}
-	
-	//if (velocidade < (velocidade_media + 30))
-	//	{
-			speed_matrix[0] = velocidade;
-	
-			if ((speed_matrix[1]>speed_matrix[0])&&(speed_matrix[1]>speed_matrix[2]))
-					{
-					speed_matrix[1] = (speed_matrix[0] + speed_matrix[2]) / 2;
-					}
-	
-			for (var varredura = 0; varredura <5; varredura++)
-				{
-				soma = soma + speed_matrix[varredura];
-				}
-	
-			velocidade_media = Math.round(soma / 5);
-	
-	
-			element.innerHTML = 'Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coord: ' + latlon + '<br>';
-	notificacao_local('VELOCIDADE',velocidade_media, 1);
-	
-			lat_anterior = position.coords.latitude*Math.PI/180;
-			lon_anterior = position.coords.longitude*Math.PI/180;
-			tempo_anterior = Math.round(tempo.getTime()/1000);
-	
-			speed_matrix[4] = speed_matrix[3];
-			speed_matrix[3] = speed_matrix[2];
-			speed_matrix[2] = speed_matrix[1];
-			speed_matrix[1] = speed_matrix[0];
-	//	}
-		
-		
-	
-	if (velocidade_media < 2)
-		{
-		if (plugado == false)
-			{
-			if (onboard == true)
-				{
-				element.innerHTML = 'Avaliando saida do carro.';
-				//notificacao_local('VELOCIDADE','Avaliando saida do carro.', 1);
-				iswalking();
-				}
-			}
-		}
-
-	if(velocidade_media > 20)
-		{
-		if (plugado == true)
-			{
-			if (onboard == false) {	element.innerHTML = 'Checkin Efetuado. Conectado.'; }
-			}
-			else
-				{
-				if (onboard == false) 
-					{ notificacao_local('VELOCIDADE','Checkin Efetuado. Conecte o carregador.', 1);	}
-				}
-		onboard = true;
-		check_in();		
-		}
-		
-		bgGeo.stop(finaliza, failureFn);
-
-}
-
 
 
 function teste(position){
@@ -591,8 +200,7 @@ var soma = 0;
 	
 	
 	var distancia = 6371795.477598 * Math.acos(Math.sin(lat_anterior) * Math.sin(position.coords.latitude*Math.PI/180) + Math.cos(lat_anterior) * Math.cos(position.coords.latitude*Math.PI/180) * Math.cos(lon_anterior - position.coords.longitude*Math.PI/180));
-	
-	//var distancia = 6371 * Math.acos(Math.sin(lat_anterior) * Math.sin(latitude_x) + Math.cos(lat_anterior) * Math.cos(latitude_x) * Math.cos(lon_anterior - longitude_x));
+
 	
 	if (Math.round(tempo.getTime()/1000) == tempo_anterior)
 		{
@@ -622,8 +230,7 @@ var soma = 0;
 	
 	
 			element.innerHTML = 'Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coord: ' + latlon + '<br>';
-	//notificacao_local('VELOCIDADE',velocidade_media, 1);
-	
+		
 			lat_anterior = position.coords.latitude*Math.PI/180;
 			lon_anterior = position.coords.longitude*Math.PI/180;
 			tempo_anterior = Math.round(tempo.getTime()/1000);
@@ -892,8 +499,7 @@ if (typeof(Storage) !== "undefined")
 	{ 
  	if(localStorage.length) 
  		{ 
- 		//for ( var i = 0; i < indice; ++i ) 
-		for ( var i = 0, len = localStorage.length; i < len; ++i )
+ 		for ( var i = 0, len = localStorage.length; i < len; ++i )
  			{ 
  			if(localStorage.getItem("kid"+i) !== null) 
  				{ 
@@ -1363,9 +969,7 @@ function onBatteryStatus(info) {
 	
 	
 	function iswalking(){ 
-	//	document.getElementById("status").innerHTML = "";
-		//navigator.geolocation.clearWatch(watchID);
-		//clearInterval(watchID);
+
 		loop = 0;	
 		contador = 0;
 		soma_eixo = 0;
@@ -1395,8 +999,7 @@ function onBatteryStatus(info) {
 		var accel_z = Math.pow(z_int, 2);
 		
 		if(loop < 50){			
-		//	document.getElementById("status").innerHTML = "<br><h2>"+loop+"</h2>"; 		
-	
+			
 			var xyz = accel_x + accel_y + accel_z;
 			var xyzSqrt = Math.sqrt(xyz);
 			var eixo = Math.round(xyzSqrt);
@@ -1435,21 +1038,9 @@ function onBatteryStatus(info) {
 			} 
 			frequencia = contador / 5;
 			
-			//document.getElementById("status").innerHTML += "<br><h2>Result</h2><br>Frequência "+ frequencia; 	
-		
-		
-			if(frequencia > '1.2' && frequencia < '3.4')
-				{
-			//	document.getElementById("status").innerHTML += "<br><h2>Is Walking</h2>"; 	
-			//	notificacao_local('VELOCIDADE','Motorista esta andando a pe.', 2);
-				onError();
-				//return true;
-				}
-			//else {speed_monitor();}
-			//	document.getElementById("status").innerHTML += "<br><h2>Is not Walking</h2>"; 
-			
-			
-			//speed_monitor();
+				
+			if(frequencia > '1.2' && frequencia < '3.4') {	onError();	}
+
 
 		}
 	}
