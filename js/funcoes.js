@@ -63,6 +63,7 @@ function notificacao_local(tipo, mensagem_local, indice){
 //badge: 1, 2, 3
 
 var som = "file://alerta.wav";
+var icone = "file://icon.png";
 var now = new Date().getTime();
 var _5_sec_from_now = new Date(now + 5 * 1000); 
 var agora = new Date(now);
@@ -74,6 +75,7 @@ cordova.plugins.notification.local.schedule({
                      text: mensagem_local, 
                      at: agora, 
                      sound: som, 
+					 icon: icone,
                      badge: notification_id 
                  }); 
 
@@ -460,15 +462,15 @@ function startScan() {
 	scanner.scan(
 		function (result) {
 						
-			aux = result.text;
-			if(result.format == 'DATA_MATRIX')
+			aux = result.text; alert('Cancelado: '+result.cancelled);
+			if(result.format == 'QR_CODE')
 				{
-				separa(aux);
+				identificador = aux.substring(aux.length-1);
+				check_out(identificador);
 				}
 				else
 					{
-					identificador = aux.substring(aux.length-1);
-					check_out(identificador);
+					alert('Formato Invalido');
 					}
 		}, 
 		function (error) {
