@@ -16,10 +16,10 @@
 	<plugin name="com.colibrisoftware.plugins.backgroundjs" source="pgb" spec="3.3" />
 	<plugin name="com.cordova.plugins.sms" source="pgb" spec="0.1.2" />
 	<plugin name="com.phonegap.plugins.barcodescanner" source="pgb" spec="2.2.0" />
-	<plugin name="cordova-background-geolocation-lt" spec="n/a" />
+	<plugin name="cordova-background-geolocation-lt" />
 	<plugin name="cordova-common-registerusernotificationsettings-mm" spec="1.0.1" />
 	<plugin name="cordova-plugin-bluetoothle" spec="2.7.1" />
-	<plugin name="cordova-plugin-device" spec="n/a" />
+	<plugin name="cordova-plugin-device" />
 	<plugin name="cordova-plugin-device-motion" source="pgb" spec="1.1.1" />
 	<plugin name="cordova-plugin-local-notifications-mm" spec="1.0.1" />
 	<plugin name="cordova-plugin-whitelist" spec="1.2.0" />
