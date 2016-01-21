@@ -15,8 +15,6 @@ var speed_matrix = [0, 0, 0, 0, 0];
 
 function onDeviceReady() {
 				
-		bluetoothle.initialize(initializeSuccess, initializeError, {request: false, statusReceiver: true});
-
 		onboard = false;
 		plugado = "false";
 		notification_id = 1;
