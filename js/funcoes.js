@@ -483,8 +483,8 @@ function startScan() {
 				else
 					{
 					notificacao_local('ALERTA','Alerta desativado em modo manual. ATENCAO: este procedimento pode colocar a crianca em risco!', 1);
-					total_checkout();
 					setTimeout(localizacao,30000);
+					total_checkout();
 					}
 		}, 
 		function (error) {
