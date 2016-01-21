@@ -422,6 +422,9 @@ function total_checkout(){
 
 var indice = conta_kids();
 
+notificacao_local('ALERTA','Alerta desativado em modo manual. ATENCAO: este procedimento pode colocar a crianca em risco!', 1);
+var reaviso = setTimeout(localizacao,30000);
+
 for (var i=0; i<indice; ++i)
 	{
 	alert("Chekout Manual! Crianca "+localStorage.getItem("in"+i)+" retirada de forma insegura.");
@@ -480,12 +483,7 @@ function startScan() {
 				identificador = aux.substring(aux.length-1);
 				check_out(identificador);
 				}
-				else
-					{
-					notificacao_local('ALERTA','Alerta desativado em modo manual. ATENCAO: este procedimento pode colocar a crianca em risco!', 1);
-					setTimeout(localizacao,30000);
-					total_checkout();
-					}
+				else{	total_checkout();	}
 		}, 
 		function (error) {
 			alert("Scanning failed: " + error);
