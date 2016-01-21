@@ -51,24 +51,10 @@ function inicializacao(){
 	document.addEventListener("deviceready", onDeviceReady, false);
 }
 
-function inicio(){
 
-onboard = false;
-plugado = "false";
-notification_id = 1;
-
-
-window.plugins.backgroundjs.lockBackgroundTime();
-
-monitora_bateria();
-		
-		cordova.plugins.notification.local.clearAll();
-		 speed_monitor();
-}
 
 function home(){
-
-	bluetoothle.stopScan(initializeError, initializeSuccess);
+	
 	document.location.href='index.html';
 	
 }
@@ -131,56 +117,23 @@ if (navigator.geolocation) {
     
 	var teste = setInterval(playsound,3000);
 	
-	//document.getElementById("mapa").style.backgroundImage = "url('imagens/fundo_alerta.gif')";
 	document.getElementById("principal").style.backgroundImage = "url('imagens/fundo_alerta.gif')";
-	
-     //document.getElementById("mapa").innerHTML = "<br><br><iframe width=80% height=80% src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe><br><img src='imagens/alert.gif' width=100% align='center' class='alerta' onclick='desativa();'>";
-	 
+	     
 	 document.getElementById("principal").innerHTML = "<br><br><iframe width=80% height=80% src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe><br><img src='imagens/alert.gif' width=100% align='center' class='alerta' onclick='desativa();'>";
 	 
 	 document.getElementById("status").innerHTML = "Clique sobre o ALERT para desativar o alarme!";
-
-	//envia_sms(latlon);
-	  
+		  
  }
 
  
 function speed_monitor(){
 
-// Options: throw an error if no update is received every 5 minutes.
-//
-//watchID = navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 300000 });
-
-
-//watchID = navigator.geolocation.watchPosition(onSuccess, onError, { enableHighAccuracy: true });
-watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(teste, showError);}, 3000);
-
-//navigator.geolocation.getCurrentPosition(teste, showError);
-
-//var isbackground = false;
-
-//watchID = setInterval(function(){
-//							isbackground = cordova.plugins.backgroundMode.isActive(); 
-//							notificacao_local('Background',isbackground, 1);
-//							if (isbackground == true)
-//								{notificacao_local('Background','agora em back', 1);navigator.geolocation.getCurrentPosition(teste_background, showError);}
-//								else
-//									{navigator.geolocation.getCurrentPosition(teste, showError);}
-//							}, 3000);
-
-
-//xyz = navigator.accelerometer.watchAcceleration(XSuccess, XError, Xoptions);
-
-//xyz = navigator.accelerometer.watchAcceleration(ac_media, XError, Xoptions);
-
-
+watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(onSuccess, showError);}, 3000);
 
 }
 
 
-
-
-function teste(position){
+function onSuccess(position){
 
 var element = document.getElementById('status');
 var tempo = new Date();	
@@ -212,37 +165,32 @@ var soma = 0;
 	
 	if (velocidade < 0) { velocidade = 0;}
 	
-	//if (velocidade < (velocidade_media + 30))
-	//	{
-			speed_matrix[0] = velocidade;
+	speed_matrix[0] = velocidade;
 	
-			if ((speed_matrix[1]>speed_matrix[0])&&(speed_matrix[1]>speed_matrix[2]))
-					{
-					speed_matrix[1] = (speed_matrix[0] + speed_matrix[2]) / 2;
-					}
+	if ((speed_matrix[1]>speed_matrix[0])&&(speed_matrix[1]>speed_matrix[2]))
+			{
+			speed_matrix[1] = (speed_matrix[0] + speed_matrix[2]) / 2;
+			}
 	
-			for (var varredura = 0; varredura <5; varredura++)
-				{
-				soma = soma + speed_matrix[varredura];
-				}
+	for (var varredura = 0; varredura <5; varredura++)
+			{
+			soma = soma + speed_matrix[varredura];
+			}
 	
-			velocidade_media = Math.round(soma / 5);
+	velocidade_media = Math.round(soma / 5);
 	
 	
-			element.innerHTML = 'Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coord: ' + latlon + '<br>';
-		
-			lat_anterior = position.coords.latitude*Math.PI/180;
-			lon_anterior = position.coords.longitude*Math.PI/180;
-			tempo_anterior = Math.round(tempo.getTime()/1000);
+	element.innerHTML = 'Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coord: ' + latlon + '<br>';
 	
-			speed_matrix[4] = speed_matrix[3];
-			speed_matrix[3] = speed_matrix[2];
-			speed_matrix[2] = speed_matrix[1];
-			speed_matrix[1] = speed_matrix[0];
-	//	}
-		
-		
+	lat_anterior = position.coords.latitude*Math.PI/180;
+	lon_anterior = position.coords.longitude*Math.PI/180;
+	tempo_anterior = Math.round(tempo.getTime()/1000);
 	
+	speed_matrix[4] = speed_matrix[3];
+	speed_matrix[3] = speed_matrix[2];
+	speed_matrix[2] = speed_matrix[1];
+	speed_matrix[1] = speed_matrix[0];
+
 	if (velocidade_media < 5)
 		{
 		if (plugado == false)
@@ -286,56 +234,6 @@ notificacao_local('ERRO','Erro ao obter coordenadas.', 1);
 
 }
 
-// onSuccess Callback
-//   This method accepts a `Position` object, which contains
-//   the current GPS coordinates
-//
-function onSuccess(position) {
-    var element = document.getElementById('status');
-	
-	var qtde_in = conta_in();
-	
-	var latlon = position.coords.latitude + "," + position.coords.longitude;
-	
-	 element.innerHTML = 'Velocidade: ' + Math.round(position.coords.speed*3.6)     + ' km/h <br />' +  '<hr />' + 'Coords: ' + latlon + '<br>';
-	
-	
-	if (position.coords.speed < 0)
-		{
-		if (plugado == false)
-			{
-			if (onboard == true)
-				{
-				element.innerHTML = 'Avaliando saida do carro.';
-				notificacao_local('VELOCIDADE','Avaliando saida do carro.', 1);
-				iswalking();
-				}
-			}
-		}
-		//else{
-		//	if (position.coords.speed > 5) {clearTimeout(temporizador);} //cancela checkout forcado se velocidade subir
-		//	}
-	if(position.coords.speed > 1)
-		{
-		if (onboard == false)
-			{
-			if (plugado == true)
-				{
-				notificacao_local('VELOCIDADE','Checkin Efetuado. Conectado.', 1);
-				//document.location.href="checkin.html";
-				}
-				else
-					{
-					//playsound();
-					//element.innerHTML = "<b> Conecte o Carregador </b>";
-					notificacao_local('VELOCIDADE','Checkin Efetuado. Conecte o carregador.', 1);
-					//document.location.href = "checkin.html";
-					//onboard = true;check_in();navigator.geolocation.clearWatch(watchIN);speed_monitor();monitora_bateria();
-					}
-			onboard = true;check_in();
-			}
-		}
-}
 
 // onError Callback receives a PositionError object
 //
@@ -346,130 +244,20 @@ function onError(error) {
 	if (qtde_in > 0)
 		{
 		notificacao_local('ALERTA','Crianca presente no carro.', 1);
-		//document.location.href = "desativar.html";
 		onboard = false;
 		alerta = true;
 		setTimeout(localizacao,30000);
 		}
-		//else{ speed_monitor(); 
-		//	document.location.href = "index.html"; 
-		//	}
-
-    //alert('code: '    + error.code    + '\n' + 'message: ' + error.message + '\n');
+		
 }
 
 
-
-
-//function stop_monitor(){
-
-//navigator.geolocation.clearWatch(watchID);
-
-//}
 
 
 //---------------------------------------------------------------------------- ALERTS  ----------------------------------------------------------------------------
 
  
- function contatos(){
 
-var indice = 0;
-
-if (typeof(Storage) !== "undefined")
-	{
-	if(localStorage.length)
-		{
-		for ( var i = 0, len = localStorage.length; i < len; ++i )
-			{
-			if(localStorage.getItem("nome"+i) !== null)
-				{
-				++indice;
-				}
-			}
-		}
-		else {	alert("Cadastre contatos.");	}
-	
-	} else {    document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";}
-
-
- // Show Contact Picker
-	var successCallback = function(result){
-				
-		localStorage.setItem("nome"+indice, result.name);
-		localStorage.setItem("telefone"+indice, result.phoneNumber);
-		lista();
-	};
-	
-	var failedCallback = function(result){
-		setTimeout(function(){alert(result);},0);
-	}
-window.plugins.contactNumberPicker.pick(successCallback,failedCallback);
-
- }
-
-
-
-function lista(){
-
-var itens = "";
-var indice = conta_contatos();
-
-document.getElementById("principal").innerHTML = itens+"<img src='imagens/fundo.gif' width=100% align='center' >";
-
-if (typeof(Storage) !== "undefined")
-	{
-	if(localStorage.length)
-		{
-		for ( var i = 0, len = localStorage.length; i < len; ++i )
-			{
-			if(localStorage.getItem("nome"+i) !== null)
-				{
-				itens = itens + localStorage.getItem("nome"+i) + " - " + localStorage.getItem("telefone"+i) + "<img src='imagens/menos.png' width=5% onclick='limpa_item(" + i + ");'> <br>";
-				}
-			}
-			if(indice>0){ document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>"+itens+"</font>"; }
-		}
-		else {	alert("Cadastre contatos para receberem os alertas.");	}
-	
-	} else {  document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";}
-
-
-}
-
-
-function limpa_item(i){
-	localStorage.removeItem("nome"+i);
-	localStorage.removeItem("telefone"+i);
-	lista();
-  }
-  
-
-function limpa_contatos(){
-  localStorage.clear();
-  lista();
-}
-
-function conta_contatos(){
-
-var indice = 0;
-
-if (typeof(Storage) !== "undefined")
-	{
-	if(localStorage.length)
-		{
-		for ( var i = 0, len = localStorage.length; i < len; ++i )
-			{
-			if(localStorage.getItem("nome"+i) !== null)
-				{
-				++indice;
-				}
-			}
-		}
-	
-	} else {    document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";}
-
-return indice;
-}
 
 //---------------------------------------------------------------------------- KIDS  ----------------------------------------------------------------------------
 
@@ -662,61 +450,6 @@ function mediaError(){
 }
 
 
-
-//---------------------------------------------------------------------------- SMS  ----------------------------------------------------------------------------
-
-function envia_sms(latlon){
-
-var mensagem = "teste"+latlon;
-
-if (typeof(Storage) !== "undefined") {
-    // Store
-	if(localStorage.length)
-		{
-		for ( var i = 0, len = localStorage.length; i < len; ++i )
-			{
-			if(localStorage.getItem("telefone"+i) !== null)
-				{
-				app.sendSms(localStorage.getItem("telefone"+i),mensagem);
-				}
-			}
-		}
-		else
-		{
-		alert("Cadastre contatos para receberem os alertas.");
-		}
-	
-} else {
-    document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";
-}
-
-
-}
-
-
-var app = {
-    sendSms: function(telefone,mensagem) {
-        var number = telefone;
-        var message = mensagem;
-        alert(number);
-        alert(message);
-
-        //CONFIGURATION
-        var options = {
-            replaceLineBreaks: false, // true to replace \n by a new line, false by default
-            android: {
-                intent: 'INTENT'  // send SMS with the native android SMS messaging
-                //intent: '' // send SMS without open any other app
-            }
-        };
-
-        var success = function () { alert('Message sent successfully'); };
-        var error = function (e) { alert('Message Failed:' + e); };
-        sms.send(number, message, options, success, error);
-
-    }
-};
-
 //---------------------------------------------------------------------------- SCANNER  ----------------------------------------------------------------------------
 
 var aux = "";
@@ -757,163 +490,6 @@ if (indice==0)	{	home();	}
 
 }
 
-//---------------------------------------------------------------------------- CARROS  ----------------------------------------------------------------------------
-
-
-function carros(item){
-
-var carro = prompt("Nome: ","").toUpperCase(); 
-var indice = conta_carros(); 
-var endereco = document.getElementById(item).innerHTML;
- 
- alert(endereco);
- 
-if (typeof(Storage) !== "undefined") 
-	{ 
-	localStorage.setItem("car"+indice,carro); 
-	localStorage.setItem("car_address"+indice,endereco);
-	} else {    document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";} 
- 
-localStorage.setItem("car"+indice,carro); 
-
-lista_carros();
-
-}
-
-
-function conta_carros(){
-var indice = 0;
-
-if (typeof(Storage) !== "undefined")
-	{
-	if(localStorage.length)
-		{
-		for ( var i = 0, len = localStorage.length; i < len; ++i )
-			{
-			if(localStorage.getItem("car"+i) !== null)
-				{
-				++indice;
-				}
-			}
-		}
-	
-	} else {    document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";}
-
-return indice;
-}
-
-function lista_carros(){
-
-var itens = ""; 
-var indice = conta_carros(); 
- 
-if (typeof(Storage) !== "undefined") 
-	{ 
- 	if(localStorage.length) 
- 		{ 
- 		//for ( var i = 0; i < indice; ++i ) 
-		for ( var i = 0, len = localStorage.length; i < len; ++i )
- 			{ 
- 			if(localStorage.getItem("car"+i) !== null) 
- 				{ 
- 				itens = itens + "<div onclick='beacar("+i+");'>"+localStorage.getItem("car"+i) + "</div><br>"; 
- 				} 
- 			} 
- 		if(indice>0)
-			{
-			document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>" + itens + "</font>";
-			document.getElementById("principal").style.backgroundImage = "url('imagens/fundo.gif')";
-			
-			proporcao = (35 - indice*4).toString()+"%";
-			document.getElementById("principal").style.paddingTop = proporcao;
-			document.getElementById("principal").style.paddingBottom = proporcao;
-			}
- 		} 
- 		else {	alert("Cadastre seus carros.");	} 
- 	 
- 	} else {    document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";} 
- 
-}
-
-function beacar(i){
-
-var beacon = "<img src='imagens/fundo_verde.gif' width='20%'>";
-
-document.getElementById("principal").innerHTML = "<font face='sans-serif'>" + beacon + localStorage.getItem("car"+i)+"<img src='imagens/menos.png' width=10% onclick='limpa_car(" + i + ");'> <br>" + localStorage.getItem("car_address"+i) + "<br> Este BEACON identifica o seu carro. <div onclick='help_beacar();'>SAIBA COMO</div>";
-
-document.getElementById("principal").style.backgroundImage = "url('')";
-document.getElementById("principal").style.paddingTop = "0%";
-document.getElementById("principal").style.paddingBottom = "0%";
-
-}
-
-function limpa_car(i){
-	localStorage.removeItem("car"+i);
-	localStorage.removeItem("car_address"+i);
-	document.getElementById("principal").innerHTML = "";
-	lista_carros();
-  }
-  
- 
-
-//---------------------------------------------------------------------------- BLUETOOTH  ----------------------------------------------------------------------------
-function scanBLE(tipo){
-
-var indice = 0;
-var itens = "";
-
-document.getElementById("status").innerHTML = "Escaneando dispositivos BLE";
-
-document.getElementById("principal").innerHTML = "";
-
-	bluetoothle.startScan(
-		function(obj){
-			if (obj.status == "scanResult")
-				{
-				//Device found
-				indice++;
-				//document.getElementById("principal").innerHTML = document.getElementById("principal").innerHTML+obj.address+" - "+indice+"<br>";
-				//document.getElementById("principal").innerHTML = document.getElementById("principal").innerHTML + "<div onclick='"+tipo+"("+obj.address+");'>" + obj.address+" - "+indice+"</div><br><hr/>";
-				
-				document.getElementById("principal").innerHTML += "<div id="+indice+" onclick='"+tipo+"("+indice+");'>" + obj.address+"</div><br><hr/>";
-				
-				if (indice > 3) {bluetoothle.stopScan(initializeError, initializeSuccess);}
-				}
-				else if (obj.status == "scanStarted")
-					{
-					//Scan started
-					if (indice>3) {bluetoothle.stopScan(initializeError, initializeSuccess);}
-					}
-		},startScanError,{allowDuplicates: false});
-
-}
-
-
-function initializeSuccess(){
-
-notificacao_local('VELOCIDADE','BLE on', 1);
-}
-
-function initializeError(){
-
-notificacao_local('VELOCIDADE','BLE off', 1);
-
-}
-
-function startScanSuccess(){
-
-alert("BLE sucesso");
-}
-
-function startScanError(){
-alert("BLE erro");
-}
-
-
-function erro_carros(){
-alert("Erro ao listar BLEs");
-}
-
 
 //---------------------------------------------------------------------------- Conexao Bateria  ----------------------------------------------------------------------------
 
@@ -934,24 +510,12 @@ function onBatteryStatus(info) {
 			if (plugado == false)
 				{
 				notificacao_local('ALERTA','Recomenda-se o uso com o carregador conectado.', 1);
-				//document.location.href = "desativar.html";
-				//onboard = false;setTimeout(localizacao,5000);speedup_monitor();monitora_bateria();
 				if (plugado_anterior == true) { onboard = false;setTimeout(localizacao,30000); }
-				//plugado_anterior = false;
 				}
-				else{
-					//document.location.href = "checkin.html";
-					//plugado_anterior = true;
-					onboard = true;check_in();
-					}
+				else{	onboard = true;check_in();	}
 			}
 			else{
-				if (plugado == true)
-					{
-					//plugado_anterior = true;
-					document.location.href = "index.html";
-					//inicio();
-					}
+				if (plugado == true){	document.location.href = "index.html";	}
 				}
 		plugado_anterior = plugado;
 			
