@@ -180,7 +180,7 @@ var soma = 0;
 	velocidade_media = Math.round(soma / 5);
 	
 	
-	element.innerHTML = 'Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + 'Coord: ' + latlon + '<br>';
+	element.innerHTML = 'Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + '<font size = 1>Coord: ' + latlon + '</font><br>';
 	
 	lat_anterior = position.coords.latitude*Math.PI/180;
 	lon_anterior = position.coords.longitude*Math.PI/180;
