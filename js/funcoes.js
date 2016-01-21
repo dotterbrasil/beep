@@ -424,7 +424,7 @@ var indice = conta_kids();
 
 for (var i=0; i<indice; ++i)
 	{
-	alert("Crianca "+localStorage.getItem("in"+i)+" retirada");
+	alert("Chekout Manual! Crianca "+localStorage.getItem("in"+i)+" retirada de forma insegura.");
 	localStorage.removeItem("in"+i);
 	location.reload();
 	}
