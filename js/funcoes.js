@@ -418,6 +418,18 @@ var indice = conta_in();
 if (indice==0) { home(); }
 }
 
+function total_checkout(){
+
+var indice = conta_kids();
+
+for (var i=0; i<indice; ++i)
+	{
+	alert("Crianca "+localStorage.getItem("in"+i)+" retirada");
+	localStorage.removeItem("in"+i);
+	location.reload();
+	}
+}
+
 
 //---------------------------------------------------------------------------- MEDIA  ----------------------------------------------------------------------------
 
@@ -462,7 +474,7 @@ function startScan() {
 	scanner.scan(
 		function (result) {
 						
-			aux = result.text; alert('Cancelado: '+result.cancelled);
+			aux = result.text;
 			if(result.format == 'QR_CODE')
 				{
 				identificador = aux.substring(aux.length-1);
@@ -470,7 +482,9 @@ function startScan() {
 				}
 				else
 					{
-					alert('Formato Invalido');
+					notificacao_local('ALERTA','Alerta desativado em modo manual. ATENCAO: este procedimento pode colocar a crianca em risco!', 1);
+					total_checkout();
+					setTimeout(localizacao,30000);
 					}
 		}, 
 		function (error) {
