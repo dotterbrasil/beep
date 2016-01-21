@@ -12,42 +12,26 @@
     <author href="http://www.dotter.com.br" email="eduardo@dotter.com.br">
         Dotter do Brasil Ltda
     </author>
-
-    <gap:plugin name="com.phonegap.plugins.barcodescanner"/>
 	
-    
+	<plugin name="com.colibrisoftware.plugins.backgroundjs" source="pgb" spec="3.3" />
+	<plugin name="com.cordova.plugins.sms" source="pgb" spec="0.1.2" />
+	<plugin name="com.phonegap.plugins.barcodescanner" source="pgb" spec="2.2.0" />
+	<plugin name="cordova-background-geolocation-lt" spec="n/a" />
+	<plugin name="cordova-common-registerusernotificationsettings-mm" spec="1.0.1" />
+	<plugin name="cordova-plugin-bluetoothle" spec="2.7.1" />
+	<plugin name="cordova-plugin-device" spec="n/a" />
+	<plugin name="cordova-plugin-device-motion" source="pgb" spec="1.1.1" />
+	<plugin name="cordova-plugin-local-notifications-mm" spec="1.0.1" />
+	<plugin name="cordova-plugin-whitelist" spec="1.2.0" />
+	<plugin name="de.appplant.cordova.plugin.background-mode" source="pgb" spec="0.6.4" />
+	<plugin name="org.apache.cordova.battery-status" source="pgb" spec="0.2.12" />
+	<plugin name="org.apache.cordova.geolocation" source="pgb" spec="0.3.12" />
+	<plugin name="org.apache.cordova.media" source="pgb" spec="0.2.16" />
 
-	<plugin name="cordova-plugin-device" />
-	
-    <gap:plugin name="org.apache.cordova.media" />
-
-    <gap:plugin name="com.cordova.plugins.sms" version="0.1.2" />
-
-
-    <gap:plugin name="cordova-plugin-whitelist" source="npm" />
 	<access origin="*"/>
 	<allow-navigation href="*" />
 	<allow-intent href="*" />
 
-	<gap:plugin name="org.apache.cordova.geolocation" />
-
-    
-	<plugin name="cordova-background-geolocation-lt" />
-	
-	<gap:plugin name="org.apache.cordova.battery-status" />
-	
-	<gap:plugin name="com.colibrisoftware.plugins.backgroundjs" version="3.3" />
-	
-	<plugin name="de.appplant.cordova.plugin.background-mode" spec="0.6.4" source="pgb" />
-	
-	<plugin name="cordova-plugin-bluetoothle" source="npm" />
-	
-	<plugin name="cordova-plugin-local-notifications-mm"/>
-	<plugin name="cordova-common-registerusernotificationsettings-mm"/>
-	
-	
-	<plugin name="cordova-plugin-device-motion" spec="1.1.1" source="pgb" />
-			
 	<preference name="phonegap-version" value="cli-5.2.0" />
     <preference name="orientation"      value="portrait" />
     <preference name="target-device"    value="universal" />

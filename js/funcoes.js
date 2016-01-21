@@ -289,7 +289,7 @@ speed_matrix[0] = xyzspeed;
 
 	   if(velocidade_media > 30)
 		{
-		if (plugado == "true")
+		if (plugado == true)
 			{
 			if (onboard == false) {	element.innerHTML = 'Checkin Efetuado. Conectado.';}
 			}
@@ -304,7 +304,7 @@ speed_matrix[0] = xyzspeed;
 		
 		if (velocidade_media < 3)
 		{
-		if (plugado == "false")
+		if (plugado == false)
 			{
 			if (onboard == true)
 				{
@@ -387,7 +387,7 @@ function XSuccess(acceleration) {
 	   
 	   if(velocidade_media > 30)
 		{
-		if (plugado == "true")
+		if (plugado == true)
 			{
 			if (onboard == false) {	element.innerHTML = 'Checkin Efetuado. Conectado.';}
 			}
@@ -402,7 +402,7 @@ function XSuccess(acceleration) {
 		
 		if (velocidade_media < 3)
 		{
-		if (plugado == "false")
+		if (plugado == false)
 			{
 			if (onboard == true)
 				{
@@ -539,7 +539,7 @@ var soma = 0;
 	
 	if (velocidade_media < 2)
 		{
-		if (plugado == "false")
+		if (plugado == false)
 			{
 			if (onboard == true)
 				{
@@ -552,7 +552,7 @@ var soma = 0;
 
 	if(velocidade_media > 20)
 		{
-		if (plugado == "true")
+		if (plugado == true)
 			{
 			if (onboard == false) {	element.innerHTML = 'Checkin Efetuado. Conectado.'; }
 			}
@@ -638,7 +638,7 @@ var soma = 0;
 	
 	if (velocidade_media < 5)
 		{
-		if (plugado == "false")
+		if (plugado == false)
 			{
 			if (onboard == true)
 				{
@@ -655,7 +655,7 @@ var soma = 0;
 
 	if(velocidade_media > 20)
 		{
-		if (plugado == "true")
+		if (plugado == true)
 			{
 			if (onboard == false) {	element.innerHTML = 'Checkin Efetuado. Conectado.'; notificacao_local('VELOCIDADE','Checkin Efetuado.', 1);}
 			}
@@ -695,7 +695,7 @@ function onSuccess(position) {
 	
 	if (position.coords.speed < 0)
 		{
-		if (plugado == "false")
+		if (plugado == false)
 			{
 			if (onboard == true)
 				{
@@ -712,7 +712,7 @@ function onSuccess(position) {
 		{
 		if (onboard == false)
 			{
-			if (plugado == "true")
+			if (plugado == true)
 				{
 				notificacao_local('VELOCIDADE','Checkin Efetuado. Conectado.', 1);
 				//document.location.href="checkin.html";
