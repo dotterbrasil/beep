@@ -200,7 +200,6 @@ var soma = 0;
 				{
 				if (walking_monitor == false)
 					{
-					element.innerHTML = 'Avaliando saida do carro.';
 					notificacao_local('VELOCIDADE','Avaliando saida do carro.', 1);
 					walking_monitor = true;
 					iswalking();
@@ -213,7 +212,7 @@ var soma = 0;
 		{
 		if (plugado == true)
 			{
-			if (onboard == false) {	element.innerHTML = 'Checkin Efetuado. Conectado.'; notificacao_local('VELOCIDADE','Checkin Efetuado.', 1);}
+			if (onboard == false) {	notificacao_local('VELOCIDADE','Checkin Efetuado.', 1);}
 			}
 			else
 				{
@@ -395,7 +394,7 @@ for (var i=0; i<indice; ++i)
 if(indice>0)
 	{
 	document.getElementById("principal").innerHTML = "<img src='imagens/fundo_verde.gif'align='center'>";
-	document.getElementById("lista").innerHTML = "<br><br><br><hr><h2 align='center'>ONBOARD</h2><font face='sans-serif'>" + itens + "</font><hr />";
+	document.getElementById("lista").innerHTML = "<br><hr><h3 align='center'>ONBOARD</h3><font face='sans-serif'>" + itens + "</font><hr />";
 	}
 	
 }
