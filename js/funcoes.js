@@ -393,6 +393,27 @@ for (var i=0; i<indice; ++i)
 
 if(indice>0)
 	{
+	document.getElementById("principal").innerHTML = "<img src='imagens/fundo_verde.gif'align='center'>";
+	document.getElementById("lista").innerHTML = "<br><br><font face='sans-serif'>" + itens + "</font>";
+	}
+	
+}
+
+function check_in_old(){
+
+var indice = conta_kids();
+var itens = "";
+
+for (var i=0; i<indice; ++i)
+	{
+	localStorage.setItem("in"+i,localStorage.getItem("kid"+i));
+	
+	itens = itens + "<div>"+localStorage.getItem("in"+i) + " <a href='javascript:startScan();' class='green'>CHECK OUT</a></div><br>";
+	
+	}
+
+if(indice>0)
+	{
 	document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>" + itens + "</font>";
 	document.getElementById("principal").style.backgroundImage = "url('imagens/fundo_verde.gif')";
 	
