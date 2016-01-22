@@ -98,7 +98,7 @@ function localizacao()
 
 if (navigator.geolocation) {
 
-        navigator.geolocation.getCurrentPosition(showPosition);
+        navigator.geolocation.getCurrentPosition(showPosition, showError, {enableHighAccuracy: true});
     } else {
        document.getElementById("status").innerHTML = "Geolocation is not supported by this browser.";
     }
@@ -128,7 +128,7 @@ if (navigator.geolocation) {
  
 function speed_monitor(){
 
-watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(onSuccess, showError);}, 3000);
+watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(onSuccess, showError, {enableHighAccuracy: true});}, 3000);
 
 }
 
