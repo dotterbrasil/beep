@@ -52,7 +52,7 @@ div.central {
  div.status{
 	 
 	 position:fixed;
-	 top:40%;
+	 top:30%;
 	 left:15%;
 	 font-family:sans-serif;
 	 font-size: 1;
@@ -63,7 +63,7 @@ div.central {
   div.lista{
 	 
 	 position:fixed;
-	 top:45%;
+	 top:40%;
 	 left:15%;
 	 font-family:sans-serif;
 	 font-size: 1;
