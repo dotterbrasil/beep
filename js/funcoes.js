@@ -291,7 +291,7 @@ if (typeof(Storage) !== "undefined")
  			{ 
  			if(localStorage.getItem("kid"+i) !== null) 
  				{ 
- 				itens = itens + "<div onclick='qrcode("+i+");'>"+localStorage.getItem("kid"+i) + "<img src='imagens/menos.png' class='icone' onclick='limpa_kid(" + i + ");'></div><br>"; 
+ 				itens = itens + "<div onclick='qrcode("+i+");'>"+localStorage.getItem("kid"+i) + "  <img src='imagens/menos.png' class='icone' onclick='limpa_kid(" + i + ");'></div><br>"; 
  				} 
  			} 
  		if(indice>0)
@@ -304,7 +304,7 @@ if (typeof(Storage) !== "undefined")
 			//document.getElementById("principal").style.paddingBottom = proporcao;
 			
 			document.getElementById("principal").innerHTML = "<img src='imagens/fundo.gif'align='center'>";
-			document.getElementById("lista").innerHTML = "<h3 align='center'>KIDS</h3><hr><font face='sans-serif'>" + itens + "</font><hr />";
+			document.getElementById("status").innerHTML = "<h3 align='center'>KIDS</h3><hr><font face='sans-serif'>" + itens + "</font><hr />";
 			}
  		} 
  		else {	alert("Cadastre as criancas.");	} 
@@ -319,7 +319,7 @@ function qrcode(i){
 
 var qrcode = "<img src='http://chart.apis.google.com/chart?cht=qr&chl="+localStorage.getItem("kid"+i)+i+"&chs=200x200'>";
 
-document.getElementById("principal").innerHTML = "<font face='sans-serif'>" + localStorage.getItem("kid"+i)+"<h3 align='center'>QRCODE</h3><hr>";
+document.getElementById("principal").innerHTML = "<h3 align='center'><font face='sans-serif'>" + localStorage.getItem("kid"+i)+" - QRCODE</h3><hr>";
 
 document.getElementById("lista").innerHTML = qrcode + "<br> Este QRCODE deve ser impresso e colocado na cadeirinha. <div onclick='help_qrcode();'>SAIBA COMO</div>";
 
@@ -333,7 +333,8 @@ document.getElementById("principal").style.paddingBottom = "0%";
 
 function limpa_kid(i){
 	localStorage.removeItem("kid"+i);
-	lista_kids();
+	//lista_kids();
+	location.reload();
   }
 
 
