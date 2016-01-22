@@ -180,7 +180,7 @@ var soma = 0;
 	velocidade_media = Math.round(soma / 5);
 	
 	
-	element.innerHTML = '<hr>Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + '<font size = 1>Coord: ' + latlon + '</font><br>';
+	element.innerHTML = '<hr>Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + '<font size = 1>Coord: ' + latlon + '</font>';
 	
 		
 	lat_anterior = position.coords.latitude*Math.PI/180;
@@ -394,7 +394,7 @@ for (var i=0; i<indice; ++i)
 if(indice>0)
 	{
 	document.getElementById("principal").innerHTML = "<img src='imagens/fundo_verde.gif'align='center'>";
-	document.getElementById("lista").innerHTML = "<br><hr><h3 align='center'>ONBOARD</h3><font face='sans-serif'>" + itens + "</font><hr />";
+	document.getElementById("lista").innerHTML = "<h3 align='center'>ONBOARD</h3><hr><font face='sans-serif'>" + itens + "</font><hr />";
 	}
 	
 }
