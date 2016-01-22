@@ -31,7 +31,7 @@ div.central {
 	 
 	 position:fixed;
 	 top:25%;
-	 left:10%;
+	 left:5%;
 
 
 	 font-size:medium;
@@ -43,7 +43,7 @@ div.central {
 	 
 	 position:fixed;
 	 top:5%;
-	 left:10%;
+	 left:5%;
 	 font-family:sans-serif;
 	 font-size: 1em;
 	 
@@ -52,8 +52,8 @@ div.central {
  div.status{
 	 
 	 position:fixed;
-	 top:15%;
-	 left:10%;
+	 top:40%;
+	 left:5%;
 	 font-family:sans-serif;
 	 font-size: 1;
 	 
@@ -63,7 +63,7 @@ div.central {
 	 font-size:x-large;
 	 position:fixed;	 
 	 bottom:0%;
-	 left:10%;
+	 left:5%;
  }
  
 
