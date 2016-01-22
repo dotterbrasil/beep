@@ -296,7 +296,7 @@ if (typeof(Storage) !== "undefined")
  			} 
  		if(indice>0)
 			{
-			document.getElementById("principal").innerHTML = "<hr><br><br><font face='sans-serif'>" + itens + "</font></hr>";
+			document.getElementById("principal").innerHTML = "<br><br><hr><font face='sans-serif'>" + itens + "</font><hr />";
 			document.getElementById("principal").style.backgroundImage = "url('imagens/fundo.gif')";
 			
 			proporcao = (35 - indice*4).toString()+"%";
