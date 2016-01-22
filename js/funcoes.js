@@ -395,7 +395,7 @@ for (var i=0; i<indice; ++i)
 if(indice>0)
 	{
 	document.getElementById("principal").innerHTML = "<img src='imagens/fundo_verde.gif'align='center'>";
-	document.getElementById("lista").innerHTML = "<br><br><br><hr><h2>ONBOARD</h2><font face='sans-serif'>" + itens + "</font><hr />";
+	document.getElementById("lista").innerHTML = "<br><br><br><hr><h2 align='center'>ONBOARD</h2><font face='sans-serif'>" + itens + "</font><hr />";
 	}
 	
 }
