@@ -180,7 +180,7 @@ var soma = 0;
 	velocidade_media = Math.round(soma / 5);
 	
 	
-	element.innerHTML = 'Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + '<font size = 1>Coord: ' + latlon + '</font><br>';
+	element.innerHTML = '<hr>Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + '<font size = 1>Coord: ' + latlon + '</font><br>';
 	
 	lat_anterior = position.coords.latitude*Math.PI/180;
 	lon_anterior = position.coords.longitude*Math.PI/180;
@@ -296,7 +296,7 @@ if (typeof(Storage) !== "undefined")
  			} 
  		if(indice>0)
 			{
-			document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>" + itens + "</font>";
+			document.getElementById("principal").innerHTML = "<hr><br><br><font face='sans-serif'>" + itens + "</font></hr>";
 			document.getElementById("principal").style.backgroundImage = "url('imagens/fundo.gif')";
 			
 			proporcao = (35 - indice*4).toString()+"%";
