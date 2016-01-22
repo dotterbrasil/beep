@@ -107,6 +107,10 @@ img {
 width: 80%;	
 }
 
+img.icone{
+width: 20%;	
+}
+
 img.alerta {
     animation: blink 1s;
     animation-iteration-count: infinite;
