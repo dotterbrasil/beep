@@ -181,7 +181,7 @@ var soma = 0;
 	
 	
 	element.innerHTML = '<hr>Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + '<font size = 1>Coord: ' + latlon + '</font><br>';
-	
+		
 	lat_anterior = position.coords.latitude*Math.PI/180;
 	lon_anterior = position.coords.longitude*Math.PI/180;
 	tempo_anterior = Math.round(tempo.getTime()/1000);
@@ -296,7 +296,7 @@ if (typeof(Storage) !== "undefined")
  			} 
  		if(indice>0)
 			{
-			document.getElementById("principal").innerHTML = "<br><br><hr>ONBOARD<hr /><br><font face='sans-serif'>" + itens + "</font>";
+			document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>" + itens + "</font>";
 			document.getElementById("principal").style.backgroundImage = "url('imagens/fundo.gif')";
 			
 			proporcao = (35 - indice*4).toString()+"%";
@@ -394,7 +394,7 @@ for (var i=0; i<indice; ++i)
 if(indice>0)
 	{
 	document.getElementById("principal").innerHTML = "<img src='imagens/fundo_verde.gif'align='center'>";
-	document.getElementById("lista").innerHTML = "<br><br><font face='sans-serif'>" + itens + "</font>";
+	document.getElementById("lista").innerHTML = "<br><br><hr>ONBOARD<hr /><br><font face='sans-serif'>" + itens + "</font>";
 	}
 	
 }
