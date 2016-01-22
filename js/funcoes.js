@@ -319,9 +319,11 @@ function qrcode(i){
 
 var qrcode = "<img src='http://chart.apis.google.com/chart?cht=qr&chl="+localStorage.getItem("kid"+i)+i+"&chs=200x200'>";
 
-document.getElementById("principal").innerHTML = "<font face='sans-serif'>" + localStorage.getItem("kid"+i)+"<img src='imagens/menos.png' class='icone' onclick='limpa_kid(" + i + ");'> <br>";
+document.getElementById("principal").innerHTML = "<font face='sans-serif'>" + localStorage.getItem("kid"+i)+"<h3 align='center'>QRCODE</h3><hr>";
 
-document.getElementById("lista").innerHTML = "<h3 align='center'>QRCODE</h3><hr>" + qrcode + "<hr /><br> Este QRCODE deve ser impresso e colocado na cadeirinha. <div onclick='help_qrcode();'>SAIBA COMO</div>";
+document.getElementById("lista").innerHTML = qrcode + "<br> Este QRCODE deve ser impresso e colocado na cadeirinha. <div onclick='help_qrcode();'>SAIBA COMO</div>";
+
+document.getElementById("links").innerHTML = "<a href='config.html' class='blue'><b>BACK</a> - </b><img src='imagens/menos.png' class='icone' onclick='limpa_kid(" + i + ");'><br><img src='imagens/virtualid.gif'>"
 
 document.getElementById("principal").style.backgroundImage = "url('')";
 document.getElementById("principal").style.paddingTop = "0%";
