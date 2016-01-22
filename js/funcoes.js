@@ -296,12 +296,15 @@ if (typeof(Storage) !== "undefined")
  			} 
  		if(indice>0)
 			{
-			document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>" + itens + "</font>";
-			document.getElementById("principal").style.backgroundImage = "url('imagens/fundo.gif')";
+			//document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>" + itens + "</font>";
+			//document.getElementById("principal").style.backgroundImage = "url('imagens/fundo.gif')";
 			
-			proporcao = (35 - indice*4).toString()+"%";
-			document.getElementById("principal").style.paddingTop = proporcao;
-			document.getElementById("principal").style.paddingBottom = proporcao;
+			//proporcao = (35 - indice*4).toString()+"%";
+			//document.getElementById("principal").style.paddingTop = proporcao;
+			//document.getElementById("principal").style.paddingBottom = proporcao;
+			
+			document.getElementById("principal").innerHTML = "<img src='imagens/fundo_verde.gif'align='center'>";
+			document.getElementById("lista").innerHTML = "<h3 align='center'>KIDS</h3><hr><font face='sans-serif'>" + itens + "</font><hr />";
 			}
  		} 
  		else {	alert("Cadastre as criancas.");	} 
@@ -399,31 +402,6 @@ if(indice>0)
 	
 }
 
-function check_in_old(){
-
-var indice = conta_kids();
-var itens = "";
-
-for (var i=0; i<indice; ++i)
-	{
-	localStorage.setItem("in"+i,localStorage.getItem("kid"+i));
-	
-	itens = itens + "<div>"+localStorage.getItem("in"+i) + " <a href='javascript:startScan();' class='green'>CHECK OUT</a></div><br>";
-	
-	}
-
-if(indice>0)
-	{
-	document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>" + itens + "</font>";
-	document.getElementById("principal").style.backgroundImage = "url('imagens/fundo_verde.gif')";
-	
-	proporcao = (35 - indice*4).toString()+"%";
-	
-	document.getElementById("principal").style.paddingTop = proporcao;
-	document.getElementById("principal").style.paddingBottom = proporcao;
-	}
-	
-}
 
 function check_out(i){
 
