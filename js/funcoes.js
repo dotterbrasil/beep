@@ -291,7 +291,7 @@ if (typeof(Storage) !== "undefined")
  			{ 
  			if(localStorage.getItem("kid"+i) !== null) 
  				{ 
- 				itens = itens + "<div onclick='qrcode("+i+");'>"+localStorage.getItem("kid"+i) + "</div><br>"; 
+ 				itens = itens + "<div onclick='qrcode("+i+");'>"+localStorage.getItem("kid"+i) + "<img src='imagens/menos.png' class='icone' onclick='limpa_kid(" + i + ");'></div><br>"; 
  				} 
  			} 
  		if(indice>0)
@@ -303,7 +303,7 @@ if (typeof(Storage) !== "undefined")
 			//document.getElementById("principal").style.paddingTop = proporcao;
 			//document.getElementById("principal").style.paddingBottom = proporcao;
 			
-			document.getElementById("principal").innerHTML = "<img src='imagens/fundo_verde.gif'align='center'>";
+			document.getElementById("principal").innerHTML = "<img src='imagens/fundo.gif'align='center'>";
 			document.getElementById("lista").innerHTML = "<h3 align='center'>KIDS</h3><hr><font face='sans-serif'>" + itens + "</font><hr />";
 			}
  		} 
