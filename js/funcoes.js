@@ -198,14 +198,13 @@ var soma = 0;
 
 	if (velocidade_media < 5)
 		{
-			element.innerHTML = "plugado: " + plugado + " - onboard: " + onboard + "walking_monitor: " + walking_monitor + " - notificacao: " + walking_notification;
 		if (plugado == "false")
 			{
 			if (onboard == true)
 				{
 				if (walking_monitor == false)
 					{
-					//if( walking_notification < 1 ) { notificacao_local('VELOCIDADE','Avaliando saida do carro.', 1); }
+					if( walking_notification < 1 ) { notificacao_local('VELOCIDADE','Avaliando saida do carro.', 1); }
 					element.innerHTML = 'Avaliando saida do carro.';
 					walking_monitor = true;
 					walking_notification++;
@@ -251,6 +250,7 @@ function onError(error) {
 	if (qtde_in > 0)
 		{
 		notificacao_local('ALERTA','Crianca presente no carro.', 1);
+		document.getElementById("principal").innerHTML = "<img src='imagens/fundo_alerta.gif'align='center'>";
 		onboard = false;
 		alerta = true;
 		setTimeout(localizacao,30000);
@@ -265,6 +265,7 @@ var qtde_in = conta_in();
 	if (qtde_in > 0)
 		{
 		notificacao_local('ALERTA','Crianca presente no carro.', 1);
+		document.getElementById("principal").innerHTML = "<img src='imagens/fundo_alerta.gif'align='center'>";
 		onboard = false;
 		alerta = true;
 		setTimeout(localizacao,30000);
