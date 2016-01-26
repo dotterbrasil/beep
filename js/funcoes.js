@@ -199,8 +199,7 @@ var soma = 0;
 	if (velocidade_media < 5)
 		{
 		if (plugado == "false")
-			{notificacao_local('VELOCIDADE','velocidade baixa.', 1);
-		element.innerHTML = 'o que esta acontecendo?';
+			{
 			if (onboard == true)
 				{
 				if (walking_monitor == false)
@@ -433,7 +432,8 @@ function total_checkout(){
 var indice = conta_kids();
 
 notificacao_local('ALERTA','Alerta desativado em modo manual. ATENCAO: este procedimento pode colocar a crianca em risco!', 1);
-var reaviso = setTimeout(localizacao,30000);
+//var reaviso = setTimeout(localizacao,30000);
+//onError();
 
 for (var i=0; i<indice; ++i)
 	{
@@ -532,12 +532,12 @@ function onBatteryStatus(info) {
 			if (plugado == "false")
 				{
 				notificacao_local('ALERTA','Recomenda-se o uso com o carregador conectado.', 1);
-				if (plugado_anterior == "true") { onboard = false;setTimeout(localizacao,30000); }
+				if (plugado_anterior == "true") { onError(); }
 				}
 				else{	onboard = true;check_in();	}
 			}
 			else{
-				if (plugado == "true"){	document.location.href = "index.html";	}
+				if (plugado == "true"){	location.reload();	}
 				}
 		plugado_anterior = plugado;
 			
