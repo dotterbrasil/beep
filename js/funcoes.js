@@ -16,9 +16,9 @@ var speed_matrix = [0, 0, 0, 0, 0];
 
 function onDeviceReady() {
 				
-		//onboard = false;
-		//plugado = "false";
-		//notification_id = 1;
+		onboard = false;
+		plugado = "false";
+		notification_id = 1;
 		cordova.plugins.backgroundMode.enable();
 		cordova.plugins.backgroundMode.onactivate = function() {notificacao_local('Background','Ativado.', 1);};
 		cordova.plugins.notification.local.clearAll();
