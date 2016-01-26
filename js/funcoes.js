@@ -1,7 +1,7 @@
 
 var onboard = false;
-var plugado = false;
-var plugado_anterior = false;
+//var plugado = false;
+//var plugado_anterior = false;
 var walking_monitor = false;
 var walking_notification = 0;
 var alerta = false;
@@ -17,8 +17,8 @@ var speed_matrix = [0, 0, 0, 0, 0];
 function onDeviceReady() {
 				
 		onboard = false;
-		plugado = false;
-		plugado_anterior = false;
+		//plugado = false;
+		//plugado_anterior = false;
 		notification_id = 1;
 		cordova.plugins.backgroundMode.enable();
 		cordova.plugins.backgroundMode.onactivate = function() {notificacao_local('Background','Ativado.', 1);};
@@ -33,8 +33,8 @@ function onDeviceReady() {
 function inicializacao(){
 
 	onboard = false;
-	plugado = false;
-	plugado_anterior = false;
+	//plugado = false;
+	//plugado_anterior = false;
 	walking_monitor = false;
 	walking_notification = 0;
 	
@@ -543,7 +543,7 @@ window.addEventListener("batterystatus", onBatteryStatus, false);
 
 function onBatteryStatus(info) {
 	
-		document.getElementById('status').innerHTML = "Level: " + info.level + " isPlugged: " + info.isPlugged;alert('hein!?');
+		document.getElementById('status').innerHTML = "Level: " + info.level + " isPlugged: " + info.isPlugged;
 		
 		plugado = info.isPlugged;
 		
@@ -552,7 +552,7 @@ function onBatteryStatus(info) {
 			if (!plugado)
 				{
 				notificacao_local('ALERTA','Recomenda-se o uso com o carregador conectado.', 1);
-				if (plugado_anterior == "true") { gera_alarme(); }
+				if (plugado_anterior) { gera_alarme(); }
 				}
 				else{	onboard = true;check_in();	}
 			}
