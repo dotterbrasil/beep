@@ -36,6 +36,8 @@ function inicializacao(){
 	plugado_anterior = "false";
 	walking_monitor = false;
 	walking_notification = 0;
+	
+	if (notification_id > 1) { cordova.plugins.notification.local.clearAll(); }
 	notification_id = 1;
 
 	lat_anterior = 0;
@@ -198,6 +200,7 @@ var soma = 0;
 		{
 		if (plugado == "false")
 			{notificacao_local('VELOCIDADE','velocidade baixa.', 1);
+		element.innerHTML = 'o que esta acontecendo?';
 			if (onboard == true)
 				{
 				if (walking_monitor == false)
