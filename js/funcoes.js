@@ -3,6 +3,7 @@ var onboard = false;
 var plugado = "false";
 var plugado_anterior = "false";
 var walking_monitor = false;
+var walking_notification = 0;
 var alerta = false;
 var notification_id = 1;
 
@@ -15,9 +16,9 @@ var speed_matrix = [0, 0, 0, 0, 0];
 
 function onDeviceReady() {
 				
-		onboard = false;
-		plugado = "false";
-		notification_id = 1;
+		//onboard = false;
+		//plugado = "false";
+		//notification_id = 1;
 		cordova.plugins.backgroundMode.enable();
 		cordova.plugins.backgroundMode.onactivate = function() {notificacao_local('Background','Ativado.', 1);};
 		cordova.plugins.notification.local.clearAll();
@@ -34,6 +35,7 @@ function inicializacao(){
 	plugado = "false";
 	plugado_anterior = "false";
 	walking_monitor = false;
+	walking_notification = 0;
 	notification_id = 1;
 
 	lat_anterior = 0;
@@ -200,8 +202,9 @@ var soma = 0;
 				{
 				if (walking_monitor == false)
 					{
-					notificacao_local('VELOCIDADE','Avaliando saida do carro.', 1);
+					if( walking_notification < 1 ) { notificacao_local('VELOCIDADE','Avaliando saida do carro.', 1); }
 					walking_monitor = true;
+					walking_notification++;
 					iswalking();
 					}
 				}
