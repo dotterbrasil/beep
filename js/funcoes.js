@@ -543,7 +543,7 @@ window.addEventListener("batterystatus", onBatteryStatus, false);
 
 function onBatteryStatus(info) {
 	
-		document.getElementById('status').innerHTML = "Level: " + info.level + " isPlugged: " + info.isPlugged;
+		document.getElementById('status').innerHTML = "Level: " + info.level + " isPlugged: " + info.isPlugged;alert('hein!?');
 		
 		plugado = info.isPlugged; alert('tamanho: ' + plugado.length + 'true: ' + plugado.indexOf('t') + 'false: ' + plugado.indexOf('f'));
 		
