@@ -436,7 +436,8 @@ if(localStorage.getItem("in"+i) !== null)
 	{
 	alert("Crianca "+localStorage.getItem("in"+i)+" retirada");
 	localStorage.removeItem("in"+i);
-	location.reload();
+	//location.reload();
+	document.location.href = "index.html";
 	}
 	else {alert("Crianca ja saiu ou nao entrou no carro");}
 	
@@ -456,7 +457,8 @@ for (var i=0; i<indice; ++i)
 	{
 	alert("Chekout Manual! Crianca "+localStorage.getItem("in"+i)+" retirada de forma insegura.");
 	localStorage.removeItem("in"+i);
-	location.reload();
+	//location.reload();
+	document.location.href = "index.html";
 	}
 }
 
@@ -554,7 +556,7 @@ function onBatteryStatus(info) {
 				else{	onboard = true;check_in();	}
 			}
 			else{
-				if (plugado == "true"){	location.reload();	}
+				if (plugado == "true"){	document.location.href = "index.html";	}
 				}
 		plugado_anterior = plugado;
 			
