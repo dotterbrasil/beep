@@ -545,7 +545,7 @@ function onBatteryStatus(info) {
 	
 		document.getElementById('status').innerHTML = "Level: " + info.level + " isPlugged: " + info.isPlugged;
 		
-		plugado = info.isPlugged;
+		plugado = info.isPlugged; alert('tamanho: ' + plugado.length + 'true: ' + plugado.indexOf('t') + 'false: ' + plugado.indexOf('f'));
 		
 		if (onboard == true)
 			{
