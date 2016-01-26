@@ -196,8 +196,8 @@ var soma = 0;
 
 	if (velocidade_media < 5)
 		{
-		if (plugado === "false")
-			{
+		if (plugado == "false")
+			{notificacao_local('VELOCIDADE','velocidade baixa.', 1);
 			if (onboard == true)
 				{
 				if (walking_monitor == false)
@@ -213,7 +213,7 @@ var soma = 0;
 
 	if(velocidade_media > 20)
 		{
-		if (plugado === "true")
+		if (plugado == "true")
 			{
 			if (onboard == false) {	notificacao_local('VELOCIDADE','Checkin Efetuado.', 1);}
 			}
@@ -526,15 +526,15 @@ function onBatteryStatus(info) {
 		
 		if (onboard == true)
 			{
-			if (plugado === "false")
+			if (plugado == "false")
 				{
 				notificacao_local('ALERTA','Recomenda-se o uso com o carregador conectado.', 1);
-				if (plugado_anterior === "true") { onboard = false;setTimeout(localizacao,30000); }
+				if (plugado_anterior == "true") { onboard = false;setTimeout(localizacao,30000); }
 				}
 				else{	onboard = true;check_in();	}
 			}
 			else{
-				if (plugado === "true"){	document.location.href = "index.html";	}
+				if (plugado == "true"){	document.location.href = "index.html";	}
 				}
 		plugado_anterior = plugado;
 			
