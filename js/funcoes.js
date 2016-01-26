@@ -1,7 +1,7 @@
 
 var onboard = false;
-var plugado = "false";
-var plugado_anterior = "false";
+var plugado = false;
+var plugado_anterior = false;
 var walking_monitor = false;
 var walking_notification = 0;
 var alerta = false;
@@ -17,8 +17,8 @@ var speed_matrix = [0, 0, 0, 0, 0];
 function onDeviceReady() {
 				
 		onboard = false;
-		plugado = "false";
-		plugado_anterior = "false";
+		plugado = false;
+		plugado_anterior = false;
 		notification_id = 1;
 		cordova.plugins.backgroundMode.enable();
 		cordova.plugins.backgroundMode.onactivate = function() {notificacao_local('Background','Ativado.', 1);};
@@ -33,8 +33,8 @@ function onDeviceReady() {
 function inicializacao(){
 
 	onboard = false;
-	plugado = "false";
-	plugado_anterior = "false";
+	plugado = false;
+	plugado_anterior = false;
 	walking_monitor = false;
 	walking_notification = 0;
 	
@@ -199,7 +199,7 @@ var soma = 0;
 
 	if (velocidade_media < 5)
 		{
-		if (plugado == "false")
+		if (!plugado)
 			{
 			if (onboard == true)
 				{
@@ -217,7 +217,7 @@ var soma = 0;
 
 	if(velocidade_media > 20)
 		{
-		if (plugado == "true")
+		if (plugado)
 			{
 			if (onboard == false) {	notificacao_local('VELOCIDADE','Checkin Efetuado.', 1);}
 			}
@@ -547,13 +547,9 @@ function onBatteryStatus(info) {
 		
 		plugado = info.isPlugged;
 		
-		if (plugado) {alert('verdadeiro');}else{alert('false');}
-		
-		alert('tamanho: ' + plugado.length + 'true: ' + plugado.indexOf('t') + 'false: ' + plugado.indexOf('f'));
-		
 		if (onboard == true)
 			{
-			if (plugado == "false")
+			if (!plugado)
 				{
 				notificacao_local('ALERTA','Recomenda-se o uso com o carregador conectado.', 1);
 				if (plugado_anterior == "true") { gera_alarme(); }
@@ -561,7 +557,7 @@ function onBatteryStatus(info) {
 				else{	onboard = true;check_in();	}
 			}
 			else{
-				if (plugado == "true"){	document.location.href = "index.html";	}
+				if (plugado){	document.location.href = "index.html";	}
 				}
 		plugado_anterior = plugado;
 			
