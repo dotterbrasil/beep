@@ -37,7 +37,7 @@ function inicializacao(){
 	walking_monitor = false;
 	walking_notification = 0;
 	
-	if (notification_id > 1) { cordova.plugins.notification.local.clearAll(); }
+	//if (notification_id > 1) { cordova.plugins.notification.local.clearAll(); }
 	notification_id = 1;
 
 	lat_anterior = 0;
@@ -199,12 +199,13 @@ var soma = 0;
 	if (velocidade_media < 5)
 		{
 		if (plugado == "false")
-			{alert('ue? onboard: ' + onboard + " - walking monitor: " + walking_monitor );
+			{
 			if (onboard == true)
 				{
 				if (walking_monitor == false)
 					{
 					if( walking_notification < 1 ) { notificacao_local('VELOCIDADE','Avaliando saida do carro.', 1); }
+					element.innerHTML = 'Avaliando saida do carro.';
 					walking_monitor = true;
 					walking_notification++;
 					iswalking();
