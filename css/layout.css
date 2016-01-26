@@ -28,7 +28,7 @@ div.central {
 	 background-position: center;
 	 background-size: 80% 80%;
 	 
-	 
+	 margin: auto;
 	 position:fixed;
 	 top:25%;
 	 left:0%;
@@ -76,7 +76,8 @@ div.central {
 	 font-size:x-large;
 	 position:fixed;	 
 	 bottom:0%;
-	 left:5%;
+	 
+	 margin: inherit;
  }
  
 

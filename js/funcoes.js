@@ -199,7 +199,7 @@ var soma = 0;
 	if (velocidade_media < 5)
 		{
 		if (plugado == "false")
-			{
+			{alert('ue? onboard: ' + onboard + " - walking monitor: " + walking_monitor );
 			if (onboard == true)
 				{
 				if (walking_monitor == false)
@@ -254,6 +254,20 @@ function onError(error) {
 		setTimeout(localizacao,30000);
 		}
 		
+}
+
+function gera_alarme() {
+	
+var qtde_in = conta_in();
+	
+	if (qtde_in > 0)
+		{
+		notificacao_local('ALERTA','Crianca presente no carro.', 1);
+		onboard = false;
+		alerta = true;
+		setTimeout(localizacao,30000);
+		}
+	
 }
 
 
@@ -532,7 +546,7 @@ function onBatteryStatus(info) {
 			if (plugado == "false")
 				{
 				notificacao_local('ALERTA','Recomenda-se o uso com o carregador conectado.', 1);
-				if (plugado_anterior == "true") { onError(); }
+				if (plugado_anterior == "true") { gera_alarme(); }
 				}
 				else{	onboard = true;check_in();	}
 			}
@@ -625,7 +639,7 @@ function onBatteryStatus(info) {
 			frequencia = contador / 5;
 			
 				
-			if(frequencia > '1.2' && frequencia < '3.4') {	onError();	}
+			if(frequencia > '1.2' && frequencia < '3.4') {	gera_alarme();	}
 
 
 		}
