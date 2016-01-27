@@ -327,13 +327,6 @@ if (typeof(Storage) !== "undefined")
  			} 
  		if(indice>0)
 			{
-			//document.getElementById("principal").innerHTML = "<br><br><font face='sans-serif'>" + itens + "</font>";
-			//document.getElementById("principal").style.backgroundImage = "url('imagens/fundo.gif')";
-			
-			//proporcao = (35 - indice*4).toString()+"%";
-			//document.getElementById("principal").style.paddingTop = proporcao;
-			//document.getElementById("principal").style.paddingBottom = proporcao;
-			
 			document.getElementById("principal").innerHTML = "<img src='imagens/fundo.gif'align='center'>";
 			document.getElementById("status").innerHTML = "<h3 align='center'>KIDS</h3><hr><font face='sans-serif'>" + itens + "</font><hr />";
 			}
@@ -354,7 +347,7 @@ document.getElementById("status").innerHTML = "<h3 align='center'><font face='sa
 
 document.getElementById("lista").innerHTML = qrcode + "<br> Este QRCODE deve ser impresso e colocado na cadeirinha. <div onclick='help_qrcode();'>SAIBA COMO</div>";
 
-document.getElementById("links").innerHTML = "<a href='config.html' class='blue'><b>BACK</a> - </b><img src='imagens/menos.png' class='icone' onclick='limpa_kid(" + i + ");'><br><img src='imagens/virtualid.gif'>"
+document.getElementById("links").innerHTML = "<a href='config.html' class='blue'><b>BACK</a> - </b><img src='imagens/menos.png' class='icone' onclick='limpa_kid(" + i + ");'><br><img src='imagens/virtualid.gif' class='assinatura'>"
 
 //document.getElementById("principal").style.backgroundImage = "url('')";
 //document.getElementById("principal").style.paddingTop = "0%";
