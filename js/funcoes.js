@@ -51,9 +51,9 @@ function inicializacao(){
 				speed_matrix[limpa_matrix] = 0;
 				}
 
-	document.getElementById("container").style.width = window.screen.width * 0.8;
-	document.getElementById("container").style.height = window.screen.height * 0.8;
-	document.getElementById("container").style.marginLeft = 0 - (window.screen.width * 0.8 / 2);
+	document.getElementById("container").style.width = document.documentElement.clientWidth * 0.8;
+	document.getElementById("container").style.height = document.documentElement.clientHeight * 0.8;
+	//document.getElementById("container").style.marginLeft = 0 - (document.documentElement.clientWidth * 0.8 / 2);
 				
 	document.addEventListener("deviceready", onDeviceReady, false);
 }
