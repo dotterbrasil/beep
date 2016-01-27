@@ -555,11 +555,10 @@ function onBatteryStatus(info) {
 				notificacao_local('ALERTA','Recomenda-se o uso com o carregador conectado.', 1);
 				if (plugado_anterior) { gera_alarme(); }
 				}
-				else{	onboard = true;check_in();	}
+				//else{	onboard = true;check_in();	}
 			}
-			else{
-				if (plugado){	document.location.href = "index.html";	}
-				}
+			else{ if (plugado){	document.location.href = "index.html";	}	}
+			
 		plugado_anterior = plugado;
 			
 	}
