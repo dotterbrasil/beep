@@ -1,7 +1,7 @@
 
 var onboard = false;
-//var plugado = false;
-//var plugado_anterior = false;
+var plugado = false;
+var plugado_anterior = false;
 var walking_monitor = false;
 var walking_notification = 0;
 var alerta = false;

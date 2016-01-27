@@ -76,8 +76,9 @@ div.central {
 	 font-size:x-large;
 	 position:fixed;	 
 	 bottom:0%;
-	 
-	 margin: auto;
+	 width: 560px;
+	 left: 50%;
+	 margin-left: -280px;
  }
  
 
