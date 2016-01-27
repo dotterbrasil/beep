@@ -50,7 +50,9 @@ div.central {
 	 font-family:sans-serif;
 	 font-size: 1em;
 	 
-	 
+	 width: 360px;
+	 left: 50%;
+	 margin-left: -180px;
 	 
  }
  
@@ -63,7 +65,9 @@ div.central {
 	 font-size: 1;
 	 text-align: center;
 	 
-	 
+	 width: 288px;
+	 left: 50%;
+	 margin-left: -144px;
 	 
  }
  
@@ -76,7 +80,9 @@ div.central {
 	 font-size: 1;
 	 text-align: center;
 	 
-	 
+	 width: 288px;
+	 left: 50%;
+	 margin-left: -144px;
 	 
  }
  
@@ -84,15 +90,15 @@ div.central {
 	 font-size:x-large;
 	 position:fixed;	 
 	 bottom:0%;
-	 
+	 width: 360px;
+	 left: 50%;
+	 margin-left: -180px;
  }
  
 
  div.parent{
-	  width:360px;
-	  height:500px;
-	  left: 50%;
-	  margin-left: -180px;
+	  width:80%;
+	  height:80%;
 
  }
  

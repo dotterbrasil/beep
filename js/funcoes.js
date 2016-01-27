@@ -51,9 +51,6 @@ function inicializacao(){
 				speed_matrix[limpa_matrix] = 0;
 				}
 
-	document.getElementById("container").style.width = document.documentElement.clientWidth * 0.8;
-	document.getElementById("container").style.height = document.documentElement.clientHeight * 0.8;
-	//document.getElementById("container").style.marginLeft = 0 - (document.documentElement.clientWidth * 0.8 / 2);
 				
 	document.addEventListener("deviceready", onDeviceReady, false);
 }
@@ -128,7 +125,7 @@ if (navigator.geolocation) {
 	
 	document.getElementById("principal").style.backgroundImage = "url('imagens/fundo_alerta.gif')";
 	     
-	 document.getElementById("principal").innerHTML = "<br><br><iframe width=80% height=80% src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe><br><img src='imagens/alert.gif' width=100% align='center' class='alerta' onclick='desativa();'>";
+	 document.getElementById("principal").innerHTML = "<br><br><iframe width=80% height=200px src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe><br><img src='imagens/alert.gif' width=100% align='center' class='alerta' onclick='desativa();'>";
 	 
 	 document.getElementById("status").innerHTML = "Clique sobre o ALERT para desativar o alarme!";
 		  
