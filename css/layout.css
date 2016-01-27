@@ -31,7 +31,10 @@ div.central {
 	 margin: auto;
 	 position:fixed;
 	 top:25%;
-	 left:0%;
+	 
+	 width: 560px;
+	 left: 50%;
+	 margin-left: -280px;
 
 
 	 font-size:medium;
@@ -43,9 +46,13 @@ div.central {
 	 
 	 position:fixed;
 	 top:5%;
-	 left:0%;
+	 
 	 font-family:sans-serif;
 	 font-size: 1em;
+	 
+	 width: 560px;
+	 left: 50%;
+	 margin-left: -280px;
 	 
  }
  
@@ -53,10 +60,14 @@ div.central {
 	 
 	 position:fixed;
 	 top:20%;
-	 left:15%;
+	 
 	 font-family:sans-serif;
 	 font-size: 1;
 	 text-align: center;
+	 
+	 width: 560px;
+	 left: 50%;
+	 margin-left: -280px;
 	 
  }
  
@@ -64,11 +75,14 @@ div.central {
 	 
 	 position:fixed;
 	 top:40%;
-	 left:15%;
+	 
 	 font-family:sans-serif;
 	 font-size: 1;
 	 text-align: center;
-
+	 
+	 width: 560px;
+	 left: 50%;
+	 margin-left: -280px;
 	 
  }
  
@@ -111,6 +125,10 @@ width: 80%;
 
 img.icone{
 width: 10%;	
+}
+
+img.assinatura{
+width: 30%;	
 }
 
 img.alerta {
