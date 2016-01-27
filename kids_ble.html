@@ -4,7 +4,7 @@
 
 <head>
 
-<title>Baby Beep - Alerts</title>
+<title>Baby Beep - Kids BLE</title>
 <meta charset="utf-8" />
 <meta name="format-detection" content="telephone=no" />
 <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
@@ -13,12 +13,14 @@
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="barcodescanner.js"></script>
 <script type="text/javascript" src="childbrowser.js"></script>
+<script type="text/javascript" src="bc.js"></script>
+
 
 <link rel="stylesheet" href="css/layout.css" type="text/css">
 
 </head>
 
-<body onload="lista_kids();">
+<body>
 
 <div class="parent">
 
@@ -27,18 +29,18 @@
 	</div>
 
 	<div id="principal" class="central"  align="center">
-		<img src="imagens/fundo.gif" width=100% align="center" >
+		<img src="imagens/ble.png" width=100% align="center">
 	</div>
 	
-	<div id="status" class="status" align="center"></div>
-	<div id="lista" class="lista" align="center"></div>
+	<div id="status" class="status" align="center"><hr> UPGRADE <hr/></div>
+	<div id="lista" class="lista" align="center">
+	Faca um upgrade para a versao Teddy BEeP e utilize dispositivos Bluetooth Low Energy para identificar suas criancas.<br><br>
+	Isso maximiza a precisao do sistema e dispensa a leitura do QRCODE para efetuar o check-out.
+	</div>
 
 	<div id="links" align="center" class="rodape">
 
-		<a href="config.html" class="blue"><b>BACK</a>  |  </b>
-		<img src="imagens/mais.png" class="icone" onclick="kids();">  |  <img src="imagens/ble.png" class="icone" onclick="kids_ble();">
-		<br>
-		<img src="imagens/virtualid.gif" class="assinatura">
+		<a href="kids.html" class="blue"><b>BACK</b></a>
 
 	</div>
 

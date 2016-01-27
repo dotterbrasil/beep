@@ -206,10 +206,11 @@ var soma = 0;
 				{
 				if (walking_monitor == false)
 					{
-					if( walking_notification < 1 ) { notificacao_local('VELOCIDADE','Avaliando saida do carro.', 1); }
-					element.innerHTML = 'Avaliando saida do carro.';
+					if ( walking_notification < 1 ) { notificacao_local('VELOCIDADE BAIXA','Avaliando saida do carro.', 1); }
+					element.innerHTML = '<hr>Avaliando saida do carro.';
 					walking_monitor = true;
 					walking_notification++;
+					if (waking__notification > 10) { walking_notification = 0; }
 					iswalking();
 					}
 				}
@@ -299,6 +300,12 @@ localStorage.setItem("kid"+indice,crianca);
 
 lista_kids();
 
+}
+
+function kids_ble(){
+
+document.location.href = "kids_ble.html";
+	
 }
  
  
