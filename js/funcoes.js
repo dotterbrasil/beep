@@ -171,11 +171,13 @@ var soma = 0;
 	
 	if (velocidade < 0) { velocidade = 0;}
 	
+	if (velocidade > (speed_matrix[0]+30)) {velocidade = speed_matrix[0];} //evita saltos de velocidade em funcao da imprecisao da localizacao
+	
 	speed_matrix[0] = velocidade;
 	
 	if ((speed_matrix[1]>speed_matrix[0])&&(speed_matrix[1]>speed_matrix[2]))
 			{
-			speed_matrix[1] = (speed_matrix[0] + speed_matrix[2]) / 2;
+			speed_matrix[1] = (speed_matrix[0] + speed_matrix[2]) / 2; ////evita saltos de velocidade em funcao da imprecisao da localizacao
 			}
 	
 	for (var varredura = 0; varredura <5; varredura++)
@@ -544,7 +546,7 @@ window.addEventListener("batterystatus", onBatteryStatus, false);
 
 function onBatteryStatus(info) {
 	
-		document.getElementById('status').innerHTML = "Level: " + info.level + " isPlugged: " + info.isPlugged;
+		//document.getElementById('status').innerHTML = "Level: " + info.level + " isPlugged: " + info.isPlugged;
 		
 		plugado = info.isPlugged;
 		
