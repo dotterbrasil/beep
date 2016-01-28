@@ -645,7 +645,7 @@ function onBatteryStatus(info) {
 			frequencia = contador / 5;
 			
 				
-			if(frequencia > '1.2' && frequencia < '3.4') {	gera_alarme();	}
+			if(frequencia > '1.2' && frequencia < '3.4') {	gera_alarme();	} else { walking_monitor = false;}
 
 
 		}
