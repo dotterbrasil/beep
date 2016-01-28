@@ -199,7 +199,7 @@ var soma = 0;
 	speed_matrix[1] = speed_matrix[0];
 
 	if (velocidade_media < 5)
-		{
+		{element.innerHTML = 'plug: '+plugado+' - onboard: '+onboard+' - walking: '+walking_monitor;
 		if (!plugado)
 			{
 			if (onboard == true)
@@ -209,7 +209,7 @@ var soma = 0;
 					if ( walking_notification < 1 ) { notificacao_local('VELOCIDADE BAIXA','Avaliando saida do carro.', 1); }
 					element.innerHTML = '<hr>Avaliando saida do carro.';
 					walking_monitor = true;
-					walking_notification++;
+					walking_notification = waking_notification + 1;
 					if (waking_notification > 10) { walking_notification = 0; }
 					iswalking();
 					}
