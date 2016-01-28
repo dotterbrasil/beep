@@ -199,7 +199,7 @@ var soma = 0;
 	speed_matrix[1] = speed_matrix[0];
 
 	if (velocidade_media < 5)
-		{element.innerHTML = 'plug: '+plugado+' - onboard: '+onboard+' - walking: '+walking_monitor;
+		{
 		if (!plugado)
 			{
 			if (onboard == true)
@@ -210,7 +210,7 @@ var soma = 0;
 					element.innerHTML = '<hr>Avaliando saida do carro.';
 					walking_monitor = true;
 					walking_notification++;
-					//if (waking_notification > 10) { walking_notification = 0; }
+					if (walking_notification > 10) { walking_notification = 0; }
 					iswalking();
 					}
 				}
@@ -582,7 +582,6 @@ function onBatteryStatus(info) {
 		media = 0;
 		array_eixo = [];
 		anterior = false;
-		alert('hey');
 		accelerometer();
 	}		
 	function accelerometer(){ 
@@ -619,7 +618,7 @@ function onBatteryStatus(info) {
 		{		
 			var m = soma_eixo / 50;
 			media = Math.round(m);
-			walking_monitor = false;
+			//walking_monitor = false;
 			
 			for (i = 0; i < 50; i++){	
 				var v = array_eixo[i] - media;
