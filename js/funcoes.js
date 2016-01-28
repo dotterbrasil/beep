@@ -210,7 +210,7 @@ var soma = 0;
 					element.innerHTML = '<hr>Avaliando saida do carro.';
 					walking_monitor = true;
 					walking_notification++;
-					if (waking_notification > 10) { walking_notification = 0; }
+					//if (waking_notification > 10) { walking_notification = 0; }
 					iswalking();
 					}
 				}
