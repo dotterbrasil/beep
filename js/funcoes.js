@@ -150,7 +150,7 @@ var latlon = position.coords.latitude + "," + position.coords.longitude;
 	
 	if (velocidade < 0) { velocidade = 0;}
 
-	element.innerHTML = '<hr>Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + '<font size = 1>Coord: ' + latlon + '</font>';
+	element.innerHTML = '<hr>Velocidade: ' + velocidade  + ' km/h <br />' +  '<hr />' + '<font size = 1>Coord: ' + latlon + '</font>';
 	
 	if (velocidade < 5)
 		{
