@@ -134,10 +134,59 @@ if (navigator.geolocation) {
  
 function speed_monitor(){
 
-watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(onSuccess, showError, {enableHighAccuracy: true});}, 3000);
+//watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(onSuccess, showError, {enableHighAccuracy: true});}, 3000);
+
+watchID = navigator.geolocation.watchPosition(onSuccessX, onError, { enableHighAccuracy: true });
 
 }
 
+function onSuccessX(position){
+
+var element = document.getElementById('status');
+var velocidade = position.coords.speed;
+var latlon = position.coords.latitude + "," + position.coords.longitude;
+
+	if (isNaN(velocidade)) { velocidade = velocidade_media;}
+	
+	if (velocidade < 0) { velocidade = 0;}
+
+	element.innerHTML = '<hr>Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + '<font size = 1>Coord: ' + latlon + '</font>';
+	
+	if (velocidade < 5)
+		{
+		if (!plugado)
+			{
+			if (onboard == true)
+				{
+				if (walking_monitor == false)
+					{
+					if ( walking_notification < 1 ) { notificacao_local('VELOCIDADE BAIXA','Avaliando saida do carro.', 1); }
+					element.innerHTML = '<hr>Avaliando saida do carro.';
+					walking_monitor = true;
+					walking_notification++;
+					if (walking_notification > 10) { walking_notification = 0; }
+					iswalking();
+					}
+				}
+			}
+		}
+
+	if(velocidade > 20)
+		{
+		if (plugado)
+			{
+			if (onboard == false) {	notificacao_local('VELOCIDADE','Checkin Efetuado.', 1);}
+			}
+			else
+				{
+				if (onboard == false) 
+					{ notificacao_local('VELOCIDADE','Checkin Efetuado. Conecte o carregador.', 1);	}
+				}
+		if (alerta == true) { home(); }
+		onboard = true;
+		check_in();		
+		}
+}
 
 function onSuccess(position){
 
