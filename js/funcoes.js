@@ -143,7 +143,7 @@ watchID = navigator.geolocation.watchPosition(onSuccessX, onError, { enableHighA
 function onSuccessX(position){
 
 var element = document.getElementById('status');
-var velocidade = position.coords.speed;
+var velocidade = Math.round(position.coords.speed);
 var latlon = position.coords.latitude + "," + position.coords.longitude;
 
 	if (isNaN(velocidade)) { velocidade = velocidade_media;}
