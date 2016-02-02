@@ -470,14 +470,16 @@ for (var i=0; i<indice; ++i)
 	{
 	localStorage.setItem("in"+i,localStorage.getItem("kid"+i));
 	
-	itens = itens + "<div>"+localStorage.getItem("in"+i) + " <a href='javascript:startScan();' class='green'>CHECK OUT</a></div><br>";
+	itens = itens + "<div>"+localStorage.getItem("in"+i) + " <a href='javascript:startScan();' class='green'><b>CHECK OUT</b></a></div><br>";
 	
 	}
 
 if(indice>0)
 	{
-	document.getElementById("principal").innerHTML = "<img src='imagens/fundo_verde.gif'align='center'>";
-	document.getElementById("lista").innerHTML = "<h3 align='center'>ONBOARD</h3><hr><font face='sans-serif'>" + itens + "</font><hr />";
+	//document.getElementById("principal").innerHTML = "<img src='imagens/fundo_verde.gif'align='center'>";
+	document.getElementById("principal").innerHTML = "";
+	document.getElementById("lista").innerHTML = "<font face='sans-serif'>" + itens + "</font><hr />";
+	document.getElementById("links").innerHTML = <h3 align='center'>ONBOARD</h3><hr>
 	}
 	
 }
