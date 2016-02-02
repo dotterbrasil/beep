@@ -479,7 +479,7 @@ if(indice>0)
 	//document.getElementById("principal").innerHTML = "<img src='imagens/fundo_verde.gif'align='center'>";
 	document.getElementById("principal").innerHTML = "";
 	document.getElementById("lista").innerHTML = "<font face='sans-serif'>" + itens + "</font><hr />";
-	document.getElementById("links").innerHTML = <h3 align='center'>ONBOARD</h3><hr>
+	document.getElementById("links").innerHTML = "<h3 align='center'>ONBOARD</h3><hr>";
 	}
 	
 }
