@@ -383,7 +383,7 @@ if (typeof(Storage) !== "undefined")
  			} 
  		if(indice>0)
 			{
-			document.getElementById("principal").innerHTML = "<img src='imagens/fundo.gif'align='center'>";
+			//document.getElementById("principal").innerHTML = "<img src='imagens/fundo.gif'align='center'>";
 			document.getElementById("status").innerHTML = "<h3 align='center'>KIDS</h3><hr><font face='sans-serif'>" + itens + "</font><hr />";
 			}
  		} 
