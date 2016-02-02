@@ -127,7 +127,8 @@ if (navigator.geolocation) {
 	     
 	 document.getElementById("principal").innerHTML = "<br><br><iframe width=80% height=200px src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe><br><img src='imagens/alert.gif' width=100% align='center' class='alerta' onclick='desativa();'>";
 	 
-	 document.getElementById("status").innerHTML = "Clique sobre o ALERT para desativar o alarme!";
+	 //document.getElementById("status").innerHTML = "Clique sobre o ALERT para desativar o alarme!";
+	 document.getElementById("status").innerHTML = "<h4 align='center'>ALERT</h4>";
 		  
  }
 
@@ -322,6 +323,7 @@ var qtde_in = conta_in();
 		//document.getElementById("principal").innerHTML = "<img src='imagens/fundo_alerta.gif'align='center'>";
 		document.getElementById("principal").innerHTML = "";
 		document.getElementById("links").innerHTML = "<h4 align='center'>ALERT</h4><br><img src='imagens/virtualid.gif' class='assinatura'>";
+		document.getElementById("status").innerHTML = "<h4 align='center'>ALERT</h4>";
 		onboard = false;
 		alerta = true;
 		setTimeout(localizacao,30000);

@@ -84,6 +84,10 @@ div.central {
 	 left: 50%;
 	 margin-left: -144px;
 	 
+	 background-color: #ffffff;
+     opacity: 0.6;
+     filter: alpha(opacity=60); /* For IE8 and earlier */
+
  }
  
  div.rodape {
