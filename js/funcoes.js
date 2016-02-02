@@ -123,7 +123,7 @@ if (navigator.geolocation) {
     
 	var teste = setInterval(playsound,3000);
 	
-	document.getElementById("principal").style.backgroundImage = "url('imagens/fundo_alerta.gif')";
+	//document.getElementById("principal").style.backgroundImage = "url('imagens/fundo_alerta.gif')";
 	     
 	 document.getElementById("principal").innerHTML = "<br><br><iframe width=80% height=200px src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe><br><img src='imagens/alert.gif' width=100% align='center' class='alerta' onclick='desativa();'>";
 	 
@@ -319,7 +319,9 @@ var qtde_in = conta_in();
 	if (qtde_in > 0)
 		{
 		notificacao_local('ALERTA','Crianca presente no carro.', 1);
-		document.getElementById("principal").innerHTML = "<img src='imagens/fundo_alerta.gif'align='center'>";
+		//document.getElementById("principal").innerHTML = "<img src='imagens/fundo_alerta.gif'align='center'>";
+		document.getElementById("principal").innerHTML = "";
+		document.getElementById("links").innerHTML = "<h4 align='center'>ALERT</h4><br><img src='imagens/virtualid.gif' class='assinatura'>";
 		onboard = false;
 		alerta = true;
 		setTimeout(localizacao,30000);
@@ -478,8 +480,8 @@ if(indice>0)
 	{
 	//document.getElementById("principal").innerHTML = "<img src='imagens/fundo_verde.gif'align='center'>";
 	document.getElementById("principal").innerHTML = "";
-	document.getElementById("lista").innerHTML = "<font face='sans-serif'>" + itens + "</font><hr />";
-	document.getElementById("links").innerHTML = "<h3 align='center'>ONBOARD</h3><hr>";
+	document.getElementById("lista").innerHTML = "<hr><font face='sans-serif'>" + itens + "</font><hr />";
+	document.getElementById("links").innerHTML = "<h3 align='center'>ONBOARD</h3><br><img src='imagens/virtualid.gif' class='assinatura'>";
 	}
 	
 }

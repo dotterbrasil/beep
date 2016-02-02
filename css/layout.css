@@ -139,8 +139,14 @@ img.alerta {
 h3{
 	color: white;
 	background-color: green;
+	font-family:sans-serif;
 }
 
+h4{
+	color: white;
+	background-color: red;
+	font-family:sans-serif;
+}
 
 html, body {
     height:auto;
