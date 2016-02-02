@@ -151,7 +151,8 @@ var latlon = position.coords.latitude + "," + position.coords.longitude;
 	
 	if (velocidade < 0) { velocidade = 0;}
 
-	element.innerHTML = '<hr>Velocidade: ' + velocidade  + ' km/h <br />' +  '<hr />' + '<font size = 1>Coord: ' + latlon + '</font>';
+	//element.innerHTML = '<hr>Velocidade: ' + velocidade  + ' km/h <br />' +  '<hr />' + '<font size = 1>Coord: ' + latlon + '</font>';
+	element.innerHTML = '<hr>Speed Monitor: ' + velocidade  + ' km/h <br>' +  '<hr />';
 	
 	if (velocidade < 5)
 		{
@@ -162,7 +163,7 @@ var latlon = position.coords.latitude + "," + position.coords.longitude;
 				if (walking_monitor == false)
 					{
 					if ( walking_notification < 1 ) { notificacao_local('VELOCIDADE BAIXA','Avaliando saida do carro.', 1); }
-					element.innerHTML = '<hr>Avaliando saida do carro.';
+					element.innerHTML = '<hr>Avaliando saida do carro.<hr />';
 					walking_monitor = true;
 					walking_notification++;
 					if (walking_notification > 10) { walking_notification = 0; }
@@ -483,7 +484,9 @@ if(indice>0)
 	//document.getElementById("principal").innerHTML = "<img src='imagens/fundo_verde.gif'align='center'>";
 	document.getElementById("principal").innerHTML = "";
 	document.getElementById("lista").innerHTML = "<hr><font face='sans-serif'>" + itens + "</font><hr />";
-	document.getElementById("links").innerHTML = "<h3 align='center'>ONBOARD</h3><br><img src='imagens/virtualid.gif' class='assinatura'>";
+	document.getElementById("status").innerHTML = "<h3 align='center'>ONBOARD</h3>";
+	document.getElementById("links").innerHTML = "<img src='imagens/warning.png' class='assinatura' align='left'>Este aplicativo nao substitui a atencao e a supervisao de maior responsavel pela saude e seguranca da crianca.<br><img src='imagens/virtualid.gif' class='assinatura'>";
+	
 	}
 	
 }
