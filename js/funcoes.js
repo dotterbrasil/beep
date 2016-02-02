@@ -21,7 +21,7 @@ function onDeviceReady() {
 		//plugado_anterior = false;
 		notification_id = 1;
 		cordova.plugins.backgroundMode.enable();
-		cordova.plugins.backgroundMode.onactivate = function() {notificacao_local('Background','Ativado.', 1);};
+		cordova.plugins.backgroundMode.onactivate = function() {notificacao_local('WARNING','Este aplicativo e apenas uma ferramenta e nao substitui a atencao e a supervisao de maior responsavel pela saude e seguranca da crianca.', 1);};
 		cordova.plugins.notification.local.clearAll();
 
 		monitora_bateria();
@@ -485,7 +485,7 @@ if(indice>0)
 	document.getElementById("principal").innerHTML = "";
 	document.getElementById("lista").innerHTML = "<hr><font face='sans-serif'>" + itens + "</font><hr />";
 	document.getElementById("status").innerHTML = "<h3 align='center'>ONBOARD</h3>";
-	document.getElementById("links").innerHTML = "<img src='imagens/warning.png' class='assinatura' align='left'>Este aplicativo nao substitui a atencao e a supervisao de maior responsavel pela saude e seguranca da crianca.<br><img src='imagens/virtualid.gif' class='assinatura'>";
+	document.getElementById("links").innerHTML = "<img src='imagens/warning.png' class='icone' align='left'>Este aplicativo nao substitui a atencao e a supervisao de maior responsavel pela saude e seguranca da crianca.<br><img src='imagens/virtualid.gif' class='assinatura'>";
 	
 	}
 	
