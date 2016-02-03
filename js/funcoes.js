@@ -63,6 +63,13 @@ function home(){
 	
 }
 
+function share(){
+	
+	var icone = "file://icon.png";
+	
+window.plugins.socialsharing.shareViaFacebook('Message via Facebook', icone /* img */, null /* url */,function() {alert('share ok');}, function(errormsg){alert(errormsg)});	
+}
+
 function notificacao_local(tipo, mensagem_local, indice){
 //notificacao_local(tipo, mensagem, badge)
 //tipo: ALERTA, VELOCIDADE, BATERIA
