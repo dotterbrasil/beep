@@ -67,9 +67,9 @@ function share(){
 	
 	var icone = "file://icon.png";
 	
-	window.plugins.socialsharing.share('Message, subject, image and link', 'The subject', icone, 'http://www.dotter.com.br');
+	//window.plugins.socialsharing.share('Message, subject, image and link', 'The subject', icone, 'http://www.dotter.com.br');
 	
-window.plugins.socialsharing.shareViaFacebook('Message via Facebook', 'icone' /* img */, 'http://www.dotter.com.br'/* url */,function() {alert('share ok');}, function(errormsg){alert(errormsg)});	
+window.plugins.socialsharing.shareViaFacebook('Message via Facebook', 'icon.png' /* img */, 'http://www.dotter.com.br'/* url */,function() {alert('share ok');}, function(errormsg){alert(errormsg)});	
 }
 
 function notificacao_local(tipo, mensagem_local, indice){
