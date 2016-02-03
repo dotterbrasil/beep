@@ -26,7 +26,8 @@
 	<plugin name="org.apache.cordova.geolocation" source="pgb" spec="0.3.12" />
 	<plugin name="org.apache.cordova.media" source="pgb" spec="0.2.16" />
 	
-	<gap:plugin name="nl.x-services.plugins.socialsharing" version="4.3.16" />
+	
+	<plugin name="nl.x-services.plugins.socialsharing" spec="4.3.8" source="pgb" />
 
 	<access origin="*"/>
 	<allow-navigation href="*" />
