@@ -330,8 +330,8 @@ var qtde_in = conta_in();
 		{
 		notificacao_local('ALERTA','Crianca presente no carro.', 1);
 		//document.getElementById("principal").innerHTML = "<img src='imagens/fundo_alerta.gif'align='center'>";
-		document.getElementById("principal").innerHTML = "";
-		document.getElementById("links").innerHTML = "<h4 align='center'>DESATIVAR</h4><br><img src='imagens/virtualid.gif' class='assinatura'>";
+		document.getElementById("principal").innerHTML = "<img src='imagens/onboard.png' align='center'>";
+		//document.getElementById("links").innerHTML = "<h4 align='center'>DESATIVAR</h4><br><img src='imagens/virtualid.gif' class='assinatura'>";
 		document.getElementById("status").innerHTML = "<h4 align='center'>ALERT</h4>";
 		onboard = false;
 		alerta = true;
@@ -492,9 +492,9 @@ if(indice>0)
 	//document.getElementById("principal").innerHTML = "<img src='imagens/fundo_verde.gif'align='center'>";
 	document.getElementById("principal").innerHTML = "";
 	//document.getElementById("lista").innerHTML = "<hr><font face='sans-serif'>" + itens + "</font><hr />";
-	document.getElementById("lista").innerHTML = "<img src='imagens/onboard.png' align='center'>";
+	document.getElementById("principal").innerHTML = "<img src='imagens/onboard.png' align='center'>";
 	//document.getElementById("links").innerHTML = "<h3 align='center'>ONBOARD</h3><br><hr><font face='sans-serif'>" + itens + "</font><hr />";
-	document.getElementById("links").innerHTML = "<h3 align='center'>ONBOARD</h3><br>" + itens;
+	document.getElementById("links").innerHTML = "<h3 align='center'>ONBOARD</h3><br>";
 	}
 	
 }
