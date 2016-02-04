@@ -171,6 +171,7 @@ var latlon = position.coords.latitude + "," + position.coords.longitude;
 					{
 					if ( walking_notification < 1 ) { notificacao_local('VELOCIDADE BAIXA','Avaliando saida do carro.', 1); }
 					element.innerHTML = '<hr>Avaliando saida do carro.<hr />';
+					document.getElementById("lista").innerHTML = "<img src='imagens/walking.png' align='center'>";
 					walking_monitor = true;
 					walking_notification++;
 					if (walking_notification > 10) { walking_notification = 0; }
@@ -490,8 +491,9 @@ if(indice>0)
 	{
 	//document.getElementById("principal").innerHTML = "<img src='imagens/fundo_verde.gif'align='center'>";
 	document.getElementById("principal").innerHTML = "";
-	document.getElementById("lista").innerHTML = "<hr><font face='sans-serif'>" + itens + "</font><hr />";
-	document.getElementById("links").innerHTML = "<h3 align='center'>ONBOARD</h3><br><img src='imagens/virtualid.gif' class='assinatura'>";
+	//document.getElementById("lista").innerHTML = "<hr><font face='sans-serif'>" + itens + "</font><hr />";
+	document.getElementById("lista").innerHTML = "<img src='imagens/onboard.png' align='center'>";
+	document.getElementById("links").innerHTML = "<h3 align='center'>ONBOARD</h3><br><hr><font face='sans-serif'>" + itens + "</font><hr />";
 	
 	}
 	
