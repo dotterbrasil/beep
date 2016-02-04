@@ -171,7 +171,7 @@ var latlon = position.coords.latitude + "," + position.coords.longitude;
 					{
 					if ( walking_notification < 1 ) { notificacao_local('VELOCIDADE BAIXA','Avaliando saida do carro.', 1); }
 					element.innerHTML = '<hr>Avaliando saida do carro.<hr />';
-					document.getElementById("lista").innerHTML = "<img src='imagens/walking.png' align='center'>";
+					document.getElementById("principal").innerHTML = "<img src='imagens/walking.png' align='center'>";
 					walking_monitor = true;
 					walking_notification++;
 					if (walking_notification > 10) { walking_notification = 0; }
@@ -330,7 +330,7 @@ var qtde_in = conta_in();
 		{
 		notificacao_local('ALERTA','Crianca presente no carro.', 1);
 		//document.getElementById("principal").innerHTML = "<img src='imagens/fundo_alerta.gif'align='center'>";
-		document.getElementById("principal").innerHTML = "<img src='imagens/onboard.png' align='center'>";
+		document.getElementById("principal").innerHTML = "<img src='imagens/checkout.png' align='center'>";
 		//document.getElementById("links").innerHTML = "<h4 align='center'>DESATIVAR</h4><br><img src='imagens/virtualid.gif' class='assinatura'>";
 		document.getElementById("status").innerHTML = "<h4 align='center'>ALERT</h4>";
 		onboard = false;
@@ -494,7 +494,7 @@ if(indice>0)
 	//document.getElementById("lista").innerHTML = "<hr><font face='sans-serif'>" + itens + "</font><hr />";
 	document.getElementById("principal").innerHTML = "<img src='imagens/onboard.png' align='center'>";
 	//document.getElementById("links").innerHTML = "<h3 align='center'>ONBOARD</h3><br><hr><font face='sans-serif'>" + itens + "</font><hr />";
-	document.getElementById("links").innerHTML = "<hr><font face='sans-serif'>" + itens + "</font><hr />";
+	document.getElementById("links").innerHTML = "<h3 align='center'>ONBOARD</h3><hr><font face='sans-serif' color='#0000'>" + itens + "</font><hr />";
 	}
 	
 }
