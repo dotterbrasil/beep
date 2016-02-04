@@ -64,13 +64,13 @@ function home(){
 }
 
 function share(){
+	alert('1');
+	//document.getElementById("principal").innerHTML = "<div src='http://www.facebook.com/sharer.php?u=www.dotter.com.br/beep.html' class='central'>teste</div>";
 	
-	var icone = "file://icon.png";
+	document.getElementById("lista").innerHTML = "<a target='_blank' href='http://www.facebook.com/sharer.php?u=www.dotter.com.br'><img src='imagens/facebook.jpg' border=0 width=30 height=30 /></a>";
+
 	
-	FB.ui({
-  method: 'share',
-  href: 'http://www.dotter.com.br',
-}, function(response){});
+	alert('2');
 	
 	//window.plugins.socialsharing.share('Message, subject, image and link', 'The subject', 'https://www.google.nl/images/srpr/logo4w.png',http://www.dotter.com.br');
 	
