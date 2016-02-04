@@ -89,7 +89,10 @@ div.central {
  }
  
  div.rodape {
-	 font-size:medium;
+	 font-family:sans-serif;
+	 font-size: 1;
+	 text-align: center;
+	 
 	 position:fixed;	 
 	 bottom:0%;
 	 width: 360px;
