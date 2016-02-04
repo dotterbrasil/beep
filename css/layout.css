@@ -91,7 +91,7 @@ div.central {
  div.rodape {
 	 font-family:sans-serif;
 	 font-size: 1;
-	 text-align: center;
+	 text-align: justify;
 	 
 	 position:fixed;	 
 	 bottom:0%;
@@ -125,7 +125,7 @@ border: 4px red solid;
 }
 
 img {
-width: 80%;	
+width: 60%;	
 }
 
 img.icone{
