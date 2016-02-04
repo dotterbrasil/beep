@@ -73,11 +73,11 @@ function share(){
 
 	
 		
-	//window.plugins.socialsharing.share('Message, subject, image and link', 'The subject', 'https://www.google.nl/images/srpr/logo4w.png',http://www.dotter.com.br');
+window.plugins.socialsharing.share('Message, subject, image and link', 'The subject', 'https://www.google.nl/images/srpr/logo4w.png','http://www.dotter.com.br');
 	
 //window.plugins.socialsharing.shareViaFacebook('Message via Facebook', icone, 'http://www.dotter.com.br',function() {alert('share ok');}, function(errormsg){alert(errormsg)});	
 
-window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint('Message via Facebook', icone, 'http://www.dotter.com.br',function() {alert('share ok');}, function(errormsg){alert(errormsg)});	
+//window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint('Message via Facebook', icone, 'http://www.dotter.com.br',function() {alert('share ok');}, function(errormsg){alert(errormsg)});	
 }
 
 function notificacao_local(tipo, mensagem_local, indice){
