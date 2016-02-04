@@ -67,6 +67,8 @@ function share(){
 	alert('1');
 	//document.getElementById("principal").innerHTML = "<div src='http://www.facebook.com/sharer.php?u=www.dotter.com.br/beep.html' class='central'>teste</div>";
 	
+	setTimeout(home,4000);
+	
 	document.getElementById("lista").innerHTML = "<a target='_blank' href='http://www.facebook.com/sharer.php?u=www.dotter.com.br'><img src='imagens/facebook.jpg' border=0 width=30 height=30 /></a>";
 
 	
