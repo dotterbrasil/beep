@@ -130,6 +130,8 @@ width: 80%;
 
 img.icone{
 width: 10%;	
+
+float: left;
 }
 
 img.assinatura{
