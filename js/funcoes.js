@@ -64,21 +64,20 @@ function home(){
 }
 
 function share(){
-	alert('1');
+	
 	//document.getElementById("principal").innerHTML = "<div src='http://www.facebook.com/sharer.php?u=www.dotter.com.br/beep.html' class='central'>teste</div>";
 	
-	setTimeout(home,4000);
+	var icone = "file://icon.png";
 	
-	document.getElementById("lista").innerHTML = "<a target='_blank' href='http://www.facebook.com/sharer.php?u=www.dotter.com.br'><img src='imagens/facebook.jpg' border=0 width=30 height=30 /></a>";
+	//document.getElementById("lista").innerHTML = "<a target='_blank' href='http://www.facebook.com/sharer.php?u=www.dotter.com.br'><img src='imagens/facebook.jpg' border=0 width=30 height=30 /></a>";
 
 	
-	alert('2');
-	
+		
 	//window.plugins.socialsharing.share('Message, subject, image and link', 'The subject', 'https://www.google.nl/images/srpr/logo4w.png',http://www.dotter.com.br');
 	
 //window.plugins.socialsharing.shareViaFacebook('Message via Facebook', icone, 'http://www.dotter.com.br',function() {alert('share ok');}, function(errormsg){alert(errormsg)});	
 
-//window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint('Message via Facebook', icone, 'http://www.dotter.com.br',function() {alert('share ok');}, function(errormsg){alert(errormsg)});	
+window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint('Message via Facebook', icone, 'http://www.dotter.com.br',function() {alert('share ok');}, function(errormsg){alert(errormsg)});	
 }
 
 function notificacao_local(tipo, mensagem_local, indice){
