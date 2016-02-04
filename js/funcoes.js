@@ -494,7 +494,7 @@ if(indice>0)
 	document.getElementById("lista").innerHTML = "<h3 align='center'>ONBOARD</h3>";
 	document.getElementById("principal").innerHTML = "<img src='imagens/onboard.png' align='center'>";
 	//document.getElementById("links").innerHTML = "<h3 align='center'>ONBOARD</h3><br><hr><font face='sans-serif'>" + itens + "</font><hr />";
-	document.getElementById("links").innerHTML = "<hr><font face='sans-serif'>" + itens + "</font><hr />";
+	document.getElementById("links").innerHTML = "<h3 align='center'>ONBOARD</h3><br><hr><font face='sans-serif' color='#0000'>" + itens + "</font><hr />";
 	}
 	
 }
