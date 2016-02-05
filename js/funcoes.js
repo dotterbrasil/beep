@@ -65,8 +65,8 @@ function home(){
 
 function share(){
 			
-//window.plugins.socialsharing.share('Compartilhe e ajude a proteger as crianças do mundo', 'Baby BEeP - Salvando Vidas', 'http://www.dotter.com.br/imagens/beep.jpg','http://www.dotter.com.br');
-	document.getElementById("principal").innerHTML = "<iframe src='http://www.dotter.com.br/beep.html'></iframe>";
+window.plugins.socialsharing.share('Compartilhe e ajude a proteger as crianças do mundo', 'Baby BEeP - Salvando Vidas', 'http://www.dotter.com.br/imagens/beep.jpg','http://www.dotter.com.br/beep.html');
+	//document.getElementById("principal").innerHTML = "<iframe src='http://www.dotter.com.br/beep.html'></iframe>";
 	//document.location.href= "http://www.dotter.com.br/beep.html";
 	
 }
@@ -160,7 +160,9 @@ var latlon = position.coords.latitude + "," + position.coords.longitude;
 	if (velocidade < 0) { velocidade = 0;}
 
 	//element.innerHTML = '<hr>Velocidade: ' + velocidade  + ' km/h <br />' +  '<hr />' + '<font size = 1>Coord: ' + latlon + '</font>';
-	element.innerHTML = '<hr>Speed Monitor: ' + velocidade  + ' km/h <br>' +  '<hr />';
+	//element.innerHTML = '<hr>Speed Monitor: ' + velocidade  + ' km/h <br>' +  '<hr />';
+	element.innerHTML = "<h3 align='center'>" + velocidade  + " km/h </h3>";
+	
 	
 	if (velocidade < 5)
 		{
