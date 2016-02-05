@@ -59,10 +59,12 @@ div.central {
  div.status{
 	 
 	 position:fixed;
-	 top:40%;
+	 top:25%;
+	 margin-top: 170px;
 	 
 	 font-family:sans-serif;
-	 font-size: x-large;
+	 font-size: xx-large;
+	 font-weight:bold;
 	 color: white;
 	 text-align: center;
 	 
