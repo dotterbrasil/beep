@@ -161,7 +161,7 @@ var latlon = position.coords.latitude + "," + position.coords.longitude;
 
 	//element.innerHTML = '<hr>Velocidade: ' + velocidade  + ' km/h <br />' +  '<hr />' + '<font size = 1>Coord: ' + latlon + '</font>';
 	//element.innerHTML = '<hr>Speed Monitor: ' + velocidade  + ' km/h <br>' +  '<hr />';
-	element.innerHTML = "<br><h2 align='center'>" + velocidade  + " km/h </h2>";
+	element.innerHTML = "<br>" + velocidade  + " km/h";
 	
 	
 	if (velocidade < 5)
