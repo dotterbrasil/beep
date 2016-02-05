@@ -161,7 +161,7 @@ var latlon = position.coords.latitude + "," + position.coords.longitude;
 
 	//element.innerHTML = '<hr>Velocidade: ' + velocidade  + ' km/h <br />' +  '<hr />' + '<font size = 1>Coord: ' + latlon + '</font>';
 	//element.innerHTML = '<hr>Speed Monitor: ' + velocidade  + ' km/h <br>' +  '<hr />';
-	element.innerHTML = "<h3 align='center'>" + velocidade  + " km/h </h3>";
+	element.innerHTML = "<br><h2 align='center'>" + velocidade  + " km/h </h2>";
 	
 	
 	if (velocidade < 5)
@@ -173,7 +173,8 @@ var latlon = position.coords.latitude + "," + position.coords.longitude;
 				if (walking_monitor == false)
 					{
 					if ( walking_notification < 1 ) { notificacao_local('VELOCIDADE BAIXA','Avaliando saida do carro.', 1); }
-					element.innerHTML = '<hr>Avaliando saida do carro.<hr />';
+					//element.innerHTML = '<hr>Avaliando saida do carro.<hr />';
+					element.innerHTML = "<br><h2 align='center'>is walking ?</h2>";
 					document.getElementById("principal").innerHTML = "<img src='imagens/walking.png' align='center'>";
 					walking_monitor = true;
 					walking_notification++;
