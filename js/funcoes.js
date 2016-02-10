@@ -322,8 +322,8 @@ function onError(error) {
 	notificacao_local('AVISO','Inatividade detectada.', 1);
 	navigator.geolocation.clearWatch(watchID);notificacao_local('AVISO','limpou Velocidade.', 1);
 	
-	var options = {frequency: 1000};
-	movimentoID = setInterval(navigator.accelerometer.getCurrentAcceleration(despertar, error), 1000);
+	//var options = {frequency: 1000};
+	movimentoID = setInterval(navigator.accelerometer.getCurrentAcceleration(despertar, Xerror), 1000);
 	//watchID = navigator.accelerometer.watchAcceleration(despertar, error, options);	
 	notificacao_local('AVISO','?.', 1);
 	//var qtde_in = conta_in();
