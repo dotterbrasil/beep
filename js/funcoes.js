@@ -13,6 +13,9 @@ var tempo_anterior = 0;
 var velocidade_media = 0;
 var speed_matrix = [0, 0, 0, 0, 0];
 
+var watchID;
+var movimentoID;
+
 
 function onDeviceReady() {
 				
@@ -37,6 +40,8 @@ function inicializacao(){
 	//plugado_anterior = false;
 	walking_monitor = false;
 	walking_notification = 0;
+	
+	navigator.accelerometer.clearWatch(movimentoID);
 	
 	//if (notification_id > 1) { cordova.plugins.notification.local.clearAll(); }
 	notification_id = 1;
@@ -145,7 +150,8 @@ function speed_monitor(){
 
 //watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(onSuccess, showError, {enableHighAccuracy: true});}, 3000);
 
-watchID = navigator.geolocation.watchPosition(onSuccessX, onError, { enableHighAccuracy: true });
+//watchID = navigator.geolocation.watchPosition(onSuccessX, onError, { enableHighAccuracy: true });
+watchID = navigator.geolocation.watchPosition(onSuccessX, onError, { enableHighAccuracy: true, timeout: 180000, maximumAge: 10000 });
 
 }
 
@@ -312,18 +318,35 @@ notificacao_local('ERRO','Erro ao obter coordenadas.', 1);
 // onError Callback receives a PositionError object
 //
 function onError(error) {
-
-	var qtde_in = conta_in();
 	
-	if (qtde_in > 0)
-		{
-		notificacao_local('ALERTA','Crianca presente no carro.', 1);
-		document.getElementById("principal").innerHTML = "<img src='imagens/fundo_alerta.gif'align='center'>";
-		onboard = false;
-		alerta = true;
-		setTimeout(localizacao,30000);
-		}
+	notificacao_local('AVISO','Inatividade detectada.', 1);
+	navigator.geolocation.clearWatch(watchID);
+	movimentoID = navigator.accelerometer.watchAcceleration(despertar, error, {frequency: 1000});	
+	
+	//var qtde_in = conta_in();
+	
+	//if (qtde_in > 0)
+	//	{
+	//	notificacao_local('ALERTA','Crianca presente no carro.', 1);
+	//	document.getElementById("principal").innerHTML = "<img src='imagens/fundo_alerta.gif'align='center'>";
+	//	onboard = false;
+	//	alerta = true;
+	//	setTimeout(localizacao,30000);
+	//	}
 		
+}
+
+function despertar(acceleration){
+
+var movimento = Math.pow(acceleration.x,2) + Math.pow(acceleration.y,2) + Math.pow(acceleration.z,2) - Math.pow(9.83, 2);
+
+if (movimento > 2)
+	{
+	notificacao_local('AVISO','Monitoramento Acionado.', 1);
+	home();
+	}
+
+	
 }
 
 function gera_alarme() {
