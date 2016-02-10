@@ -151,7 +151,7 @@ function speed_monitor(){
 //watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(onSuccess, showError, {enableHighAccuracy: true});}, 3000);
 
 //watchID = navigator.geolocation.watchPosition(onSuccessX, onError, { enableHighAccuracy: true });
-watchID = navigator.geolocation.watchPosition(onSuccessX, onError, { enableHighAccuracy: true, timeout: 180000, maximumAge: 10000 });
+watchID = navigator.geolocation.watchPosition(onSuccessX, onError, { enableHighAccuracy: true, timeout: 60000, maximumAge: 10000 });
 
 }
 
@@ -340,7 +340,9 @@ function despertar(acceleration){
 
 var movimento = Math.pow(acceleration.x,2) + Math.pow(acceleration.y,2) + Math.pow(acceleration.z,2) - Math.pow(9.83, 2);
 
-if (movimento > 2)
+notificacao_local('AVISO',movimento, 1);
+
+if (movimento > 1)
 	{
 	notificacao_local('AVISO','Monitoramento Acionado.', 1);
 	home();
