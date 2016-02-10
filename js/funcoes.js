@@ -41,7 +41,7 @@ function inicializacao(){
 	walking_monitor = false;
 	walking_notification = 0;
 	
-	navigator.accelerometer.clearWatch(movimentoID);
+	//navigator.accelerometer.clearWatch(movimentoID);
 	
 	//if (notification_id > 1) { cordova.plugins.notification.local.clearAll(); }
 	notification_id = 1;
@@ -322,7 +322,7 @@ function onError(error) {
 	notificacao_local('AVISO','Inatividade detectada.', 1);
 	navigator.geolocation.clearWatch(watchID);notificacao_local('AVISO','limpou Velocidade.', 1);
 	
-	movimentoID = navigator.accelerometer.watchAcceleration(despertar, error, {period: 1000});	
+	movimentoID = navigator.accelerometer.watchAcceleration(despertar, error, {frequency: 1000});	
 	notificacao_local('AVISO','?.', 1);
 	//var qtde_in = conta_in();
 	
@@ -347,6 +347,7 @@ notificacao_local('AVISO',movimento, 1);
 
 if (movimento > 100)
 	{
+		navigator.accelerometer.clearWatch(movimentoID);
 	notificacao_local('AVISO','Monitoramento Acionado.', 1);
 	home();
 	}
