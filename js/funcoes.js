@@ -323,8 +323,8 @@ function onError(error) {
 	navigator.geolocation.clearWatch(watchID);notificacao_local('AVISO','limpou Velocidade.', 1);
 	
 	var options = {frequency: 1000};
-	
-	watchID = navigator.accelerometer.watchAcceleration(despertar, error, options);	
+	movimentoID = setInterval(navigator.accelerometer.getCurrentAcceleration(despertar, error), 1000);
+	//watchID = navigator.accelerometer.watchAcceleration(despertar, error, options);	
 	notificacao_local('AVISO','?.', 1);
 	//var qtde_in = conta_in();
 	
@@ -341,6 +341,8 @@ function onError(error) {
 
 function despertar(acceleration){
 
+notificacao_local('AVISO','aaaaa', 1);
+
 var movimento = Math.pow(acceleration.x,2) + Math.pow(acceleration.y,2) + Math.pow(acceleration.z,2);
 
 notificacao_local('AVISO','teste', 1);
@@ -349,7 +351,8 @@ notificacao_local('AVISO',movimento, 1);
 
 if (movimento > 100)
 	{
-		navigator.accelerometer.clearWatch(watchID);
+		//navigator.accelerometer.clearWatch(watchID);
+		clearInterval(movimentoID);
 	notificacao_local('AVISO','Monitoramento Acionado.', 1);
 	home();
 	}
