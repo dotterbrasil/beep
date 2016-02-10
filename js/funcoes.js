@@ -328,7 +328,7 @@ function onError(error) {
 	//notificacao_local('AVISO','?.', 1);
 	//var qtde_in = conta_in();
 
-If (!onboard) {home();}
+if (!onboard) {home();}
 	
 	//if (qtde_in > 0)
 	//	{
