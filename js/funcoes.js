@@ -320,9 +320,9 @@ notificacao_local('ERRO','Erro ao obter coordenadas.', 1);
 function onError(error) {
 	
 	notificacao_local('AVISO','Inatividade detectada.', 1);
-	navigator.geolocation.clearWatch(watchID);
+	navigator.geolocation.clearWatch(watchID);notificacao_local('AVISO','limpou Velocidade.', 1);
 	movimentoID = navigator.accelerometer.watchAcceleration(despertar, error, {frequency: 1000});	
-	
+	notificacao_local('AVISO','?.', 1);
 	//var qtde_in = conta_in();
 	
 	//if (qtde_in > 0)
@@ -338,13 +338,13 @@ function onError(error) {
 
 function despertar(acceleration){
 
-var movimento = Math.pow(acceleration.x,2) + Math.pow(acceleration.y,2) + Math.pow(acceleration.z,2) - Math.pow(9.83, 2);
-alert(movimento);
+var movimento = Math.pow(acceleration.x,2) + Math.pow(acceleration.y,2) + Math.pow(acceleration.z,2);
+
 notificacao_local('AVISO','teste', 1);
 
 notificacao_local('AVISO',movimento, 1);
 
-if (movimento > 1)
+if (movimento > 100)
 	{
 	notificacao_local('AVISO','Monitoramento Acionado.', 1);
 	home();
