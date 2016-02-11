@@ -26,7 +26,7 @@ function onDeviceReady() {
 		cordova.plugins.backgroundMode.enable();
 		cordova.plugins.backgroundMode.onactivate = function() {notificacao_local('WARNING','Este aplicativo e apenas uma ferramenta e nao substitui a atencao e a supervisao de maior responsavel pela saude e seguranca da crianca.', 1);};
 		cordova.plugins.notification.local.clearAll();
-navigator.accelerometer.watchAcceleration(despertar, error, {frequency: 1000});
+movimentoID = navigator.accelerometer.watchAcceleration(despertar, error, {frequency: 1000});
 		monitora_bateria();
 		speed_monitor();
 
@@ -329,7 +329,7 @@ function onError(error) {
 	//notificacao_local('AVISO','?.', 1);
 	//var qtde_in = conta_in();
 
-if (!onboard) {setTimeout(speed_monitor, 60000);}
+//if (!onboard) {setTimeout(speed_monitor, 60000);}
 	
 	//if (qtde_in > 0)
 	//	{
@@ -344,22 +344,20 @@ if (!onboard) {setTimeout(speed_monitor, 60000);}
 
 function despertar(acceleration){
 
-alert('teste');
 
-notificacao_local('AVISO','aaaaa', 1);
 
-var movimento = Math.pow(acceleration.x,2) + Math.pow(acceleration.y,2) + Math.pow(acceleration.z,2);
+var movimento = modulo(Math.pow(acceleration.x,2) + Math.pow(acceleration.y,2) + Math.pow(acceleration.z,2) - 97);
 
-notificacao_local('AVISO','teste', 1);
 
 notificacao_local('AVISO',movimento, 1);
 
-if (movimento > 100)
+if (movimento > 10)
 	{
-		//navigator.accelerometer.clearWatch(watchID);
-		clearInterval(movimentoID);
+		navigator.accelerometer.clearWatch(movimentoID);
+		//clearInterval(movimentoID);
 	notificacao_local('AVISO','Monitoramento Acionado.', 1);
-	home();
+	//home();
+	if (!onboard) {speed_monitor();}
 	}
 
 	
