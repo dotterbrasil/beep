@@ -323,12 +323,12 @@ function onError(error) {
 	navigator.geolocation.clearWatch(watchID);
 	
 	//var options = {frequency: 1000};
-	//movimentoID = setInterval(function(){navigator.accelerometer.getCurrentAcceleration(despertar, Xerror);}, 1000);
+	movimentoID = setInterval(function(){navigator.accelerometer.getCurrentAcceleration(despertar, error);}, 1000);
 	//watchID = navigator.accelerometer.watchAcceleration(despertar, error, options);	
-	navigator.accelerometer.watchAcceleration(despertar, error, {frequency: 1000});	
+	//navigator.accelerometer.watchAcceleration(despertar, error, {frequency: 1000});	
 	//notificacao_local('AVISO','?.', 1);
 	//var qtde_in = conta_in();
-alert('passou');
+
 if (!onboard) {setTimeout(speed_monitor, 60000);}
 	
 	//if (qtde_in > 0)
