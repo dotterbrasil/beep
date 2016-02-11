@@ -3,6 +3,7 @@ var onboard = false;
 var plugado = false;
 var plugado_anterior = false;
 var walking_monitor = false;
+var gps_on = false;
 var walking_notification = 0;
 var alerta = false;
 var notification_id = 1;
@@ -26,9 +27,10 @@ function onDeviceReady() {
 		cordova.plugins.backgroundMode.enable();
 		cordova.plugins.backgroundMode.onactivate = function() {notificacao_local('WARNING','Este aplicativo e apenas uma ferramenta e nao substitui a atencao e a supervisao de maior responsavel pela saude e seguranca da crianca.', 1);};
 		cordova.plugins.notification.local.clearAll();
-movimentoID = navigator.accelerometer.watchAcceleration(despertar, error, {frequency: 1000});
+
 		monitora_bateria();
 		speed_monitor();
+		movimentoID = navigator.accelerometer.watchAcceleration(despertar, error, {frequency: 1000});
 
 }
 
@@ -151,6 +153,7 @@ function speed_monitor(){
 //watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(onSuccess, showError, {enableHighAccuracy: true});}, 3000);
 
 //watchID = navigator.geolocation.watchPosition(onSuccessX, onError, { enableHighAccuracy: true });
+gps_on = true;
 watchID = navigator.geolocation.watchPosition(onSuccessX, onError, { enableHighAccuracy: true, timeout: 180000, maximumAge: 1000 });
 
 }
@@ -321,6 +324,7 @@ function onError(error) {
 	
 	notificacao_local('AVISO','Inatividade detectada.', 1);
 	navigator.geolocation.clearWatch(watchID);
+	gps_on = false;
 	
 	//var options = {frequency: 1000};
 	//movimentoID = setInterval(function(){navigator.accelerometer.getCurrentAcceleration(despertar, error);}, 1000);
@@ -349,9 +353,9 @@ function despertar(acceleration){
 var movimento = modulo(Math.pow(acceleration.x,2) + Math.pow(acceleration.y,2) + Math.pow(acceleration.z,2) - 97);
 
 
-notificacao_local('AVISO',movimento, 1);
+//notificacao_local('AVISO',movimento, 1);
 
-if (movimento > 10)
+if ((movimento > 10)&&(!gps_on))
 	{
 		//navigator.accelerometer.clearWatch(movimentoID);
 		//clearInterval(movimentoID);
