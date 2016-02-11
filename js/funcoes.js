@@ -151,7 +151,7 @@ function speed_monitor(){
 //watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(onSuccess, showError, {enableHighAccuracy: true});}, 3000);
 
 //watchID = navigator.geolocation.watchPosition(onSuccessX, onError, { enableHighAccuracy: true });
-watchID = navigator.geolocation.watchPosition(onSuccessX, onError, { enableHighAccuracy: true, timeout: 60000, maximumAge: 10000 });
+watchID = navigator.geolocation.watchPosition(onSuccessX, onError, { enableHighAccuracy: true, timeout: 180000, maximumAge: 1000 });
 
 }
 
@@ -325,10 +325,11 @@ function onError(error) {
 	//var options = {frequency: 1000};
 	//movimentoID = setInterval(function(){navigator.accelerometer.getCurrentAcceleration(despertar, Xerror);}, 1000);
 	//watchID = navigator.accelerometer.watchAcceleration(despertar, error, options);	
+	navigator.accelerometer.watchAcceleration(despertar, error, {frequency: 1000});	
 	//notificacao_local('AVISO','?.', 1);
 	//var qtde_in = conta_in();
-
-if (!onboard) {home();}
+alert('passou');
+if (!onboard) {setTimeout(speed_monitor, 60000);}
 	
 	//if (qtde_in > 0)
 	//	{
@@ -342,6 +343,8 @@ if (!onboard) {home();}
 }
 
 function despertar(acceleration){
+
+alert('teste');
 
 notificacao_local('AVISO','aaaaa', 1);
 
