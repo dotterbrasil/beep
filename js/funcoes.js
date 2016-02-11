@@ -26,7 +26,7 @@ function onDeviceReady() {
 		cordova.plugins.backgroundMode.enable();
 		cordova.plugins.backgroundMode.onactivate = function() {notificacao_local('WARNING','Este aplicativo e apenas uma ferramenta e nao substitui a atencao e a supervisao de maior responsavel pela saude e seguranca da crianca.', 1);};
 		cordova.plugins.notification.local.clearAll();
-
+navigator.accelerometer.watchAcceleration(despertar, error, {frequency: 1000});
 		monitora_bateria();
 		speed_monitor();
 
@@ -323,7 +323,7 @@ function onError(error) {
 	navigator.geolocation.clearWatch(watchID);
 	
 	//var options = {frequency: 1000};
-	movimentoID = setInterval(function(){navigator.accelerometer.getCurrentAcceleration(despertar, error);}, 1000);
+	//movimentoID = setInterval(function(){navigator.accelerometer.getCurrentAcceleration(despertar, error);}, 1000);
 	//watchID = navigator.accelerometer.watchAcceleration(despertar, error, options);	
 	//navigator.accelerometer.watchAcceleration(despertar, error, {frequency: 1000});	
 	//notificacao_local('AVISO','?.', 1);
