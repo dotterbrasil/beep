@@ -353,7 +353,7 @@ notificacao_local('AVISO',movimento, 1);
 
 if (movimento > 10)
 	{
-		navigator.accelerometer.clearWatch(movimentoID);
+		//navigator.accelerometer.clearWatch(movimentoID);
 		//clearInterval(movimentoID);
 	notificacao_local('AVISO','Monitoramento Acionado.', 1);
 	//home();
