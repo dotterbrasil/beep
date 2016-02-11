@@ -72,11 +72,18 @@ function home(){
 
 function share(){
 			
-window.plugins.socialsharing.share('Compartilhe e ajude a proteger as crianças do mundo', 'Baby BEeP - Salvando Vidas', 'http://www.dotter.com.br/imagens/beep.jpg','http://www.dotter.com.br/beep.html');
-	//document.getElementById("principal").innerHTML = "<iframe src='http://www.dotter.com.br/beep.html'></iframe>";
+//window.plugins.socialsharing.share('Compartilhe e ajude a proteger as crianças do mundo', 'Baby BEeP - Salvando Vidas', 'http://www.dotter.com.br/imagens/beep.jpg','http://www.dotter.com.br/beep.html');
+	document.getElementById("principal").innerHTML = "<iframe src='http://www.dotter.com.br/beep.html'></iframe>";
 	//document.location.href= "http://www.dotter.com.br/beep.html";
 	
 }
+
+function social_share(){
+			
+window.plugins.socialsharing.share('Compartilhe e ajude a proteger as crianças do mundo', 'Baby BEeP - Salvando Vidas', 'http://www.dotter.com.br/imagens/beep.jpg','http://www.dotter.com.br/beep.html');
+	
+}
+
 
 function notificacao_local(tipo, mensagem_local, indice){
 //notificacao_local(tipo, mensagem, badge)
@@ -325,24 +332,6 @@ function onError(error) {
 	notificacao_local('AVISO','Inatividade detectada.', 1);
 	navigator.geolocation.clearWatch(watchID);
 	gps_on = false;
-	
-	//var options = {frequency: 1000};
-	//movimentoID = setInterval(function(){navigator.accelerometer.getCurrentAcceleration(despertar, error);}, 1000);
-	//watchID = navigator.accelerometer.watchAcceleration(despertar, error, options);	
-	//navigator.accelerometer.watchAcceleration(despertar, error, {frequency: 1000});	
-	//notificacao_local('AVISO','?.', 1);
-	//var qtde_in = conta_in();
-
-//if (!onboard) {setTimeout(speed_monitor, 60000);}
-	
-	//if (qtde_in > 0)
-	//	{
-	//	notificacao_local('ALERTA','Crianca presente no carro.', 1);
-	//	document.getElementById("principal").innerHTML = "<img src='imagens/fundo_alerta.gif'align='center'>";
-	//	onboard = false;
-	//	alerta = true;
-	//	setTimeout(localizacao,30000);
-	//	}
 		
 }
 
@@ -361,7 +350,7 @@ if ((movimento > 10)&&(!gps_on))
 		//clearInterval(movimentoID);
 	notificacao_local('AVISO','Monitoramento Acionado.', 1);
 	//home();
-	if (!onboard) {speed_monitor();}
+	if (!onboard) {home();}
 	}
 
 	
