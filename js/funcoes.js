@@ -18,6 +18,7 @@ var watchID;
 var movimentoID;
 
 
+
 function onDeviceReady() {
 				
 		onboard = false;
@@ -70,19 +71,7 @@ function home(){
 	
 }
 
-function share(){
-			
-//window.plugins.socialsharing.share('Compartilhe e ajude a proteger as crianças do mundo', 'Baby BEeP - Salvando Vidas', 'http://www.dotter.com.br/imagens/beep.jpg','http://www.dotter.com.br/beep.html');
-	document.getElementById("principal").innerHTML = "<iframe src='http://www.dotter.com.br/beep.html'></iframe>";
-	//document.location.href= "http://www.dotter.com.br/beep.html";
-	
-}
 
-function social_share(){
-			
-window.plugins.socialsharing.share('Compartilhe e ajude a proteger as crianças do mundo', 'Baby BEeP - Salvando Vidas', 'http://www.dotter.com.br/imagens/beep.jpg','http://www.dotter.com.br/beep.html');
-	
-}
 
 
 function notificacao_local(tipo, mensagem_local, indice){
@@ -117,6 +106,32 @@ var resultado = Math.sqrt(Math.pow(argumento,2));
 
 return resultado;
 	
+}
+
+//---------------------------------------------------------------------------- COMPARTILHAMENTOS  ----------------------------------------------------------------------------
+
+function share(){
+			
+//window.plugins.socialsharing.share('Compartilhe e ajude a proteger as crianças do mundo', 'Baby BEeP - Salvando Vidas', 'http://www.dotter.com.br/imagens/beep.jpg','http://www.dotter.com.br/beep.html');
+	document.getElementById("principal").innerHTML = "<iframe src='http://www.dotter.com.br/beep.html'></iframe>";
+	//document.location.href= "http://www.dotter.com.br/beep.html";
+	
+}
+
+function social_share(){
+			
+window.plugins.socialsharing.share('Compartilhe e ajude a proteger as crianças do mundo', 'Baby BEeP - Salvando Vidas', 'http://www.dotter.com.br/imagens/beep.jpg','http://www.dotter.com.br/beep.html');
+	
+}
+
+function uuid_share(){
+	
+	alert('teste');alert(device.uuid);
+
+var qrcode = "<img src='http://chart.apis.google.com/chart?cht=qr&chl="+device.uuid+"&chs=200x200'>";
+
+document.getElementById("lista").innerHTML = qrcode;
+
 }
 
 //---------------------------------------------------------------------------- COORDENADAS  ----------------------------------------------------------------------------
