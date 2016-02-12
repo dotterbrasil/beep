@@ -8,12 +8,6 @@ var walking_notification = 0;
 var alerta = false;
 var notification_id = 1;
 
-var lat_anterior = 0;
-var lon_anterior = 0;
-var tempo_anterior = 0;
-var velocidade_media = 0;
-var speed_matrix = [0, 0, 0, 0, 0];
-
 var watchID;
 var movimentoID;
 
@@ -22,8 +16,7 @@ var movimentoID;
 function onDeviceReady() {
 				
 		onboard = false;
-		//plugado = false;
-		//plugado_anterior = false;
+		
 		notification_id = 1;
 		cordova.plugins.backgroundMode.enable();
 		cordova.plugins.backgroundMode.onactivate = function() {notificacao_local('WARNING','Este aplicativo e apenas uma ferramenta e nao substitui a atencao e a supervisao de maior responsavel pela saude e seguranca da crianca.', 1);};
@@ -39,26 +32,11 @@ function onDeviceReady() {
 function inicializacao(){
 
 	onboard = false;
-	//plugado = false;
-	//plugado_anterior = false;
+	
 	walking_monitor = false;
 	walking_notification = 0;
 	
-	//navigator.accelerometer.clearWatch(movimentoID);
-	
-	//if (notification_id > 1) { cordova.plugins.notification.local.clearAll(); }
 	notification_id = 1;
-
-	lat_anterior = 0;
-	lon_anterior = 0;
-	tempo_anterior = 0;
-	velocidade_media = 0;
-
-	for (var limpa_matrix = 0; limpa_matrix <5; limpa_matrix++)
-				{
-				speed_matrix[limpa_matrix] = 0;
-				}
-
 				
 	document.addEventListener("deviceready", onDeviceReady, false);
 }
@@ -160,11 +138,9 @@ if (navigator.geolocation) {
     
 	var teste = setInterval(playsound,3000);
 	
-	//document.getElementById("principal").style.backgroundImage = "url('imagens/fundo_alerta.gif')";
 	     
 	 document.getElementById("principal").innerHTML = "<br><br><iframe width=80% height=200px src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe><br><img src='imagens/alert.gif' width=100% align='center' class='alerta' onclick='desativa();'>";
 	 
-	 //document.getElementById("status").innerHTML = "Clique sobre o ALERT para desativar o alarme!";
 	 document.getElementById("status").innerHTML = "<h4 align='center'>ALERT</h4>";
 		  
  }
@@ -172,9 +148,6 @@ if (navigator.geolocation) {
  
 function speed_monitor(){
 
-//watchID = setInterval(function(){navigator.geolocation.getCurrentPosition(onSuccess, showError, {enableHighAccuracy: true});}, 3000);
-
-//watchID = navigator.geolocation.watchPosition(onSuccessX, onError, { enableHighAccuracy: true });
 gps_on = true;
 watchID = navigator.geolocation.watchPosition(onSuccessX, onError, { enableHighAccuracy: true, timeout: 180000, maximumAge: 1000 });
 
@@ -186,12 +159,10 @@ var element = document.getElementById('status');
 var velocidade = Math.round(position.coords.speed * 3.6);
 var latlon = position.coords.latitude + "," + position.coords.longitude;
 
-	if (isNaN(velocidade)) { velocidade = velocidade_media;}
+	if (isNaN(velocidade)) { velocidade = 0;}
 	
 	if (velocidade < 0) { velocidade = 0;}
 
-	//element.innerHTML = '<hr>Velocidade: ' + velocidade  + ' km/h <br />' +  '<hr />' + '<font size = 1>Coord: ' + latlon + '</font>';
-	//element.innerHTML = '<hr>Speed Monitor: ' + velocidade  + ' km/h <br>' +  '<hr />';
 	element.innerHTML = "<br>" + velocidade  + " km/h";
 	
 	
@@ -204,8 +175,7 @@ var latlon = position.coords.latitude + "," + position.coords.longitude;
 				if (walking_monitor == false)
 					{
 					if ( walking_notification < 1 ) { notificacao_local('VELOCIDADE BAIXA','Avaliando saida do carro.', 1); }
-					//element.innerHTML = '<hr>Avaliando saida do carro.<hr />';
-					element.innerHTML = "<br><h2 align='center'>is walking ?</h2>";
+					element.innerHTML = "<h2 align='center'>is walking ?</h2>";
 					document.getElementById("principal").innerHTML = "<img src='imagens/walking.png' align='center'>";
 					walking_monitor = true;
 					walking_notification++;
@@ -233,103 +203,7 @@ var latlon = position.coords.latitude + "," + position.coords.longitude;
 		}
 }
 
-function onSuccess(position){
 
-var element = document.getElementById('status');
-var tempo = new Date();	
-var velocidade = 0;
-var soma = 0;
-
-		
-	var latlon = position.coords.latitude + "," + position.coords.longitude;
-	
-	
-	if (lat_anterior == 0)
-		{
-		lat_anterior = position.coords.latitude*Math.PI/180;
-		lon_anterior = position.coords.longitude*Math.PI/180;
-		tempo_anterior = Math.round(tempo.getTime()/1000)-1;
-		}
-	
-	
-	var distancia = 6371795.477598 * Math.acos(Math.sin(lat_anterior) * Math.sin(position.coords.latitude*Math.PI/180) + Math.cos(lat_anterior) * Math.cos(position.coords.latitude*Math.PI/180) * Math.cos(lon_anterior - position.coords.longitude*Math.PI/180));
-
-	
-	if (Math.round(tempo.getTime()/1000) == tempo_anterior)
-		{
-		velocidade = distancia * 3.6 / (Math.round(tempo.getTime()/1000) + 1 - tempo_anterior);
-		}
-		else { velocidade = distancia * 3.6 / (Math.round(tempo.getTime()/1000) - tempo_anterior); }
-	
-	if (isNaN(velocidade)) { velocidade = velocidade_media;}
-	
-	if (velocidade < 0) { velocidade = 0;}
-	
-	if (velocidade > (speed_matrix[0]+30)) {velocidade = speed_matrix[0];} //evita saltos de velocidade em funcao da imprecisao da localizacao
-	
-	speed_matrix[0] = velocidade;
-	
-	if ((speed_matrix[1]>speed_matrix[0])&&(speed_matrix[1]>speed_matrix[2]))
-			{
-			speed_matrix[1] = (speed_matrix[0] + speed_matrix[2]) / 2; ////evita saltos de velocidade em funcao da imprecisao da localizacao
-			}
-	
-	for (var varredura = 0; varredura <5; varredura++)
-			{
-			soma = soma + speed_matrix[varredura];
-			}
-	
-	velocidade_media = Math.round(soma / 5);
-	
-	
-	element.innerHTML = '<hr>Velocidade: ' + velocidade_media  + ' km/h <br />' +  '<hr />' + '<font size = 1>Coord: ' + latlon + '</font>';
-	
-		
-	lat_anterior = position.coords.latitude*Math.PI/180;
-	lon_anterior = position.coords.longitude*Math.PI/180;
-	tempo_anterior = Math.round(tempo.getTime()/1000);
-	
-	speed_matrix[4] = speed_matrix[3];
-	speed_matrix[3] = speed_matrix[2];
-	speed_matrix[2] = speed_matrix[1];
-	speed_matrix[1] = speed_matrix[0];
-
-	if (velocidade_media < 5)
-		{
-		if (!plugado)
-			{
-			if (onboard == true)
-				{
-				if (walking_monitor == false)
-					{
-					if ( walking_notification < 1 ) { notificacao_local('VELOCIDADE BAIXA','Avaliando saida do carro.', 1); }
-					element.innerHTML = '<hr>Avaliando saida do carro.';
-					walking_monitor = true;
-					walking_notification++;
-					if (walking_notification > 10) { walking_notification = 0; }
-					iswalking();
-					}
-				}
-			}
-		}
-
-	if(velocidade_media > 20)
-		{
-		if (plugado)
-			{
-			if (onboard == false) {	notificacao_local('VELOCIDADE','Checkin Efetuado.', 1);}
-			}
-			else
-				{
-				if (onboard == false) 
-					{ notificacao_local('VELOCIDADE','Checkin Efetuado. Conecte o carregador.', 1);	}
-				}
-		if (alerta == true) { home(); }
-		onboard = true;
-		check_in();		
-		}
-
-}
 
 
 function showError(error){
@@ -344,10 +218,8 @@ notificacao_local('ERRO','Erro ao obter coordenadas.', 1);
 //
 function onError(error) {
 	
-	alert(error.code);
-	
-	if (error.code == error.TIMEOUT)
-		{alert('isso');
+	if (error.code == 3)
+		{
 		notificacao_local('AVISO','Inatividade detectada.', 1);
 		navigator.geolocation.clearWatch(watchID);
 		gps_on = false;
@@ -361,15 +233,9 @@ function despertar(acceleration){
 
 var movimento = modulo(Math.pow(acceleration.x,2) + Math.pow(acceleration.y,2) + Math.pow(acceleration.z,2) - 97);
 
-
-//notificacao_local('AVISO',movimento, 1);
-
 if ((movimento > 10)&&(!gps_on))
 	{
-		//navigator.accelerometer.clearWatch(movimentoID);
-		//clearInterval(movimentoID);
 	notificacao_local('AVISO','Monitoramento Acionado.', 1);
-	//home();
 	if (!onboard) {home();}
 	}
 
@@ -383,9 +249,7 @@ var qtde_in = conta_in();
 	if (qtde_in > 0)
 		{
 		notificacao_local('ALERTA','Crianca presente no carro.', 1);
-		//document.getElementById("principal").innerHTML = "<img src='imagens/fundo_alerta.gif'align='center'>";
 		document.getElementById("principal").innerHTML = "<img src='imagens/checkout.png' align='center'>";
-		//document.getElementById("links").innerHTML = "<h4 align='center'>DESATIVAR</h4><br><img src='imagens/virtualid.gif' class='assinatura'>";
 		document.getElementById("status").innerHTML = "<h4 align='center'>ALERT</h4>";
 		onboard = false;
 		alerta = true;
@@ -445,7 +309,6 @@ if (typeof(Storage) !== "undefined")
  			} 
  		if(indice>0)
 			{
-			//document.getElementById("principal").innerHTML = "<img src='imagens/fundo.gif'align='center'>";
 			document.getElementById("status").innerHTML = "<h3 align='center'>KIDS</h3><hr><font face='sans-serif'>" + itens + "</font><hr />";
 			}
  		} 
@@ -466,10 +329,6 @@ document.getElementById("status").innerHTML = "<h3 align='center'><font face='sa
 document.getElementById("lista").innerHTML = qrcode + "<br> Este QRCODE deve ser impresso e colocado na cadeirinha. <div onclick='help_qrcode();'>SAIBA COMO</div>";
 
 document.getElementById("links").innerHTML = "<a href='config.html' class='blue'><b>BACK</a> - </b><img src='imagens/menos.png' class='icone' onclick='limpa_kid(" + i + ");'><br><img src='imagens/virtualid.gif' class='assinatura'>"
-
-//document.getElementById("principal").style.backgroundImage = "url('')";
-//document.getElementById("principal").style.paddingTop = "0%";
-//document.getElementById("principal").style.paddingBottom = "0%";
 
 }
 
@@ -543,7 +402,6 @@ for (var i=0; i<indice; ++i)
 
 if(indice>0)
 	{
-	//document.getElementById("principal").innerHTML = "<img src='imagens/fundo_verde.gif'align='center'>";
 	document.getElementById("principal").innerHTML = "";
 	//document.getElementById("lista").innerHTML = "<h3 align='center'>ONBOARD</h3>";
 	document.getElementById("principal").innerHTML = "<img src='imagens/onboard.png' align='center'>";
