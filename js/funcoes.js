@@ -27,7 +27,11 @@ function onDeviceReady() {
 		movimentoID = navigator.accelerometer.watchAcceleration(despertar, error, {frequency: 1000});
 		
 		var x = Math.floor((Math.random() * 10) + 1);
-		if (x == 3) {compartilhe_o_bem();}
+		if (x == 3)
+			{
+				notificacao_local('CONVITE','Compartilhe sua experiencia para continuar usando o aplicativo.', 1);
+				compartilhe_o_bem();
+			}
 
 }
 
@@ -113,6 +117,12 @@ var qrcode = "<img src='http://chart.apis.google.com/chart?cht=qr&chl="+device.u
 
 document.getElementById("principal").innerHTML = qrcode;
 
+}
+
+function qr_print(qrcode){
+
+window.plugins.socialsharing.share('Envie este QRCode para o seu email e imprima a etiqueta', 'Baby BEeP - Salvando Vidas', qrcode,'kids.html');
+	
 }
 
 //---------------------------------------------------------------------------- COORDENADAS  ----------------------------------------------------------------------------
@@ -312,7 +322,7 @@ if (typeof(Storage) !== "undefined")
  			} 
  		if(indice>0)
 			{
-			document.getElementById("status").innerHTML = "<h3 align='center'>KIDS</h3><hr><font face='sans-serif'>" + itens + "</font><hr />";
+			document.getElementById("status").innerHTML = "<hr><font face='sans-serif'>" + itens + "</font><hr />";
 			}
  		} 
  		else {	alert("Cadastre as criancas.");	} 
@@ -331,7 +341,7 @@ document.getElementById("status").innerHTML = "<h3 align='center'><font face='sa
 
 document.getElementById("lista").innerHTML = qrcode + "<br> Este QRCODE deve ser impresso e colocado na cadeirinha. <div onclick='help_qrcode();'>SAIBA COMO</div>";
 
-document.getElementById("links").innerHTML = "<a href='config.html' class='blue'><b>BACK</a> - </b><img src='imagens/menos.png' class='icone' onclick='limpa_kid(" + i + ");'><br><img src='imagens/virtualid.gif' class='assinatura'>"
+document.getElementById("links").innerHTML = "<a href='config.html' class='blue'><b>BACK</a> - </b><img src='imagens/menos.png' class='icone' onclick='qr_print(qrcode);'>"
 
 }
 
