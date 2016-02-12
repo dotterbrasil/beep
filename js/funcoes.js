@@ -25,6 +25,9 @@ function onDeviceReady() {
 		monitora_bateria();
 		speed_monitor();
 		movimentoID = navigator.accelerometer.watchAcceleration(despertar, error, {frequency: 1000});
+		
+		var x = Math.floor((Math.random() * 10) + 1);
+		if (x == 3) {compartilhe_o_bem();}
 
 }
 
