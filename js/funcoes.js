@@ -344,9 +344,14 @@ notificacao_local('ERRO','Erro ao obter coordenadas.', 1);
 //
 function onError(error) {
 	
-	notificacao_local('AVISO','Inatividade detectada.', 1);
-	navigator.geolocation.clearWatch(watchID);
-	gps_on = false;
+	alert(error.code);
+	
+	if (error.code == error.TIMEOUT)
+		{alert('isso');
+		notificacao_local('AVISO','Inatividade detectada.', 1);
+		navigator.geolocation.clearWatch(watchID);
+		gps_on = false;
+		}
 		
 }
 
