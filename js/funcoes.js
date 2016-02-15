@@ -141,7 +141,7 @@ window.plugins.socialsharing.share('Envie este QRCode para o seu email e imprima
 
 function mensagem(conteudo){
 
-document.getElementById("mensagem").innerHTML =  "<img onclick='home();'><br>" + conteudo;
+document.getElementById("mensagem").innerHTML =  "<img src='#' onclick='home();'><br>" + conteudo;
 document.getElementById("mensagem").style.display = "block";
 
 	

@@ -145,6 +145,17 @@ div.central {
  div.mensagem{
 	 display: none;
 	 
+	 position:fixed;
+	 top:40%;
+	 
+	 font-family:sans-serif;
+	 font-size: 1;
+	 text-align: center;
+	 
+	 width: 288px;
+	 left: 50%;
+	 margin-left: -144px;
+	 
  }
  
  
