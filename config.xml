@@ -29,10 +29,10 @@
 	
 	<plugin name="cordova-plugin-x-socialsharing"/>
 	
-	<gap:plugin name="com.phonegap.plugins.facebookconnect" version="<VERSION>">
+	<plugin name="com.phonegap.plugins.facebookconnect" spec="0.9.0" source="pgb">
         <param name="APP_ID" value="1685747801707949" />
         <param name="APP_NAME" value="Piuui" />
-    </gap:plugin>
+    </plugin>
 
 	<access origin="*"/>
 	<allow-navigation href="*" />
