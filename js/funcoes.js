@@ -27,7 +27,7 @@ function onDeviceReady() {
 		movimentoID = navigator.accelerometer.watchAcceleration(despertar, error, {frequency: 1000});
 		
 		var x = Math.floor((Math.random() * 10) + 1);
-		if (x == 3)
+		if ((x == 3)&&(!onboard))
 			{
 				notificacao_local('CONVITE','Compartilhe sua experiencia para continuar usando o aplicativo.', 1);
 				compartilhe_o_bem();
@@ -114,13 +114,14 @@ window.plugins.socialsharing.share('Compartilhe e ajude a proteger as crianças 
 function facebook_share(){
 
 var options = {
-    method: "feed",
-    link: "http://dotter.com.br/beep.html",
-    caption: "Such caption, very feed."
+    //method: "feed",
+	method: "share",
+    link: "http://dotter.com.br/beep.html"
+    //, caption: "Such caption, very feed."
 }
 
  //facebookConnectPlugin.showDialog(Object options, Function success, Function failure);
-facebookConnectPlugin.showDialog(options, function(){alert('ok');}, function(){alert('mal');});
+facebookConnectPlugin.showDialog(options, function(){alert('Obrigado por compartilhar.');}, function(){alert('Quem sabe em outra hora? Compartilhe o bem, ajude outros a protegerem suas crianças');});
 	
 }
 
