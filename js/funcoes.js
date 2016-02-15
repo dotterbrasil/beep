@@ -141,10 +141,15 @@ window.plugins.socialsharing.share('Envie este QRCode para o seu email e imprima
 
 function mensagem(conteudo){
 
-document.getElementById("mensagem").innerHTML =  "<a href='#' onclick='home();'><h3>[ X ] - Piuui  </h3></a><br>" + conteudo;
+document.getElementById("mensagem").innerHTML =  "<a href='#' onclick='fecha_mensagem();'><h3>[ X ] - Piuui  </h3></a><br>" + conteudo;
 document.getElementById("mensagem").style.display = "block";
-
+document.getElementById("fundo").style.display = "block";
 	
+}
+
+function fecha_mensagem(){
+	document.getElementById("mensagem").style.display = "none";
+	document.getElementById("fundo").style.display = "none";
 }
 
 //---------------------------------------------------------------------------- COORDENADAS  ----------------------------------------------------------------------------
