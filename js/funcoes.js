@@ -476,7 +476,7 @@ for (var i=0; i<indice; ++i)
 	mensagem("Chekout Manual! Crianca "+localStorage.getItem("in"+i)+" retirada de forma insegura.");
 	localStorage.removeItem("in"+i);
 	//location.reload();
-	document.location.href = "index.html";
+	//document.location.href = "index.html";
 	}
 }
 
