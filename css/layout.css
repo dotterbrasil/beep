@@ -142,6 +142,11 @@ div.central {
 
  }
  
+ div.mensagem{
+	 display: none;
+	 
+ }
+ 
  
  iframe { 
 border: 4px red solid; 

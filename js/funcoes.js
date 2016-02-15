@@ -116,12 +116,11 @@ function facebook_share(){
 var options = {
     method: "feed",
 	link: "http://dotter.com.br/beep.html",
-	redirect_uri: "index.html",
     caption: "Protegendo nossas crianças."
 }
 
  //facebookConnectPlugin.showDialog(Object options, Function success, Function failure);
-facebookConnectPlugin.showDialog(options, function(){alert('Obrigado por compartilhar.');}, function(){alert('Quem sabe em outra hora? Compartilhe o bem, ajude outros a protegerem suas crianças');});
+facebookConnectPlugin.showDialog(options, function(){alert('Obrigado por compartilhar.');home();}, function(){mensagem('Quem sabe em outra hora? Compartilhe o bem, ajude outros a protegerem suas crianças');home();});
 	
 }
 
@@ -136,6 +135,15 @@ document.getElementById("principal").innerHTML = qrcode;
 function qr_print(qrcode){
 
 window.plugins.socialsharing.share('Envie este QRCode para o seu email e imprima a etiqueta', 'Baby BEeP - Salvando Vidas', qrcode,'kids.html');
+	
+}
+
+
+function mensagem(conteudo){
+
+document.getElementById("mensagem").innerHTML =  "[ X ]<br>" + conteudo;
+document.getElementById("mensagem").style.display = "block";
+
 	
 }
 
