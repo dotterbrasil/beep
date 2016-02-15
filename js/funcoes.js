@@ -136,7 +136,7 @@ window.plugins.socialsharing.share('Envie este QRCode para o seu email e imprima
 
 function mensagem(conteudo){
 
-document.getElementById("mensagem").innerHTML =  "<a href='#' onclick='fecha_mensagem();'><h3>  Piuui  </h3></a><br>" + conteudo + "<br> <button onclick='fecha_mensagem();'>OK</button>";
+document.getElementById("mensagem").innerHTML =  "<a href='#' onclick='fecha_mensagem();'><h3>  Piuui  </h3></a><br>" + conteudo + "<br><br> <button onclick='fecha_mensagem();'><b> OK </b></button>";
 document.getElementById("mensagem").style.display = "block";
 	
 }
