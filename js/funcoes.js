@@ -231,11 +231,11 @@ notificacao_local('ERRO','Erro ao obter coordenadas.', 1);
 //
 function onError(error) {
 	
-	if (error.code == 3)
+	if ((error.code == 3)&&(gps_on)&&(!onboard))
 		{
+		gps_on = false;
 		notificacao_local('AVISO','Inatividade detectada.', 1);
 		navigator.geolocation.clearWatch(watchID);
-		gps_on = false;
 		}
 		
 }
@@ -246,10 +246,11 @@ function despertar(acceleration){
 
 var movimento = modulo(Math.pow(acceleration.x,2) + Math.pow(acceleration.y,2) + Math.pow(acceleration.z,2) - 97);
 
-if ((movimento > 10)&&(!gps_on))
+if ((movimento > 10)&&(!gps_on)&&(!onboard))
 	{
+	gps_on = true;
 	notificacao_local('AVISO','Monitoramento Acionado.', 1);
-	if (!onboard) {home();}
+	home();
 	}
 
 	
