@@ -25,14 +25,11 @@
 	<plugin name="org.apache.cordova.battery-status" source="pgb" spec="0.2.12" />
 	<plugin name="org.apache.cordova.geolocation" source="pgb" spec="0.3.12" />
 	<plugin name="org.apache.cordova.media" source="pgb" spec="0.2.16" />
-	
-	
-	<plugin name="cordova-plugin-x-socialsharing"/>
-	
-	<gap:plugin name="com.phonegap.plugins.facebookconnect" version="0.9.0">
+		
+	<plugin name="com.phonegap.plugins.facebookconnect" spec="0.9.0" source="pgb">
         <param name="APP_ID" value="1685747801707949" />
         <param name="APP_NAME" value="Piuui" />
-    </gap:plugin>
+    </plugin>
 
 	<access origin="*"/>
 	<allow-navigation href="*" />

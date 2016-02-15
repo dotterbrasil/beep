@@ -105,11 +105,6 @@ function divulgue(){
 	
 }
 
-function social_share(){
-			
-window.plugins.socialsharing.share('Compartilhe e ajude a proteger as crianças do mundo', 'Baby BEeP - Salvando Vidas', 'http://www.dotter.com.br/imagens/beep.jpg','http://www.dotter.com.br/beep.html');
-	
-}
 
 function facebook_share(){
 
@@ -141,7 +136,7 @@ window.plugins.socialsharing.share('Envie este QRCode para o seu email e imprima
 
 function mensagem(conteudo){
 
-document.getElementById("mensagem").innerHTML =  "<a href='#' onclick='fecha_mensagem();'><h3>[ X ] - Piuui  </h3></a><br>" + conteudo;
+document.getElementById("mensagem").innerHTML =  "<a href='#' onclick='fecha_mensagem();'><h3>  Piuui  </h3></a><br>" + conteudo + "<br> <button onclick='fecha_mensagem();'>OK</button>";
 document.getElementById("mensagem").style.display = "block";
 	
 }
@@ -479,7 +474,7 @@ for (var i=0; i<indice; ++i)
 	mensagem("Chekout Manual! Crianca "+localStorage.getItem("in"+i)+" retirada de forma insegura.");
 	localStorage.removeItem("in"+i);
 	//location.reload();
-	//document.location.href = "index.html";
+	document.location.href = "index.html";
 	}
 }
 
