@@ -120,7 +120,7 @@ var options = {
 }
 
  //facebookConnectPlugin.showDialog(Object options, Function success, Function failure);
-facebookConnectPlugin.showDialog(options, function(){alert('Obrigado por compartilhar.');home();}, function(){mensagem('Quem sabe em outra hora? Compartilhe o bem, ajude outros a protegerem suas crianças');home();});
+facebookConnectPlugin.showDialog(options, function(){alert('Obrigado por compartilhar.');home();}, function(){mensagem('Quem sabe em outra hora? Compartilhe o bem, ajude outros a protegerem suas crianças');});
 	
 }
 
@@ -141,7 +141,7 @@ window.plugins.socialsharing.share('Envie este QRCode para o seu email e imprima
 
 function mensagem(conteudo){
 
-document.getElementById("mensagem").innerHTML =  "[ X ]<br>" + conteudo;
+document.getElementById("mensagem").innerHTML =  "<img onclick='home();'><br>" + conteudo;
 document.getElementById("mensagem").style.display = "block";
 
 	
