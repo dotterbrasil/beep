@@ -20,6 +20,24 @@
 
 <body>
 
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1685747801707949',
+      xfbml      : true,
+      version    : 'v2.5'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
 <div class="parent">
 
 	<div id="header" class="topo" align="center">
@@ -37,7 +55,8 @@
 	<div id="links" align="center" class="rodape">
 <hr></hr>
 		<a href="index.html" class="blue"><b>BACK</a>  |  </b>
-		<img src="imagens/social_button.png" onclick="social_share();"> 
+		<!--<img src="imagens/social_button.png" onclick="social_share();"> -->
+		<div class="fb-share-button" data-href="compartilhe_o_bem.html" data-layout="button"></div><br>
 
 	</div>
 
