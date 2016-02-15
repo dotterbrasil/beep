@@ -120,7 +120,7 @@ var options = {
 }
 
  //facebookConnectPlugin.showDialog(Object options, Function success, Function failure);
-facebookConnectPlugin.showDialog(options, function(){alert('Obrigado por compartilhar.');home();}, function(){mensagem('Quem sabe em outra hora? Compartilhe o bem, ajude outros a protegerem suas crianças');});
+facebookConnectPlugin.showDialog(options, function(){mensagem('Obrigado por compartilhar.');}, function(){mensagem('Quem sabe em outra hora? Compartilhe o bem, ajude outros a protegerem suas crianças');});
 	
 }
 
@@ -141,7 +141,7 @@ window.plugins.socialsharing.share('Envie este QRCode para o seu email e imprima
 
 function mensagem(conteudo){
 
-document.getElementById("mensagem").innerHTML =  "<img src='#' onclick='home();'><br>" + conteudo;
+document.getElementById("mensagem").innerHTML =  "<a href='#' onclick='home();'><h3>[ X ] - Piuui  </h3></a><br>" + conteudo;
 document.getElementById("mensagem").style.display = "block";
 
 	
@@ -348,7 +348,7 @@ if (typeof(Storage) !== "undefined")
 			document.getElementById("status").innerHTML = "<hr><font face='sans-serif'>" + itens + "</font><hr />";
 			}
  		} 
- 		else {	alert("Cadastre as criancas.");	} 
+ 		else {	mensagem("Cadastre as criancas.");	} 
  	 
  	} else {    document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";} 
  
@@ -452,12 +452,12 @@ function check_out(i){
 
 if(localStorage.getItem("in"+i) !== null)
 	{
-	alert("Crianca "+localStorage.getItem("in"+i)+" retirada");
+	mensagem("Crianca "+localStorage.getItem("in"+i)+" retirada");
 	localStorage.removeItem("in"+i);
 	//location.reload();
 	document.location.href = "index.html";
 	}
-	else {alert("Crianca ja saiu ou nao entrou no carro");}
+	else {mensagem("Crianca ja saiu ou nao entrou no carro");}
 	
 var indice = conta_in();
 if (indice==0) { home(); }
@@ -473,7 +473,7 @@ notificacao_local('ALERTA','Alerta desativado em modo manual. ATENCAO: este proc
 
 for (var i=0; i<indice; ++i)
 	{
-	alert("Chekout Manual! Crianca "+localStorage.getItem("in"+i)+" retirada de forma insegura.");
+	mensagem("Chekout Manual! Crianca "+localStorage.getItem("in"+i)+" retirada de forma insegura.");
 	localStorage.removeItem("in"+i);
 	//location.reload();
 	document.location.href = "index.html";
@@ -533,7 +533,7 @@ function startScan() {
 				else{	total_checkout();	}
 		}, 
 		function (error) {
-			alert("Scanning failed: " + error);
+			mensagem("Scanning failed: " + error);
 		}
 	);
 
@@ -604,7 +604,7 @@ function onBatteryStatus(info) {
 		navigator.accelerometer.getCurrentAcceleration(motion, error);
 	}
 	function error(){
-		alert('Error!');
+		mensagem('Error!');
 	}
 	function motion(acceleration){
 		var x = acceleration.x;
