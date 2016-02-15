@@ -111,6 +111,19 @@ window.plugins.socialsharing.share('Compartilhe e ajude a proteger as crianças 
 	
 }
 
+function facebook_share(){
+
+var options = {
+    method: "feed",
+    link: "http://dotter.com.br/beep.html",
+    caption: "Such caption, very feed."
+}
+
+ //facebookConnectPlugin.showDialog(Object options, Function success, Function failure);
+facebookConnectPlugin.showDialog(options, function(){alert('ok');}, function(){alert('mal');});
+	
+}
+
 function uuid_share(){
 
 var qrcode = "<img src='http://chart.apis.google.com/chart?cht=qr&chl="+device.uuid+"&chs=200x200'>";
