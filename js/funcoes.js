@@ -30,7 +30,7 @@ function onDeviceReady() {
 		if ((x == 3)&&(!onboard))
 			{
 				notificacao_local('CONVITE','Compartilhe sua experiencia para continuar usando o aplicativo.', 1);
-				compartilhe_o_bem();
+				divulgue();
 			}
 
 }
@@ -95,13 +95,13 @@ return resultado;
 
 //---------------------------------------------------------------------------- COMPARTILHAMENTOS  ----------------------------------------------------------------------------
 
-function compartilhe_o_bem(){
+function divulgue(){
 			
 //window.plugins.socialsharing.share('Compartilhe e ajude a proteger as crianças do mundo', 'Baby BEeP - Salvando Vidas', 'http://www.dotter.com.br/imagens/beep.jpg','http://www.dotter.com.br/beep.html');
 	//document.getElementById("principal").innerHTML = "<iframe src='http://www.dotter.com.br/beep.html'></iframe>";
 	//document.location.href= "http://www.dotter.com.br/beep.html";
 	
-	document.location.href="compartilhe_o_bem.html";
+	document.location.href="divulgue.html";
 	
 }
 
