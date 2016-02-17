@@ -110,7 +110,7 @@ function facebook_share(){
 
 var options = {
     method: "feed",
-	link: "http://dotter.com.br/beep.html",
+	link: "http://piuui.com",
     caption: "Protegendo nossas crianças."
 }
 
