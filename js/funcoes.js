@@ -192,6 +192,11 @@ var element = document.getElementById('status');
 var velocidade = Math.round(position.coords.speed * 3.6);
 var latlon = position.coords.latitude + "," + position.coords.longitude;
 
+
+
+navigator.globalization.getPreferredLanguage(function(language){document.getElementById('lista').innerHTML = language.value;}, function () {alert('Error getting language\n');}
+);
+
 	if (isNaN(velocidade)) { velocidade = 0;}
 	
 	if (velocidade < 0) { velocidade = 0;}

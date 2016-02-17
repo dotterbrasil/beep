@@ -25,6 +25,7 @@
 	<plugin name="org.apache.cordova.battery-status" source="pgb" spec="0.2.12" />
 	<plugin name="org.apache.cordova.geolocation" source="pgb" spec="0.3.12" />
 	<plugin name="org.apache.cordova.media" source="pgb" spec="0.2.16" />
+	<plugin name="cordova-plugin-globalization" spec="1.0.1" source="pgb" />
 		
 	<plugin name="com.phonegap.plugins.facebookconnect" spec="0.9.0" source="pgb">
         <param name="APP_ID" value="1685747801707949" />
@@ -42,9 +43,8 @@
     <preference name="webviewbounce"    value="false" />
 	
 	<preference name="android-build-tool" value="gradle" />
-	<platform name="android">
-		<preference name="android-minSdkVersion" value="15" />
-	</platform>
+	<preference name="android-minSdkVersion" value="15" />
+	
 
     <icon src="icon.png" />
     <gap:splash src="logo.png" />
