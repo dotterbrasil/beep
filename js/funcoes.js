@@ -30,7 +30,8 @@ function onDeviceReady() {
 		speed_monitor();
 		movimentoID = navigator.accelerometer.watchAcceleration(despertar, error, {frequency: 1000});
 		
-		define_local();
+		navigator.geolocation.getCurrentPosition(define_local, showError, {enableHighAccuracy: true});
+		
 		
 		var x = Math.floor((Math.random() * 10) + 1);
 		if ((x == 3)&&(!onboard))
