@@ -25,10 +25,12 @@ function onDeviceReady() {
 		cordova.plugins.backgroundMode.onactivate = function() {notificacao_local('WARNING','Este aplicativo e apenas uma ferramenta e nao substitui a atencao e a supervisao de maior responsavel pela saude e seguranca da crianca.', 1);};
 		cordova.plugins.notification.local.clearAll();
 
-		define_local();
+		
 		monitora_bateria();
 		speed_monitor();
 		movimentoID = navigator.accelerometer.watchAcceleration(despertar, error, {frequency: 1000});
+		
+		define_local();
 		
 		var x = Math.floor((Math.random() * 10) + 1);
 		if ((x == 3)&&(!onboard))
