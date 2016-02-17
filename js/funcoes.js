@@ -30,9 +30,7 @@ function onDeviceReady() {
 		speed_monitor();
 		movimentoID = navigator.accelerometer.watchAcceleration(despertar, error, {frequency: 1000});
 		
-		navigator.geolocation.getCurrentPosition(define_local, showError, {enableHighAccuracy: true});
-		
-		
+				
 		var x = Math.floor((Math.random() * 10) + 1);
 		if ((x == 3)&&(!onboard))
 			{
@@ -213,7 +211,7 @@ var element = document.getElementById('status');
 var velocidade = Math.round(position.coords.speed * 3.6);
 var latlon = position.coords.latitude + "," + position.coords.longitude;
 
-
+define_local();
 
 	if (isNaN(velocidade)) { velocidade = 0;}
 	
