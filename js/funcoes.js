@@ -11,6 +11,9 @@ var notification_id = 1;
 var watchID;
 var movimentoID;
 
+var lingua;
+var local;
+
 
 
 function onDeviceReady() {
@@ -96,8 +99,7 @@ return resultado;
 
 function define_local(){
 	
-	var lingua;
-	var local;
+
 
 navigator.globalization.getPreferredLanguage(function(language){lingua = language.value;}, function () {alert('Error getting language\n');}
 );
