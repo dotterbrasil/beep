@@ -22,6 +22,7 @@ function onDeviceReady() {
 		cordova.plugins.backgroundMode.onactivate = function() {notificacao_local('WARNING','Este aplicativo e apenas uma ferramenta e nao substitui a atencao e a supervisao de maior responsavel pela saude e seguranca da crianca.', 1);};
 		cordova.plugins.notification.local.clearAll();
 
+		define_local();
 		monitora_bateria();
 		speed_monitor();
 		movimentoID = navigator.accelerometer.watchAcceleration(despertar, error, {frequency: 1000});
@@ -90,6 +91,21 @@ function modulo(argumento){
 var resultado = Math.sqrt(Math.pow(argumento,2));
 
 return resultado;
+	
+}
+
+function define_local(){
+	
+	var lingua;
+	var local;
+
+navigator.globalization.getPreferredLanguage(function(language){lingua = language.value;}, function () {alert('Error getting language\n');}
+);
+
+navigator.globalization.getLocaleName(function(locale){local = locale.value;}, function () {alert('Error getting locale\n');}
+);
+
+mensagem("Lingua: "+lingua+"<br>Local: "+local);
 	
 }
 
@@ -193,9 +209,6 @@ var velocidade = Math.round(position.coords.speed * 3.6);
 var latlon = position.coords.latitude + "," + position.coords.longitude;
 
 
-
-navigator.globalization.getPreferredLanguage(function(language){document.getElementById('lista').innerHTML = language.value;}, function () {alert('Error getting language\n');}
-);
 
 	if (isNaN(velocidade)) { velocidade = 0;}
 	
