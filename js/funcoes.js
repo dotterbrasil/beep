@@ -109,7 +109,7 @@ navigator.globalization.getLocaleName(function(locale){local = locale.value;}, f
 );
 
 lingua = lingua.substring(0, 2);
-local = local.substr(local.indexOf("-"));
+local = local.substr(local.indexOf("-") + 1);
 
 mensagem("Lingua: "+lingua+"<br>Local: "+local);
 
@@ -174,7 +174,7 @@ window.plugins.socialsharing.share('Envie este QRCode para o seu email e imprima
 
 function mensagem(conteudo){
 
-document.getElementById("mensagem").innerHTML =  "<a href='#' onclick='fecha_mensagem();'><h3>  Piuui  </h3></a><br>" + conteudo + "<br><br> <button onclick='fecha_mensagem();home();'><b> OK </b></button>";
+document.getElementById("mensagem").innerHTML =  "<a href='#' onclick='fecha_mensagem();'><h3>  Piuui  </h3></a><br>" + conteudo + "<br><br> <button onclick='fecha_mensagem();'><b> OK </b></button>";
 document.getElementById("mensagem").style.display = "block";
 	
 }
@@ -248,7 +248,7 @@ if(localStorage.getItem("local") === null) { define_local(); }
 				if (walking_monitor == false)
 					{
 					if ( walking_notification < 1 ) { notificacao_local('VELOCIDADE BAIXA','Avaliando saida do carro.', 1); }
-					element.innerHTML = "<h2 align='center'>is walking ?</h2>";
+					element.innerHTML = "<h3 align='center'>is walking ?</h3>";
 					document.getElementById("principal").innerHTML = "<img src='imagens/walking.png' align='center'>";
 					walking_monitor = true;
 					walking_notification++;
@@ -294,7 +294,7 @@ function onError(error) {
 	if ((error.code == 3)&&(gps_on)&&(!onboard))
 		{
 		gps_on = false;
-		notificacao_local('AVISO','Inatividade detectada.', 1);
+		//notificacao_local('AVISO','Inatividade detectada.', 1);
 		navigator.geolocation.clearWatch(watchID);
 		}
 		
@@ -517,6 +517,8 @@ for (var i=0; i<indice; ++i)
 	//location.reload();
 	//document.location.href = "index.html";
 	}
+	
+if (!(i<indice)) { setTimeout(home,2000); }
 }
 
 
@@ -662,10 +664,11 @@ function onBatteryStatus(info) {
 		var accel_z = Math.pow(z_int, 2);
 		
 		if(loop < 50){			
-			
-			var xyz = accel_x + accel_y + accel_z;
+			var xyz = modulo(Math.pow(accel_x,2) + Math.pow(accel_y,2) + Math.pow(accel_z,2) - 97);
+			//var xyz = accel_x + accel_y + accel_z;
 			var xyzSqrt = Math.sqrt(xyz);
-			var eixo = Math.round(xyzSqrt);
+			//var eixo = Math.round(xyzSqrt);
+			var eixo = xyzSqrt;
 			array_eixo.push(eixo);
 			
 			soma_eixo = soma_eixo + eixo;
