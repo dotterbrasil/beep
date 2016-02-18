@@ -37,7 +37,7 @@
 	<allow-navigation href="*" />
 	<allow-intent href="*" />
 
-	<preference name="phonegap-version" value="cli-5.4.1" />
+	<preference name="phonegap-version" value="cli-5.2.0" />
     <preference name="orientation"      value="portrait" />
     <preference name="target-device"    value="universal" />
     <preference name="fullscreen"       value="false" />
