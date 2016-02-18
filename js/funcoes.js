@@ -102,11 +102,14 @@ function define_local(){
 	
 
 
-navigator.globalization.getPreferredLanguage(function(language){lingua = language.value.substring(0, 2);}, function () {alert('Error getting language\n');}
+navigator.globalization.getPreferredLanguage(function(language){lingua = language.value;}, function () {alert('Error getting language\n');}
 );
 
-navigator.globalization.getLocaleName(function(locale){local = locale.value.substr(locale.value.indexOf("-"));}, function () {alert('Error getting locale\n');}
+navigator.globalization.getLocaleName(function(locale){local = locale.value;}, function () {alert('Error getting locale\n');}
 );
+
+lingua = lingua.substring(0, 2);
+local = local.substr(local.indexOf("-"));
 
 mensagem("Lingua: "+lingua+"<br>Local: "+local);
 
