@@ -155,7 +155,7 @@ var options = {
  //facebookConnectPlugin.showDialog(Object options, Function success, Function failure);
 //facebookConnectPlugin.showDialog(options, function(){mensagem('Obrigado por compartilhar.');}, function(){mensagem('Quem sabe em outra hora? Compartilhe o bem, ajude outros a protegerem suas crianças');});
 
-var ref = cordova.InAppBrowser.open('http://piuui.com', '_blank', 'location=yes');
+var ref = cordova.InAppBrowser.open('http://piuui.com', '_blank', 'location=yes clearcache=yes');
 	
 }
 
@@ -711,7 +711,7 @@ function onBatteryStatus(info) {
 			
 				
 			//if(frequencia > '1.2' && frequencia < '3.4') {	gera_alarme();	} else { walking_monitor = false;}
-			if(frequencia > '0.8' && frequencia < '3.4') {	gera_alarme();	} else { walking_monitor = false;}
+			if(frequencia > '1.2' && frequencia < '3.4') {	gera_alarme();	} else { walking_monitor = false;}
 
 
 		}
