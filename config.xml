@@ -31,6 +31,7 @@
         <param name="APP_ID" value="1685747801707949" />
         <param name="APP_NAME" value="Piuui" />
     </plugin>
+	<plugin name="com.google.playservices" />
 
 	<access origin="*"/>
 	<allow-navigation href="*" />
