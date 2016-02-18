@@ -102,13 +102,19 @@ function define_local(){
 	
 
 
-navigator.globalization.getPreferredLanguage(function(language){lingua = language.value;}, function () {alert('Error getting language\n');}
+navigator.globalization.getPreferredLanguage(function(language){lingua = language.value.substring(0, 2);}, function () {alert('Error getting language\n');}
 );
 
-navigator.globalization.getLocaleName(function(locale){local = locale.value;}, function () {alert('Error getting locale\n');}
+navigator.globalization.getLocaleName(function(locale){local = locale.value.substr(locale.value.indexOf("-"));}, function () {alert('Error getting locale\n');}
 );
 
 mensagem("Lingua: "+lingua+"<br>Local: "+local);
+
+if(localStorage.getItem("local") === null) 
+ 		{ 
+		localStorage.setItem("local", local);
+		localStorage.setItem("lingua", lingua);
+		}
 	
 }
 
@@ -211,7 +217,7 @@ var element = document.getElementById('status');
 var velocidade = Math.round(position.coords.speed * 3.6);
 var latlon = position.coords.latitude + "," + position.coords.longitude;
 
-define_local();
+if(localStorage.getItem("local") === null) { define_local(); }
 
 	if (isNaN(velocidade)) { velocidade = 0;}
 	

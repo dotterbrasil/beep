@@ -31,8 +31,7 @@
         <param name="APP_ID" value="1685747801707949" />
         <param name="APP_NAME" value="Piuui" />
     </plugin>
-	<plugin name="com.google.playservices" />
-	<plugin name="onesignal-cordova-plugin-pgb-compat" />
+	
 
 	<access origin="*"/>
 	<allow-navigation href="*" />
@@ -45,9 +44,7 @@
     <preference name="webviewbounce"    value="false" />
 	
 	<preference name="android-build-tool" value="gradle" />
-	<preference name="android-minSdkVersion" value="15" />
-	<preference name="android-targetSdkVersion" value="15" />
-	<preference name="android-installLocation" value="auto" />
+
 	
 
     <icon src="icon.png" />
