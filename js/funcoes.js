@@ -505,12 +505,13 @@ if (indice==0) { home(); }
 function total_checkout(){
 
 var indice = conta_kids();
+var i = 0;
 
 notificacao_local('ALERTA','Alerta desativado em modo manual. ATENCAO: este procedimento pode colocar a crianca em risco!', 1);
 //var reaviso = setTimeout(localizacao,30000);
 //onError();
 
-for (var i=0; i<indice; ++i)
+for (i=0; i<indice; ++i)
 	{
 	mensagem("Chekout Manual! Crianca "+localStorage.getItem("in"+i)+" retirada de forma insegura.");
 	localStorage.removeItem("in"+i);
