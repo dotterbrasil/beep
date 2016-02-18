@@ -121,6 +121,16 @@ if(localStorage.getItem("local") === null)
 	
 }
 
+function lista(){
+
+var kids = conta_kids();
+var local = localStorage.getItem("local");
+var lingua = localStorage.getItem("lingua");
+
+document.getElementById("principal").innerHTML = "KIDs: "+kids+"<br>Local: "+local+"<br>Idioma: "+lingua;
+	
+}
+
 //---------------------------------------------------------------------------- COMPARTILHAMENTOS  ----------------------------------------------------------------------------
 
 function divulgue(){
