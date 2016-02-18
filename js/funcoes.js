@@ -174,7 +174,7 @@ window.plugins.socialsharing.share('Envie este QRCode para o seu email e imprima
 
 function mensagem(conteudo){
 
-document.getElementById("mensagem").innerHTML =  "<a href='#' onclick='fecha_mensagem();'><h3>  Piuui  </h3></a><br>" + conteudo + "<br><br> <button onclick='fecha_mensagem();'><b> OK </b></button>";
+document.getElementById("mensagem").innerHTML =  "<a href='#' onclick='fecha_mensagem();'><h3>  Piuui  </h3></a><br>" + conteudo + "<br><br> <button onclick='fecha_mensagem();home();'><b> OK </b></button>";
 document.getElementById("mensagem").style.display = "block";
 	
 }
@@ -372,7 +372,8 @@ var indice = conta_kids();
  
 if (typeof(Storage) !== "undefined") 
 	{ 
- 	if(localStorage.length) 
+ 	//if(localStorage.length) 
+	if(indice > 0)
  		{ 
  		for ( var i = 0, len = localStorage.length; i < len; ++i )
  			{ 
@@ -514,7 +515,7 @@ for (var i=0; i<indice; ++i)
 	mensagem("Chekout Manual! Crianca "+localStorage.getItem("in"+i)+" retirada de forma insegura.");
 	localStorage.removeItem("in"+i);
 	//location.reload();
-	document.location.href = "index.html";
+	//document.location.href = "index.html";
 	}
 }
 
@@ -698,7 +699,8 @@ function onBatteryStatus(info) {
 			frequencia = contador / 5;
 			
 				
-			if(frequencia > '1.2' && frequencia < '3.4') {	gera_alarme();	} else { walking_monitor = false;}
+			//if(frequencia > '1.2' && frequencia < '3.4') {	gera_alarme();	} else { walking_monitor = false;}
+			if(frequencia > '0.8' && frequencia < '3.4') {	gera_alarme();	} else { walking_monitor = false;}
 
 
 		}
