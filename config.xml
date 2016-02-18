@@ -31,7 +31,8 @@
         <param name="APP_ID" value="1685747801707949" />
         <param name="APP_NAME" value="Piuui" />
     </plugin>
-	
+
+<plugin name="cordova-plugin-inappbrowser" spec="1.0.1" source="pgb" />	
 
 	<access origin="*"/>
 	<allow-navigation href="*" />
