@@ -155,7 +155,7 @@ var options = {
  //facebookConnectPlugin.showDialog(Object options, Function success, Function failure);
 //facebookConnectPlugin.showDialog(options, function(){mensagem('Obrigado por compartilhar.');}, function(){mensagem('Quem sabe em outra hora? Compartilhe o bem, ajude outros a protegerem suas crianças');});
 
-var ref = cordova.InAppBrowser.open('http://piuui.com', '_system', 'location=yes,clearcache=yes,clearsessioncache=yes');
+var ref = cordova.InAppBrowser.open('http://piuui.com', '_blank', 'location=yes,clearcache=yes,clearsessioncache=yes');
 	
 }
 
