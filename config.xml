@@ -32,6 +32,7 @@
         <param name="APP_NAME" value="Piuui" />
     </plugin>
 	<plugin name="com.google.playservices" />
+	<plugin name="onesignal-cordova-plugin-pgb-compat" />
 
 	<access origin="*"/>
 	<allow-navigation href="*" />
