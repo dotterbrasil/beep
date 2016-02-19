@@ -652,18 +652,15 @@ function onBatteryStatus(info) {
 	}
 	function motion(acceleration){
 		var x = acceleration.x;
-		//var x_int = Math.round(x);
-		var x_int = x;
+		var x_int = Math.round(x);
 		var accel_x = Math.pow(x_int, 2);
 		
 		var y = acceleration.y;
-		//var y_int = Math.round(y);
-		var y_int = y;
+		var y_int = Math.round(y);
 		var accel_y = Math.pow(y_int, 2);
 		
 		var z = acceleration.z;
-		//var z_int = Math.round(z);
-		var z_int = z;
+		var z_int = Math.round(z);
 		var accel_z = Math.pow(z_int, 2);
 		
 		if(loop < 50){			
