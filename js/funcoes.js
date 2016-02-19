@@ -161,7 +161,8 @@ var ref = cordova.InAppBrowser.open('http://piuui.com', '_blank', 'location=yes,
 
 function facebook_direct(){
  
-  var ref = cordova.InAppBrowser.open(encodeURI('https://www.facebook.com/dialog/feed?app_id=1685747801707949&amp;display=popup&amp;caption=Protecting%20our%20Kids&amp;link=https%3A%2F%2Fpiuui.com'), '_blank', 'location=yes,clearcache=yes,clearsessioncache=yes');
+  //var ref = cordova.InAppBrowser.open(encodeURI('https://www.facebook.com/dialog/feed?app_id=1685747801707949&amp;display=popup&amp;caption=Protecting%20our%20Kids&amp;link=http%3A%2F%2Fpiuui.com%2F&amp;redirect_uri=http%3A%2F%2Fpiuui.com%2F'), '_blank', 'location=yes,clearcache=yes,clearsessioncache=yes');
+  var ref = cordova.InAppBrowser.open('https://www.facebook.com/dialog/feed?app_id=1685747801707949&amp;display=popup&amp;caption=Protecting%20our%20Kids&amp;link=http%3A%2F%2Fpiuui.com%2F&amp;redirect_uri=http%3A%2F%2Fpiuui.com%2F', '_blank', 'location=yes,clearcache=yes,clearsessioncache=yes');
 }
 
 function uuid_share(){
