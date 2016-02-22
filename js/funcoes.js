@@ -100,7 +100,9 @@ return resultado;
 
 function define_local(){
 	
-
+var tempo = new Date();
+var virtualid = "";
+var tempo_base_36 = tempo.getTime().toString(36).toUpperCase();
 
 navigator.globalization.getPreferredLanguage(function(language){lingua = language.value;}, function () {alert('Error getting language\n');}
 );
@@ -111,12 +113,16 @@ navigator.globalization.getLocaleName(function(locale){local = locale.value;}, f
 lingua = lingua.substring(0, 2);
 local = local.substr(local.indexOf("-") + 1);
 
-mensagem("Lingua: "+lingua+"<br>Local: "+local);
+virtualid = local+idioma+device.uuid+tempo_base_36;
+
+//mensagem("Lingua: "+lingua+"<br>Local: "+local);
+mensagem("Um novo usuário foi definido para este aparelho: "+virtualid+".<br>Este código identifica você em todo o sistema e assegura a sua privacidade.<br> Se você compartilhava alertas com outras pessoas, faça a sincronização novamente para este novo usuário.");
 
 if(localStorage.getItem("local") === null) 
  		{ 
 		localStorage.setItem("local", local);
 		localStorage.setItem("lingua", lingua);
+		local.Storage.setItem("virtualid", virtualid);
 		}
 	
 }
