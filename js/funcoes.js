@@ -11,7 +11,7 @@ var notification_id = 1;
 var watchID;
 var movimentoID;
 
-var lingua;
+var idioma;
 var local;
 
 
@@ -104,24 +104,24 @@ var tempo = new Date();
 var virtualid = "";
 var tempo_base_36 = tempo.getTime().toString(36).toUpperCase();
 
-navigator.globalization.getPreferredLanguage(function(language){lingua = language.value;}, function () {alert('Error getting language\n');}
+navigator.globalization.getPreferredLanguage(function(language){idioma = language.value;}, function () {alert('Error getting language\n');}
 );
 
 navigator.globalization.getLocaleName(function(locale){local = locale.value;}, function () {alert('Error getting locale\n');}
 );
 
-lingua = lingua.substring(0, 2);
+idioma = idioma.substring(0, 2);
 local = local.substr(local.indexOf("-") + 1);
 
 virtualid = local+idioma+device.uuid+tempo_base_36;
 
-//mensagem("Lingua: "+lingua+"<br>Local: "+local);
+//mensagem("idioma: "+idioma+"<br>Local: "+local);
 mensagem("Um novo usuário foi definido para este aparelho: "+virtualid+".<br>Este código identifica você em todo o sistema e assegura a sua privacidade.<br> Se você compartilhava alertas com outras pessoas, faça a sincronização novamente para este novo usuário.");
 
 if(localStorage.getItem("local") === null) 
  		{ 
 		localStorage.setItem("local", local);
-		localStorage.setItem("lingua", lingua);
+		localStorage.setItem("idioma", idioma);
 		local.Storage.setItem("virtualid", virtualid);
 		}
 	
@@ -131,9 +131,9 @@ function lista(){
 
 var kids = conta_kids();
 var local = localStorage.getItem("local");
-var lingua = localStorage.getItem("lingua");
+var idioma = localStorage.getItem("idioma");
 
-document.getElementById("principal").innerHTML = "KIDs: "+kids+"<br>Local: "+local+"<br>Idioma: "+lingua;
+document.getElementById("principal").innerHTML = "KIDs: "+kids+"<br>Local: "+local+"<br>Idioma: "+idioma;
 	
 }
 
