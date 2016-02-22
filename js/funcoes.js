@@ -155,14 +155,14 @@ var options = {
  //facebookConnectPlugin.showDialog(Object options, Function success, Function failure);
 //facebookConnectPlugin.showDialog(options, function(){mensagem('Obrigado por compartilhar.');}, function(){mensagem('Quem sabe em outra hora? Compartilhe o bem, ajude outros a protegerem suas crianças');});
 
-var ref = cordova.InAppBrowser.open('http://piuui.com', '_blank', 'location=yes,clearcache=yes,clearsessioncache=yes');
+var ref = cordova.InAppBrowser.open('http://piuui.com/share.html', '_blank', 'location=yes,clearcache=yes,clearsessioncache=yes');
 	
 }
 
 function facebook_direct(){
  
   //var ref = cordova.InAppBrowser.open(encodeURI('https://www.facebook.com/dialog/feed?app_id=1685747801707949&amp;display=popup&amp;caption=Protecting%20our%20Kids&amp;link=http%3A%2F%2Fpiuui.com%2F&amp;redirect_uri=http%3A%2F%2Fpiuui.com%2F'), '_blank', 'location=yes,clearcache=yes,clearsessioncache=yes');
-  var ref = cordova.InAppBrowser.open('https://www.facebook.com/dialog/feed?app_id=1685747801707949&amp;display=popup&amp;caption=Protecting%20our%20Kids&amp;link=http%3A%2F%2Fpiuui.com%2F&amp;redirect_uri=http%3A%2F%2Fpiuui.com%2F', '_blank', 'location=yes,clearcache=yes,clearsessioncache=yes');
+  var ref = cordova.InAppBrowser.open('https://www.facebook.com/v2.5/dialog/feed?app_id=1685747801707949&caption=Protegendo%20nossas%20crian%C3%A7as.&display=popup&e2e=%7B%7D&link=http%3A%2F%2Fpiuui.com%2Fshare.html&locale=en_US&next=http%3A%2F%2Fstaticxx.facebook.com%2Fconnect%2Fxd_arbiter.php%3Fversion%3D42%23cb%3Df32758403d16c5%26domain%3Dpiuui.com%26origin%3Dhttp%253A%252F%252Fpiuui.com%252Fff9560c235238c%26relation%3Dopener%26frame%3Df325d85c191f96%26result%3D%2522xxRESULTTOKENxx%2522&sdk=joey&version=v2.5', '_blank', 'location=yes,clearcache=yes,clearsessioncache=yes');
 }
 
 function uuid_share(){
@@ -302,7 +302,7 @@ function onError(error) {
 	if ((error.code == 3)&&(gps_on)&&(!onboard))
 		{
 		gps_on = false;
-		//notificacao_local('AVISO','Inatividade detectada.', 1);
+		notificacao_local('AVISO','Inatividade detectada.', 1);
 		navigator.geolocation.clearWatch(watchID);
 		}
 		
@@ -655,6 +655,7 @@ function onBatteryStatus(info) {
 	}
 	function error(){
 		mensagem('Error!');
+		home();
 	}
 	function motion(acceleration){
 		var x = acceleration.x;
@@ -670,7 +671,8 @@ function onBatteryStatus(info) {
 		var accel_z = Math.pow(z_int, 2);
 		
 		if(loop < 50){			
-			var xyz = modulo(Math.pow(accel_x,2) + Math.pow(accel_y,2) + Math.pow(accel_z,2) - 97);
+			//var xyz = modulo(Math.pow(accel_x,2) + Math.pow(accel_y,2) + Math.pow(accel_z,2) - 97);
+			var xyz = Math.pow(accel_x,2) + Math.pow(accel_y,2) + Math.pow(accel_z,2);
 			//var xyz = accel_x + accel_y + accel_z;
 			var xyzSqrt = Math.sqrt(xyz);
 			//var eixo = Math.round(xyzSqrt);
