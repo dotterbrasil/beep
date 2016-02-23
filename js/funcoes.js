@@ -135,6 +135,8 @@ function ultima_localizacao(){
 var virtualid = localStorage.getItem("virtualid");
 var local = localStorage.getItem("local");
 
+last_latlon = localStorage.getItem("latlon");
+
 alert(last_latlon);
 
 var dados = {id: virtualid, pais: local, latlon: last_latlon}
@@ -176,6 +178,8 @@ function registra_alerta(){
 
 var virtualid = localStorage.getItem("virtualid");
 var local = localStorage.getItem("local");
+
+last_latlon = localStorage.getItem("latlon");
 
 var dados = {id: virtualid, pais: local, latlon: last_latlon}
 
@@ -284,7 +288,8 @@ if (navigator.geolocation) {
     var latlon = position.coords.latitude + "," + position.coords.longitude;
 	
 	//atualiza ultima_localizacao para registro no servidor
-	last_latlon = latlon;
+	localStorage.setItem("latlon", latlon);
+	
 	
 	notificacao_local('ALERTA','Crianca no Carro: ' + latlon, 1);
 	
@@ -317,7 +322,7 @@ var velocidade = Math.round(position.coords.speed * 3.6);
 var latlon = position.coords.latitude + "," + position.coords.longitude;
 
 //atualiza ultima_localizacao para registro no servidor
-last_latlon = latlon;
+localStorage.setItem("latlon", latlon);
 
 if(localStorage.getItem("local") === null) { define_local(); }
 
