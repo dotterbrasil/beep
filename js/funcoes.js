@@ -13,7 +13,7 @@ var movimentoID;
 
 var idioma;
 var local;
-
+var last_latlon;
 
 
 function onDeviceReady() {
@@ -37,6 +37,8 @@ function onDeviceReady() {
 				notificacao_local('CONVITE','Compartilhe sua experiencia para continuar usando o aplicativo.', 1);
 				divulgue();
 			}
+			
+		ultima_localizacao();
 
 }
 
@@ -123,6 +125,7 @@ if(localStorage.getItem("local") === null)
 		localStorage.setItem("local", local);
 		localStorage.setItem("idioma", idioma);
 		localStorage.setItem("virtualid", virtualid);
+		assinatura();
 		}
 	
 }
@@ -132,11 +135,11 @@ function ultima_localizacao(){
 var virtualid = localStorage.getItem("virtualid");
 var local = localStorage.getItem("local");
 
-var dados = {id: virtualid, pais: local}
+var dados = {id: virtualid, pais: local, latlon: last_latlon}
 
 						jQuery.ajax({
 						type: "POST",
-						url: "http://piuui.com/teste.php",
+						url: "http://piuui.com/location.php",
 						data: dados,
 						success: function(data){
 							alert('Enviado');
@@ -145,8 +148,48 @@ var dados = {id: virtualid, pais: local}
 							alert(JSON.stringify(e));
 						}
 					}); 
-	
 }
+
+function assinatura(){
+
+var virtualid = localStorage.getItem("virtualid");
+var local = localStorage.getItem("local");
+
+var dados = {id: virtualid, pais: local}
+
+						jQuery.ajax({
+						type: "POST",
+						url: "http://piuui.com/assinatura.php",
+						data: dados,
+						success: function(data){
+							alert('Enviado');
+						},
+						error: function(e){
+							alert(JSON.stringify(e));
+						}
+					}); 
+}
+
+function registra_alerta(){
+
+var virtualid = localStorage.getItem("virtualid");
+var local = localStorage.getItem("local");
+
+var dados = {id: virtualid, pais: local, latlon: last_latlon}
+
+						jQuery.ajax({
+						type: "POST",
+						url: "http://piuui.com/alerta.php",
+						data: dados,
+						success: function(data){
+							alert('Enviado');
+						},
+						error: function(e){
+							alert(JSON.stringify(e));
+						}
+					}); 
+}
+
 
 function lista(){
 
@@ -238,11 +281,17 @@ if (navigator.geolocation) {
  function showPosition(position) {
     var latlon = position.coords.latitude + "," + position.coords.longitude;
 	
+	//atualiza ultima_localizacao para registro no servidor
+	last_latlon = latlon;
+	
 	notificacao_local('ALERTA','Crianca no Carro: ' + latlon, 1);
 	
 	 document.getElementById("status").innerHTML = "Buscando localizacao no mapa...";
     
 	var teste = setInterval(playsound,3000);
+	
+	//envia dados do alerta para o servidor
+	registra_alerta();
 	
 	     
 	 document.getElementById("principal").innerHTML = "<br><br><iframe width=80% height=200px src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe><br><img src='imagens/alert.gif' width=100% align='center' class='alerta' onclick='desativa();'>";
@@ -264,6 +313,9 @@ function onSuccessX(position){
 var element = document.getElementById('status');
 var velocidade = Math.round(position.coords.speed * 3.6);
 var latlon = position.coords.latitude + "," + position.coords.longitude;
+
+//atualiza ultima_localizacao para registro no servidor
+last_latlon = latlon;
 
 if(localStorage.getItem("local") === null) { define_local(); }
 
