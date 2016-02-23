@@ -24,6 +24,7 @@ function onDeviceReady() {
 		notification_id = 1;
 		cordova.plugins.backgroundMode.enable();
 		//cordova.plugins.backgroundMode.onactivate = function() {notificacao_local('WARNING','Este aplicativo e apenas uma ferramenta e nao substitui a atencao e a supervisao de maior responsavel pela saude e seguranca da crianca.', 1);};
+		cordova.plugins.backgroundMode.onactivate = le_publicidade();
 		cordova.plugins.notification.local.clearAll();
 
 		
@@ -195,6 +196,27 @@ var dados = {id: virtualid, pais: local, latlon: last_latlon}
 							//alert(JSON.stringify(e));
 						}
 					}); 
+}
+
+function le_publicidade(){
+	
+	var local = localStorage.getItem("local");
+	var url = "http://piuui.com/BR/advertisement.txt";
+	
+	$.ajax({
+						url : url,
+						type: "GET",
+						dataType: "text",
+						success : function (data) {
+							notificacao_local('Publicidade',data, 1);
+						},
+						error:function (error){
+							//alert(JSON.stringify(error));
+							//$("div").text("loading...");
+							//load();
+						}
+					});	
+	
 }
 
 
