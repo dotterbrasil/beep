@@ -266,10 +266,19 @@ function facebook_direct(){
 
 function uuid_share(){
 
-var qrcode = "<img src='http://chart.apis.google.com/chart?cht=qr&chl="+device.uuid+"&chs=200x200'>";
+var virtualid = "follow"+localStorage.getItem("virtualid");
+var qrcode = "<img src='http://chart.apis.google.com/chart?cht=qr&chl="+virtualid+"&chs=200x200'>";
 
 document.getElementById("principal").innerHTML = qrcode;
 
+}
+
+function uuid_follow(identificador){
+	
+	var indice = conta_uuid();
+	
+	localStorage.setItem("seguidor"+indice, identificador);
+	
 }
 
 function qr_print(qrcode){
@@ -288,6 +297,29 @@ document.getElementById("mensagem").style.display = "block";
 
 function fecha_mensagem(){
 	document.getElementById("mensagem").style.display = "none";
+}
+
+function conta_uuid(){
+
+var indice = 0;
+
+if (typeof(Storage) !== "undefined")
+	{
+	if(localStorage.length)
+		{
+		for ( var i = 0, len = localStorage.length; i < len; ++i )
+			{
+			if(localStorage.getItem("seguidor"+i) !== null)
+				{
+				++indice;
+				}
+			}
+		}
+	
+	} else {    document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";}
+
+return indice;
+
 }
 
 //---------------------------------------------------------------------------- COORDENADAS  ----------------------------------------------------------------------------
@@ -686,8 +718,17 @@ function startScan() {
 			aux = result.text;
 			if(result.format == 'QR_CODE')
 				{
-				identificador = aux.substring(aux.length-1);
-				check_out(identificador);
+					seguidor = aux.substring(0, 6);
+					alert(seguidor);
+					if (seguidor == "follow")
+						{
+							seguidor = seguidor.replace("follow", "");
+							uuid_follow(seguidor);
+						}
+						else{
+							identificador = aux.substring(aux.length-1);
+							check_out(identificador);
+						}
 				}
 				else{	total_checkout();	}
 		}, 
