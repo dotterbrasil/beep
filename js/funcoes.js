@@ -135,6 +135,8 @@ function ultima_localizacao(){
 var virtualid = localStorage.getItem("virtualid");
 var local = localStorage.getItem("local");
 
+alert(last_latlon);
+
 var dados = {id: virtualid, pais: local, latlon: last_latlon}
 
 						jQuery.ajax({
