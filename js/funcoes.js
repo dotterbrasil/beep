@@ -122,8 +122,25 @@ if(localStorage.getItem("local") === null)
  		{ 
 		localStorage.setItem("local", local);
 		localStorage.setItem("idioma", idioma);
-		local.Storage.setItem("virtualid", virtualid);
+		localStorage.setItem("virtualid", virtualid);
 		}
+	
+}
+
+function ultima_localizacao(){
+
+
+						jQuery.ajax({
+						type: "POST",
+						url: "http://piuui.com/teste.php",
+						data: {mensagem: "ola"},
+						success: function(data){
+							alert('Enviado');
+						},
+						error: function(e){
+							alert(JSON.stringify(e));
+						}
+					}); 
 	
 }
 
