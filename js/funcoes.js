@@ -5,6 +5,7 @@ var plugado_anterior = false;
 var walking_monitor = false;
 var gps_on = false;
 var walking_notification = 0;
+var battery_notification = 0;
 var alerta = false;
 var notification_id = 1;
 
@@ -22,7 +23,7 @@ function onDeviceReady() {
 		
 		notification_id = 1;
 		cordova.plugins.backgroundMode.enable();
-		cordova.plugins.backgroundMode.onactivate = function() {notificacao_local('WARNING','Este aplicativo e apenas uma ferramenta e nao substitui a atencao e a supervisao de maior responsavel pela saude e seguranca da crianca.', 1);};
+		//cordova.plugins.backgroundMode.onactivate = function() {notificacao_local('WARNING','Este aplicativo e apenas uma ferramenta e nao substitui a atencao e a supervisao de maior responsavel pela saude e seguranca da crianca.', 1);};
 		cordova.plugins.notification.local.clearAll();
 
 		
@@ -49,6 +50,7 @@ function inicializacao(){
 	
 	walking_monitor = false;
 	walking_notification = 0;
+	battery_notification = 0;
 	
 	notification_id = 1;
 				
@@ -387,7 +389,7 @@ function onError(error) {
 	if ((error.code == 3)&&(gps_on)&&(!onboard))
 		{
 		gps_on = false;
-		notificacao_local('AVISO','Inatividade detectada.', 1);
+		//notificacao_local('AVISO','Inatividade detectada.', 1);
 		navigator.geolocation.clearWatch(watchID);
 		}
 		
@@ -402,7 +404,7 @@ var movimento = modulo(Math.pow(acceleration.x,2) + Math.pow(acceleration.y,2) +
 if ((movimento > 10)&&(!gps_on)&&(!onboard))
 	{
 	gps_on = true;
-	notificacao_local('AVISO','Monitoramento Acionado.', 1);
+	//notificacao_local('AVISO','Monitoramento Acionado.', 1);
 	home();
 	}
 
@@ -703,7 +705,9 @@ function onBatteryStatus(info) {
 			{
 			if (!plugado)
 				{
-				notificacao_local('ALERTA','Recomenda-se o uso com o carregador conectado.', 1);
+				if ( battery_notification < 1 ) { notificacao_local('ALERTA','Recomenda-se o uso com o carregador conectado.', 1); }
+				battery_notification++;
+				if ( battery_notification >10 ) { battery_notification = 0; }
 				if (plugado_anterior) { gera_alarme(); }
 				}
 				//else{	onboard = true;check_in();	}
