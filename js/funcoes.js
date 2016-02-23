@@ -137,7 +137,6 @@ var local = localStorage.getItem("local");
 
 last_latlon = localStorage.getItem("latlon");
 
-alert(last_latlon);
 
 var dados = {id: virtualid, pais: local, latlon: last_latlon}
 
@@ -146,10 +145,10 @@ var dados = {id: virtualid, pais: local, latlon: last_latlon}
 						url: "http://piuui.com/location.php",
 						data: dados,
 						success: function(data){
-							alert('Enviado');
+							//alert('Enviado');
 						},
 						error: function(e){
-							alert(JSON.stringify(e));
+							//alert(JSON.stringify(e));
 						}
 					}); 
 }
@@ -166,10 +165,10 @@ var dados = {id: virtualid, pais: local}
 						url: "http://piuui.com/assinatura.php",
 						data: dados,
 						success: function(data){
-							alert('Enviado');
+							//alert('Enviado');
 						},
 						error: function(e){
-							alert(JSON.stringify(e));
+							//alert(JSON.stringify(e));
 						}
 					}); 
 }
@@ -188,10 +187,10 @@ var dados = {id: virtualid, pais: local, latlon: last_latlon}
 						url: "http://piuui.com/alerta.php",
 						data: dados,
 						success: function(data){
-							alert('Enviado');
+							//alert('Enviado');
 						},
 						error: function(e){
-							alert(JSON.stringify(e));
+							//alert(JSON.stringify(e));
 						}
 					}); 
 }
