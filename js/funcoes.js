@@ -129,11 +129,15 @@ if(localStorage.getItem("local") === null)
 
 function ultima_localizacao(){
 
+var virtualid = localStorage.getItem("virtualid");
+var local = localStorage.getItem("local");
+
+var dados = {id: virtualid, pais: local}
 
 						jQuery.ajax({
 						type: "POST",
 						url: "http://piuui.com/teste.php",
-						data: {mensagem: "ola"},
+						data: dados,
 						success: function(data){
 							alert('Enviado');
 						},
