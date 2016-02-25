@@ -7,12 +7,16 @@
    
     <link href="dist/style/main.css" rel="stylesheet">
     
+	<script type="text/javascript" src="cordova.js"></script>
+	<script type="text/javascript" src="barcodescanner.js"></script>
+	<script type="text/javascript" src="childbrowser.js"></script>
+
 	
 	<script type="text/javascript" src="js/funcoes.js"></script>
 	<script src="js/jquery-1.11.3.min.js"></script>
 	
   </head>
-  <body class="app--body body-amarelo" onload="iswalking();speed_monitor(); monitora_bateria();">
+  <body class="app--body body-amarelo" onload="check_in(); iswalking();speed_monitor(); monitora_bateria();">
     
     <header class="app--header bgc-azul1">
       <div class="header--logo">
@@ -56,22 +60,7 @@
         <h1 class="c-cinza5 bold hide-mobile ">Passageiros<br>
         registrados:</h1>
         <ul class="children--list   c-cinza8">
-          <li class="children--item">
-            <input type="checkbox" class="children--item-checkbox" id="test1" />
-            <label for="test1" class="children--item-label light">Beatriz</label>
-          </li>
-          <li class="children--item">
-            <input type="checkbox" class="children--item-checkbox" id="test2" />
-            <label for="test2" class="children--item-label light">Elisa</label>
-          </li>
-          <li class="children--item">
-            <input type="checkbox" class="children--item-checkbox" id="test3" />
-            <label for="test3" class="children--item-label light">Pedro</label>
-          </li>
-          <li class="children--item">
-            <input type="checkbox" class="children--item-checkbox" id="test4" />
-            <label for="test4" class="children--item-label light">Beatriz</label>
-          </li>
+          
         </ul>
       </div>
     </main>

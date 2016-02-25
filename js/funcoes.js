@@ -361,8 +361,7 @@ var qtde_in = conta_in();
 	if (qtde_in > 0)
 		{
 		notificacao_cogido_local('ALERTA','Crianca presente no carro.', 1);
-		document.getElementById("principal").innerHTML = "<img src='imagens/checkout.png' align='center'>";
-		document.getElementById("status").innerHTML = "<h4 align='center'>ALERT</h4>";
+		document.location.href = "alerta.html";
 		onboard = false;
 		alerta = true;
 		setTimeout(localizacao,30000);
