@@ -510,7 +510,7 @@ for (var i=0; i<indice; ++i)
 	
 		
 	var conteudo = "<li class='children--item'><input type='checkbox' class='children--item-checkbox' id='"+kid+"_check' checked onclick='startScan();'/><label for='"+kid+"_check' class='children--item-label light'>"+kid+"</label></li>";
-	document.getElementById("lista").innerHTML = conteudo;
+	document.getElementById("lista").innerHTML += conteudo;
 	
 	
 	}
