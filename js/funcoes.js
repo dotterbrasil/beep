@@ -27,7 +27,7 @@ function onDeviceReady() {
 		//cordova.plugins.backgroundMode.onactivate = function() {notificacao_cogido_local('WARNING','Este aplicativo e apenas uma ferramenta e nao substitui a atencao e a supervisao de maior responsavel pela saude e seguranca da crianca.', 1);};
 		
 		//cordova.plugins.backgroundMode.onactivate = le_publicidade();
-		cordova.plugins.notification.cogido_local.clearAll();
+		cordova.plugins.notification.local.clearAll();
 
 		
 		//monitora_bateria();
@@ -69,6 +69,32 @@ function home(){
 	
 	document.location.href='index.html';
 	
+}
+
+function notificacao_local(tipo, mensagem_local, indice){
+//notificacao_local(tipo, mensagem, badge)
+//tipo: ALERTA, VELOCIDADE, BATERIA
+//badge: 1, 2, 3
+
+var som = "file://alerta.wav";
+var icone = "file://icon.png";
+var now = new Date().getTime();
+var _5_sec_from_now = new Date(now + 5 * 1000); 
+var agora = new Date(now);
+
+
+cordova.plugins.notification.local.schedule({ 
+                     id: notification_id, 
+                     title: tipo, 
+                     text: mensagem_local, 
+                     at: agora, 
+                     sound: som, 
+					 icon: icone,
+                     badge: notification_id 
+                 }); 
+
+notification_id++;
+
 }
 
 //---------------------------------------------------------------------------- SERVER COMUNICATION  ----------------------------------------------------------------------------
@@ -128,7 +154,7 @@ var dados = {id: virtualid, pais: cogido_local}
 
 
 
-function define_cogido_local(){
+function define_local(){
 	
 	alert('hhhh');
 	
@@ -144,7 +170,7 @@ navigator.globalization.getPreferredLanguage(function(language){idioma = languag
 
 alert('passo 4');
 
-navigator.globalization.getcogido_localeName(function(cogido_locale){cogido_local = cogido_locale.value;}, function () {alert('Error getting cogido_locale\n');}
+navigator.globalization.getcogido_localeName(function(locale){cogido_local = locale.value;}, function () {alert('Error getting locale\n');}
 );
 
 alert('passo 5');
@@ -241,7 +267,7 @@ localStorage.setItem("latlon", latlon);
 
 alert('3');
 
-if(localStorage.getItem("cogido_local") === null) { define_cogido_local(); }
+if(localStorage.getItem("cogido_local") === null) { define_local(); }
 
 	if (isNaN(velocidade)) { velocidade = 0;}
 	
@@ -282,12 +308,12 @@ if(localStorage.getItem("cogido_local") === null) { define_cogido_local(); }
 		document.getElementById("carspeed").textContent = texto_velocidade;
 		if (plugado)
 			{
-			if (onboard == false) {	notificacao_cogido_local('VELOCIDADE','Checkin Efetuado.', 1);}
+			if (onboard == false) {	notificacao_local('VELOCIDADE','Checkin Efetuado.', 1);}
 			}
 			else
 				{
 				if (onboard == false) 
-					{ notificacao_cogido_local('VELOCIDADE','Checkin Efetuado. Conecte o carregador.', 1);	}
+					{ notificacao_local('VELOCIDADE','Checkin Efetuado. Conecte o carregador.', 1);	}
 				}
 		if (alerta == true) { home(); }
 		document.location.href = "onboard.html";
