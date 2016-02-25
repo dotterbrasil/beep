@@ -122,7 +122,7 @@ notificacao_local('ERRO','Erro ao obter coordenadas.', 1);
 
  
 function speed_monitor(){
-
+alert('3');
 gps_on = true;
 watchID = navigator.geolocation.watchPosition(nova_posicao, erro_posicao, { enableHighAccuracy: true, timeout: 180000, maximumAge: 1000 });
 
@@ -130,7 +130,11 @@ watchID = navigator.geolocation.watchPosition(nova_posicao, erro_posicao, { enab
 
 function nova_posicao(position){
 
+alert('4');
+
 var carro = document.getElementById('carspeed');
+
+alert('5');
 var caminha = document.getElementById('walkspeed');
 
 var velocidade = Math.round(position.coords.speed * 3.6);
