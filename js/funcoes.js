@@ -143,15 +143,12 @@ if(localStorage.getItem("local") === null) { define_local(); }
 	
 	if (velocidade < 0) { velocidade = 0;}
 	
-	velocidade =   velocidade.toString() + " km/h";
+	texto_velocidade =   velocidade.toString() + " km/h";
 	
-	alert(velocidade);
-
-	document.getElementById("carspeed").innerHTML = velocidade;
-		
 	
 	if (velocidade < 5)
 		{
+		document.getElementById("walkspeed").innerHTML = texto_velocidade;
 		if (!plugado)
 			{
 			if (onboard == true)
@@ -171,6 +168,7 @@ if(localStorage.getItem("local") === null) { define_local(); }
 
 	if(velocidade > 20)
 		{
+		document.getElementById("carspeed").innerHTML = texto_velocidade;
 		if (plugado)
 			{
 			if (onboard == false) {	notificacao_local('VELOCIDADE','Checkin Efetuado.', 1);}
