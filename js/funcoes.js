@@ -173,10 +173,13 @@ alert('passo 4');
 navigator.globalization.getLocaleName(function(locale){cogido_local = locale.value;}, function () {alert('Error getting locale\n');}
 );
 
-alert('passo 5');
+
 
 idioma = idioma.substring(0, 2);
-cogido_local = cogido_local.substr(cogido_local.indexOf("-") + 1);
+
+alert('passo 5');
+
+cogido_local = cogido_local.substring(cogido_local.indexOf("-") + 1);
 
 
 alert('juro que nao sei');
