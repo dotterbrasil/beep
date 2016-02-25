@@ -436,7 +436,7 @@ watchID = navigator.geolocation.watchPosition(onSuccessX, onError, { enableHighA
 function onSuccessX(position){
 
 var carro = document.getElementById('carspeed');
-var caminha = document.getElementById('walkpeed');
+var caminha = document.getElementById('walkspeed');
 
 var velocidade = Math.round(position.coords.speed * 3.6);
 var latlon = position.coords.latitude + "," + position.coords.longitude;
