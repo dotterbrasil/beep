@@ -133,7 +133,7 @@ function nova_posicao(position){
 alert('4');
 
 var carro = document.getElementById('carspeed');
-
+document.getElementById("carspeed").innerHTML = "oba";
 alert('5');
 var caminha = document.getElementById('walkspeed');
 
