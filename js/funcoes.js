@@ -142,8 +142,12 @@ if(localStorage.getItem("local") === null) { define_local(); }
 	if (isNaN(velocidade)) { velocidade = 0;}
 	
 	if (velocidade < 0) { velocidade = 0;}
+	
+	velocidade =   velocidade.toString() + " km/h";
+	
+	alert(velocidade);
 
-	document.getElementById("carspeed").innerHTML = velocidade  + " km/h";
+	document.getElementById("carspeed").innerHTML = velocidade;
 		
 	
 	if (velocidade < 5)
