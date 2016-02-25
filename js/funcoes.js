@@ -103,6 +103,8 @@ var dados = {id: virtualid, pais: local, latlon: last_latlon}
 function assinatura(){
 //Cria pasta de usuario no servidor
 
+alert('assinatura');
+
 var virtualid = localStorage.getItem("virtualid");
 var local = localStorage.getItem("local");
 
@@ -127,6 +129,8 @@ var dados = {id: virtualid, pais: local}
 
 
 function define_local(){
+	
+	alert('hhhh');
 	
 var tempo = new Date();
 var virtualid = "";
@@ -224,13 +228,15 @@ var latlon = position.coords.latitude + "," + position.coords.longitude;
 //atualiza ultima_localizacao para registro no servidor
 localStorage.setItem("latlon", latlon);
 
+alert('3');
+
 if(localStorage.getItem("local") === null) { define_local(); }
 
 	if (isNaN(velocidade)) { velocidade = 0;}
 	
 	if (velocidade < 0) { velocidade = 0;}
 	
-	alert('3');
+	alert('4');
 	
 	texto_velocidade =   velocidade.toString();
 	
