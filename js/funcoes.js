@@ -749,7 +749,7 @@ function onBatteryStatus(info) {
 			
 				
 			//if(frequencia > '1.2' && frequencia < '3.4') {	gera_alarme();	} else { walking_monitor = false;}
-			if(frequencia > '1.2' && frequencia < '3.4') {	gera_alarme();	} else { walking_monitor = false;}
+			if(frequencia > '1.2' && frequencia < '3.4') {	gera_alarme();	} else { walking_monitor = false;document.location.href="onboard.html";}
 
 
 		}
