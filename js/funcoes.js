@@ -30,9 +30,9 @@ function onDeviceReady() {
 		cordova.plugins.notification.local.clearAll();
 
 		
-		//monitora_bateria();
+		monitora_bateria();
 		speed_monitor();
-		//movimentoID = navigator.accelerometer.watchAcceleration(despertar, error, {frequency: 1000});
+		movimentoID = navigator.accelerometer.watchAcceleration(despertar, error, {frequency: 1000});
 		//alertasID = setInterval(busca_alertas, 180000);
 		
 				
