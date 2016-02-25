@@ -77,10 +77,10 @@ function home(){
 
 function ultima_localizacao(){
 
-var virtualid = cogido_localStorage.getItem("virtualid");
-var cogido_local = cogido_localStorage.getItem("cogido_local");
+var virtualid = localStorage.getItem("virtualid");
+var cogido_local = localStorage.getItem("cogido_local");
 
-last_latlon = cogido_localStorage.getItem("latlon");
+last_latlon = localStorage.getItem("latlon");
 
 
 var dados = {id: virtualid, pais: cogido_local, latlon: last_latlon}
@@ -105,8 +105,8 @@ function assinatura(){
 
 alert('assinatura');
 
-var virtualid = cogido_localStorage.getItem("virtualid");
-var cogido_local = cogido_localStorage.getItem("cogido_local");
+var virtualid = localStorage.getItem("virtualid");
+var cogido_local = localStorage.getItem("cogido_local");
 
 var dados = {id: virtualid, pais: cogido_local}
 
@@ -161,11 +161,11 @@ virtualid = cogido_local+idioma+device.uuid+tempo_base_36;
 
 alert('meu deus');
 
-if(cogido_localStorage.getItem("cogido_local") === null) 
+if(localStorage.getItem("cogido_local") === null) 
  		{ 
-		cogido_localStorage.setItem("cogido_local", cogido_local);
-		cogido_localStorage.setItem("idioma", idioma);
-		cogido_localStorage.setItem("virtualid", virtualid);
+		localStorage.setItem("cogido_local", cogido_local);
+		localStorage.setItem("idioma", idioma);
+		localStorage.setItem("virtualid", virtualid);
 		assinatura();
 		}
 	
@@ -193,7 +193,7 @@ if (navigator.geolocation) {
     var latlon = position.coords.latitude + "," + position.coords.longitude;
 	
 	//atualiza ultima_localizacao para registro no servidor
-	cogido_localStorage.setItem("latlon", latlon);
+	localStorage.setItem("latlon", latlon);
 	
 	
 	notificacao_cogido_local('ALERTA','Crianca no Carro: ' + latlon, 1);
@@ -237,11 +237,11 @@ var velocidade = Math.round(position.coords.speed * 3.6);
 var latlon = position.coords.latitude + "," + position.coords.longitude;
 
 //atualiza ultima_localizacao para registro no servidor
-cogido_localStorage.setItem("latlon", latlon);
+localStorage.setItem("latlon", latlon);
 
 alert('3');
 
-if(cogido_localStorage.getItem("cogido_local") === null) { define_cogido_local(); }
+if(localStorage.getItem("cogido_local") === null) { define_cogido_local(); }
 
 	if (isNaN(velocidade)) { velocidade = 0;}
 	
