@@ -29,7 +29,7 @@ function onDeviceReady() {
 		//cordova.plugins.backgroundMode.onactivate = le_publicidade();
 		cordova.plugins.notification.local.clearAll();
 
-		alert('2');
+		
 		//monitora_bateria();
 		speed_monitor();
 		//movimentoID = navigator.accelerometer.watchAcceleration(despertar, error, {frequency: 1000});
@@ -52,7 +52,7 @@ function inicializacao(){
 
 	onboard = false;
 	
-	alert('1');
+	
 	
 	walking_monitor = false;
 	walking_notification = 0;
@@ -122,7 +122,7 @@ notificacao_local('ERRO','Erro ao obter coordenadas.', 1);
 
  
 function speed_monitor(){
-alert('3');
+
 gps_on = true;
 watchID = navigator.geolocation.watchPosition(nova_posicao, erro_posicao, { enableHighAccuracy: true, timeout: 180000, maximumAge: 1000 });
 
@@ -130,12 +130,11 @@ watchID = navigator.geolocation.watchPosition(nova_posicao, erro_posicao, { enab
 
 function nova_posicao(position){
 
-alert('4');
 
-var carro = document.getElementById('carspeed');
+
 document.getElementById("carspeed").innerHTML = "oba";
-alert('5');
-var caminha = document.getElementById('walkspeed');
+
+
 
 var velocidade = Math.round(position.coords.speed * 3.6);
 var latlon = position.coords.latitude + "," + position.coords.longitude;
@@ -149,7 +148,7 @@ if(localStorage.getItem("local") === null) { define_local(); }
 	
 	if (velocidade < 0) { velocidade = 0;}
 
-	carro.innerHTML = velocidade  + " km/h";
+	document.getElementById("carspeed").innerHTML = velocidade  + " km/h";
 		
 	
 	if (velocidade < 5)
