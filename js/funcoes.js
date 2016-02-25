@@ -71,6 +71,179 @@ function home(){
 	
 }
 
+//---------------------------------------------------------------------------- SERVER COMUNICATION  ----------------------------------------------------------------------------
+
+
+
+function ultima_localizacao(){
+
+var virtualid = localStorage.getItem("virtualid");
+var local = localStorage.getItem("local");
+
+last_latlon = localStorage.getItem("latlon");
+
+
+var dados = {id: virtualid, pais: local, latlon: last_latlon}
+
+						jQuery.ajax({
+						type: "POST",
+						url: "http://piuui.com/location.php",
+						data: dados,
+						success: function(data){
+							//alert('Enviado');
+						},
+						error: function(e){
+							//alert(JSON.stringify(e));
+						}
+					}); 
+}
+
+
+
+function assinatura(){
+//Cria pasta de usuario no servidor
+
+var virtualid = localStorage.getItem("virtualid");
+var local = localStorage.getItem("local");
+
+var dados = {id: virtualid, pais: local}
+
+						jQuery.ajax({
+						type: "POST",
+						url: "http://piuui.com/assinatura.php",
+						data: dados,
+						success: function(data){
+							//alert('Enviado');
+						},
+						error: function(e){
+							//alert(JSON.stringify(e));
+						}
+					}); 
+}
+
+
+
+function registra_alerta(){
+//envia localizacao de evento ALERTA para o servidor
+
+var virtualid = localStorage.getItem("virtualid");
+var local = localStorage.getItem("local");
+
+last_latlon = localStorage.getItem("latlon");
+
+var dados = {id: virtualid, pais: local, latlon: last_latlon}
+
+						jQuery.ajax({
+						type: "POST",
+						url: "http://piuui.com/alerta.php",
+						data: dados,
+						success: function(data){
+							//alert('Enviado');
+						},
+						error: function(e){
+							//alert(JSON.stringify(e));
+						}
+					}); 
+}
+
+function le_publicidade(){
+	
+	//le dados de um anuncio no servidor (se houver)
+	
+	var local = localStorage.getItem("local");
+	var url = "http://piuui.com/BR/advertisement.txt";
+	
+	$.ajax({
+						url : url,
+						type: "GET",
+						dataType: "text",
+						success : function (data) {
+							notificacao_local('Publicidade',data, 1);
+						},
+						error:function (error){
+							//alert(JSON.stringify(error));
+							//$("div").text("loading...");
+							//load();
+						}
+					});	
+	
+}
+
+
+function busca_alertas(){
+
+//verifica a existencia de alertas gerados por outros usuarios e aciona alerta local se houver
+
+var indice = conta_uuid();
+
+for (i=0, i<indice, i++)
+	{
+		identificador = localStorage.getItem("follow_uuid"+indice);
+		nome = localStorage.getItem("follow_uuid"+name);
+		
+		var local = identificador.substring(0,2);
+		
+		var url = "http://piuui.com/"+local+"/"+identificador+"/alerta.txt";
+	
+		$.ajax({
+						url : url,
+						type: "GET",
+						dataType: "text",
+						success : function (data) {
+							i = indice;
+							
+							notificacao_local(nome,'Crianca no Carro: ' + data, 1);
+	
+							document.getElementById("status").innerHTML = "Buscando localizacao no mapa...";
+    
+							var teste = setInterval(playsound,3000);
+	
+							document.getElementById("principal").innerHTML = "<br><br><iframe width=80% height=200px src='https://www.google.com/maps/embed/v1/place?q="+data+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe><br><img src='imagens/alert.gif' width=100% align='center' class='alerta' onclick='desativa();'>";
+						},
+						error:function (error){
+							//alert(JSON.stringify(error));
+							//$("div").text("loading...");
+							//load();
+						}
+					});	
+
+		
+	}
+
+}
+
+
+function define_local(){
+	
+var tempo = new Date();
+var virtualid = "";
+var tempo_base_36 = tempo.getTime().toString(36).toUpperCase();
+
+navigator.globalization.getPreferredLanguage(function(language){idioma = language.value;}, function () {alert('Error getting language\n');}
+);
+
+navigator.globalization.getLocaleName(function(locale){local = locale.value;}, function () {alert('Error getting locale\n');}
+);
+
+idioma = idioma.substring(0, 2);
+local = local.substr(local.indexOf("-") + 1);
+
+virtualid = local+idioma+device.uuid+tempo_base_36;
+
+//mensagem("idioma: "+idioma+"<br>Local: "+local);
+mensagem("Um novo usuário foi definido para este aparelho: "+virtualid+".<br>Este código identifica você em todo o sistema e assegura a sua privacidade.<br> Se você compartilhava alertas com outras pessoas, faça a sincronização novamente para este novo usuário.");
+
+if(localStorage.getItem("local") === null) 
+ 		{ 
+		localStorage.setItem("local", local);
+		localStorage.setItem("idioma", idioma);
+		localStorage.setItem("virtualid", virtualid);
+		assinatura();
+		}
+	
+}
+
+
 //---------------------------------------------------------------------------- COORDENADAS  ----------------------------------------------------------------------------
 
 function localizacao()
