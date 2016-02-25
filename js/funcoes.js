@@ -43,7 +43,7 @@ function onDeviceReady() {
 		//		divulgue();
 		//	}
 			
-		//ultima_cogido_localizacao();
+		//ultima_localizacao();
 
 }
 
@@ -75,7 +75,7 @@ function home(){
 
 
 
-function ultima_cogido_localizacao(){
+function ultima_localizacao(){
 
 var virtualid = cogido_localStorage.getItem("virtualid");
 var cogido_local = cogido_localStorage.getItem("cogido_local");
@@ -174,7 +174,7 @@ if(cogido_localStorage.getItem("cogido_local") === null)
 
 //---------------------------------------------------------------------------- COORDENADAS  ----------------------------------------------------------------------------
 
-function cogido_localizacao()
+function localizacao()
 {
 
 if (navigator.geolocation) {
@@ -192,13 +192,13 @@ if (navigator.geolocation) {
  function showPosition(position) {
     var latlon = position.coords.latitude + "," + position.coords.longitude;
 	
-	//atualiza ultima_cogido_localizacao para registro no servidor
+	//atualiza ultima_localizacao para registro no servidor
 	cogido_localStorage.setItem("latlon", latlon);
 	
 	
 	notificacao_cogido_local('ALERTA','Crianca no Carro: ' + latlon, 1);
 	
-	 document.getElementById("status").innerHTML = "Buscando cogido_localizacao no mapa...";
+	 document.getElementById("status").innerHTML = "Buscando localizacao no mapa...";
     
 	var teste = setInterval(playsound,3000);
 	
@@ -236,7 +236,7 @@ alert('2');
 var velocidade = Math.round(position.coords.speed * 3.6);
 var latlon = position.coords.latitude + "," + position.coords.longitude;
 
-//atualiza ultima_cogido_localizacao para registro no servidor
+//atualiza ultima_localizacao para registro no servidor
 cogido_localStorage.setItem("latlon", latlon);
 
 alert('3');
@@ -335,7 +335,7 @@ var qtde_in = conta_in();
 		document.getElementById("status").innerHTML = "<h4 align='center'>ALERT</h4>";
 		onboard = false;
 		alerta = true;
-		setTimeout(cogido_localizacao,30000);
+		setTimeout(localizacao,30000);
 		}
 	
 }
