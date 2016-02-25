@@ -175,11 +175,11 @@ navigator.globalization.getLocaleName(function(locale){cogido_local = locale.val
 
 
 
-idioma = idioma.substring(0, 2);
+idioma = idioma.substr(0, 2);
 
 alert('passo 5');
 
-cogido_local = cogido_local.substring(cogido_local.indexOf("-") + 1);
+cogido_local = cogido_local.substr(cogido_local.indexOf("-") + 1);
 
 
 alert('juro que nao sei');
