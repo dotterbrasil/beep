@@ -369,5 +369,394 @@ var qtde_in = conta_in();
 	
 }
 
+//---------------------------------------------------------------------------- KIDS  ----------------------------------------------------------------------------
+
+function kids(){ 
+ 
+var crianca = prompt("Nome: ","").toUpperCase(); 
+var indice = conta_kids(); 
+ 
+if (typeof(Storage) !== "undefined") 
+	{ 
+	localStorage.setItem("kid"+indice,crianca); 
+	} else {    document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";} 
+ 
+localStorage.setItem("kid"+indice,crianca); 
+
+lista_kids();
+
+}
+
+function kids_ble(){
+
+document.location.href = "kids_ble.html";
+	
+}
+ 
+ 
+function lista_kids(){ 
+
+var itens = ""; 
+var indice = conta_kids(); 
+ 
+if (typeof(Storage) !== "undefined") 
+	{ 
+ 	//if(localStorage.length) 
+	if(indice > 0)
+ 		{ 
+ 		for ( var i = 0, len = localStorage.length; i < len; ++i )
+ 			{ 
+ 			if(localStorage.getItem("kid"+i) !== null) 
+ 				{ 
+ 				itens = itens + "<div onclick='qrcode("+i+");'>"+localStorage.getItem("kid"+i) + "  <img src='imagens/menos.png' class='icone' onclick='limpa_kid(" + i + ");'></div><br>"; 
+ 				} 
+ 			} 
+ 		if(indice>0)
+			{
+			document.getElementById("status").innerHTML = "<hr><font face='sans-serif'>" + itens + "</font><hr />";
+			}
+ 		} 
+ 		else {	alert("Cadastre as criancas.");	} 
+ 	 
+ 	} else {    document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";} 
+ 
+} 
+
+
+
+function qrcode(i){
+
+var qrcode = "<img src='http://chart.apis.google.com/chart?cht=qr&chl="+localStorage.getItem("kid"+i)+i+"&chs=200x200'>";
+
+document.getElementById("status").innerHTML = "<h3 align='center'><font face='sans-serif'>" + localStorage.getItem("kid"+i)+" - QRCODE</h3><hr>";
+
+document.getElementById("lista").innerHTML = qrcode + "<br> Este QRCODE deve ser impresso e colocado na cadeirinha. <div onclick='help_qrcode();'>SAIBA COMO</div>";
+
+document.getElementById("links").innerHTML = "<a href='config.html' class='blue'><b>BACK</a> - </b><img src='imagens/menos.png' class='icone' onclick='qr_print(qrcode);'>"
+
+}
+
+function limpa_kid(i){
+	localStorage.removeItem("kid"+i);
+	//lista_kids();
+	location.reload();
+  }
+
+
+function conta_kids(){
+
+var indice = 0;
+
+if (typeof(Storage) !== "undefined")
+	{
+	if(localStorage.length)
+		{
+		for ( var i = 0, len = localStorage.length; i < len; ++i )
+			{
+			if(localStorage.getItem("kid"+i) !== null)
+				{
+				++indice;
+				}
+			}
+		}
+	
+	} else {    document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";}
+
+return indice;
+
+}
+
+function conta_in(){
+
+var indice = conta_kids();
+var indice_in = 0;
+
+
+if (typeof(Storage) !== "undefined")
+	{
+	if(localStorage.length)
+		{
+		for ( var i = 0; i < indice; ++i )
+			{
+			if(localStorage.getItem("in"+i) !== null)
+				{
+				++indice_in;
+				}
+			}
+		}
+	
+	} else {    document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";}
+
+return indice_in;
+
+}
+
+function check_in(){
+
+var indice = conta_kids();
+var itens = "";
+var ul = document.getElementById("lista");
+var li = document.createElement("li");
+
+onboard = true;
+
+for (var i=0; i<indice; ++i)
+	{
+	var kid = localStorage.getItem("kid"+i);
+	localStorage.setItem("in"+i,localStorage.getItem("kid"+i));
+	
+	itens = itens + "<div>"+localStorage.getItem("in"+i) + " <a href='javascript:startScan();' class='green'><b>CHECK OUT</b></a></div><br>";
+	
+	li.appendChild(document.createTextNode(kid));
+	li.setAttribute("id", kid); // added line
+	ul.appendChild(li);
+	
+	var conteudo = "<input type='checkbox' class='children--item-checkbox' id='"+kid+"_check' value='tue' /><label for='"+kid+"_check' class='children--item-label light'>"+kid+"</label>";
+	document.getElementById(kid).innerHTML = conteudo;
+	
+	
+	}
+
+}
+
+
+function check_out(i){
+
+if(localStorage.getItem("in"+i) !== null)
+	{
+	alert("Crianca "+localStorage.getItem("in"+i)+" retirada");
+	localStorage.removeItem("in"+i);
+	//location.reload();
+	document.location.href = "index.html";
+	}
+	else {alert("Crianca ja saiu ou nao entrou no carro");}
+	
+var indice = conta_in();
+if (indice==0) { home(); }
+}
+
+function total_checkout(){
+
+var indice = conta_kids();
+var i = 0;
+
+notificacao_local('ALERTA','Alerta desativado em modo manual. ATENCAO: este procedimento pode colocar a crianca em risco!', 1);
+//var reaviso = setTimeout(localizacao,30000);
+//onError();
+
+for (i=0; i<indice; ++i)
+	{
+	alert("Chekout Manual! Crianca "+localStorage.getItem("in"+i)+" retirada de forma insegura.");
+	localStorage.removeItem("in"+i);
+	//location.reload();
+	//document.location.href = "index.html";
+	}
+	
+if (!(i<indice)) { setTimeout(home,2000); }
+}
+
+
+//---------------------------------------------------------------------------- MEDIA  ----------------------------------------------------------------------------
+
+
+function playsound() {
+  
+  var url = getMediaURL("sons/alerta.wav");
+  
+  var my_media = new Media(url,null,mediaError);
+  
+  my_media.play();
+  
+}
+
+function getMediaURL(s) {
+
+
+    if(device.platform.toLowerCase() === "android") return "/android_asset/www/" + s;
+	if(device.platform.toLowerCase() === "ios") return "/" + s;
+	
+    return 'file://'+ s;
+}
+
+
+function mediaError(){
+	var element = document.getElementById('status');
+	
+	element.innerHTML = 'Erro de Som';
+
+}
+
+
+//---------------------------------------------------------------------------- SCANNER  ----------------------------------------------------------------------------
+
+var aux = "";
+
+function startScan() {
+
+	var scanner = cordova.require("cordova/plugin/BarcodeScanner");
+	
+
+	scanner.scan(
+		function (result) {
+						
+			aux = result.text;
+			if(result.format == 'QR_CODE')
+				{
+					seguidor = aux.substring(0, 6);
+					alert(seguidor);
+					if (seguidor == "follow")
+						{
+							seguidor = seguidor.replace("follow", "");
+							uuid_follow(seguidor);
+						}
+						else{
+							identificador = aux.substring(aux.length-1);
+							check_out(identificador);
+						}
+				}
+				else{	total_checkout();	}
+		}, 
+		function (error) {
+			alert("Scanning failed: " + error);
+		}
+	);
+
+		
+}
+
+function desativa(){
+
+var indice = conta_in();
+
+if (indice==0)	{	home();	}
+	else{	startScan();	}
+
+}
+
+
+//---------------------------------------------------------------------------- Conexao Bateria  ----------------------------------------------------------------------------
+
+function monitora_bateria(){
+
+window.addEventListener("batterystatus", onBatteryStatus, false);
+
+}
+
+function onBatteryStatus(info) {
+	
+		//document.getElementById('status').innerHTML = "Level: " + info.level + " isPlugged: " + info.isPlugged;
+		
+		plugado = info.isPlugged;
+		
+		if (onboard == true)
+			{
+			if (!plugado)
+				{
+				if ( battery_notification < 1 ) { notificacao_local('ALERTA','Recomenda-se o uso com o carregador conectado.', 1); }
+				battery_notification++;
+				if ( battery_notification >10 ) { battery_notification = 0; }
+				if (plugado_anterior) { gera_alarme(); }
+				}
+				//else{	onboard = true;check_in();	}
+			}
+			else{ if (plugado){	document.location.href = "index.html";	}	}
+			
+		plugado_anterior = plugado;
+			
+	}
+	
+	
+//---------------------------------------------------------------------------- Avaliacao de Caminhada  ----------------------------------------------------------------------------
+
+	var loop = 0;	
+	var contador = 0;
+	var soma_eixo = 0;
+	var media = 0;
+	var array_eixo = new Array();
+	var anterior = false;
+	
+	
+	function iswalking(){ 
+
+		loop = 0;	
+		contador = 0;
+		soma_eixo = 0;
+		media = 0;
+		array_eixo = [];
+		anterior = false;
+		accelerometer();
+	}		
+	function accelerometer(){ 
+		navigator.accelerometer.getCurrentAcceleration(motion, error);
+	}
+	function error(){
+		mensagem('Error!');
+		home();
+	}
+	function motion(acceleration){
+		var x = acceleration.x;
+		var x_int = Math.round(x);
+		var accel_x = Math.pow(x_int, 2);
+		
+		var y = acceleration.y;
+		var y_int = Math.round(y);
+		var accel_y = Math.pow(y_int, 2);
+		
+		var z = acceleration.z;
+		var z_int = Math.round(z);
+		var accel_z = Math.pow(z_int, 2);
+		
+		if(loop < 50){			
+			//var xyz = modulo(Math.pow(accel_x,2) + Math.pow(accel_y,2) + Math.pow(accel_z,2) - 97);
+			var xyz = Math.pow(accel_x,2) + Math.pow(accel_y,2) + Math.pow(accel_z,2);
+			//var xyz = accel_x + accel_y + accel_z;
+			var xyzSqrt = Math.sqrt(xyz);
+			//var eixo = Math.round(xyzSqrt);
+			var eixo = xyzSqrt;
+			array_eixo.push(eixo);
+			
+			soma_eixo = soma_eixo + eixo;
+			loop++;
+			setTimeout(accelerometer, 100);	
+		}
+		else
+		{		
+			var m = soma_eixo / 50;
+			media = Math.round(m);
+			//walking_monitor = false;
+			
+			for (i = 0; i < 50; i++){	
+				var v = array_eixo[i] - media;
+				var vetor = Math.round(v);
+				
+				if(!anterior){
+					if(vetor > 1){
+						contador++;
+						anterior = true;					
+					}
+					//else if (vetor <= '-2')
+					else if (vetor <= '-1')
+					{
+						anterior = false;
+					}
+				}
+				else 
+				{
+					//if(vetor <= '-2') {
+					if(vetor <= '-1') {
+						anterior = false; 
+					}
+				}  
+			} 
+			frequencia = contador / 5;
+			
+				
+			//if(frequencia > '1.2' && frequencia < '3.4') {	gera_alarme();	} else { walking_monitor = false;}
+			if(frequencia > '1.2' && frequencia < '3.4') {	gera_alarme();	} else { walking_monitor = false;}
+
+
+		}
+	}
+
 
 
