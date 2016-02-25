@@ -508,11 +508,8 @@ for (var i=0; i<indice; ++i)
 	
 	itens = itens + "<div>"+localStorage.getItem("in"+i) + " <a href='javascript:startScan();' class='green'><b>CHECK OUT</b></a></div><br>";
 	
-	li.appendChild(document.createTextNode(kid));
-	li.setAttribute("id", kid); // added line
-	ul.appendChild(li);
-	
-	var conteudo = "<input type='checkbox' class='children--item-checkbox' id='"+kid+"_check' value='tue' /><label for='"+kid+"_check' class='children--item-label light'>"+kid+"</label>";
+		
+	var conteudo = "<li class='children--item'><input type='checkbox' class='children--item-checkbox' id='"+kid+"_check' checked onclick='startScan();'/><label for='"+kid+"_check' class='children--item-label light'>"+kid+"</label></li>";
 	document.getElementById(kid).innerHTML = conteudo;
 	
 	
