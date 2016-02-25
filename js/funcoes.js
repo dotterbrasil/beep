@@ -145,6 +145,8 @@ navigator.globalization.getLocaleName(function(locale){local = locale.value;}, f
 idioma = idioma.substring(0, 2);
 local = local.substr(local.indexOf("-") + 1);
 
+
+alert('juro que nao sei');
 virtualid = local+idioma+device.uuid+tempo_base_36;
 
 //mensagem("idioma: "+idioma+"<br>Local: "+local);
