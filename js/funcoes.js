@@ -133,14 +133,21 @@ function define_local(){
 	alert('hhhh');
 	
 var tempo = new Date();
+alert('passo 1');
 var virtualid = "";
+alert('passo 2');
 var tempo_base_36 = tempo.getTime().toString(36).toUpperCase();
+alert('passo 3');
 
 navigator.globalization.getPreferredLanguage(function(language){idioma = language.value;}, function () {alert('Error getting language\n');}
 );
 
+alert('passo 4');
+
 navigator.globalization.getLocaleName(function(locale){local = locale.value;}, function () {alert('Error getting locale\n');}
 );
+
+alert('passo 5');
 
 idioma = idioma.substring(0, 2);
 local = local.substr(local.indexOf("-") + 1);
