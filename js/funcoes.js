@@ -28,8 +28,8 @@ function onDeviceReady() {
 		
 		cordova.plugins.backgroundMode.onactivate = le_publicidade();
 		cordova.plugins.notification.local.clearAll();
-
-		speed_monitor();
+alert('vai monitorar');
+		speed_monitor();alert('gora bateria');
 		monitora_bateria();
 		
 		movimentoID = navigator.accelerometer.watchAcceleration(despertar, error, {frequency: 1000});
