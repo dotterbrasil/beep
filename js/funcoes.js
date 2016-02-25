@@ -28,7 +28,7 @@ function onDeviceReady() {
 		cordova.plugins.backgroundMode.onactivate = le_publicidade();
 		cordova.plugins.notification.local.clearAll();
 
-		
+		alert('2');
 		monitora_bateria();
 		speed_monitor();
 		movimentoID = navigator.accelerometer.watchAcceleration(despertar, error, {frequency: 1000});
@@ -50,6 +50,8 @@ function onDeviceReady() {
 function inicializacao(){
 
 	onboard = false;
+	
+	alert('1');
 	
 	walking_monitor = false;
 	walking_notification = 0;
@@ -421,9 +423,7 @@ watchID = navigator.geolocation.watchPosition(onSuccessX, onError, { enableHighA
 
 function onSuccessX(position){
 
-var carro = document.getElementById('carspeed');
-var caminha = document.getElementById('walkspeed');
-
+var element = document.getElementById('status');
 var velocidade = Math.round(position.coords.speed * 3.6);
 var latlon = position.coords.latitude + "," + position.coords.longitude;
 
@@ -436,7 +436,7 @@ if(localStorage.getItem("local") === null) { define_local(); }
 	
 	if (velocidade < 0) { velocidade = 0;}
 
-	carro.innerHTML = velocidade  + " km/h";
+	element.innerHTML = "<br>" + velocidade  + " km/h";
 	
 	
 	if (velocidade < 5)
@@ -448,7 +448,8 @@ if(localStorage.getItem("local") === null) { define_local(); }
 				if (walking_monitor == false)
 					{
 					if ( walking_notification < 1 ) { notificacao_local('VELOCIDADE BAIXA','Avaliando saida do carro.', 1); }
-					document.location.href = "avaliacao.html";
+					element.innerHTML = "<h3 align='center'>is walking ?</h3>";
+					document.getElementById("principal").innerHTML = "<img src='imagens/walking.png' align='center'>";
 					walking_monitor = true;
 					walking_notification++;
 					if (walking_notification > 10) { walking_notification = 0; }
@@ -470,7 +471,8 @@ if(localStorage.getItem("local") === null) { define_local(); }
 					{ notificacao_local('VELOCIDADE','Checkin Efetuado. Conecte o carregador.', 1);	}
 				}
 		if (alerta == true) { home(); }
-		document.location.href = "onboard.html";		
+		onboard = true;
+		check_in();		
 		}
 }
 
