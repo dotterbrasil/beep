@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Baby Beep</title>
+<meta charset="utf-8" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+
+<script type="text/javascript" src="js/funcoes.js"></script>
+<script src="js/jquery-1.11.3.min.js"></script>
+
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="barcodescanner.js"></script>
+<script type="text/javascript" src="childbrowser.js"></script>
+
+<link rel="stylesheet" href="css/layout.css" type="text/css">
+
+
+</head>
+
+
+<body onload="inicializacao();">
+
+<div id="container" class="parent">
+	<div id="header" class="topo" align="center">
+		<img src="imagens/logo.gif" align="center" width=100% align="center" onclick='ultima_localizacao();'>
+		<!--<a target="_blank" href="http://www.facebook.com/sharer.php?u=www.dotter.com.br/beep.html"><img src="imagens/facebook.jpg" border=0 width=30 height=30 /></a> -->
+	</div>
+	
+	<div id="principal" class="central" onclick="onboard = true; check_in();" align="center">
+	<img src="imagens/stand.png" align="center" onclick="onboard = true; check_in();">
+	</div>
+
+	<div id="status" class="status" align="center"></div>
+	<div id="lista" class="lista" align="center">
+	
+	<div id="botao_share" class="share"><img src="imagens/share.png" onclick="location.href='share.html';"></div>
+	<div id="botao_location" class="location"><img src="imagens/location.png" onclick="location.href='config.html';"></div>
+	<div id="botao_config" class="config"><img src="imagens/config.png" onclick="location.href='config.html';"></div>
+	<div id="botao_help" class="help"><img src="imagens/help.png" onclick="location.href='config.html';"></div>
+	
+	<div id="links" align="center" class="rodape">
+		<img src="imagens/warning.png" class="assinatura" align="center">
+		Este aplicativo não substitui a atenção e a supervisão dos pais pela saude e seguranca da criança.
+	</div>
+
+	</div>
+	
+	<div id="mensagem" class="mensagem" onclick="document.getElementById('mensagem').style.display = 'none';"><div>
+</div>
+
+</body>
+</html>

@@ -25,13 +25,12 @@ function onDeviceReady() {
 		notification_id = 1;
 		cordova.plugins.backgroundMode.enable();
 		//cordova.plugins.backgroundMode.onactivate = function() {notificacao_local('WARNING','Este aplicativo e apenas uma ferramenta e nao substitui a atencao e a supervisao de maior responsavel pela saude e seguranca da crianca.', 1);};
-		
 		cordova.plugins.backgroundMode.onactivate = le_publicidade();
 		cordova.plugins.notification.local.clearAll();
 
-		speed_monitor();
-		monitora_bateria();
 		
+		monitora_bateria();
+		speed_monitor();
 		movimentoID = navigator.accelerometer.watchAcceleration(despertar, error, {frequency: 1000});
 		alertasID = setInterval(busca_alertas, 180000);
 		
@@ -136,10 +135,6 @@ if(localStorage.getItem("local") === null)
 	
 }
 
-//---------------------------------------------------------------------------- SERVER COMUNICATION  ----------------------------------------------------------------------------
-
-
-
 function ultima_localizacao(){
 
 var virtualid = localStorage.getItem("virtualid");
@@ -163,10 +158,7 @@ var dados = {id: virtualid, pais: local, latlon: last_latlon}
 					}); 
 }
 
-
-
 function assinatura(){
-//Cria pasta de usuario no servidor
 
 var virtualid = localStorage.getItem("virtualid");
 var local = localStorage.getItem("local");
@@ -186,10 +178,7 @@ var dados = {id: virtualid, pais: local}
 					}); 
 }
 
-
-
 function registra_alerta(){
-//envia localizacao de evento ALERTA para o servidor
 
 var virtualid = localStorage.getItem("virtualid");
 var local = localStorage.getItem("local");
@@ -213,8 +202,6 @@ var dados = {id: virtualid, pais: local, latlon: last_latlon}
 
 function le_publicidade(){
 	
-	//le dados de um anuncio no servidor (se houver)
-	
 	var local = localStorage.getItem("local");
 	var url = "http://piuui.com/BR/advertisement.txt";
 	
@@ -235,47 +222,7 @@ function le_publicidade(){
 }
 
 
-function busca_alertas(){
-
-//verifica a existencia de alertas gerados por outros usuarios e aciona alerta local se houver
-
-var indice = conta_uuid();
-
-for (i=0, i<indice, i++)
-	{
-		identificador = localStorage.getItem("follow_uuid"+indice);
-		nome = localStorage.getItem("follow_uuid"+name);
-		
-		var local = identificador.substring(0,2);
-		
-		var url = "http://piuui.com/"+local+"/"+identificador+"/alerta.txt";
 	
-		$.ajax({
-						url : url,
-						type: "GET",
-						dataType: "text",
-						success : function (data) {
-							i = indice;
-							
-							notificacao_local(nome,'Crianca no Carro: ' + data, 1);
-	
-							document.getElementById("status").innerHTML = "Buscando localizacao no mapa...";
-    
-							var teste = setInterval(playsound,3000);
-	
-							document.getElementById("principal").innerHTML = "<br><br><iframe width=80% height=200px src='https://www.google.com/maps/embed/v1/place?q="+data+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe><br><img src='imagens/alert.gif' width=100% align='center' class='alerta' onclick='desativa();'>";
-						},
-						error:function (error){
-							//alert(JSON.stringify(error));
-							//$("div").text("loading...");
-							//load();
-						}
-					});	
-
-		
-	}
-
-}
 
 
 
@@ -343,6 +290,45 @@ function uuid_follow(identificador){
 	
 }
 
+function busca_alertas(){
+
+var indice = conta_uuid();
+
+for (i=0, i<indice, i++)
+	{
+		identificador = localStorage.getItem("follow_uuid"+indice);
+		nome = localStorage.getItem("follow_uuid"+name);
+		
+				var local = identificador.substring(0,2);
+		
+	var url = "http://piuui.com/"+local+"/"+identificador+"/alerta.txt";
+	
+		$.ajax({
+						url : url,
+						type: "GET",
+						dataType: "text",
+						success : function (data) {
+							i = indice;
+							
+							notificacao_local(nome,'Crianca no Carro: ' + data, 1);
+	
+							document.getElementById("status").innerHTML = "Buscando localizacao no mapa...";
+    
+							var teste = setInterval(playsound,3000);
+	
+							document.getElementById("principal").innerHTML = "<br><br><iframe width=80% height=200px src='https://www.google.com/maps/embed/v1/place?q="+data+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe><br><img src='imagens/alert.gif' width=100% align='center' class='alerta' onclick='desativa();'>";
+						},
+						error:function (error){
+							//alert(JSON.stringify(error));
+							//$("div").text("loading...");
+							//load();
+						}
+					});	
+
+		
+	}
+
+}
 
 function qr_print(qrcode){
 
@@ -435,9 +421,7 @@ watchID = navigator.geolocation.watchPosition(onSuccessX, onError, { enableHighA
 
 function onSuccessX(position){
 
-var carro = document.getElementById('carspeed');
-var caminha = document.getElementById('walkpeed');
-
+var element = document.getElementById('status');
 var velocidade = Math.round(position.coords.speed * 3.6);
 var latlon = position.coords.latitude + "," + position.coords.longitude;
 
@@ -450,8 +434,8 @@ if(localStorage.getItem("local") === null) { define_local(); }
 	
 	if (velocidade < 0) { velocidade = 0;}
 
-	carro.innerHTML = velocidade  + " km/h";
-		
+	element.innerHTML = "<br>" + velocidade  + " km/h";
+	
 	
 	if (velocidade < 5)
 		{
@@ -462,7 +446,8 @@ if(localStorage.getItem("local") === null) { define_local(); }
 				if (walking_monitor == false)
 					{
 					if ( walking_notification < 1 ) { notificacao_local('VELOCIDADE BAIXA','Avaliando saida do carro.', 1); }
-					document.location.href = "avaliacao.html";
+					element.innerHTML = "<h3 align='center'>is walking ?</h3>";
+					document.getElementById("principal").innerHTML = "<img src='imagens/walking.png' align='center'>";
 					walking_monitor = true;
 					walking_notification++;
 					if (walking_notification > 10) { walking_notification = 0; }
@@ -484,7 +469,8 @@ if(localStorage.getItem("local") === null) { define_local(); }
 					{ notificacao_local('VELOCIDADE','Checkin Efetuado. Conecte o carregador.', 1);	}
 				}
 		if (alerta == true) { home(); }
-		document.location.href = "onboard.html";
+		onboard = true;
+		check_in();		
 		}
 }
 
@@ -678,28 +664,24 @@ function check_in(){
 
 var indice = conta_kids();
 var itens = "";
-var ul = document.getElementById("lista");
-var li = document.createElement("li");
-
-onboard = true;
 
 for (var i=0; i<indice; ++i)
 	{
-	var kid = localStorage.getItem("kid"+i);
 	localStorage.setItem("in"+i,localStorage.getItem("kid"+i));
 	
 	itens = itens + "<div>"+localStorage.getItem("in"+i) + " <a href='javascript:startScan();' class='green'><b>CHECK OUT</b></a></div><br>";
 	
-	li.appendChild(document.createTextNode(kid));
-	li.setAttribute("id", kid); // added line
-	ul.appendChild(li);
-	
-	var conteudo = "<input type='checkbox' class='children--item-checkbox' id='"+kid+"_check' value='tue' /><label for='"+kid+"_check' class='children--item-label light'>"+kid+"</label>";
-	document.getElementById(kid).innerHTML = conteudo;
-	
-	
 	}
 
+if(indice>0)
+	{
+	document.getElementById("principal").innerHTML = "";
+	//document.getElementById("lista").innerHTML = "<h3 align='center'>ONBOARD</h3>";
+	document.getElementById("principal").innerHTML = "<img src='imagens/onboard.png' align='center'>";
+	//document.getElementById("links").innerHTML = "<h3 align='center'>ONBOARD</h3><br><hr><font face='sans-serif'>" + itens + "</font><hr />";
+	document.getElementById("links").innerHTML = "<hr><font face='sans-serif' color='#0000'>" + itens + "</font><hr />";
+	}
+	
 }
 
 
