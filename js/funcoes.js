@@ -170,7 +170,7 @@ navigator.globalization.getPreferredLanguage(function(language){idioma = languag
 
 alert('passo 4');
 
-navigator.globalization.getcogido_localeName(function(locale){cogido_local = locale.value;}, function () {alert('Error getting locale\n');}
+navigator.globalization.getLocaleName(function(locale){cogido_local = locale.value;}, function () {alert('Error getting locale\n');}
 );
 
 alert('passo 5');
