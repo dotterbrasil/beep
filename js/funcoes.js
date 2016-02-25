@@ -14,7 +14,7 @@ var movimentoID;
 var alertasID;
 
 var idioma;
-var local;
+var cogido_local;
 var last_latlon;
 
 
@@ -24,10 +24,10 @@ function onDeviceReady() {
 		
 		notification_id = 1;
 		cordova.plugins.backgroundMode.enable();
-		//cordova.plugins.backgroundMode.onactivate = function() {notificacao_local('WARNING','Este aplicativo e apenas uma ferramenta e nao substitui a atencao e a supervisao de maior responsavel pela saude e seguranca da crianca.', 1);};
+		//cordova.plugins.backgroundMode.onactivate = function() {notificacao_cogido_local('WARNING','Este aplicativo e apenas uma ferramenta e nao substitui a atencao e a supervisao de maior responsavel pela saude e seguranca da crianca.', 1);};
 		
 		//cordova.plugins.backgroundMode.onactivate = le_publicidade();
-		cordova.plugins.notification.local.clearAll();
+		cordova.plugins.notification.cogido_local.clearAll();
 
 		
 		//monitora_bateria();
@@ -39,11 +39,11 @@ function onDeviceReady() {
 		//var x = Math.floor((Math.random() * 10) + 1);
 		//if ((x == 3)&&(!onboard))
 		//	{
-		//		notificacao_local('CONVITE','Compartilhe sua experiencia para continuar usando o aplicativo.', 1);
+		//		notificacao_cogido_local('CONVITE','Compartilhe sua experiencia para continuar usando o aplicativo.', 1);
 		//		divulgue();
 		//	}
 			
-		//ultima_localizacao();
+		//ultima_cogido_localizacao();
 
 }
 
@@ -75,15 +75,15 @@ function home(){
 
 
 
-function ultima_localizacao(){
+function ultima_cogido_localizacao(){
 
-var virtualid = localStorage.getItem("virtualid");
-var local = localStorage.getItem("local");
+var virtualid = cogido_localStorage.getItem("virtualid");
+var cogido_local = cogido_localStorage.getItem("cogido_local");
 
-last_latlon = localStorage.getItem("latlon");
+last_latlon = cogido_localStorage.getItem("latlon");
 
 
-var dados = {id: virtualid, pais: local, latlon: last_latlon}
+var dados = {id: virtualid, pais: cogido_local, latlon: last_latlon}
 
 						jQuery.ajax({
 						type: "POST",
@@ -105,10 +105,10 @@ function assinatura(){
 
 alert('assinatura');
 
-var virtualid = localStorage.getItem("virtualid");
-var local = localStorage.getItem("local");
+var virtualid = cogido_localStorage.getItem("virtualid");
+var cogido_local = cogido_localStorage.getItem("cogido_local");
 
-var dados = {id: virtualid, pais: local}
+var dados = {id: virtualid, pais: cogido_local}
 
 						jQuery.ajax({
 						type: "POST",
@@ -128,7 +128,7 @@ var dados = {id: virtualid, pais: local}
 
 
 
-function define_local(){
+function define_cogido_local(){
 	
 	alert('hhhh');
 	
@@ -144,28 +144,28 @@ navigator.globalization.getPreferredLanguage(function(language){idioma = languag
 
 alert('passo 4');
 
-navigator.globalization.getLocaleName(function(locale){local = locale.value;}, function () {alert('Error getting locale\n');}
+navigator.globalization.getcogido_localeName(function(cogido_locale){cogido_local = cogido_locale.value;}, function () {alert('Error getting cogido_locale\n');}
 );
 
 alert('passo 5');
 
 idioma = idioma.substring(0, 2);
-local = local.substr(local.indexOf("-") + 1);
+cogido_local = cogido_local.substr(cogido_local.indexOf("-") + 1);
 
 
 alert('juro que nao sei');
-virtualid = local+idioma+device.uuid+tempo_base_36;
+virtualid = cogido_local+idioma+device.uuid+tempo_base_36;
 
-//mensagem("idioma: "+idioma+"<br>Local: "+local);
+//mensagem("idioma: "+idioma+"<br>cogido_local: "+cogido_local);
 //alert("Um novo usuário foi definido para este aparelho: "+virtualid+".<br>Este código identifica você em todo o sistema e assegura a sua privacidade.<br> Se você compartilhava alertas com outras pessoas, faça a sincronização novamente para este novo usuário.");
 
 alert('meu deus');
 
-if(localStorage.getItem("local") === null) 
+if(cogido_localStorage.getItem("cogido_local") === null) 
  		{ 
-		localStorage.setItem("local", local);
-		localStorage.setItem("idioma", idioma);
-		localStorage.setItem("virtualid", virtualid);
+		cogido_localStorage.setItem("cogido_local", cogido_local);
+		cogido_localStorage.setItem("idioma", idioma);
+		cogido_localStorage.setItem("virtualid", virtualid);
 		assinatura();
 		}
 	
@@ -174,7 +174,7 @@ if(localStorage.getItem("local") === null)
 
 //---------------------------------------------------------------------------- COORDENADAS  ----------------------------------------------------------------------------
 
-function localizacao()
+function cogido_localizacao()
 {
 
 if (navigator.geolocation) {
@@ -192,13 +192,13 @@ if (navigator.geolocation) {
  function showPosition(position) {
     var latlon = position.coords.latitude + "," + position.coords.longitude;
 	
-	//atualiza ultima_localizacao para registro no servidor
-	localStorage.setItem("latlon", latlon);
+	//atualiza ultima_cogido_localizacao para registro no servidor
+	cogido_localStorage.setItem("latlon", latlon);
 	
 	
-	notificacao_local('ALERTA','Crianca no Carro: ' + latlon, 1);
+	notificacao_cogido_local('ALERTA','Crianca no Carro: ' + latlon, 1);
 	
-	 document.getElementById("status").innerHTML = "Buscando localizacao no mapa...";
+	 document.getElementById("status").innerHTML = "Buscando cogido_localizacao no mapa...";
     
 	var teste = setInterval(playsound,3000);
 	
@@ -217,7 +217,7 @@ if (navigator.geolocation) {
 function showError(error){
 
     var element = document.getElementById('status');
-notificacao_local('ERRO','Erro ao obter coordenadas.', 1);
+notificacao_cogido_local('ERRO','Erro ao obter coordenadas.', 1);
 
 }
 
@@ -236,12 +236,12 @@ alert('2');
 var velocidade = Math.round(position.coords.speed * 3.6);
 var latlon = position.coords.latitude + "," + position.coords.longitude;
 
-//atualiza ultima_localizacao para registro no servidor
-localStorage.setItem("latlon", latlon);
+//atualiza ultima_cogido_localizacao para registro no servidor
+cogido_localStorage.setItem("latlon", latlon);
 
 alert('3');
 
-if(localStorage.getItem("local") === null) { define_local(); }
+if(cogido_localStorage.getItem("cogido_local") === null) { define_cogido_local(); }
 
 	if (isNaN(velocidade)) { velocidade = 0;}
 	
@@ -266,7 +266,7 @@ if(localStorage.getItem("local") === null) { define_local(); }
 				{
 				if (walking_monitor == false)
 					{
-					if ( walking_notification < 1 ) { notificacao_local('VELOCIDADE BAIXA','Avaliando saida do carro.', 1); }
+					if ( walking_notification < 1 ) { notificacao_cogido_local('VELOCIDADE BAIXA','Avaliando saida do carro.', 1); }
 					document.location.href = "avaliacao.html";
 					walking_monitor = true;
 					walking_notification++;
@@ -282,12 +282,12 @@ if(localStorage.getItem("local") === null) { define_local(); }
 		document.getElementById("carspeed").textContent = texto_velocidade;
 		if (plugado)
 			{
-			if (onboard == false) {	notificacao_local('VELOCIDADE','Checkin Efetuado.', 1);}
+			if (onboard == false) {	notificacao_cogido_local('VELOCIDADE','Checkin Efetuado.', 1);}
 			}
 			else
 				{
 				if (onboard == false) 
-					{ notificacao_local('VELOCIDADE','Checkin Efetuado. Conecte o carregador.', 1);	}
+					{ notificacao_cogido_local('VELOCIDADE','Checkin Efetuado. Conecte o carregador.', 1);	}
 				}
 		if (alerta == true) { home(); }
 		document.location.href = "onboard.html";
@@ -302,7 +302,7 @@ function erro_posicao(error) {
 	if ((error.code == 3)&&(gps_on)&&(!onboard))
 		{
 		gps_on = false;
-		//notificacao_local('AVISO','Inatividade detectada.', 1);
+		//notificacao_cogido_local('AVISO','Inatividade detectada.', 1);
 		navigator.geolocation.clearWatch(watchID);
 		}
 		
@@ -317,7 +317,7 @@ var movimento = modulo(Math.pow(acceleration.x,2) + Math.pow(acceleration.y,2) +
 if ((movimento > 10)&&(!gps_on)&&(!onboard))
 	{
 	gps_on = true;
-	//notificacao_local('AVISO','Monitoramento Acionado.', 1);
+	//notificacao_cogido_local('AVISO','Monitoramento Acionado.', 1);
 	home();
 	}
 
@@ -330,12 +330,12 @@ var qtde_in = conta_in();
 	
 	if (qtde_in > 0)
 		{
-		notificacao_local('ALERTA','Crianca presente no carro.', 1);
+		notificacao_cogido_local('ALERTA','Crianca presente no carro.', 1);
 		document.getElementById("principal").innerHTML = "<img src='imagens/checkout.png' align='center'>";
 		document.getElementById("status").innerHTML = "<h4 align='center'>ALERT</h4>";
 		onboard = false;
 		alerta = true;
-		setTimeout(localizacao,30000);
+		setTimeout(cogido_localizacao,30000);
 		}
 	
 }
