@@ -296,7 +296,7 @@ localStorage.setItem("latlon", latlon);
 				{
 				if (walking_monitor == false)
 					{
-					if ( walking_notification < 1 ) { notificacao_cogido_local('VELOCIDADE BAIXA','Avaliando saida do carro.', 1); }
+					if ( walking_notification < 1 ) { notificacao_local('VELOCIDADE BAIXA','Avaliando saida do carro.', 1); }
 					document.location.href = "avaliacao.html";
 					walking_monitor = true;
 					walking_notification++;
