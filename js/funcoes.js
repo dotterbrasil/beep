@@ -131,11 +131,6 @@ watchID = navigator.geolocation.watchPosition(nova_posicao, erro_posicao, { enab
 function nova_posicao(position){
 
 
-
-document.getElementById("carspeed").innerHTML = "oba";
-
-
-
 var velocidade = Math.round(position.coords.speed * 3.6);
 var latlon = position.coords.latitude + "," + position.coords.longitude;
 
