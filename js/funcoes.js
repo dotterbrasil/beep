@@ -173,7 +173,8 @@ navigator.globalization.getPreferredLanguage(function(language){idioma = languag
 navigator.globalization.getLocaleName(function(locale){cogido_local = locale.value;}, function () {alert('Error getting locale\n');}
 );
 
-
+alert(idioma);
+alert(codigo_local);
 
 //idioma = idioma.substring(0, 2);
 
