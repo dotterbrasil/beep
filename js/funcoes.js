@@ -122,7 +122,7 @@ notificacao_local('ERRO','Erro ao obter coordenadas.', 1);
 
  
 function speed_monitor(){
-
+alert('1');
 gps_on = true;
 watchID = navigator.geolocation.watchPosition(nova_posicao, erro_posicao, { enableHighAccuracy: true, timeout: 180000, maximumAge: 1000 });
 
@@ -130,6 +130,7 @@ watchID = navigator.geolocation.watchPosition(nova_posicao, erro_posicao, { enab
 
 function nova_posicao(position){
 
+alert('2');
 
 var velocidade = Math.round(position.coords.speed * 3.6);
 var latlon = position.coords.latitude + "," + position.coords.longitude;
@@ -143,10 +144,14 @@ if(localStorage.getItem("local") === null) { define_local(); }
 	
 	if (velocidade < 0) { velocidade = 0;}
 	
-	texto_velocidade =   velocidade.toString() + " km/h";
+	alert('3');
+	
+	texto_velocidade =   velocidade.toString();
+	
+	texto_velocidade =  texto_velocidade + " km/h";
 	
 	
-	alert('hey');
+	alert(texto_velocidade);
 	document.getElementById("walkspeed").textContent = texto_velocidade;
 	
 	if (velocidade < 5)
