@@ -148,7 +148,9 @@ local = local.substr(local.indexOf("-") + 1);
 virtualid = local+idioma+device.uuid+tempo_base_36;
 
 //mensagem("idioma: "+idioma+"<br>Local: "+local);
-alert("Um novo usuário foi definido para este aparelho: "+virtualid+".<br>Este código identifica você em todo o sistema e assegura a sua privacidade.<br> Se você compartilhava alertas com outras pessoas, faça a sincronização novamente para este novo usuário.");
+//alert("Um novo usuário foi definido para este aparelho: "+virtualid+".<br>Este código identifica você em todo o sistema e assegura a sua privacidade.<br> Se você compartilhava alertas com outras pessoas, faça a sincronização novamente para este novo usuário.");
+
+alert('meu deus');
 
 if(localStorage.getItem("local") === null) 
  		{ 
