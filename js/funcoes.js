@@ -175,11 +175,11 @@ navigator.globalization.getLocaleName(function(locale){cogido_local = locale.val
 
 
 
-idioma = idioma.substr(0, 2);
+//idioma = idioma.substring(0, 2);
 
 alert('passo 5');
 
-cogido_local = cogido_local.substr(cogido_local.indexOf("-") + 1);
+//cogido_local = cogido_local.substr(cogido_local.indexOf("-") + 1);
 
 
 alert('juro que nao sei');
@@ -270,7 +270,7 @@ localStorage.setItem("latlon", latlon);
 
 alert('3');
 
-if(localStorage.getItem("cogido_local") === null) { define_local(); }
+//if(localStorage.getItem("cogido_local") === null) { define_local(); }
 
 	if (isNaN(velocidade)) { velocidade = 0;}
 	
