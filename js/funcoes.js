@@ -57,6 +57,8 @@ function inicializacao(){
 	battery_notification = 0;
 	
 	notification_id = 1;
+	
+	alert('xiii');
 				
 	document.addEventListener("deviceready", onDeviceReady, false);
 }
