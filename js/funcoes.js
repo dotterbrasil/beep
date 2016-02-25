@@ -129,7 +129,7 @@ var dados = {id: virtualid, pais: cogido_local, latlon: last_latlon}
 function assinatura(){
 //Cria pasta de usuario no servidor
 
-alert('assinatura');
+
 
 var virtualid = localStorage.getItem("virtualid");
 var cogido_local = localStorage.getItem("cogido_local");
@@ -156,19 +156,19 @@ var dados = {id: virtualid, pais: cogido_local}
 
 function define_local(){
 	
-	alert('hhhh');
+	
 	
 var tempo = new Date();
-alert('passo 1');
+
 var virtualid = "";
-alert('passo 2');
+
 var tempo_base_36 = tempo.getTime().toString(36).toUpperCase();
-alert('passo 3');
+
 
 navigator.globalization.getPreferredLanguage(function(language){idioma = language.value;}, function () {alert('Error getting language\n');}
 );
 
-alert('passo 4');
+
 
 navigator.globalization.getLocaleName(function(locale){cogido_local = locale.value;}, function () {alert('Error getting locale\n');}
 );
@@ -177,18 +177,18 @@ navigator.globalization.getLocaleName(function(locale){cogido_local = locale.val
 
 //idioma = idioma.substring(0, 2);
 
-alert('passo 5');
+
 
 //cogido_local = cogido_local.substr(cogido_local.indexOf("-") + 1);
 
 
-alert('juro que nao sei');
+
 virtualid = cogido_local+idioma+device.uuid+tempo_base_36;
 
 //mensagem("idioma: "+idioma+"<br>cogido_local: "+cogido_local);
 //alert("Um novo usuário foi definido para este aparelho: "+virtualid+".<br>Este código identifica você em todo o sistema e assegura a sua privacidade.<br> Se você compartilhava alertas com outras pessoas, faça a sincronização novamente para este novo usuário.");
 
-alert('meu deus');
+
 
 if(localStorage.getItem("cogido_local") === null) 
  		{ 
@@ -252,7 +252,7 @@ notificacao_cogido_local('ERRO','Erro ao obter coordenadas.', 1);
 
  
 function speed_monitor(){
-alert('1');
+
 gps_on = true;
 watchID = navigator.geolocation.watchPosition(nova_posicao, erro_posicao, { enableHighAccuracy: true, timeout: 180000, maximumAge: 1000 });
 
@@ -260,7 +260,7 @@ watchID = navigator.geolocation.watchPosition(nova_posicao, erro_posicao, { enab
 
 function nova_posicao(position){
 
-alert('2');
+
 
 var velocidade = Math.round(position.coords.speed * 3.6);
 var latlon = position.coords.latitude + "," + position.coords.longitude;
@@ -268,7 +268,7 @@ var latlon = position.coords.latitude + "," + position.coords.longitude;
 //atualiza ultima_localizacao para registro no servidor
 localStorage.setItem("latlon", latlon);
 
-alert('3');
+
 
 //if(localStorage.getItem("cogido_local") === null) { define_local(); }
 
@@ -276,14 +276,14 @@ alert('3');
 	
 	if (velocidade < 0) { velocidade = 0;}
 	
-	alert('4');
+	
 	
 	texto_velocidade =   velocidade.toString();
 	
 	texto_velocidade =  texto_velocidade + " km/h";
 	
 	
-	alert(texto_velocidade);
+	
 	document.getElementById("walkspeed").textContent = texto_velocidade;
 	
 	if (velocidade < 5)
