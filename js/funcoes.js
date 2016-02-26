@@ -125,7 +125,7 @@ codigo_local = codigo_local.substr(aux);
 
 virtualid = codigo_local+idioma+device.uuid+tempo_base_36;
 
-alert("idioma: "+idioma+"<br>Local: "+codigo_local);
+alert("idioma: "+idioma+" - Local: "+codigo_local);
 alert("Um novo usuário foi definido para este aparelho: "+virtualid+".<br>Este código identifica você em todo o sistema e assegura a sua privacidade.<br> Se você compartilhava alertas com outras pessoas, faça a sincronização novamente para este novo usuário.");
 
 if(localStorage.getItem("local") === null) 
@@ -330,7 +330,7 @@ var latlon = position.coords.latitude + "," + position.coords.longitude;
 //atualiza ultima_localizacao para registro no servidor
 localStorage.setItem("latlon", latlon);
 
-if(localStorage.getItem("local") == null) { setTimeout(define_local, 2000); }
+if(localStorage.getItem("local") === null) { setTimeout(define_local, 2000); }
 
 	if (isNaN(velocidade)) { velocidade = 0;}
 	
