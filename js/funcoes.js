@@ -25,7 +25,7 @@ function onDeviceReady() {
 		notification_id = 1;
 		cordova.plugins.backgroundMode.enable();
 		//cordova.plugins.backgroundMode.onactivate = function() {notificacao_local('WARNING','Este aplicativo e apenas uma ferramenta e nao substitui a atencao e a supervisao de maior responsavel pela saude e seguranca da crianca.', 1);};
-		cordova.plugins.backgroundMode.onactivate = le_publicidade();
+		//cordova.plugins.backgroundMode.onactivate = le_publicidade();
 		cordova.plugins.notification.local.clearAll();
 alert('3');
 		
@@ -42,7 +42,7 @@ alert('3');
 				divulgue();
 			}
 			
-		ultima_localizacao();
+		//ultima_localizacao();
 
 }
 
@@ -402,7 +402,7 @@ if (navigator.geolocation) {
 	var teste = setInterval(playsound,3000);
 	
 	//envia dados do alerta para o servidor
-	registra_alerta();
+	//registra_alerta();
 	
 	     
 	 document.getElementById("principal").innerHTML = "<br><br><iframe width=80% height=200px src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe><br><img src='imagens/alert.gif' width=100% align='center' class='alerta' onclick='desativa();'>";
