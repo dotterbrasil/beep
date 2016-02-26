@@ -164,7 +164,8 @@ var dados = {id: virtualid, pais: local, latlon: last_latlon}
 function assinatura(){
 
 var virtualid = localStorage.getItem("virtualid");
-var local = localStorage.getItem("local");
+//var local = localStorage.getItem("local");
+var local = virtualid.substring(0,2);
 
 var dados = {id: virtualid, pais: local}
 
@@ -307,7 +308,7 @@ if (navigator.geolocation) {
 	//registra_alerta();
 	
 	     
-	 document.getElementById("principal").innerHTML = "<iframe width=50% src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe>";
+	 document.getElementById("principal").innerHTML = "<iframe width=100% src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe>";
 	 
 	 
 		  
