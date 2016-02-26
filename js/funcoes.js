@@ -124,17 +124,16 @@ alert("posicao -: "+codigo_local.indexOf("-"));
 
 idioma = idioma.substring(0, 2);
 
-
 aux = codigo_local.indexOf("-") + 1;
 
 codigo_local = codigo_local.substr(aux);
 
-alert('3'+codigo_local);
+
 
 virtualid = codigo_local+idioma+device.uuid+tempo_base_36;
 
-//alert("idioma: "+idioma+"<br>Local: "+local);
-//alert("Um novo usuário foi definido para este aparelho: "+virtualid+".<br>Este código identifica você em todo o sistema e assegura a sua privacidade.<br> Se você compartilhava alertas com outras pessoas, faça a sincronização novamente para este novo usuário.");
+alert("idioma: "+idioma+"<br>Local: "+local);
+alert("Um novo usuário foi definido para este aparelho: "+virtualid+".<br>Este código identifica você em todo o sistema e assegura a sua privacidade.<br> Se você compartilhava alertas com outras pessoas, faça a sincronização novamente para este novo usuário.");
 
 if(localStorage.getItem("local") === null) 
  		{ 
