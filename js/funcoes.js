@@ -21,13 +21,13 @@ var last_latlon;
 function onDeviceReady() {
 				
 		onboard = false;
-		
+		alert('2');
 		notification_id = 1;
 		cordova.plugins.backgroundMode.enable();
 		//cordova.plugins.backgroundMode.onactivate = function() {notificacao_local('WARNING','Este aplicativo e apenas uma ferramenta e nao substitui a atencao e a supervisao de maior responsavel pela saude e seguranca da crianca.', 1);};
 		cordova.plugins.backgroundMode.onactivate = le_publicidade();
 		cordova.plugins.notification.local.clearAll();
-
+alert('3');
 		
 		monitora_bateria();
 		speed_monitor();
@@ -56,7 +56,7 @@ function inicializacao(){
 	battery_notification = 0;
 	
 	notification_id = 1;
-				
+				alert('1');
 	document.addEventListener("deviceready", onDeviceReady, false);
 }
 
