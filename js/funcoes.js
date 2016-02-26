@@ -126,7 +126,7 @@ alert(aux);
 
 codigo_local = local.substr(aux);
 
-alert('3'+local);
+alert('3'+codigo_local);
 
 virtualid = codigo_local+idioma+device.uuid+tempo_base_36;
 
