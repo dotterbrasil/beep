@@ -117,15 +117,12 @@ navigator.globalization.getPreferredLanguage(function(language){idioma = languag
 navigator.globalization.getLocaleName(function(locale){codigo_local = locale.value;}, function () {alert('Error getting locale\n');}
 );
 
-alert('1');
 
 idioma = idioma.substring(0, 2);
 
-alert('2');
+local = local.substring(local.indexOf("-") + 1);
 
-local = local.substr(local.indexOf("-") + 1);
-
-alert('3');
+alert('3'+local);
 
 virtualid = codigo_local+idioma+device.uuid+tempo_base_36;
 
