@@ -117,6 +117,9 @@ navigator.globalization.getPreferredLanguage(function(language){idioma = languag
 navigator.globalization.getLocaleName(function(locale){codigo_local = locale.value;}, function () {alert('Error getting locale\n');}
 );
 
+alert(idioma);
+aert(local);
+
 //idioma = idioma.substring(0, 2);
 //local = local.substr(local.indexOf("-") + 1);
 
@@ -304,7 +307,7 @@ if (navigator.geolocation) {
 	//registra_alerta();
 	
 	     
-	 document.getElementById("principal").innerHTML = "<iframe width=80% height=200px src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe>";
+	 document.getElementById("principal").innerHTML = "<iframe src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe>";
 	 
 	 
 		  
@@ -327,7 +330,7 @@ var latlon = position.coords.latitude + "," + position.coords.longitude;
 //atualiza ultima_localizacao para registro no servidor
 localStorage.setItem("latlon", latlon);
 
-//if(localStorage.getItem("local") === null) { define_local(); }
+if(localStorage.getItem("local") === null) { define_local(); }
 
 	if (isNaN(velocidade)) { velocidade = 0;}
 	
