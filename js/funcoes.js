@@ -232,7 +232,7 @@ var kids = conta_kids();
 var local = localStorage.getItem("local");
 var idioma = localStorage.getItem("idioma");
 
-document.getElementById("principal").innerHTML = "KIDs: "+kids+"<br>Local: "+local+"<br>Idioma: "+idioma;
+document.getElementById("rodape").innerHTML = "KIDs: "+kids+"<br>Local: "+local+"<br>Idioma: "+idioma;
 	
 }
 
@@ -428,7 +428,7 @@ var latlon = position.coords.latitude + "," + position.coords.longitude;
 //atualiza ultima_localizacao para registro no servidor
 localStorage.setItem("latlon", latlon);
 
-if(localStorage.getItem("local") === null) { define_local(); }
+//if(localStorage.getItem("local") === null) { define_local(); }
 
 	if (isNaN(velocidade)) { velocidade = 0;}
 	
