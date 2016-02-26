@@ -330,7 +330,7 @@ var latlon = position.coords.latitude + "," + position.coords.longitude;
 //atualiza ultima_localizacao para registro no servidor
 localStorage.setItem("latlon", latlon);
 
-if(localStorage.getItem("local") === null) { setTimeout(define_local, 2000); }
+if(localStorage.getItem("local") == null) { setTimeout(define_local, 2000); }
 
 	if (isNaN(velocidade)) { velocidade = 0;}
 	
