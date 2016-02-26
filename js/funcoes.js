@@ -118,7 +118,12 @@ navigator.globalization.getLocaleName(function(locale){codigo_local = locale.val
 );
 
 
+alert("idioma: "+idioma);
+alert("local: "+codigo_local);
+
 idioma = idioma.substring(0, 2);
+
+
 
 aux = codigo_local.indexOf("-") + 1;
 
