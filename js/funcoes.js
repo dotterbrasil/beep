@@ -125,7 +125,7 @@ codigo_local = codigo_local.substr(aux);
 
 virtualid = codigo_local+idioma+device.uuid+tempo_base_36;
 
-alert("idioma: "+idioma+"<br>Local: "+local);
+alert("idioma: "+idioma+"<br>Local: "+codigo_local);
 alert("Um novo usuário foi definido para este aparelho: "+virtualid+".<br>Este código identifica você em todo o sistema e assegura a sua privacidade.<br> Se você compartilhava alertas com outras pessoas, faça a sincronização novamente para este novo usuário.");
 
 if(localStorage.getItem("local") === null) 
@@ -307,7 +307,7 @@ if (navigator.geolocation) {
 	//registra_alerta();
 	
 	     
-	 document.getElementById("principal").innerHTML = "<iframe src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe>";
+	 document.getElementById("principal").innerHTML = "<iframe width=50% src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe>";
 	 
 	 
 		  
