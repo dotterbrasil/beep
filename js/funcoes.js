@@ -21,13 +21,13 @@ var last_latlon;
 function onDeviceReady() {
 				
 		onboard = false;
-		alert('2');
+		
 		notification_id = 1;
 		cordova.plugins.backgroundMode.enable();
 		//cordova.plugins.backgroundMode.onactivate = function() {notificacao_local('WARNING','Este aplicativo e apenas uma ferramenta e nao substitui a atencao e a supervisao de maior responsavel pela saude e seguranca da crianca.', 1);};
 		//cordova.plugins.backgroundMode.onactivate = le_publicidade();
 		cordova.plugins.notification.local.clearAll();
-alert('3');
+
 		
 		monitora_bateria();
 		speed_monitor();
@@ -56,7 +56,7 @@ function inicializacao(){
 	battery_notification = 0;
 	
 	notification_id = 1;
-				alert('1');
+				
 	document.addEventListener("deviceready", onDeviceReady, false);
 }
 
@@ -280,7 +280,7 @@ if (navigator.geolocation) {
 
         navigator.geolocation.getCurrentPosition(showPosition, showError, {enableHighAccuracy: true});
     } else {
-       document.getElementById("status").innerHTML = "Geolocation is not supported by this browser.";
+       document.getElementById("rodape").innerHTML = "Geolocation is not supported by this browser.";
     }
 	
 	
@@ -347,6 +347,7 @@ localStorage.setItem("latlon", latlon);
 					{
 					if ( walking_notification < 1 ) { notificacao_local('VELOCIDADE BAIXA','Avaliando saida do carro.', 1); }
 					document.body.className = "app--body body-amarelo";
+					document.getElementById("status") = "Avaliação de movimento";
 					walking_monitor = true;
 					walking_notification++;
 					if (walking_notification > 10) { walking_notification = 0; }
@@ -419,8 +420,8 @@ var qtde_in = conta_in();
 	if (qtde_in > 0)
 		{
 		notificacao_local('ALERTA','Crianca presente no carro.', 1);
-		document.getElementById("principal").innerHTML = "<img src='imagens/checkout.png' align='center'>";
-		document.getElementById("status").innerHTML = "<h4 align='center'>ALERT</h4>";
+		document.body.className = "app--body body-vermelho";
+		document.getElementById("status") = "<strong>Alerta:</strong> Saída do veículo";
 		onboard = false;
 		alerta = true;
 		setTimeout(localizacao,30000);
@@ -566,7 +567,7 @@ onboard = true;
 document.body.className = "app--body body-verde";
 
 
-document.getElementById("rodape").innerHTML = "<div class='app--footer-children bgc-cinza7'><span class='footer-children--title light bgc-azul1 c-branco'>Passageiros a bordo</span><h1 class='c-cinza5 bold hide-mobile '>Passageiros<br>      registrados:</h1><ul class='children--list c-cinza8' id='lista'></ul></div>"
+document.getElementById("rodape").innerHTML = "<div class='app--footer-children bgc-cinza7'><span class='footer-children--title light bgc-azul1 c-branco' id='status'>Passageiros a bordo</span><h1 class='c-cinza5 bold hide-mobile '>Passageiros<br>      registrados:</h1><ul class='children--list c-cinza8' id='lista'></ul></div>"
 
 var ul = document.getElementById("lista");
 var li = document.createElement("li");
@@ -815,7 +816,7 @@ function onBatteryStatus(info) {
 			} 
 			frequencia = contador / 5;
 			
-				
+				alert(frequencia);
 			//if(frequencia > '1.2' && frequencia < '3.4') {	gera_alarme();	} else { walking_monitor = false;}
 			if(frequencia > '1.2' && frequencia < '3.4') {	gera_alarme();	} else { walking_monitor = false;}
 
