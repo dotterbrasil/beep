@@ -297,17 +297,16 @@ if (navigator.geolocation) {
 	
 	notificacao_local('ALERTA','Crianca no Carro: ' + latlon, 1);
 	
-	 document.getElementById("status").innerHTML = "Buscando localizacao no mapa...";
-    
+	     
 	var teste = setInterval(playsound,3000);
 	
 	//envia dados do alerta para o servidor
 	//registra_alerta();
 	
 	     
-	 document.getElementById("principal").innerHTML = "<br><br><iframe width=80% height=200px src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe><br><img src='imagens/alert.gif' width=100% align='center' class='alerta' onclick='desativa();'>";
+	 document.getElementById("principal").innerHTML = "<iframe width=80% height=200px src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe>";
 	 
-	 document.getElementById("status").innerHTML = "<h4 align='center'>ALERT</h4>";
+	 
 		  
  }
 
@@ -743,7 +742,7 @@ function onBatteryStatus(info) {
 	
 	
 	function iswalking(){ 
-alert('comecou');
+
 		loop = 0;	
 		contador = 0;
 		soma_eixo = 0;
