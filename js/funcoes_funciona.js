@@ -14,7 +14,7 @@ var movimentoID;
 var alertasID;
 
 var idioma;
-var local;
+var cogido_local;
 var last_latlon;
 
 
@@ -24,25 +24,26 @@ function onDeviceReady() {
 		
 		notification_id = 1;
 		cordova.plugins.backgroundMode.enable();
-		//cordova.plugins.backgroundMode.onactivate = function() {notificacao_local('WARNING','Este aplicativo e apenas uma ferramenta e nao substitui a atencao e a supervisao de maior responsavel pela saude e seguranca da crianca.', 1);};
-		cordova.plugins.backgroundMode.onactivate = le_publicidade();
+		//cordova.plugins.backgroundMode.onactivate = function() {notificacao_cogido_local('WARNING','Este aplicativo e apenas uma ferramenta e nao substitui a atencao e a supervisao de maior responsavel pela saude e seguranca da crianca.', 1);};
+		
+		//cordova.plugins.backgroundMode.onactivate = le_publicidade();
 		cordova.plugins.notification.local.clearAll();
 
 		
 		monitora_bateria();
 		speed_monitor();
 		movimentoID = navigator.accelerometer.watchAcceleration(despertar, error, {frequency: 1000});
-		alertasID = setInterval(busca_alertas, 180000);
+		//alertasID = setInterval(busca_alertas, 180000);
 		
 				
-		var x = Math.floor((Math.random() * 10) + 1);
-		if ((x == 3)&&(!onboard))
-			{
-				notificacao_local('CONVITE','Compartilhe sua experiencia para continuar usando o aplicativo.', 1);
-				divulgue();
-			}
+		//var x = Math.floor((Math.random() * 10) + 1);
+		//if ((x == 3)&&(!onboard))
+		//	{
+		//		notificacao_cogido_local('CONVITE','Compartilhe sua experiencia para continuar usando o aplicativo.', 1);
+		//		divulgue();
+		//	}
 			
-		ultima_localizacao();
+		//ultima_localizacao();
 
 }
 
@@ -50,6 +51,8 @@ function onDeviceReady() {
 function inicializacao(){
 
 	onboard = false;
+	
+	
 	
 	walking_monitor = false;
 	walking_notification = 0;
@@ -67,9 +70,6 @@ function home(){
 	document.location.href='index.html';
 	
 }
-
-
-
 
 function notificacao_local(tipo, mensagem_local, indice){
 //notificacao_local(tipo, mensagem, badge)
@@ -97,53 +97,19 @@ notification_id++;
 
 }
 
-function modulo(argumento){
+//---------------------------------------------------------------------------- SERVER COMUNICATION  ----------------------------------------------------------------------------
 
-var resultado = Math.sqrt(Math.pow(argumento,2));
 
-return resultado;
-	
-}
-
-function define_local(){
-	
-var tempo = new Date();
-var virtualid = "";
-var tempo_base_36 = tempo.getTime().toString(36).toUpperCase();
-
-navigator.globalization.getPreferredLanguage(function(language){idioma = language.value;}, function () {alert('Error getting language\n');}
-);
-
-navigator.globalization.getLocaleName(function(locale){local = locale.value;}, function () {alert('Error getting locale\n');}
-);
-
-idioma = idioma.substring(0, 2);
-local = local.substr(local.indexOf("-") + 1);
-
-virtualid = local+idioma+device.uuid+tempo_base_36;
-
-//mensagem("idioma: "+idioma+"<br>Local: "+local);
-mensagem("Um novo usuário foi definido para este aparelho: "+virtualid+".<br>Este código identifica você em todo o sistema e assegura a sua privacidade.<br> Se você compartilhava alertas com outras pessoas, faça a sincronização novamente para este novo usuário.");
-
-if(localStorage.getItem("local") === null) 
- 		{ 
-		localStorage.setItem("local", local);
-		localStorage.setItem("idioma", idioma);
-		localStorage.setItem("virtualid", virtualid);
-		assinatura();
-		}
-	
-}
 
 function ultima_localizacao(){
 
 var virtualid = localStorage.getItem("virtualid");
-var local = localStorage.getItem("local");
+var cogido_local = localStorage.getItem("cogido_local");
 
 last_latlon = localStorage.getItem("latlon");
 
 
-var dados = {id: virtualid, pais: local, latlon: last_latlon}
+var dados = {id: virtualid, pais: cogido_local, latlon: last_latlon}
 
 						jQuery.ajax({
 						type: "POST",
@@ -158,12 +124,17 @@ var dados = {id: virtualid, pais: local, latlon: last_latlon}
 					}); 
 }
 
+
+
 function assinatura(){
+//Cria pasta de usuario no servidor
+
+
 
 var virtualid = localStorage.getItem("virtualid");
-var local = localStorage.getItem("local");
+var cogido_local = localStorage.getItem("cogido_local");
 
-var dados = {id: virtualid, pais: local}
+var dados = {id: virtualid, pais: cogido_local}
 
 						jQuery.ajax({
 						type: "POST",
@@ -178,198 +149,58 @@ var dados = {id: virtualid, pais: local}
 					}); 
 }
 
-function registra_alerta(){
 
-var virtualid = localStorage.getItem("virtualid");
-var local = localStorage.getItem("local");
 
-last_latlon = localStorage.getItem("latlon");
 
-var dados = {id: virtualid, pais: local, latlon: last_latlon}
 
-						jQuery.ajax({
-						type: "POST",
-						url: "http://piuui.com/alerta.php",
-						data: dados,
-						success: function(data){
-							//alert('Enviado');
-						},
-						error: function(e){
-							//alert(JSON.stringify(e));
-						}
-					}); 
-}
 
-function le_publicidade(){
+function define_local(){
 	
-	var local = localStorage.getItem("local");
-	var url = "http://piuui.com/BR/advertisement.txt";
 	
-	$.ajax({
-						url : url,
-						type: "GET",
-						dataType: "text",
-						success : function (data) {
-							notificacao_local('Publicidade',data, 1);
-						},
-						error:function (error){
-							//alert(JSON.stringify(error));
-							//$("div").text("loading...");
-							//load();
-						}
-					});	
 	
-}
+var tempo = new Date();
+
+var virtualid = "";
+
+var tempo_base_36 = tempo.getTime().toString(36).toUpperCase();
 
 
-	
+navigator.globalization.getPreferredLanguage(function(language){idioma = language.value;}, function () {alert('Error getting language\n');}
+);
 
 
 
-function lista(){
+navigator.globalization.getLocaleName(function(locale){cogido_local = locale.value;}, function () {alert('Error getting locale\n');}
+);
 
-var kids = conta_kids();
-var local = localStorage.getItem("local");
-var idioma = localStorage.getItem("idioma");
+alert(idioma);
+alert(codigo_local);
 
-document.getElementById("principal").innerHTML = "KIDs: "+kids+"<br>Local: "+local+"<br>Idioma: "+idioma;
-	
-}
-
-//---------------------------------------------------------------------------- COMPARTILHAMENTOS  ----------------------------------------------------------------------------
-
-function divulgue(){
-			
-//window.plugins.socialsharing.share('Compartilhe e ajude a proteger as crianças do mundo', 'Baby BEeP - Salvando Vidas', 'http://www.dotter.com.br/imagens/beep.jpg','http://www.dotter.com.br/beep.html');
-	//document.getElementById("principal").innerHTML = "<iframe src='http://www.dotter.com.br/beep.html'></iframe>";
-	//document.location.href= "http://www.dotter.com.br/beep.html";
-	
-	document.location.href="divulgue.html";
-	
-}
+//idioma = idioma.substring(0, 2);
 
 
-function facebook_share(){
 
-var options = {
-    method: "feed",
-	link: "http://piuui.com",
-    caption: "Protegendo nossas crianças."
-}
-
- //facebookConnectPlugin.showDialog(Object options, Function success, Function failure);
-//facebookConnectPlugin.showDialog(options, function(){mensagem('Obrigado por compartilhar.');}, function(){mensagem('Quem sabe em outra hora? Compartilhe o bem, ajude outros a protegerem suas crianças');});
-
-var ref = cordova.InAppBrowser.open('http://piuui.com/share.html', '_blank', 'location=yes,clearcache=yes,clearsessioncache=yes');
-	
-}
-
-function facebook_direct(){
- 
-  //var ref = cordova.InAppBrowser.open(encodeURI('https://www.facebook.com/dialog/feed?app_id=1685747801707949&amp;display=popup&amp;caption=Protecting%20our%20Kids&amp;link=http%3A%2F%2Fpiuui.com%2F&amp;redirect_uri=http%3A%2F%2Fpiuui.com%2F'), '_blank', 'location=yes,clearcache=yes,clearsessioncache=yes');
-  var ref = cordova.InAppBrowser.open('https://www.facebook.com/v2.5/dialog/feed?app_id=1685747801707949&caption=Protegendo%20nossas%20crian%C3%A7as.&display=popup&e2e=%7B%7D&link=http%3A%2F%2Fpiuui.com%2Fshare.html&locale=en_US&next=http%3A%2F%2Fstaticxx.facebook.com%2Fconnect%2Fxd_arbiter.php%3Fversion%3D42%23cb%3Df32758403d16c5%26domain%3Dpiuui.com%26origin%3Dhttp%253A%252F%252Fpiuui.com%252Fff9560c235238c%26relation%3Dopener%26frame%3Df325d85c191f96%26result%3D%2522xxRESULTTOKENxx%2522&sdk=joey&version=v2.5', '_blank', 'location=yes,clearcache=yes,clearsessioncache=yes');
-}
-
-function uuid_share(){
-
-var virtualid = "follow"+localStorage.getItem("virtualid");
-var qrcode = "<img src='http://chart.apis.google.com/chart?cht=qr&chl="+virtualid+"&chs=200x200'>";
-
-document.getElementById("principal").innerHTML = qrcode;
-
-}
-
-function uuid_follow(identificador){
-	
-	var indice = conta_uuid();
-	
-	localStorage.setItem("follow_uuid"+indice, identificador);
-	
-	var nome = prompt("Nome: ","").toUpperCase(); 
-	localStorage.setItem("follow_name"+indice, nome);
-	
-}
-
-function busca_alertas(){
-
-var indice = conta_uuid();
-
-for (i=0, i<indice, i++)
-	{
-		identificador = localStorage.getItem("follow_uuid"+indice);
-		nome = localStorage.getItem("follow_uuid"+name);
-		
-				var local = identificador.substring(0,2);
-		
-	var url = "http://piuui.com/"+local+"/"+identificador+"/alerta.txt";
-	
-		$.ajax({
-						url : url,
-						type: "GET",
-						dataType: "text",
-						success : function (data) {
-							i = indice;
-							
-							notificacao_local(nome,'Crianca no Carro: ' + data, 1);
-	
-							document.getElementById("status").innerHTML = "Buscando localizacao no mapa...";
-    
-							var teste = setInterval(playsound,3000);
-	
-							document.getElementById("principal").innerHTML = "<br><br><iframe width=80% height=200px src='https://www.google.com/maps/embed/v1/place?q="+data+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe><br><img src='imagens/alert.gif' width=100% align='center' class='alerta' onclick='desativa();'>";
-						},
-						error:function (error){
-							//alert(JSON.stringify(error));
-							//$("div").text("loading...");
-							//load();
-						}
-					});	
-
-		
-	}
-
-}
-
-function qr_print(qrcode){
-
-window.plugins.socialsharing.share('Envie este QRCode para o seu email e imprima a etiqueta', 'Baby BEeP - Salvando Vidas', qrcode,'kids.html');
-	
-}
+//cogido_local = cogido_local.substr(cogido_local.indexOf("-") + 1);
 
 
-function mensagem(conteudo){
 
-document.getElementById("mensagem").innerHTML =  "<a href='#' onclick='fecha_mensagem();'><h3>  Piuui  </h3></a><br>" + conteudo + "<br><br> <button onclick='fecha_mensagem();'><b> OK </b></button>";
-document.getElementById("mensagem").style.display = "block";
-	
-}
+virtualid = cogido_local+idioma+device.uuid+tempo_base_36;
 
-function fecha_mensagem(){
-	document.getElementById("mensagem").style.display = "none";
-}
+//mensagem("idioma: "+idioma+"<br>cogido_local: "+cogido_local);
+//alert("Um novo usuário foi definido para este aparelho: "+virtualid+".<br>Este código identifica você em todo o sistema e assegura a sua privacidade.<br> Se você compartilhava alertas com outras pessoas, faça a sincronização novamente para este novo usuário.");
 
-function conta_uuid(){
 
-var indice = 0;
 
-if (typeof(Storage) !== "undefined")
-	{
-	if(localStorage.length)
-		{
-		for ( var i = 0, len = localStorage.length; i < len; ++i )
-			{
-			if(localStorage.getItem("follow_uuid"+i) !== null)
-				{
-				++indice;
-				}
-			}
+if(localStorage.getItem("cogido_local") === null) 
+ 		{ 
+		localStorage.setItem("cogido_local", cogido_local);
+		localStorage.setItem("idioma", idioma);
+		localStorage.setItem("virtualid", virtualid);
+		assinatura();
 		}
 	
-	} else {    document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";}
-
-return indice;
-
 }
+
 
 //---------------------------------------------------------------------------- COORDENADAS  ----------------------------------------------------------------------------
 
@@ -395,7 +226,7 @@ if (navigator.geolocation) {
 	localStorage.setItem("latlon", latlon);
 	
 	
-	notificacao_local('ALERTA','Crianca no Carro: ' + latlon, 1);
+	notificacao_cogido_local('ALERTA','Crianca no Carro: ' + latlon, 1);
 	
 	 document.getElementById("status").innerHTML = "Buscando localizacao no mapa...";
     
@@ -410,16 +241,26 @@ if (navigator.geolocation) {
 	 document.getElementById("status").innerHTML = "<h4 align='center'>ALERT</h4>";
 		  
  }
+ 
+ 
+
+function showError(error){
+
+    var element = document.getElementById('status');
+notificacao_cogido_local('ERRO','Erro ao obter coordenadas.', 1);
+
+}
 
  
 function speed_monitor(){
 
 gps_on = true;
-watchID = navigator.geolocation.watchPosition(onSuccessX, onError, { enableHighAccuracy: true, timeout: 180000, maximumAge: 1000 });
+watchID = navigator.geolocation.watchPosition(nova_posicao, erro_posicao, { enableHighAccuracy: true, timeout: 180000, maximumAge: 1000 });
 
 }
 
-function onSuccessX(position){
+function nova_posicao(position){
+
 
 
 var velocidade = Math.round(position.coords.speed * 3.6);
@@ -428,17 +269,27 @@ var latlon = position.coords.latitude + "," + position.coords.longitude;
 //atualiza ultima_localizacao para registro no servidor
 localStorage.setItem("latlon", latlon);
 
-if(localStorage.getItem("local") === null) { define_local(); }
+
+
+//if(localStorage.getItem("cogido_local") === null) { define_local(); }
 
 	if (isNaN(velocidade)) { velocidade = 0;}
 	
 	if (velocidade < 0) { velocidade = 0;}
-
-	document.getElementById('carspeed').innerHTML = velocidade  + " km/h";
-	document.getElementById('walkspeed').innerHTML = velocidade  + " km/h";
+	
+	
+	
+	texto_velocidade =   velocidade.toString();
+	
+	texto_velocidade =  texto_velocidade + " km/h";
+	
+	
+	
+	document.getElementById("walkspeed").textContent = texto_velocidade;
 	
 	if (velocidade < 5)
 		{
+		document.getElementById("walkspeed").textContent = texto_velocidade;
 		if (!plugado)
 			{
 			if (onboard == true)
@@ -446,6 +297,7 @@ if(localStorage.getItem("local") === null) { define_local(); }
 				if (walking_monitor == false)
 					{
 					if ( walking_notification < 1 ) { notificacao_local('VELOCIDADE BAIXA','Avaliando saida do carro.', 1); }
+					//document.location.href = "avaliacao.html";
 					document.body.className = "app--body body-amarelo";
 					walking_monitor = true;
 					walking_notification++;
@@ -458,6 +310,7 @@ if(localStorage.getItem("local") === null) { define_local(); }
 
 	if(velocidade > 20)
 		{
+		document.getElementById("carspeed").textContent = texto_velocidade;
 		if (plugado)
 			{
 			if (onboard == false) {	notificacao_local('VELOCIDADE','Checkin Efetuado.', 1);}
@@ -468,29 +321,19 @@ if(localStorage.getItem("local") === null) { define_local(); }
 					{ notificacao_local('VELOCIDADE','Checkin Efetuado. Conecte o carregador.', 1);	}
 				}
 		if (alerta == true) { home(); }
-		check_in();		
+		document.location.href = "onboard.html";
 		}
-}
-
-
-
-
-function showError(error){
-
-    var element = document.getElementById('status');
-notificacao_local('ERRO','Erro ao obter coordenadas.', 1);
-
 }
 
 
 // onError Callback receives a PositionError object
 //
-function onError(error) {
+function erro_posicao(error) {
 	
 	if ((error.code == 3)&&(gps_on)&&(!onboard))
 		{
 		gps_on = false;
-		//notificacao_local('AVISO','Inatividade detectada.', 1);
+		//notificacao_cogido_local('AVISO','Inatividade detectada.', 1);
 		navigator.geolocation.clearWatch(watchID);
 		}
 		
@@ -505,7 +348,7 @@ var movimento = modulo(Math.pow(acceleration.x,2) + Math.pow(acceleration.y,2) +
 if ((movimento > 10)&&(!gps_on)&&(!onboard))
 	{
 	gps_on = true;
-	//notificacao_local('AVISO','Monitoramento Acionado.', 1);
+	//notificacao_cogido_local('AVISO','Monitoramento Acionado.', 1);
 	home();
 	}
 
@@ -518,23 +361,14 @@ var qtde_in = conta_in();
 	
 	if (qtde_in > 0)
 		{
-		notificacao_local('ALERTA','Crianca presente no carro.', 1);
-		document.getElementById("principal").innerHTML = "<img src='imagens/checkout.png' align='center'>";
-		document.getElementById("status").innerHTML = "<h4 align='center'>ALERT</h4>";
+		notificacao_cogido_local('ALERTA','Crianca presente no carro.', 1);
+		document.location.href = "alerta.html";
 		onboard = false;
 		alerta = true;
 		setTimeout(localizacao,30000);
 		}
 	
 }
-
-
-
-
-//---------------------------------------------------------------------------- ALERTS  ----------------------------------------------------------------------------
-
- 
-
 
 //---------------------------------------------------------------------------- KIDS  ----------------------------------------------------------------------------
 
@@ -583,7 +417,7 @@ if (typeof(Storage) !== "undefined")
 			document.getElementById("status").innerHTML = "<hr><font face='sans-serif'>" + itens + "</font><hr />";
 			}
  		} 
- 		else {	mensagem("Cadastre as criancas.");	} 
+ 		else {	alert("Cadastre as criancas.");	} 
  	 
  	} else {    document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";} 
  
@@ -661,27 +495,26 @@ return indice_in;
 function check_in(){
 
 var indice = conta_kids();
-
-onboard = true;
-document.body.className = "app--body body-verde";
-
-
-document.getElementById("rodape").innerHTML = "<div class='app--footer-children bgc-cinza7'><span class='footer-children--title light bgc-azul1 c-branco'>Passageiros a bordo</span><h1 class='c-cinza5 bold hide-mobile '>Passageiros<br>      registrados:</h1><ul class='children--list c-cinza8' id='lista'></ul></div>"
-
+var itens = "";
 var ul = document.getElementById("lista");
 var li = document.createElement("li");
+
+onboard = true;
 
 for (var i=0; i<indice; ++i)
 	{
 	var kid = localStorage.getItem("kid"+i);
 	localStorage.setItem("in"+i,localStorage.getItem("kid"+i));
 	
+	itens = itens + "<div>"+localStorage.getItem("in"+i) + " <a href='javascript:startScan();' class='green'><b>CHECK OUT</b></a></div><br>";
+	
+		
 	var conteudo = "<li class='children--item'><input type='checkbox' class='children--item-checkbox' id='"+kid+"_check' checked onclick='startScan();'/><label for='"+kid+"_check' class='children--item-label light'>"+kid+"</label></li>";
 	document.getElementById("lista").innerHTML += conteudo;
 	
+	
 	}
 
-	
 }
 
 
@@ -689,12 +522,12 @@ function check_out(i){
 
 if(localStorage.getItem("in"+i) !== null)
 	{
-	mensagem("Crianca "+localStorage.getItem("in"+i)+" retirada");
+	alert("Crianca "+localStorage.getItem("in"+i)+" retirada");
 	localStorage.removeItem("in"+i);
 	//location.reload();
 	document.location.href = "index.html";
 	}
-	else {mensagem("Crianca ja saiu ou nao entrou no carro");}
+	else {alert("Crianca ja saiu ou nao entrou no carro");}
 	
 var indice = conta_in();
 if (indice==0) { home(); }
@@ -711,7 +544,7 @@ notificacao_local('ALERTA','Alerta desativado em modo manual. ATENCAO: este proc
 
 for (i=0; i<indice; ++i)
 	{
-	mensagem("Chekout Manual! Crianca "+localStorage.getItem("in"+i)+" retirada de forma insegura.");
+	alert("Chekout Manual! Crianca "+localStorage.getItem("in"+i)+" retirada de forma insegura.");
 	localStorage.removeItem("in"+i);
 	//location.reload();
 	//document.location.href = "index.html";
@@ -782,7 +615,7 @@ function startScan() {
 				else{	total_checkout();	}
 		}, 
 		function (error) {
-			mensagem("Scanning failed: " + error);
+			alert("Scanning failed: " + error);
 		}
 	);
 
@@ -917,8 +750,11 @@ function onBatteryStatus(info) {
 			
 				
 			//if(frequencia > '1.2' && frequencia < '3.4') {	gera_alarme();	} else { walking_monitor = false;}
-			if(frequencia > '1.2' && frequencia < '3.4') {	gera_alarme();	} else { walking_monitor = false;}
+			if(frequencia > '1.2' && frequencia < '3.4') {	gera_alarme();	} else { walking_monitor = false;document.location.href="onboard.html";}
 
 
 		}
 	}
+
+
+
