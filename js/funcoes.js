@@ -347,7 +347,7 @@ localStorage.setItem("latlon", latlon);
 					{
 					if ( walking_notification < 1 ) { notificacao_local('VELOCIDADE BAIXA','Avaliando saida do carro.', 1); }
 					document.body.className = "app--body body-amarelo";
-					document.getElementById("status") = "Avaliação de movimento";
+					document.getElementById("status").innerHTML = "Avaliação de movimento";
 					walking_monitor = true;
 					walking_notification++;
 					if (walking_notification > 10) { walking_notification = 0; }
@@ -421,7 +421,7 @@ var qtde_in = conta_in();
 		{
 		notificacao_local('ALERTA','Crianca presente no carro.', 1);
 		document.body.className = "app--body body-vermelho";
-		document.getElementById("status") = "<strong>Alerta:</strong> Saída do veículo";
+		document.getElementById("status").innerHTML = "<strong>Alerta:</strong> Saída do veículo";
 		onboard = false;
 		alerta = true;
 		setTimeout(localizacao,30000);
@@ -743,7 +743,7 @@ function onBatteryStatus(info) {
 	
 	
 	function iswalking(){ 
-
+alert('comecou');
 		loop = 0;	
 		contador = 0;
 		soma_eixo = 0;
