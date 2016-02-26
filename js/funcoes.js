@@ -118,17 +118,10 @@ navigator.globalization.getLocaleName(function(locale){codigo_local = locale.val
 );
 
 
-alert("idioma: "+idioma);
-alert("local: "+codigo_local);
-alert("posicao -: "+codigo_local.indexOf("-"));
-
 idioma = idioma.substring(0, 2);
 
 aux = codigo_local.indexOf("-") + 1;
-
 codigo_local = codigo_local.substr(aux);
-
-
 
 virtualid = codigo_local+idioma+device.uuid+tempo_base_36;
 
@@ -337,7 +330,7 @@ var latlon = position.coords.latitude + "," + position.coords.longitude;
 //atualiza ultima_localizacao para registro no servidor
 localStorage.setItem("latlon", latlon);
 
-if(localStorage.getItem("local") === null) { define_local(); }
+if(localStorage.getItem("local") === null) { setTimeout(define_local, 2000); }
 
 	if (isNaN(velocidade)) { velocidade = 0;}
 	
