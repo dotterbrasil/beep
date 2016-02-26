@@ -120,7 +120,11 @@ navigator.globalization.getLocaleName(function(locale){codigo_local = locale.val
 
 idioma = idioma.substring(0, 2);
 
-local = local.substring(local.indexOf("-") + 1);
+aux = local.indexOf("-") + 1;
+
+alert(aux);
+
+local = local.substr(aux);
 
 alert('3'+local);
 
