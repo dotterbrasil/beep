@@ -506,9 +506,9 @@ if (typeof(Storage) !== "undefined")
 			
  		} 
  		else {
-			//alert("Cadastre as criancas.");
+			alert("Cadastre as criancas.");
 			document.getElementById("lista").innerHTML = "";
-			navigator.notification.alert("Cadastre as criancas.", function(){}, "KIDs");
+			//navigator.notification.alert("Cadastre as criancas.", function(){}, "KIDs");
 			} 
  	 
  	} else {    document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";} 
