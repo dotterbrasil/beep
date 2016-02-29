@@ -450,6 +450,8 @@ function kids(){
 var crianca = "";
 navigator.notification.prompt("Nome: ", function(results){crianca = results.input1;}, "Cadastro").toUpperCase();
 
+alert("crianca: "+crianca);
+
 var indice = conta_kids(); 
  
 if (typeof(Storage) !== "undefined") 
