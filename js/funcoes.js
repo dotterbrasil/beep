@@ -511,6 +511,8 @@ if (typeof(Storage) !== "undefined")
 			} 
  	 
  	} else {    document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";} 
+	
+	document.getElementById("botoes").innerHTML = "<a href='index.html' class='btn bgc-azul1 c-branco light'><i class='icon'><img src='dist/images/ico-help.png' alt='Voltar - Piuui'></i>Voltar</a>";
  
 } 
 
