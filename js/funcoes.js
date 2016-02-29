@@ -25,7 +25,7 @@ function onDeviceReady() {
 		notification_id = 1;
 		cordova.plugins.backgroundMode.enable();
 		//cordova.plugins.backgroundMode.onactivate = function() {notificacao_local('WARNING','Este aplicativo e apenas uma ferramenta e nao substitui a atencao e a supervisao de maior responsavel pela saude e seguranca da crianca.', 1);};
-		//cordova.plugins.backgroundMode.onactivate = le_publicidade();
+		cordova.plugins.backgroundMode.onactivate = le_publicidade();
 		cordova.plugins.notification.local.clearAll();
 
 		speed_monitor();
@@ -42,7 +42,7 @@ function onDeviceReady() {
 				divulgue();
 			}
 			
-		//ultima_localizacao();
+		ultima_localizacao();
 
 }
 
@@ -486,7 +486,7 @@ if (typeof(Storage) !== "undefined")
 	if(indice > 0)
  		{
 			
-			document.getElementById("principal").innerHTML = "<div class='app--footer-children bgc-cinza7'><span class='footer-children--title light bgc-azul1 c-branco' id='status'>Passageiros a bordo</span><h1 class='c-cinza5 bold hide-mobile '>Passageiros<br>      registrados:</h1><ul class='children--list c-cinza8' id='lista'></ul></div>"
+			document.getElementById("principal").innerHTML = "<div class='app--footer-children bgc-cinza7'><span class='footer-children--title light bgc-azul1 c-branco' id='status'>Passageiros Registrados</span><h1 class='c-cinza5 bold hide-mobile '>Passageiros<br>      registrados:</h1><ul class='children--list c-cinza8' id='lista'></ul></div>"
 
 			var ul = document.getElementById("lista");
 			var li = document.createElement("li");
@@ -508,7 +508,7 @@ if (typeof(Storage) !== "undefined")
  		else {
 			//alert("Cadastre as criancas.");
 			document.getElementById("principal").innerHTML = "";
-			navigator.notification.alert("Cadastre as criancas.", function(){}, "KIDs");
+			navigator.notification.alert("Cadastre as criancas.", function(){}, "Piuui");
 			} 
  	 
  	} else {    document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";} 
