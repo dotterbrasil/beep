@@ -449,10 +449,10 @@ function kids(){
  
 //var crianca = prompt("Nome: ","").toUpperCase(); 
 var crianca = "";
-navigator.notification.prompt("Nome: ", function(results){crianca = results.input1; crianca = crianca.toUpperCase();}, "Cadastro");
+navigator.notification.prompt("Nome: ", function(results){crianca = results.input1; alert(crianca); crianca = crianca.toUpperCase();alert(crianca);}, "Cadastro");
 
 var indice = conta_kids(); 
- 
+ alert(indice);
 if (typeof(Storage) !== "undefined") 
 	{ 
 	localStorage.setItem("kid"+indice,crianca); 
