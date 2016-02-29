@@ -48,7 +48,7 @@
 
     <icon src="icon.png" />
     <gap:splash src="logo.png" />
-	
+	<gap:splash gap:platform="ios" height="1136" src="logo.png" width="640" />
 	 
 
 
