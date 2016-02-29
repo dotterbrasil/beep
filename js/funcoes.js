@@ -125,10 +125,10 @@ codigo_local = codigo_local.substr(aux);
 
 virtualid = codigo_local+idioma+device.uuid+tempo_base_36;
 
-//alert("idioma: "+idioma+" - Local: "+codigo_local);
-navigator.notification.alert("idioma: "+idioma+" - Local: "+codigo_local, function(){}, "Location");
-//alert("Um novo usuário foi definido para este aparelho: "+virtualid+".<br>Este código identifica você em todo o sistema e assegura a sua privacidade.<br> Se você compartilhava alertas com outras pessoas, faça a sincronização novamente para este novo usuário.");
-navigator.notification.alert("Um novo usuário foi definido para este aparelho: "+virtualid+".<br>Este código identifica você em todo o sistema e assegura a sua privacidade.<br> Se você compartilhava alertas com outras pessoas, faça a sincronização novamente para este novo usuário.", function(){}, "User ID");
+alert("idioma: "+idioma+" - Local: "+codigo_local);
+//navigator.notification.alert("idioma: "+idioma+" - Local: "+codigo_local, function(){}, "Location");
+alert("Um novo usuário foi definido para este aparelho: "+virtualid+".<br>Este código identifica você em todo o sistema e assegura a sua privacidade.<br> Se você compartilhava alertas com outras pessoas, faça a sincronização novamente para este novo usuário.");
+//navigator.notification.alert("Um novo usuário foi definido para este aparelho: "+virtualid+".<br>Este código identifica você em todo o sistema e assegura a sua privacidade.<br> Se você compartilhava alertas com outras pessoas, faça a sincronização novamente para este novo usuário.", function(){}, "User ID");
 
 if(localStorage.getItem("local") === null) 
  		{ 
@@ -492,8 +492,8 @@ if (typeof(Storage) !== "undefined")
 			}
  		} 
  		else {
-			//alert("Cadastre as criancas.");
-			navigator.notification.alert("Cadastre as criancas.", function(){}, "KIDs");
+			alert("Cadastre as criancas.");
+			//navigator.notification.alert("Cadastre as criancas.", function(){}, "KIDs");
 			} 
  	 
  	} else {    document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";} 
@@ -615,15 +615,15 @@ function check_out(i){
 
 if(localStorage.getItem("in"+i) !== null)
 	{
-	//alert("Crianca "+localStorage.getItem("in"+i)+" retirada");
-	navigator.notification.alert("Crianca "+localStorage.getItem("in"+i)+" retirada", function(){}, "Checkout");
+	alert("Crianca "+localStorage.getItem("in"+i)+" retirada");
+	//navigator.notification.alert("Crianca "+localStorage.getItem("in"+i)+" retirada", function(){}, "Checkout");
 	localStorage.removeItem("in"+i);
 	//location.reload();
 	document.location.href = "index.html";
 	}
 	else {
-		//alert("Crianca ja saiu ou nao entrou no carro");
-		navigator.notification.alert("Crianca ja saiu ou nao entrou no carro", function(){}, "Checkout");
+		alert("Crianca ja saiu ou nao entrou no carro");
+		//navigator.notification.alert("Crianca ja saiu ou nao entrou no carro", function(){}, "Checkout");
 		}
 	
 var indice = conta_in();
@@ -641,8 +641,8 @@ notificacao_local('ALERTA','Alerta desativado em modo manual. ATENCAO: este proc
 
 for (i=0; i<indice; ++i)
 	{
-	//alert("Chekout Manual! Crianca "+localStorage.getItem("in"+i)+" retirada de forma insegura.");
-	navigator.notification.alert("Chekout Manual! Crianca "+localStorage.getItem("in"+i)+" retirada de forma insegura.", function(){}, "Checkout");
+	alert("Chekout Manual! Crianca "+localStorage.getItem("in"+i)+" retirada de forma insegura.");
+	//navigator.notification.alert("Chekout Manual! Crianca "+localStorage.getItem("in"+i)+" retirada de forma insegura.", function(){}, "Checkout");
 	localStorage.removeItem("in"+i);
 	//location.reload();
 	document.location.href = "index.html";
@@ -699,8 +699,8 @@ function startScan() {
 			if(result.format == 'QR_CODE')
 				{
 					seguidor = aux.substring(0, 6);
-					//alert(seguidor);
-					navigator.notification.alert(seguidor, function(){}, "Follow");
+					alert(seguidor);
+					//navigator.notification.alert(seguidor, function(){}, "Follow");
 					if (seguidor == "follow")
 						{
 							seguidor = seguidor.replace("follow", "");
