@@ -578,10 +578,14 @@ var li = document.createElement("li");
 for (var i=0; i<indice; ++i)
 	{
 	var kid = localStorage.getItem("kid"+i);
-	localStorage.setItem("in"+i,localStorage.getItem("kid"+i));
 	
-	var conteudo = "<li class='children--item'><input type='checkbox' class='children--item-checkbox' id='"+kid+"_check' checked onclick='startScan();'/><label for='"+kid+"_check' class='children--item-label light'>"+kid+"</label></li>";
-	document.getElementById("lista").innerHTML += conteudo;
+	if (kid !== null)
+		{
+		localStorage.setItem("in"+i,localStorage.getItem("kid"+i));
+	
+		var conteudo = "<li class='children--item'><input type='checkbox' class='children--item-checkbox' id='"+kid+"_check' checked onclick='startScan();'/><label for='"+kid+"_check' class='children--item-label light'>"+kid+"</label></li>";
+		document.getElementById("lista").innerHTML += conteudo;
+		}
 	
 	}
 
@@ -589,8 +593,8 @@ if (indice > 1)
 	{
 	document.getElementById('lista').style.columns = "2";	
 	document.getElementById('lista').style.columnCount = "2";
-	document.getElementById('lista').style.fontSize = "50%";
-	if ((indice%2)!=0) { document.getElementById("lista").innerHTML += "<li class='children--item'></li>"}
+	document.getElementById('lista').style.fontSize = "70%";
+	if ((indice%2)!=0) { document.getElementById("lista").innerHTML += "<li class='children--item'>sss</li>"}
 	}
 	
 }
