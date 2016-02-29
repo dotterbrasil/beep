@@ -585,7 +585,7 @@ var li = document.createElement("li");
 
 document.getElementById("lista").innerHTML = "";
 
-for (var i=0; i<localStorage.length;; ++i)
+for (var i=0; i<localStorage.length; ++i)
 	{
 	var kid = localStorage.getItem("kid"+i);
 	
@@ -641,8 +641,8 @@ notificacao_local('ALERTA','Alerta desativado em modo manual. ATENCAO: este proc
 
 for (i=0; i<indice; ++i)
 	{
-	alert("Chekout Manual! Crianca "+localStorage.getItem("in"+i)+" retirada de forma insegura.");
-	//navigator.notification.alert("Chekout Manual! Crianca "+localStorage.getItem("in"+i)+" retirada de forma insegura.", function(){}, "Checkout");
+	//alert("Chekout Manual! Crianca "+localStorage.getItem("in"+i)+" retirada de forma insegura.");
+	navigator.notification.alert("Chekout Manual! Crianca "+localStorage.getItem("in"+i)+" retirada de forma insegura.", function(){}, "Checkout");
 	localStorage.removeItem("in"+i);
 	//location.reload();
 	document.location.href = "index.html";
