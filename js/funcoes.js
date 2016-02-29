@@ -250,7 +250,8 @@ function divulgue(){
 	//document.getElementById("principal").innerHTML = "<iframe src='http://www.dotter.com.br/beep.html'></iframe>";
 	//document.location.href= "http://www.dotter.com.br/beep.html";
 	
-	document.location.href="divulgue.html";
+	//document.location.href="divulgue.html";
+	var ref = cordova.InAppBrowser.open('http://piuui.com/share.html', '_blank', 'location=yes,clearcache=yes,clearsessioncache=yes');
 	
 }
 
@@ -448,9 +449,7 @@ function kids(){
  
 //var crianca = prompt("Nome: ","").toUpperCase(); 
 var crianca = "";
-navigator.notification.prompt("Nome: ", function(results){alert(results.input1);crianca = results.input1.toUpperCase();}, "Cadastro");
-
-alert("crianca: "+crianca);
+navigator.notification.prompt("Nome: ", function(results){crianca = results.input1; crianca = crianca..toUpperCase();}, "Cadastro");
 
 var indice = conta_kids(); 
  
