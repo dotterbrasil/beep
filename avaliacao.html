@@ -59,8 +59,15 @@
         <span class="footer-children--title light bgc-azul1 c-branco">Avaliação de movimento</span>
         <h1 class="c-cinza5 bold hide-mobile ">Passageiros<br>
         registrados:</h1>
-        <ul class="children--list   c-cinza8" id="lista">
-          
+        <ul class="children--list   c-cinza8" id="lista" data-columns="2">
+          <li class='children--item'>
+		  <input type='checkbox' class='children--item-checkbox' id='teste_check' checked onclick='startScan();'/><label for='teste_check' class='children--item-label light'>teste</label>
+		  <input type='checkbox' class='children--item-checkbox' id='teste2_check' checked onclick='startScan();'/><label for='teste2_check' class='children--item-label light'>teste2</label>
+		  </li>
+		  <li class='children--item'>
+		  <input type='checkbox' class='children--item-checkbox' id='teste_check' checked onclick='startScan();'/><label for='teste_check' class='children--item-label light'>teste</label>
+		  <input type='checkbox' class='children--item-checkbox' id='teste2_check' display="none" checked onclick='startScan();'/><label for='teste2_check' class='children--item-label light'>teste2</label>
+		  </li>
         </ul>
       </div>
     </main>

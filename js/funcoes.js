@@ -27,7 +27,7 @@ function onDeviceReady() {
 		//cordova.plugins.backgroundMode.onactivate = function() {notificacao_local('WARNING','Este aplicativo e apenas uma ferramenta e nao substitui a atencao e a supervisao de maior responsavel pela saude e seguranca da crianca.', 1);};
 		//cordova.plugins.backgroundMode.onactivate = le_publicidade();
 		cordova.plugins.notification.local.clearAll();
-
+alert(window.navigator.battery.charging);
 		
 		monitora_bateria();
 		speed_monitor();
@@ -777,8 +777,8 @@ function onBatteryStatus(info) {
 		
 		if(loop < 50){			
 			//var xyz = modulo(Math.pow(accel_x,2) + Math.pow(accel_y,2) + Math.pow(accel_z,2) - 97);
-			var xyz = Math.pow(accel_x,2) + Math.pow(accel_y,2) + Math.pow(accel_z,2);
-			//var xyz = accel_x + accel_y + accel_z;
+			//var xyz = Math.pow(accel_x,2) + Math.pow(accel_y,2) + Math.pow(accel_z,2);
+			var xyz = accel_x + accel_y + accel_z;
 			var xyzSqrt = Math.sqrt(xyz);
 			//var eixo = Math.round(xyzSqrt);
 			var eixo = xyzSqrt;
@@ -819,7 +819,7 @@ function onBatteryStatus(info) {
 			} 
 			frequencia = contador / 5;
 			
-				alert(frequencia);
+				document.getElementById("walkspeed").innerHTML = frequencia;
 			//if(frequencia > '1.2' && frequencia < '3.4') {	gera_alarme();	} else { walking_monitor = false;}
 			if(frequencia > '1.2' && frequencia < '3.4') {	gera_alarme();	} else { walking_monitor = false;}
 
