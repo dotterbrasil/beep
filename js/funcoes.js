@@ -585,6 +585,11 @@ for (var i=0; i<indice; ++i)
 	
 	}
 
+if (indice > 1)
+	{
+	document.getElementById('lista').style.columns = "2";	
+	document.getElementById('lista').style.columnCount = "2";
+	}
 	
 }
 

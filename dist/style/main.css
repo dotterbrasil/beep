@@ -510,10 +510,7 @@ h1 {
 
 .children--list {
   padding: 0 20px;
-  columns: 2;
-  -webkit-column-count: 2;
-       -moz-column-count: 2;
-            column-count: 2;
+
   }
 
 .children--item {
