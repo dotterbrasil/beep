@@ -27,7 +27,7 @@ function onDeviceReady() {
 		//cordova.plugins.backgroundMode.onactivate = function() {notificacao_local('WARNING','Este aplicativo e apenas uma ferramenta e nao substitui a atencao e a supervisao de maior responsavel pela saude e seguranca da crianca.', 1);};
 		//cordova.plugins.backgroundMode.onactivate = le_publicidade();
 		cordova.plugins.notification.local.clearAll();
-alert(window.navigator.battery.charging);
+alert(window.navigator.batterystatus.isPlugged);
 		
 		monitora_bateria();
 		speed_monitor();
@@ -338,7 +338,7 @@ if(localStorage.getItem("local") === null) { setTimeout(define_local, 2000); }
 	if (velocidade < 0) { velocidade = 0;}
 
 	document.getElementById('carspeed').innerHTML = velocidade  + " km/h";
-	document.getElementById('walkspeed').innerHTML = velocidade  + " km/h";
+	//document.getElementById('walkspeed').innerHTML = velocidade  + " km/h";
 	
 	if (velocidade < 5)
 		{
