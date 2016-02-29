@@ -589,6 +589,8 @@ if (indice > 1)
 	{
 	document.getElementById('lista').style.columns = "2";	
 	document.getElementById('lista').style.columnCount = "2";
+	document.getElementById('lista').style.fontSize = "50%";
+	if ((indice%2)!=0) { document.getElementById("lista").innerHTML += "<li class='children--item'></li>"}
 	}
 	
 }
