@@ -526,7 +526,7 @@ if (typeof(Storage) !== "undefined")
 function app_reset(){
 
 // apaga todos os registros localStorage inclusive o VirtualID utilizado para comunicacao com o servidor
-navigator.notification.confirm('Confirmar o RESET apagara todas as configuracoes, incluindo cadastros de criancas, carros e alertas', function() { localStorage.clear(); }, 'Piuui - RESET')
+navigator.notification.confirm('Confirmar o RESET apagara todas as configuracoes, incluindo cadastros de criancas, carros e alertas', function(buttonIndex) { alert(buttonIndex);localStorage.clear(); }, 'Piuui - RESET')
 	
 }
 
