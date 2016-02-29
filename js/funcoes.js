@@ -506,15 +506,15 @@ if (typeof(Storage) !== "undefined")
 			
  		} 
  		else {
-			alert("Cadastre as criancas.");
+			//alert("Cadastre as criancas.");
 			document.getElementById("principal").innerHTML = "";
-			//navigator.notification.alert("Cadastre as criancas.", function(){}, "KIDs");
+			navigator.notification.alert("Cadastre as criancas.", function(){}, "KIDs");
 			} 
  	 
  	} else {    document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";} 
 	
 	
-	var funcionalidade = "add_kids()";
+	var funcionalidade = "kids()";
 	
 	document.getElementById("botoes").innerHTML = "<a href='javascript:"+funcionalidade+";' class='btn bgc-azul1 c-branco light'><i class='icon'><img src='dist/images/ico-help.png' alt='Adicionar - Piuui'></i>Adicionar Passageiros</a><a href='index.html' class='btn bgc-azul1 c-branco light'><i class='icon'><img src='dist/images/ico-help.png' alt='Voltar - Piuui'></i>Voltar</a>";
  
