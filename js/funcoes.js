@@ -516,12 +516,19 @@ if (typeof(Storage) !== "undefined")
  	} else {    document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";} 
 	
 	
-	var funcionalidade = "kids()";
+	var cadastro = "kids()";
+	var acao = "navigator.notification.confirm('Confirmar o RESET apagara todas as configuracoes, incluindo cadastros de criancas, carros e alertas', app_reset, 'Piuui - RESET')";
 	
-	document.getElementById("botoes").innerHTML = "<a href='javascript:"+funcionalidade+";' class='btn bgc-azul1 c-branco light'><i class='icon'><img src='dist/images/ico-help.png' alt='Adicionar - Piuui'></i>Adicionar Passageiros</a><a href='index.html' class='btn bgc-azul1 c-branco light'><i class='icon'><img src='dist/images/ico-help.png' alt='Voltar - Piuui'></i>Voltar</a>";
+	document.getElementById("botoes").innerHTML = "<a href='javascript:"+cadastro+";' class='btn bgc-azul1 c-branco light'><i class='icon'><img src='dist/images/ico-help.png' alt='Adicionar - Piuui'></i>Adicionar Passageiros</a><a href='index.html' class='btn bgc-azul1 c-branco light'><i class='icon'><img src='dist/images/ico-help.png' alt='Voltar - Piuui'></i>Voltar</a><a href='javascript:"+acao+";' class='btn bgc-azul1 c-branco light'><i class='icon'><img src='dist/images/ico-help.png' alt='RESET - Piuui'></i>APP Reset</a>";
  
 } 
 
+function app_reset(){
+
+// apaga todos os registros localStorage inclusive o VirtualID utilizado para comunicacao com o servidor
+localStorage.clear();
+	
+}
 
 
 function qrcode(i){
