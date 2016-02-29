@@ -319,6 +319,25 @@ if (navigator.geolocation) {
 		  
  }
 
+ function explore(){
+	 if (navigator.geolocation) {
+
+        navigator.geolocation.getCurrentPosition(explorePosition, showError, {enableHighAccuracy: true});
+    } else {
+       document.getElementById("rodape").innerHTML = "Geolocation is not supported by this browser.";
+    }
+ }
+ 
+ function explorePosition(position) {
+    var latlon = position.coords.latitude + "," + position.coords.longitude;
+	
+	//atualiza ultima_localizacao para registro no servidor
+	localStorage.setItem("latlon", latlon);
+	
+	   
+	 document.getElementById("principal").innerHTML = "<iframe width=100% src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe>";
+		  
+ }
  
 function speed_monitor(){
 
@@ -526,7 +545,7 @@ if (typeof(Storage) !== "undefined")
 function app_reset(){
 
 // apaga todos os registros localStorage inclusive o VirtualID utilizado para comunicacao com o servidor
-navigator.notification.confirm('Confirmar o RESET apagara todas as configuracoes, incluindo cadastros de criancas, carros e alertas', function(buttonIndex) { alert(buttonIndex);localStorage.clear(); }, 'Piuui - RESET')
+navigator.notification.confirm('Confirmar o RESET apagara todas as configuracoes, incluindo cadastros de criancas, carros e alertas', function(buttonIndex) { if(buttonIndex == 1){localStorage.clear();} }, 'Piuui - RESET')
 	
 }
 
