@@ -444,7 +444,9 @@ var qtde_in = conta_in();
 
 function kids(){ 
  
-var crianca = prompt("Nome: ","").toUpperCase(); 
+//var crianca = prompt("Nome: ","").toUpperCase(); 
+var crianca = navigator.notification.prompt("Nome: ", function(){}, "Cadastro").toUpperCase();
+
 var indice = conta_kids(); 
  
 if (typeof(Storage) !== "undefined") 
