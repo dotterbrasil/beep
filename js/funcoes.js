@@ -517,7 +517,7 @@ if (typeof(Storage) !== "undefined")
 	
 	
 	var cadastro = "kids()";
-	var acao = "navigator.notification.confirm('Confirmar o RESET apagara todas as configuracoes, incluindo cadastros de criancas, carros e alertas', app_reset, 'Piuui - RESET')";
+	var acao = "app_reset()";
 	
 	document.getElementById("botoes").innerHTML = "<a href='javascript:"+cadastro+";' class='btn bgc-azul1 c-branco light'><i class='icon'><img src='dist/images/ico-help.png' alt='Adicionar - Piuui'></i>Adicionar Passageiros</a><a href='index.html' class='btn bgc-azul1 c-branco light'><i class='icon'><img src='dist/images/ico-help.png' alt='Voltar - Piuui'></i>Voltar</a><a href='javascript:"+acao+";' class='btn bgc-azul1 c-branco light'><i class='icon'><img src='dist/images/ico-help.png' alt='RESET - Piuui'></i>APP Reset</a>";
  
@@ -526,7 +526,7 @@ if (typeof(Storage) !== "undefined")
 function app_reset(){
 
 // apaga todos os registros localStorage inclusive o VirtualID utilizado para comunicacao com o servidor
-localStorage.clear();
+navigator.notification.confirm('Confirmar o RESET apagara todas as configuracoes, incluindo cadastros de criancas, carros e alertas', function() { localStorage.clear(); }, 'Piuui - RESET')
 	
 }
 
