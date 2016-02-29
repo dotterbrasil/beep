@@ -566,7 +566,8 @@ return indice_in;
 
 function check_in(){
 
-var indice = conta_kids();
+//var indice = conta_kids();
+var indice = localStorage.length;
 
 onboard = true;
 document.body.className = "app--body body-verde";
@@ -576,6 +577,8 @@ document.getElementById("rodape").innerHTML = "<div class='app--footer-children 
 
 var ul = document.getElementById("lista");
 var li = document.createElement("li");
+
+document.getElementById("lista").innerHTML = "";
 
 for (var i=0; i<indice; ++i)
 	{
