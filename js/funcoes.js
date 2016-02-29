@@ -448,7 +448,7 @@ function kids(){
  
 //var crianca = prompt("Nome: ","").toUpperCase(); 
 var crianca = "";
-navigator.notification.prompt("Nome: ", function(results){crianca = results.input1.toUpperCase();}, "Cadastro");
+navigator.notification.prompt("Nome: ", function(results){alert(results.input1);crianca = results.input1.toUpperCase();}, "Cadastro");
 
 alert("crianca: "+crianca);
 
