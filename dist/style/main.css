@@ -513,7 +513,6 @@ h1 {
 
 .children--item {
   list-style: none; 
-  columns: 2;
   width: 50%;}
 
 .footer-children--title {
