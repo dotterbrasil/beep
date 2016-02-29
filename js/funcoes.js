@@ -143,7 +143,8 @@ if(localStorage.getItem("local") === null)
 function ultima_localizacao(){
 
 var virtualid = localStorage.getItem("virtualid");
-var local = localStorage.getItem("local");
+//var local = localStorage.getItem("local");
+var local = virtualid.substring(0,2);
 
 last_latlon = localStorage.getItem("latlon");
 
@@ -187,7 +188,8 @@ var dados = {id: virtualid, pais: local}
 function registra_alerta(){
 
 var virtualid = localStorage.getItem("virtualid");
-var local = localStorage.getItem("local");
+//var local = localStorage.getItem("local");
+var local = virtualid.substring(0,2);
 
 last_latlon = localStorage.getItem("latlon");
 
@@ -308,7 +310,7 @@ if (navigator.geolocation) {
 	var teste = setInterval(playsound,3000);
 	
 	//envia dados do alerta para o servidor
-	//registra_alerta();
+	registra_alerta();
 	
 	     
 	 document.getElementById("principal").innerHTML = "<iframe width=100% src='https://www.google.com/maps/embed/v1/place?q="+latlon+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe>";
