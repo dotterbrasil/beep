@@ -513,9 +513,11 @@ if (typeof(Storage) !== "undefined")
  	 
  	} else {    document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";} 
 	
-	var funcionalidade = "add_kids();";
+	alert("que foi - indice: "+indice);
 	
-	document.getElementById("botoes").innerHTML = "<a href='javascript:"+funcionalidade+"' class='btn bgc-azul1 c-branco light'><i class='icon'><img src='dist/images/ico-help.png' alt='Adicionar - Piuui'></i>Adicionar Passageiros</a><a href='index.html' class='btn bgc-azul1 c-branco light'><i class='icon'><img src='dist/images/ico-help.png' alt='Voltar - Piuui'></i>Voltar</a>";
+	var funcionalidade = "add_kids()";
+	
+	document.getElementById("botoes").innerHTML = "<a href='javascript:"+funcionalidade+";' class='btn bgc-azul1 c-branco light'><i class='icon'><img src='dist/images/ico-help.png' alt='Adicionar - Piuui'></i>Adicionar Passageiros</a><a href='index.html' class='btn bgc-azul1 c-branco light'><i class='icon'><img src='dist/images/ico-help.png' alt='Voltar - Piuui'></i>Voltar</a>";
  
 } 
 
