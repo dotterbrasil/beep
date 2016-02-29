@@ -449,7 +449,7 @@ function kids(){
  
 //var crianca = prompt("Nome: ","").toUpperCase(); 
 var crianca = "";
-navigator.notification.prompt("Nome: ", function(results){crianca = results.input1; crianca = crianca..toUpperCase();}, "Cadastro");
+navigator.notification.prompt("Nome: ", function(results){crianca = results.input1; crianca = crianca.toUpperCase();}, "Cadastro");
 
 var indice = conta_kids(); 
  
