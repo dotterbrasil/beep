@@ -484,18 +484,26 @@ if (typeof(Storage) !== "undefined")
 	{ 
  	//if(localStorage.length) 
 	if(indice > 0)
- 		{ 
- 		for ( var i = 0, len = localStorage.length; i < len; ++i )
- 			{ 
- 			if(localStorage.getItem("kid"+i) !== null) 
- 				{ 
- 				itens = itens + "<div onclick='qrcode("+i+");'>"+localStorage.getItem("kid"+i) + "  <img src='imagens/menos.png' class='icone' onclick='limpa_kid(" + i + ");'></div><br>"; 
- 				} 
- 			} 
- 		if(indice>0)
-			{
-			document.getElementById("status").innerHTML = "<hr><font face='sans-serif'>" + itens + "</font><hr />";
-			}
+ 		{
+			
+			document.getElementById("principal").innerHTML = "<div class='app--footer-children bgc-cinza7'><span class='footer-children--title light bgc-azul1 c-branco' id='status'>Passageiros a bordo</span><h1 class='c-cinza5 bold hide-mobile '>Passageiros<br>      registrados:</h1><ul class='children--list c-cinza8' id='lista'></ul></div>"
+
+			var ul = document.getElementById("lista");
+			var li = document.createElement("li");
+
+			document.getElementById("lista").innerHTML = "";
+
+			for (var i=0; i<localStorage.length; ++i)
+				{
+				var kid = localStorage.getItem("kid"+i);
+	
+				if (kid !== null)
+					{	
+					var conteudo = "<li class='children--item'><input type='checkbox' class='children--item-checkbox' id='"+kid+"_check' checked onclick='limpa_kid("+i+");'/><label for='"+kid+"_check' class='children--item-label light'>"+kid+"</label></li>";
+					document.getElementById("lista").innerHTML += conteudo;
+					}
+				}
+			
  		} 
  		else {
 			alert("Cadastre as criancas.");
