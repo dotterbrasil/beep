@@ -125,8 +125,10 @@ codigo_local = codigo_local.substr(aux);
 
 virtualid = codigo_local+idioma+device.uuid+tempo_base_36;
 
-alert("idioma: "+idioma+" - Local: "+codigo_local);
-alert("Um novo usuário foi definido para este aparelho: "+virtualid+".<br>Este código identifica você em todo o sistema e assegura a sua privacidade.<br> Se você compartilhava alertas com outras pessoas, faça a sincronização novamente para este novo usuário.");
+//alert("idioma: "+idioma+" - Local: "+codigo_local);
+navigator.notification.alert("idioma: "+idioma+" - Local: "+codigo_local, function(){}, "Location");
+//alert("Um novo usuário foi definido para este aparelho: "+virtualid+".<br>Este código identifica você em todo o sistema e assegura a sua privacidade.<br> Se você compartilhava alertas com outras pessoas, faça a sincronização novamente para este novo usuário.");
+navigator.notification.alert("Um novo usuário foi definido para este aparelho: "+virtualid+".<br>Este código identifica você em todo o sistema e assegura a sua privacidade.<br> Se você compartilhava alertas com outras pessoas, faça a sincronização novamente para este novo usuário.", function(){}, "User ID");
 
 if(localStorage.getItem("local") === null) 
  		{ 
@@ -489,7 +491,10 @@ if (typeof(Storage) !== "undefined")
 			document.getElementById("status").innerHTML = "<hr><font face='sans-serif'>" + itens + "</font><hr />";
 			}
  		} 
- 		else {	alert("Cadastre as criancas.");	} 
+ 		else {
+			//alert("Cadastre as criancas.");
+			navigator.notification.alert("Cadastre as criancas.", function(){}, "KIDs");
+			} 
  	 
  	} else {    document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";} 
  
@@ -567,7 +572,7 @@ return indice_in;
 function check_in(){
 
 //var indice = conta_kids();
-var indice = localStorage.length;
+var indice = 0;
 
 onboard = true;
 document.body.className = "app--body body-verde";
@@ -580,13 +585,14 @@ var li = document.createElement("li");
 
 document.getElementById("lista").innerHTML = "";
 
-for (var i=0; i<indice; ++i)
+for (var i=0; i<localStorage.length;; ++i)
 	{
 	var kid = localStorage.getItem("kid"+i);
 	
 	if (kid !== null)
 		{
 		localStorage.setItem("in"+i,localStorage.getItem("kid"+i));
+		indice++;
 	
 		var conteudo = "<li class='children--item'><input type='checkbox' class='children--item-checkbox' id='"+kid+"_check' checked onclick='startScan();'/><label for='"+kid+"_check' class='children--item-label light'>"+kid+"</label></li>";
 		document.getElementById("lista").innerHTML += conteudo;
@@ -609,12 +615,16 @@ function check_out(i){
 
 if(localStorage.getItem("in"+i) !== null)
 	{
-	alert("Crianca "+localStorage.getItem("in"+i)+" retirada");
+	//alert("Crianca "+localStorage.getItem("in"+i)+" retirada");
+	navigator.notification.alert("Crianca "+localStorage.getItem("in"+i)+" retirada", function(){}, "Checkout");
 	localStorage.removeItem("in"+i);
 	//location.reload();
 	document.location.href = "index.html";
 	}
-	else {alert("Crianca ja saiu ou nao entrou no carro");}
+	else {
+		//alert("Crianca ja saiu ou nao entrou no carro");
+		navigator.notification.alert("Crianca ja saiu ou nao entrou no carro", function(){}, "Checkout");
+		}
 	
 var indice = conta_in();
 if (indice==0) { home(); }
@@ -631,7 +641,8 @@ notificacao_local('ALERTA','Alerta desativado em modo manual. ATENCAO: este proc
 
 for (i=0; i<indice; ++i)
 	{
-	alert("Chekout Manual! Crianca "+localStorage.getItem("in"+i)+" retirada de forma insegura.");
+	//alert("Chekout Manual! Crianca "+localStorage.getItem("in"+i)+" retirada de forma insegura.");
+	navigator.notification.alert("Chekout Manual! Crianca "+localStorage.getItem("in"+i)+" retirada de forma insegura.", function(){}, "Checkout");
 	localStorage.removeItem("in"+i);
 	//location.reload();
 	document.location.href = "index.html";
@@ -688,7 +699,8 @@ function startScan() {
 			if(result.format == 'QR_CODE')
 				{
 					seguidor = aux.substring(0, 6);
-					alert(seguidor);
+					//alert(seguidor);
+					navigator.notification.alert(seguidor, function(){}, "Follow");
 					if (seguidor == "follow")
 						{
 							seguidor = seguidor.replace("follow", "");
