@@ -28,19 +28,13 @@ function onDeviceReady() {
 		cordova.plugins.backgroundMode.onactivate = le_publicidade();
 		cordova.plugins.notification.local.clearAll();
 
-		alert('1');
-		
 		speed_monitor();
-		
-		alert('2');
+
 		monitora_bateria();
-		
-		alert('3');
 		
 		movimentoID = navigator.accelerometer.watchAcceleration(despertar, error, {frequency: 1000});
 		alertasID = setInterval(busca_alertas, 180000);
 		
-				alert('4');
 		var x = Math.floor((Math.random() * 10) + 1);
 		if ((x == 3)&&(!onboard))
 			{
@@ -153,7 +147,6 @@ var virtualid = localStorage.getItem("virtualid");
 var local = virtualid.substring(0,2);
 
 last_latlon = localStorage.getItem("latlon");
-alert('vai');
 
 var dados = {id: virtualid, pais: local, latlon: last_latlon}
 
@@ -162,14 +155,13 @@ var dados = {id: virtualid, pais: local, latlon: last_latlon}
 						url: "http://piuui.com/location.php",
 						data: dados,
 						success: function(data){
-							alert('Enviado - '+data);
+							//alert('Enviado - '+data);
 						},
 						error: function(e){
-							alert(JSON.stringify(e));
+							//alert(JSON.stringify(e));
 						}
 					}); 
 					
-					alert('foi');
 }
 
 function assinatura(){
@@ -238,7 +230,47 @@ function le_publicidade(){
 }
 
 
+function busca_alertas(){
+
+//verifica a existencia de alertas gerados por outros usuarios e aciona alerta local se houver
+
+var indice = conta_uuid();
+
+for (i=0, i<indice, i++)
+	{
+		identificador = localStorage.getItem("follow_uuid"+indice);
+		nome = localStorage.getItem("follow_uuid"+name);
+		
+		var local = identificador.substring(0,2);
+		
+		var url = "http://piuui.com/"+local+"/"+identificador+"/alerta.txt";
 	
+		$.ajax({
+						url : url,
+						type: "GET",
+						dataType: "text",
+						success : function (data) {
+							i = indice;
+							
+							notificacao_local(nome,'Crianca no Carro: ' + data, 1);
+	
+							document.getElementById("status").innerHTML = "Buscando localizacao no mapa...";
+    
+							var teste = setInterval(playsound,3000);
+	
+							document.getElementById("principal").innerHTML = "<br><br><iframe width=80% height=200px src='https://www.google.com/maps/embed/v1/place?q="+data+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe><br><img src='imagens/alert.gif' width=100% align='center' class='alerta' onclick='desativa();'>";
+						},
+						error:function (error){
+							//alert(JSON.stringify(error));
+							//$("div").text("loading...");
+							//load();
+						}
+					});	
+
+		
+	}
+
+}
 
 
 
@@ -287,6 +319,48 @@ function facebook_direct(){
   var ref = cordova.InAppBrowser.open('https://www.facebook.com/v2.5/dialog/feed?app_id=1685747801707949&caption=Protegendo%20nossas%20crian%C3%A7as.&display=popup&e2e=%7B%7D&link=http%3A%2F%2Fpiuui.com%2Fshare.html&locale=en_US&next=http%3A%2F%2Fstaticxx.facebook.com%2Fconnect%2Fxd_arbiter.php%3Fversion%3D42%23cb%3Df32758403d16c5%26domain%3Dpiuui.com%26origin%3Dhttp%253A%252F%252Fpiuui.com%252Fff9560c235238c%26relation%3Dopener%26frame%3Df325d85c191f96%26result%3D%2522xxRESULTTOKENxx%2522&sdk=joey&version=v2.5', '_blank', 'location=yes,clearcache=yes,clearsessioncache=yes');
 }
 
+function uuid_share(){
+
+var virtualid = "follow"+localStorage.getItem("virtualid");
+var qrcode = "<img src='http://chart.apis.google.com/chart?cht=qr&chl="+virtualid+"&chs=200x200'>";
+
+document.getElementById("principal").innerHTML = qrcode;
+
+}
+
+function uuid_follow(identificador){
+	
+	var indice = conta_uuid();
+	
+	localStorage.setItem("follow_uuid"+indice, identificador);
+	
+	var nome = prompt("Nome: ","").toUpperCase(); 
+	localStorage.setItem("follow_name"+indice, nome);
+	
+}
+
+function conta_uuid(){
+
+var indice = 0;
+
+if (typeof(Storage) !== "undefined")
+	{
+	if(localStorage.length)
+		{
+		for ( var i = 0, len = localStorage.length; i < len; ++i )
+			{
+			if(localStorage.getItem("follow_uuid"+i) !== null)
+				{
+				++indice;
+				}
+			}
+		}
+	
+	} else {    document.getElementById("principal").innerHTML = "Sorry, your browser does not support Web Storage...";}
+
+return indice;
+
+}
 
 //---------------------------------------------------------------------------- COORDENADAS  ----------------------------------------------------------------------------
 
