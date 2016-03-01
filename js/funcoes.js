@@ -644,7 +644,7 @@ if (typeof(Storage) !== "undefined")
 	{
 	if(localStorage.length)
 		{
-		for ( var i = 0; i < indice; ++i )
+		for ( var i = 0; i < localStorage.length; ++i )
 			{
 			if(localStorage.getItem("in"+i) !== null)
 				{
@@ -705,14 +705,16 @@ function check_out(i){
 
 if(localStorage.getItem("in"+i) !== null)
 	{
-	alert("Crianca "+localStorage.getItem("in"+i)+" retirada");
+	//alert("Crianca "+localStorage.getItem("in"+i)+" retirada");
+	navigator.notification.alert("Crianca "+localStorage.getItem("in"+i)+" retirada.", function(){}, "Checkout");
 	//navigator.notification.alert("Crianca "+localStorage.getItem("in"+i)+" retirada", function(){}, "Checkout");
 	localStorage.removeItem("in"+i);
 	//location.reload();
 	document.location.href = "index.html";
 	}
 	else {
-		alert("Crianca ja saiu ou nao entrou no carro");
+		//alert("Crianca ja saiu ou nao entrou no carro");
+		navigator.notification.alert("Crianca ja saiu ou nao entrou no carro.", function(){}, "Checkout");
 		//navigator.notification.alert("Crianca ja saiu ou nao entrou no carro", function(){}, "Checkout");
 		}
 	
