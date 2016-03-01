@@ -817,7 +817,7 @@ function startScan(identificador) {
 		}
 	);
 
-		
+		alert('sei la');return false;
 }
 
 function desativa(){
