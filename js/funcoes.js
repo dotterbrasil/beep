@@ -147,7 +147,7 @@ var virtualid = localStorage.getItem("virtualid");
 var local = virtualid.substring(0,2);
 
 last_latlon = localStorage.getItem("latlon");
-
+alert('vai');
 
 var dados = {id: virtualid, pais: local, latlon: last_latlon}
 
@@ -162,6 +162,8 @@ var dados = {id: virtualid, pais: local, latlon: last_latlon}
 							alert(JSON.stringify(e));
 						}
 					}); 
+					
+					alert('foi');
 }
 
 function assinatura(){
