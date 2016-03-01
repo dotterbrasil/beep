@@ -718,28 +718,35 @@ if(localStorage.getItem("in"+i) !== null)
 		//navigator.notification.alert("Crianca ja saiu ou nao entrou no carro", function(){}, "Checkout");
 		}
 	
-var indice = conta_in();
+var indice = conta_in();alert(indice);
 if (indice==0) { home(); }
 }
 
-function total_checkout(){
+function total_checkout(i){
 
 var indice = conta_kids();
-var i = 0;
 
 notificacao_local('ALERTA','Alerta desativado em modo manual. ATENCAO: este procedimento pode colocar a crianca em risco!', 1);
 //var reaviso = setTimeout(localizacao,30000);
 //onError();
 
-for (i=0; i<indice; ++i)
+if(localStorage.getItem("in"+i) !== null)
 	{
-	//alert("Chekout Manual! Crianca "+localStorage.getItem("in"+i)+" retirada de forma insegura.");
+	//alert("Crianca "+localStorage.getItem("in"+i)+" retirada");
 	navigator.notification.alert("Chekout Manual! Crianca "+localStorage.getItem("in"+i)+" retirada de forma insegura.", function(){}, "Checkout");
+	//navigator.notification.alert("Crianca "+localStorage.getItem("in"+i)+" retirada", function(){}, "Checkout");
 	localStorage.removeItem("in"+i);
 	//location.reload();
 	document.location.href = "index.html";
 	}
+	else {
+		//alert("Crianca ja saiu ou nao entrou no carro");
+		navigator.notification.alert("Crianca ja saiu ou nao entrou no carro.", function(){}, "Checkout");
+		//navigator.notification.alert("Crianca ja saiu ou nao entrou no carro", function(){}, "Checkout");
+		}
 	
+var indice = conta_in();alert(indice);
+if (indice==0) { home(); }
 
 }
 
@@ -791,7 +798,7 @@ function startScan(identificador) {
 			if(result.format == 'QR_CODE')
 				{
 					seguidor = aux.substring(0, 6);
-					alert(seguidor);
+					//alert(seguidor);
 					//navigator.notification.alert(seguidor, function(){}, "Follow");
 					if (seguidor == "follow")
 						{
@@ -803,7 +810,7 @@ function startScan(identificador) {
 							check_out(identificador);
 						}
 				}
-				else{	total_checkout();	}
+				else{	total_checkout(identificador);	}
 		}, 
 		function (error) {
 			alert("Scanning failed: " + error);
