@@ -234,7 +234,7 @@ function busca_alertas(){
 
 //verifica a existencia de alertas gerados por outros usuarios e aciona alerta local se houver
 
-var indice = conta_uuid();
+var indice = conta_uuid();alert('1');
 
 for (i=0, i<indice, i++)
 	{
@@ -269,7 +269,7 @@ for (i=0, i<indice, i++)
 
 		
 	}
-
+alert('2');
 }
 
 
@@ -341,7 +341,7 @@ function uuid_follow(identificador){
 
 function conta_uuid(){
 
-var indice = 0;
+var indice = 0;alert('conta');
 
 if (typeof(Storage) !== "undefined")
 	{
