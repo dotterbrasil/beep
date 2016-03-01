@@ -684,7 +684,7 @@ for (var i=0; i<localStorage.length; ++i)
 		localStorage.setItem("in"+i,localStorage.getItem("kid"+i));
 		indice++;
 	
-		var conteudo = "<li class='children--item'><input type='checkbox' class='children--item-checkbox' id='"+kid+"_check' checked onclick='startScan();'/><label for='"+kid+"_check' class='children--item-label light'>"+kid+"</label></li>";
+		var conteudo = "<li class='children--item'><input type='checkbox' class='children--item-checkbox' id='"+kid+"_check' checked onclick='startScan("+i+");'/><label for='"+kid+"_check' class='children--item-label light'>"+kid+"</label></li>";
 		document.getElementById("lista").innerHTML += conteudo;
 		}
 	
@@ -777,7 +777,7 @@ function mediaError(){
 
 var aux = "";
 
-function startScan() {
+function startScan(identificador) {
 
 	var scanner = cordova.require("cordova/plugin/BarcodeScanner");
 	
@@ -797,7 +797,7 @@ function startScan() {
 							uuid_follow(seguidor);
 						}
 						else{
-							identificador = aux.substring(aux.length-1);
+							//identificador = aux.substring(aux.length-1);
 							check_out(identificador);
 						}
 				}
