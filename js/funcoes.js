@@ -28,13 +28,19 @@ function onDeviceReady() {
 		cordova.plugins.backgroundMode.onactivate = le_publicidade();
 		cordova.plugins.notification.local.clearAll();
 
+		alert('1');
+		
 		speed_monitor();
+		
+		alert('2');
 		monitora_bateria();
+		
+		alert('3');
 		
 		movimentoID = navigator.accelerometer.watchAcceleration(despertar, error, {frequency: 1000});
 		alertasID = setInterval(busca_alertas, 180000);
 		
-				
+				alert('4');
 		var x = Math.floor((Math.random() * 10) + 1);
 		if ((x == 3)&&(!onboard))
 			{
