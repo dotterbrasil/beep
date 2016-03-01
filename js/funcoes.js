@@ -25,7 +25,7 @@ function onDeviceReady() {
 		notification_id = 1;
 		cordova.plugins.backgroundMode.enable();
 		//cordova.plugins.backgroundMode.onactivate = function() {notificacao_local('WARNING','Este aplicativo e apenas uma ferramenta e nao substitui a atencao e a supervisao de maior responsavel pela saude e seguranca da crianca.', 1);};
-		cordova.plugins.backgroundMode.onactivate = le_publicidade();
+		//cordova.plugins.backgroundMode.onactivate = le_publicidade();
 		cordova.plugins.notification.local.clearAll();
 
 		speed_monitor();
@@ -40,6 +40,10 @@ function onDeviceReady() {
 			{
 				notificacao_local('CONVITE','Compartilhe sua experiencia para continuar usando o aplicativo.', 1);
 				divulgue();
+			}
+		if ((x == 5)&&(!onboard))
+			{
+				le_publicidade();
 			}
 			
 		ultima_localizacao();
@@ -710,7 +714,7 @@ if(localStorage.getItem("in"+i) !== null)
 	//navigator.notification.alert("Crianca "+localStorage.getItem("in"+i)+" retirada", function(){}, "Checkout");
 	localStorage.removeItem("in"+i);
 	//location.reload();
-	document.location.href = "index.html";
+	//document.location.href = "index.html";
 	}
 	else {
 		//alert("Crianca ja saiu ou nao entrou no carro");
@@ -737,7 +741,7 @@ if(localStorage.getItem("in"+i) !== null)
 	//navigator.notification.alert("Crianca "+localStorage.getItem("in"+i)+" retirada", function(){}, "Checkout");
 	localStorage.removeItem("in"+i);
 	//location.reload();
-	document.location.href = "index.html";
+	//document.location.href = "index.html";
 	}
 	else {
 		//alert("Crianca ja saiu ou nao entrou no carro");
