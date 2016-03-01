@@ -244,7 +244,7 @@ for (i=0, i<indice, i++)
 		
 		var local = identificador.substring(0,2);
 		
-		var url = "http://piuui.com/"+local+"/"+identificador+"/alerta.txt";
+		//var url = "http://piuui.com/"+local+"/"+identificador+"/alerta.txt";
 	
 		$.ajax({
 						url : url,
@@ -255,9 +255,9 @@ for (i=0, i<indice, i++)
 							
 							notificacao_local(nome,'Crianca no Carro: ' + data, 1);
 	 
-							var teste = setInterval(playsound,3000);
+							//var teste = setInterval(playsound,3000);
 	
-							document.getElementById("principal").innerHTML = "<br><br><iframe width=80% height=200px src='https://www.google.com/maps/embed/v1/place?q="+data+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe><br><img src='imagens/alert.gif' width=100% align='center' class='alerta' onclick='desativa();'>";
+							//document.getElementById("principal").innerHTML = "<br><br><iframe width=80% height=200px src='https://www.google.com/maps/embed/v1/place?q="+data+"&key=AIzaSyAj6LuyubKgTA8wlfqsTzQHKkSlTO9ZMOc' allowfullscreen align='center'></iframe><br><img src='imagens/alert.gif' width=100% align='center' class='alerta' onclick='desativa();'>";
 						},
 						error:function (error){
 							//alert(JSON.stringify(error));
