@@ -156,10 +156,10 @@ var dados = {id: virtualid, pais: local, latlon: last_latlon}
 						url: "http://piuui.com/location.php",
 						data: dados,
 						success: function(data){
-							//alert('Enviado');
+							alert('Enviado - '+data);
 						},
 						error: function(e){
-							//alert(JSON.stringify(e));
+							alert(JSON.stringify(e));
 						}
 					}); 
 }
