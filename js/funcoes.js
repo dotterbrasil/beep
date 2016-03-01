@@ -807,10 +807,10 @@ function startScan(identificador) {
 						}
 						else{
 							//identificador = aux.substring(aux.length-1);
-							check_out(identificador); break startScan;
+							check_out(identificador);
 						}
 				}
-				else{	total_checkout(identificador); break startScan;	}
+				else{	total_checkout(identificador);}
 		}, 
 		function (error) {
 			alert("Scanning failed: " + error);
