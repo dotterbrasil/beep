@@ -719,7 +719,7 @@ if(localStorage.getItem("in"+i) !== null)
 		}
 	
 var indice = conta_in();alert(indice);
-if (indice==0) { home(); }
+if (indice<1) { home(); }
 }
 
 function total_checkout(i){
@@ -746,7 +746,7 @@ if(localStorage.getItem("in"+i) !== null)
 		}
 	
 var indice = conta_in();alert(indice);
-if (indice==0) { home(); }
+if (indice<1) { home(); }
 
 }
 
