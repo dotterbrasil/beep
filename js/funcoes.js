@@ -718,8 +718,8 @@ if(localStorage.getItem("in"+i) !== null)
 		//navigator.notification.alert("Crianca ja saiu ou nao entrou no carro", function(){}, "Checkout");
 		}
 	
-var indice = conta_in();alert(indice);
-if (indice<1) { alert("vai sair: "+indice);home(); }else{alert('nao saiu');}
+var indice = conta_in();
+if (indice<1) { home(); }
 }
 
 function total_checkout(i){
@@ -745,7 +745,7 @@ if(localStorage.getItem("in"+i) !== null)
 		//navigator.notification.alert("Crianca ja saiu ou nao entrou no carro", function(){}, "Checkout");
 		}
 	
-var indice = conta_in();alert(indice);
+var indice = conta_in();
 if (indice<1) { home(); }
 
 }
@@ -807,17 +807,17 @@ function startScan(identificador) {
 						}
 						else{
 							//identificador = aux.substring(aux.length-1);
-							check_out(identificador); return;
+							check_out(identificador); break startScan;
 						}
 				}
-				else{	total_checkout(identificador); return;	}
+				else{	total_checkout(identificador); break startScan;	}
 		}, 
 		function (error) {
 			alert("Scanning failed: " + error);
 		}
 	);
 
-		alert('sei la');return false;
+		
 }
 
 function desativa(){
