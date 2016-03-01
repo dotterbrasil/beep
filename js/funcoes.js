@@ -719,7 +719,7 @@ if(localStorage.getItem("in"+i) !== null)
 		}
 	
 var indice = conta_in();alert(indice);
-if (indice<1) { home(); }
+if (indice<1) { alert("vai sair: "+indice);home(); }else{alert('nao saiu');}
 }
 
 function total_checkout(i){
