@@ -235,23 +235,27 @@ function busca_alertas(){
 //verifica a existencia de alertas gerados por outros usuarios e aciona alerta local se houver
 
 var indice = conta_uuid();
+var identificador = "";
+var nome = "";
+var local = "";
+
 alert(indice);
 
 for (i=0, i<indice, i++)
 	{
-		identificador = localStorage.getItem("follow_uuid"+indice);
-		nome = localStorage.getItem("follow_uuid"+name);
+		//identificador = localStorage.getItem("follow_uuid"+indice);
+		//nome = localStorage.getItem("follow_uuid"+name);
 		
-		var local = identificador.substring(0,2);
+		//var local = identificador.substring(0,2);
 		
-		//var url = "http://piuui.com/"+local+"/"+identificador+"/alerta.txt";
+		var url = "http://piuui.com/"+local+"/"+identificador+"/alerta.txt";
 	
 		$.ajax({
 						url : url,
 						type: "GET",
 						dataType: "text",
 						success : function (data) {
-							i = indice;
+							//i = indice;
 							
 							notificacao_local(nome,'Crianca no Carro: ' + data, 1);
 	 
