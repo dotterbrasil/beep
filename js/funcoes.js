@@ -908,8 +908,8 @@ function onBatteryStatus(info) {
 		
 		if(loop < 50){			
 			//var xyz = modulo(Math.pow(accel_x,2) + Math.pow(accel_y,2) + Math.pow(accel_z,2) - 97);
-			//var xyz = Math.pow(accel_x,2) + Math.pow(accel_y,2) + Math.pow(accel_z,2);
-			var xyz = accel_x + accel_y + accel_z;
+			var xyz = Math.pow(accel_x,2) + Math.pow(accel_y,2) + Math.pow(accel_z,2);
+			//var xyz = accel_x + accel_y + accel_z;
 			var xyzSqrt = Math.sqrt(xyz);
 			//var eixo = Math.round(xyzSqrt);
 			var eixo = xyzSqrt;
@@ -930,12 +930,12 @@ function onBatteryStatus(info) {
 				var vetor = Math.round(v);
 				
 				if(!anterior){
-					if(vetor > 1){
+					if(vetor > 10){
 						contador++;
 						anterior = true;					
 					}
 					//else if (vetor <= '-2')
-					else if (vetor <= '-1')
+					else if (vetor <= '-10')
 					{
 						anterior = false;
 					}
@@ -943,7 +943,7 @@ function onBatteryStatus(info) {
 				else 
 				{
 					//if(vetor <= '-2') {
-					if(vetor <= '-1') {
+					if(vetor <= '-10') {
 						anterior = false; 
 					}
 				}  
