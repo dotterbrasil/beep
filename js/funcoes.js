@@ -861,7 +861,7 @@ function onBatteryStatus(info) {
 				}
 				//else{	onboard = true;check_in();	}
 			}
-			else{ if (plugado){	document.location.href = "index.html";	}	}
+			else{ if (plugado){	plugado_anterior = plugado; document.location.href = "index.html";	}	}
 			
 		plugado_anterior = plugado;
 			
