@@ -930,12 +930,12 @@ function onBatteryStatus(info) {
 				var vetor = Math.round(v);
 				
 				if(!anterior){
-					if(vetor > 10){
+					if(vetor > 5){
 						contador++;
 						anterior = true;					
 					}
 					//else if (vetor <= '-2')
-					else if (vetor <= '-10')
+					else if (vetor <= '-5')
 					{
 						anterior = false;
 					}
@@ -943,7 +943,7 @@ function onBatteryStatus(info) {
 				else 
 				{
 					//if(vetor <= '-2') {
-					if(vetor <= '-10') {
+					if(vetor <= '-5') {
 						anterior = false; 
 					}
 				}  
