@@ -60,6 +60,8 @@ function inicializacao(){
 	battery_notification = 0;
 	
 	notification_id = 1;
+	
+	if (!plugado) { plugado = false;}
 				
 	document.addEventListener("deviceready", onDeviceReady, false);
 }
