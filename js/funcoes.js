@@ -952,7 +952,7 @@ function onBatteryStatus(info) {
 			
 				document.getElementById("walkspeed").innerHTML = frequencia;
 			//if(frequencia > '1.2' && frequencia < '3.4') {	gera_alarme();	} else { walking_monitor = false;}
-			if(frequencia > '1.2' && frequencia < '3.4') {	gera_alarme();	} else { walking_monitor = false;}
+			if(frequencia > '1.0' && frequencia < '3.4') {	gera_alarme();	} else { walking_monitor = false;}
 
 
 		}
