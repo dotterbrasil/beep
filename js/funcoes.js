@@ -16,6 +16,8 @@ var alertasID;
 var idioma;
 var local;
 var last_latlon;
+var last_latitude;
+var last_longitude;
 
 
 function onDeviceReady() {
@@ -400,6 +402,9 @@ function onSuccessX(position){
 var velocidade = Math.round(position.coords.speed * 3.6);
 var latlon = position.coords.latitude + "," + position.coords.longitude;
 
+last_latitude = position.coords.latitude;
+last_longitude = position.coords.longitude;
+
 //atualiza ultima_localizacao para registro no servidor
 localStorage.setItem("latlon", latlon);
 
@@ -466,7 +471,7 @@ function onError(error) {
 	if ((error.code == 3)&&(gps_on)&&(!onboard))
 		{
 		gps_on = false;
-		//notificacao_local('AVISO','Inatividade detectada.', 1);
+		notificacao_local('AVISO','Inatividade detectada.', 1);
 		navigator.geolocation.clearWatch(watchID);
 		}
 		
@@ -964,7 +969,20 @@ function onBatteryStatus(info) {
 			} 
 			frequencia = contador / 5;
 			
-				document.getElementById("walkspeed").innerHTML = frequencia;
+			navigator.geolocation.getCurrentPosition(
+				function calcula_distancia(position)
+					{
+						var distancia = 6371795.477598 * Math.acos(Math.sin(last_latitude) * Math.sin(position.coords.latitude*Math.PI/180) + Math.cos(last_latitude) * Math.cos(position.coords.latitude*Math.PI/180) * Math.cos(last_longitude - position.coords.longitude*Math.PI/180));
+			
+						document.getElementById("walkspeed").innerHTML = distancia;
+						
+					}, showError, {enableHighAccuracy: true});
+			
+			//var distancia = 6371795.477598 * Math.acos(Math.sin(last_latitude) * Math.sin(position.coords.latitude*Math.PI/180) + Math.cos(last_latitude) * Math.cos(position.coords.latitude*Math.PI/180) * Math.cos(last_longitude - position.coords.longitude*Math.PI/180));
+			
+				//document.getElementById("walkspeed").innerHTML = frequencia;
+				//document.getElementById("walkspeed").innerHTML = distancia;
+				
 			//if(frequencia > '1.2' && frequencia < '3.4') {	gera_alarme();	} else { walking_monitor = false;}
 			if(frequencia > '1.0' && frequencia < '3.4') {	gera_alarme();	} else { walking_monitor = false;}
 
