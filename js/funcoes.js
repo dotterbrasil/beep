@@ -481,7 +481,7 @@ var movimento = modulo(Math.pow(acceleration.x,2) + Math.pow(acceleration.y,2) +
 if ((movimento > 10)&&(!gps_on)&&(!onboard))
 	{
 	gps_on = true;
-	//notificacao_local('AVISO','Monitoramento Acionado.', 1);
+	notificacao_local('AVISO','Monitoramento Ativo.', 1);
 	home();
 	}
 
@@ -857,11 +857,23 @@ function onBatteryStatus(info) {
 				if ( battery_notification < 1 ) { notificacao_local('ALERTA','Recomenda-se o uso com o carregador conectado.', 1); }
 				battery_notification++;
 				if ( battery_notification >10 ) { battery_notification = 0; }
-				if (plugado_anterior) { gera_alarme(); }
+				if (plugado_anterior)
+					{
+					plugado_anterior = plugado;
+					gera_alarme();
+					}
+				plugado_anterior = plugado;
 				}
 				//else{	onboard = true;check_in();	}
 			}
-			else{ if (plugado){	plugado_anterior = plugado; document.location.href = "index.html";	}	}
+			else{ 
+				plugado_anterior = plugado;
+				if (plugado)
+					{
+					if (gps_on) { document.location.href = "index.html"; }
+					}
+					
+				}
 			
 		plugado_anterior = plugado;
 			
