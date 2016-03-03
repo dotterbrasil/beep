@@ -972,7 +972,7 @@ function onBatteryStatus(info) {
 			navigator.geolocation.getCurrentPosition(
 				function calcula_distancia(position)
 					{
-						var distancia = 6371795.477598 * Math.acos(Math.sin(last_latitude) * Math.sin(position.coords.latitude*Math.PI/180) + Math.cos(last_latitude) * Math.cos(position.coords.latitude*Math.PI/180) * Math.cos(last_longitude - position.coords.longitude*Math.PI/180));
+						var distancia = 6371795.477598 * Math.acos(Math.sin(last_latitude*Math.PI/180) * Math.sin(position.coords.latitude*Math.PI/180) + Math.cos(last_latitude*Math.PI/180) * Math.cos(position.coords.latitude*Math.PI/180) * Math.cos(last_longitude*Math.PI/180 - position.coords.longitude*Math.PI/180));
 			
 						document.getElementById("walkspeed").innerHTML = distancia;
 						
