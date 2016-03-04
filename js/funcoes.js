@@ -425,7 +425,8 @@ if(localStorage.getItem("local") === null)
 	if (!registro_usuario)
 		{alert('la vai');
 		registro_usuario = true;
-		setTimeout(define_local, 1000);
+		define_local();
+		//setTimeout(define_local, 1000);
 		}
 	}
 
