@@ -4,7 +4,7 @@ var plugado = false;
 var plugado_anterior = false;
 var walking_monitor = false;
 var gps_on = false;
-var registro_usuario = false;
+
 var walking_notification = 0;
 var battery_notification = 0;
 var alerta = false;
@@ -24,11 +24,6 @@ var last_longitude;
 function onDeviceReady() {
 				
 		onboard = false;
-		
-		if(localStorage.getItem("local") === null) 
-			{
-				navigator.geolocation.getCurrentPosition(define_local, showError, {enableHighAccuracy: true});
-			}
 		
 		notification_id = 1;
 		cordova.plugins.backgroundMode.enable();
@@ -72,11 +67,13 @@ function inicializacao(){
 plugado_anterior = false;
 walking_monitor = false;
 gps_on = false;
-registro_usuario = false;
+
 walking_notification = 0;
 battery_notification = 0;
 alerta = false;
 notification_id = 1;
+
+speed_monitor();
 	
 //	notification_id = 1;
 	
@@ -425,7 +422,11 @@ last_longitude = position.coords.longitude;
 //atualiza ultima_localizacao para registro no servidor
 localStorage.setItem("latlon", latlon);
 
-
+if(localStorage.getItem("local") === null) 
+	{
+		define_local();
+		//setTimeout(define_local, 1000);
+	}
 
 	if (isNaN(velocidade)) { velocidade = 0;}
 	
