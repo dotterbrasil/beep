@@ -4,6 +4,7 @@ var plugado = false;
 var plugado_anterior = false;
 var walking_monitor = false;
 var gps_on = false;
+var registro_usuario = false;
 var walking_notification = 0;
 var battery_notification = 0;
 var alerta = false;
@@ -408,7 +409,14 @@ last_longitude = position.coords.longitude;
 //atualiza ultima_localizacao para registro no servidor
 localStorage.setItem("latlon", latlon);
 
-if(localStorage.getItem("local") === null) { setTimeout(define_local, 2000); }
+if(localStorage.getItem("local") === null) 
+	{
+	if (!registro_usuario)
+		{
+		registro_usuario = true;
+		setTimeout(define_local, 1000);
+		}
+	}
 
 	if (isNaN(velocidade)) { velocidade = 0;}
 	
@@ -471,7 +479,7 @@ function onError(error) {
 	if ((error.code == 3)&&(gps_on)&&(!onboard))
 		{
 		gps_on = false;
-		notificacao_local('AVISO','Inatividade detectada.', 1);
+		//notificacao_local('AVISO','Inatividade detectada.', 1);
 		navigator.geolocation.clearWatch(watchID);
 		}
 		
@@ -485,9 +493,12 @@ var movimento = modulo(Math.pow(acceleration.x,2) + Math.pow(acceleration.y,2) +
 
 if ((movimento > 10)&&(!gps_on)&&(!onboard))
 	{
-	gps_on = true;
-	notificacao_local('AVISO','Monitoramento Ativo.', 1);
-	home();
+	//gps_on = true;
+	//notificacao_local('AVISO','Monitoramento Ativo.', 1);
+	speed_monitor();
+	monitora_bateria();
+	
+	//home();
 	}
 
 	
@@ -930,8 +941,8 @@ function onBatteryStatus(info) {
 			var xyz = Math.pow(accel_x,2) + Math.pow(accel_y,2) + Math.pow(accel_z,2);
 			//var xyz = accel_x + accel_y + accel_z;
 			var xyzSqrt = Math.sqrt(xyz);
-			//var eixo = Math.round(xyzSqrt);
-			var eixo = xyzSqrt;
+			var eixo = Math.round(xyzSqrt);
+			//var eixo = xyzSqrt;
 			array_eixo.push(eixo);
 			
 			soma_eixo = soma_eixo + eixo;
@@ -949,12 +960,12 @@ function onBatteryStatus(info) {
 				var vetor = Math.round(v);
 				
 				if(!anterior){
-					if(vetor > 5){
+					if(vetor > 7){
 						contador++;
 						anterior = true;					
 					}
 					//else if (vetor <= '-2')
-					else if (vetor <= '-5')
+					else if (vetor <= '-7')
 					{
 						anterior = false;
 					}
@@ -962,26 +973,27 @@ function onBatteryStatus(info) {
 				else 
 				{
 					//if(vetor <= '-2') {
-					if(vetor <= '-5') {
+					if(vetor <= '-7') {
 						anterior = false; 
 					}
 				}  
 			} 
 			frequencia = contador / 5;
 			
-			navigator.geolocation.getCurrentPosition(
-				function calcula_distancia(position)
-					{
-						var distancia = 6371795.477598 * Math.acos(Math.sin(last_latitude*Math.PI/180) * Math.sin(position.coords.latitude*Math.PI/180) + Math.cos(last_latitude*Math.PI/180) * Math.cos(position.coords.latitude*Math.PI/180) * Math.cos(last_longitude*Math.PI/180 - position.coords.longitude*Math.PI/180));
+			//navigator.geolocation.getCurrentPosition(
+			//	function calcula_distancia(position)
+			//		{
+			//			var distancia = 6371795.477598 * Math.acos(Math.sin(last_latitude*Math.PI/180) * Math.sin(position.coords.latitude*Math.PI/180) + //Math.cos(last_latitude*Math.PI/180) * Math.cos(position.coords.latitude*Math.PI/180) * Math.cos(last_longitude*Math.PI/180 - position.coords.longitude*Math.PI/180));
 			
-						document.getElementById("walkspeed").innerHTML = distancia;
+						//document.getElementById("walkspeed").innerHTML = distancia;
 						
-					}, showError, {enableHighAccuracy: true});
+					//}, showError, {enableHighAccuracy: true});
 			
 			//var distancia = 6371795.477598 * Math.acos(Math.sin(last_latitude) * Math.sin(position.coords.latitude*Math.PI/180) + Math.cos(last_latitude) * Math.cos(position.coords.latitude*Math.PI/180) * Math.cos(last_longitude - position.coords.longitude*Math.PI/180));
 			
 				//document.getElementById("walkspeed").innerHTML = frequencia;
-				//document.getElementById("walkspeed").innerHTML = distancia;
+				distancia = Math.round(frequencia * 5);
+				document.getElementById("walkspeed").innerHTML = distancia+" m";
 				
 			//if(frequencia > '1.2' && frequencia < '3.4') {	gera_alarme();	} else { walking_monitor = false;}
 			if(frequencia > '1.0' && frequencia < '3.4') {	gera_alarme();	} else { walking_monitor = false;}
