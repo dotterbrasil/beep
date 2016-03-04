@@ -41,7 +41,7 @@ function onDeviceReady() {
 		var x = Math.floor((Math.random() * 10) + 1);
 		if ((x == 3)&&(!onboard))
 			{
-				notificacao_local('CONVITE','Compartilhe sua experiencia para continuar usando o aplicativo.', 1);
+				notificacao_local('Piuui','Compartilhe sua experiencia para continuar usando o aplicativo.', 1);
 				divulgue();
 			}
 		if ((x == 5)&&(!onboard))
@@ -72,6 +72,8 @@ walking_notification = 0;
 battery_notification = 0;
 alerta = false;
 notification_id = 1;
+
+define_idioma();
 
 speed_monitor();
 	
@@ -147,16 +149,12 @@ codigo_local = codigo_local.substr(aux);
 
 virtualid = codigo_local+idioma+device.uuid+tempo_base_36;
 
-alert("idioma: "+idioma+" - Local: "+codigo_local);
-//navigator.notification.alert("idioma: "+idioma+" - Local: "+codigo_local, function(){}, "Location");
-alert("Um novo usuário foi definido para este aparelho: "+virtualid+".<br>Este código identifica você em todo o sistema e assegura a sua privacidade.<br> Se você compartilhava alertas com outras pessoas, faça a sincronização novamente para este novo usuário.");
-//navigator.notification.alert("Um novo usuário foi definido para este aparelho: "+virtualid+".<br>Este código identifica você em todo o sistema e assegura a sua privacidade.<br> Se você compartilhava alertas com outras pessoas, faça a sincronização novamente para este novo usuário.", function(){}, "User ID");
-
 if(localStorage.getItem("local") === null) 
  		{ 
 		localStorage.setItem("local", codigo_local);
 		localStorage.setItem("idioma", idioma);
 		localStorage.setItem("virtualid", virtualid);
+		define_idioma();
 		assinatura();
 		}
 	
@@ -165,7 +163,7 @@ if(localStorage.getItem("local") === null)
 function ultima_localizacao(){
 
 var virtualid = localStorage.getItem("virtualid");
-//var local = localStorage.getItem("local");
+
 var local = virtualid.substring(0,2);
 
 last_latlon = localStorage.getItem("latlon");
@@ -189,7 +187,7 @@ var dados = {id: virtualid, pais: local, latlon: last_latlon}
 function assinatura(){
 
 var virtualid = localStorage.getItem("virtualid");
-//var local = localStorage.getItem("local");
+
 var local = virtualid.substring(0,2);
 
 var dados = {id: virtualid, pais: local}
@@ -210,7 +208,7 @@ var dados = {id: virtualid, pais: local}
 function registra_alerta(){
 
 var virtualid = localStorage.getItem("virtualid");
-//var local = localStorage.getItem("local");
+
 var local = virtualid.substring(0,2);
 
 last_latlon = localStorage.getItem("latlon");
@@ -232,8 +230,9 @@ var dados = {id: virtualid, pais: local, latlon: last_latlon}
 
 function le_publicidade(){
 	
-	var local = localStorage.getItem("local");
-	var url = "http://piuui.com/BR/advertisement.txt";
+	var virtualid = localStorage.getItem("virtualid");
+	var local = virtualid.substring(0,2);
+	var url = "http://piuui.com/"+local+"/advertisement.txt";
 	
 	$.ajax({
 						url : url,
@@ -368,7 +367,7 @@ if (navigator.geolocation) {
 	localStorage.setItem("latlon", latlon);
 	
 	
-	notificacao_local('ALERTA','Crianca no Carro: ' + latlon, 1);
+	notificacao_local('PIUUI','Crianca no Carro: ' + latlon, 1);
 	
 	     
 	var teste = setInterval(playsound,3000);
@@ -443,9 +442,10 @@ if(localStorage.getItem("local") === null)
 				{
 				if (walking_monitor == false)
 					{
-					if ( walking_notification < 1 ) { notificacao_local('VELOCIDADE BAIXA','Avaliando saida do carro.', 1); }
+					if ( walking_notification < 1 ) { notificacao_local('PIUUI','Avaliando saida do carro.', 1); }
 					document.body.className = "app--body body-amarelo";
-					document.getElementById("status").innerHTML = "Avaliação de movimento";
+					//document.getElementById("status").innerHTML = "Avaliação de movimento";
+					document.getElementById("status").innerHTML = avaliando_status;
 					walking_monitor = true;
 					walking_notification++;
 					if (walking_notification > 10) { walking_notification = 0; }
@@ -459,12 +459,12 @@ if(localStorage.getItem("local") === null)
 		{
 		if (plugado)
 			{
-			if (onboard == false) {	notificacao_local('VELOCIDADE','Checkin Efetuado.', 1);}
+			if (onboard == false) {	notificacao_local('PIUUI','Checkin Efetuado.', 1);}
 			}
 			else
 				{
 				if (onboard == false) 
-					{ notificacao_local('VELOCIDADE','Checkin Efetuado. Conecte o carregador.', 1);	}
+					{ notificacao_local('PIUUI','Checkin Efetuado. Conecte o carregador.', 1);	}
 				}
 		if (alerta == true) { home(); }
 		check_in();		
@@ -520,7 +520,7 @@ var qtde_in = conta_in();
 	
 	if (qtde_in > 0)
 		{
-		notificacao_local('ALERTA','Crianca presente no carro.', 1);
+		notificacao_local('PIUUI','Crianca presente no carro.', 1);
 		document.body.className = "app--body body-vermelho";
 		document.getElementById("status").innerHTML = "<strong>Alerta:</strong> Saída do veículo";
 		onboard = false;
@@ -544,7 +544,7 @@ function kids(){
  
 //var crianca = prompt("Nome: ","").toUpperCase(); 
 var crianca = "";
-navigator.notification.prompt("Nome: ", function(results){ crianca = results.input1.toUpperCase(); add_kids(crianca);}, "Cadastro");
+navigator.notification.prompt("Entre com nome ou apelido: ", function(results){ crianca = results.input1.toUpperCase(); add_kids(crianca);}, "Kids");
 
 }
 
@@ -612,7 +612,7 @@ if (typeof(Storage) !== "undefined")
 	var cadastro = "kids()";
 	var acao = "app_reset()";
 	
-	document.getElementById("botoes").innerHTML = "<a href='javascript:"+cadastro+";' class='btn bgc-azul1 c-branco light'><i class='icon'><img src='dist/images/ico-help.png' alt='Adicionar - Piuui'></i>Adicionar Passageiros</a><a href='index.html' class='btn bgc-azul1 c-branco light'><i class='icon'><img src='dist/images/ico-help.png' alt='Voltar - Piuui'></i>Voltar</a><a href='javascript:"+acao+";' class='btn bgc-azul1 c-branco light'><i class='icon'><img src='dist/images/ico-help.png' alt='RESET - Piuui'></i>APP Reset</a>";
+	document.getElementById("botoes").innerHTML = "<a href='javascript:"+cadastro+";' class='btn bgc-azul1 c-branco light'><i class='icon'><img src='dist/images/ico-help.png' alt='Adicionar - Piuui'></i>Adicionar Passageiros</a><a href='index.html' class='btn bgc-azul1 c-branco light'><i class='icon'><img src='dist/images/ico-back.png' alt='Voltar - Piuui'></i>Voltar</a><a href='javascript:"+acao+";' class='btn bgc-azul1 c-branco light'><i class='icon'><img src='dist/images/ico-help.png' alt='RESET - Piuui'></i>APP Reset</a>";
  
 } 
 
@@ -738,7 +738,8 @@ function check_out(i){
 if(localStorage.getItem("in"+i) !== null)
 	{
 	//alert("Crianca "+localStorage.getItem("in"+i)+" retirada");
-	navigator.notification.alert("Crianca "+localStorage.getItem("in"+i)+" retirada.", function(){}, "Checkout");
+	//navigator.notification.alert("Crianca "+localStorage.getItem("in"+i)+" retirada.", function(){}, "Checkout");
+	navigator.notification.alert(localStorage.getItem("in"+i)+" saiu do veiculo.", function(){}, "Checkout");
 	//navigator.notification.alert("Crianca "+localStorage.getItem("in"+i)+" retirada", function(){}, "Checkout");
 	localStorage.removeItem("in"+i);
 	//location.reload();
@@ -758,14 +759,15 @@ function total_checkout(i){
 
 var indice = conta_kids();
 
-notificacao_local('ALERTA','Alerta desativado em modo manual. ATENCAO: este procedimento pode colocar a crianca em risco!', 1);
+notificacao_local('PIUUI','Alerta desativado em modo manual. ATENCAO: este procedimento pode colocar a crianca em risco!', 1);
 //var reaviso = setTimeout(localizacao,30000);
 //onError();
 
 if(localStorage.getItem("in"+i) !== null)
 	{
 	//alert("Crianca "+localStorage.getItem("in"+i)+" retirada");
-	navigator.notification.alert("Chekout Manual! Crianca "+localStorage.getItem("in"+i)+" retirada de forma insegura.", function(){}, "Checkout");
+	//navigator.notification.alert("Chekout Manual! Crianca "+localStorage.getItem("in"+i)+" retirada de forma insegura.", function(){}, "Checkout");
+	navigator.notification.alert(localStorage.getItem("in"+i)+" saiu do veiculo de forma insegura.  ATENCAO: este procedimento pode colocar a crianca em risco!", function(){}, "Checkout");
 	//navigator.notification.alert("Crianca "+localStorage.getItem("in"+i)+" retirada", function(){}, "Checkout");
 	localStorage.removeItem("in"+i);
 	//location.reload();
@@ -880,7 +882,7 @@ function onBatteryStatus(info) {
 			{
 			if (!plugado)
 				{
-				if ( battery_notification < 1 ) { notificacao_local('ALERTA','Recomenda-se o uso com o carregador conectado.', 1); }
+				if ( battery_notification < 1 ) { notificacao_local('Piuui','Recomenda-se o uso com o carregador conectado.', 1); }
 				battery_notification++;
 				if ( battery_notification >10 ) { battery_notification = 0; }
 				if (plugado_anterior)
