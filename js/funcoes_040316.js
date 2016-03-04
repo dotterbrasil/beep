@@ -25,11 +25,6 @@ function onDeviceReady() {
 				
 		onboard = false;
 		
-		if(localStorage.getItem("local") === null) 
-			{
-				navigator.geolocation.getCurrentPosition(define_local, showError, {enableHighAccuracy: true});
-			}
-		
 		notification_id = 1;
 		cordova.plugins.backgroundMode.enable();
 		//cordova.plugins.backgroundMode.onactivate = function() {notificacao_local('WARNING','Este aplicativo e apenas uma ferramenta e nao substitui a atencao e a supervisao de maior responsavel pela saude e seguranca da crianca.', 1);};
@@ -425,7 +420,15 @@ last_longitude = position.coords.longitude;
 //atualiza ultima_localizacao para registro no servidor
 localStorage.setItem("latlon", latlon);
 
-
+if(localStorage.getItem("local") === null) 
+	{
+	if (!registro_usuario)
+		{alert('la vai');
+		registro_usuario = true;
+		define_local();
+		//setTimeout(define_local, 1000);
+		}
+	}
 
 	if (isNaN(velocidade)) { velocidade = 0;}
 	
