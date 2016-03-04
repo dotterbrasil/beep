@@ -56,13 +56,24 @@ function onDeviceReady() {
 
 function inicializacao(){
 
-	onboard = false;
+	//onboard = false;
 	
-	walking_monitor = false;
-	walking_notification = 0;
-	battery_notification = 0;
+	//walking_monitor = false;
+	//walking_notification = 0;
+	//battery_notification = 0;
 	
-	notification_id = 1;
+	 onboard = false;
+
+plugado_anterior = false;
+walking_monitor = false;
+gps_on = false;
+registro_usuario = false;
+walking_notification = 0;
+battery_notification = 0;
+alerta = false;
+notification_id = 1;
+	
+//	notification_id = 1;
 	
 	if (!plugado) { plugado = false;}
 				
@@ -412,7 +423,7 @@ localStorage.setItem("latlon", latlon);
 if(localStorage.getItem("local") === null) 
 	{
 	if (!registro_usuario)
-		{
+		{alert('la vai');
 		registro_usuario = true;
 		setTimeout(define_local, 1000);
 		}
